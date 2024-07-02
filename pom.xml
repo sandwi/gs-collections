@@ -1,25 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright 2016 Goldman Sachs.
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
-
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.goldmansachs</groupId>
@@ -89,16 +69,18 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <slf4j.version>1.7.12</slf4j.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <slf4j.version>2.0.12</slf4j.version>
         <clover.version>4.0.6</clover.version>
-        <checkstyle.version>2.16</checkstyle.version>
-        <scala.version>2.11.7</scala.version>
+        <checkstyle.version>3.4.0</checkstyle.version>
+        <scala.version>2.13.12</scala.version>
         <!--Sonar settings-->
         <sonar.language>java</sonar.language>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.core.codeCoveragePlugin>clover</sonar.core.codeCoveragePlugin>
         <sonar.clover.version>${clover.version}</sonar.clover.version>
+        <maven.compiler.release>17</maven.compiler.release>
     </properties>
 
     <dependencyManagement>
@@ -107,7 +89,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <version>4.13.2</version>
                 <scope>test</scope>
             </dependency>
 
@@ -118,9 +100,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>2.23.1</version>
             </dependency>
 
             <dependency>
@@ -151,52 +133,53 @@
 
                 <plugin>
                     <artifactId>maven-antrun-plugin</artifactId>
-                    <version>1.8</version>
+                    <version>3.1.0</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.5.5</version>
+                    <version>3.6.0</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
-                    <version>2.6.1</version>
+                    <version>3.3.2</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.5.1</version>
+                    <version>3.12.1</version>
                     <configuration>
                         <fork>true</fork>
                         <maxmem>2048m</maxmem>
                         <verbose>true</verbose>
+                        <release>17</release>
                     </configuration>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.10</version>
+                    <version>3.6.1</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
+                    <version>3.1.1</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
+                    <version>3.1.1</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.6</version>
+                    <version>3.3.0</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.10.3</version>
+                    <version>3.6.3</version>
                 </plugin>
 
                 <plugin>
@@ -206,17 +189,17 @@
 
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>2.7</version>
+                    <version>3.3.1</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.4</version>
+                    <version>3.12.1</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>3.3.0</version>
                     <executions>
                         <execution>
                             <phase>verify</phase>
@@ -230,36 +213,36 @@
 
                 <plugin>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>1.4.1</version>
+                    <version>3.4.1</version>
                 </plugin>
 
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.2</version>
+                    <version>2.16.2</version>
                 </plugin>
 
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>clirr-maven-plugin</artifactId>
-                    <version>2.7</version>
+                    <version>2.8</version>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>5.1.9</version>
                 </plugin>
 
                 <plugin>
                     <groupId>net.alchim31.maven</groupId>
                     <artifactId>scala-maven-plugin</artifactId>
-                    <version>3.2.2</version>
+                    <version>4.8.1</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.18.1</version>
+                    <version>3.2.5</version>
                     <configuration>
                         <includes>
                             <include>**/*Test.java</include>
@@ -272,7 +255,7 @@
 
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>2.8.1</version>
+                    <version>3.5.0</version>
                 </plugin>
 
                 <plugin>
@@ -284,7 +267,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>2.6</version>
+                    <version>3.10.0.2594</version>
                 </plugin>
 
                 <plugin>
@@ -308,7 +291,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>3.0.2</version>
+                    <version>3.0.5</version>
                     <configuration>
                         <effort>Max</effort>
                         <threshold>Default</threshold>
@@ -325,12 +308,11 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>2.6</version>
             </plugin>
 
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle.version}</version>
+                <version>3.4.0</version>
                 <configuration>
                     <configLocation>checkstyle-configuration.xml</configLocation>
                     <logViolationsToConsole>true</logViolationsToConsole>
@@ -367,10 +349,10 @@
                         <id>enforce</id>
                         <configuration>
                             <rules>
-                                <DependencyConvergence />
-                                <requirePluginVersions />
+                                <DependencyConvergence/>
+                                <requirePluginVersions/>
                                 <requireJavaVersion>
-                                    <version>1.7.0</version>
+                                    <version>17</version>
                                 </requireJavaVersion>
                                 <requireMavenVersion>
                                     <version>3.0.2</version>
@@ -403,12 +385,12 @@
 
             <plugin>
                 <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.3.2</version>
             </plugin>
 
             <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>3.2.5</version>
             </plugin>
 
             <plugin>
@@ -428,7 +410,7 @@
 
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle.version}</version>
+                <version>3.4.0</version>
                 <configuration>
                     <configLocation>checkstyle-configuration.xml</configLocation>
                     <logViolationsToConsole>true</logViolationsToConsole>
