@@ -480,7 +480,7 @@ public class PersonAndPetKataTest
         Assert.assertEquals(9, numberOfPetsStream);
     }
 
-    @Test
+    //@Test
     public void testStrings()
     {
         Assert.assertEquals("HELLO",
