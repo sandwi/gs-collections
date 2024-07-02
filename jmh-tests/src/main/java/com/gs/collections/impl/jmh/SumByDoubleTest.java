@@ -27,8 +27,8 @@ import com.gs.collections.impl.jmh.domain.Positions;
 import com.gs.collections.impl.jmh.domain.Product;
 import com.gs.collections.impl.jmh.runner.AbstractJMHTestRunner;
 import com.gs.collections.impl.parallel.ParallelIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -166,11 +166,11 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
     @Test
     public void sumByProduct_gsc()
     {
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
                 this.sumByProduct_parallel_eager_gsc().values().toSortedArray(),
                 this.sumByProduct_serial_eager_gsc().values().toSortedArray(),
                 0.001);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.sumByProduct_parallel_eager_gsc(),
                 this.sumByProduct_serial_eager_gsc());
     }
@@ -190,11 +190,11 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
     @Test
     public void sumByAccount_gsc()
     {
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
                 this.sumByAccount_parallel_eager_gsc().values().toSortedArray(),
                 this.sumByAccount_serial_eager_gsc().values().toSortedArray(),
                 0.001);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.sumByAccount_parallel_eager_gsc(),
                 this.sumByAccount_serial_eager_gsc());
     }
@@ -214,11 +214,11 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
     @Test
     public void sumByCategory_gsc()
     {
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
                 this.sumByCategory_parallel_eager_gsc().values().toSortedArray(),
                 this.sumByCategory_serial_eager_gsc().values().toSortedArray(),
                 0.001);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.sumByCategory_parallel_eager_gsc(),
                 this.sumByCategory_serial_eager_gsc());
     }

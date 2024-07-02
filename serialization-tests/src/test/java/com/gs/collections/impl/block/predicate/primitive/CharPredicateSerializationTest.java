@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.predicate.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CharPredicateSerializationTest
 {
@@ -26,8 +26,10 @@ public class CharPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl\n"
-                        + "LkNoYXJQcmVkaWNhdGUkMQAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl
+                LkNoYXJQcmVkaWNhdGUkMQAAAAAAAAABAgAAeHA=\
+                """,
                 CharPredicate.IS_UPPERCASE);
     }
 
@@ -36,8 +38,10 @@ public class CharPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl\n"
-                        + "LkNoYXJQcmVkaWNhdGUkMgAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl
+                LkNoYXJQcmVkaWNhdGUkMgAAAAAAAAABAgAAeHA=\
+                """,
                 CharPredicate.IS_LOWERCASE);
     }
 
@@ -46,8 +50,10 @@ public class CharPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl\n"
-                        + "LkNoYXJQcmVkaWNhdGUkMwAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl
+                LkNoYXJQcmVkaWNhdGUkMwAAAAAAAAABAgAAeHA=\
+                """,
                 CharPredicate.IS_DIGIT);
     }
 
@@ -56,8 +62,10 @@ public class CharPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl\n"
-                        + "LkNoYXJQcmVkaWNhdGUkNAAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl
+                LkNoYXJQcmVkaWNhdGUkNAAAAAAAAAABAgAAeHA=\
+                """,
                 CharPredicate.IS_DIGIT_OR_DOT);
     }
 
@@ -66,8 +74,10 @@ public class CharPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl\n"
-                        + "LkNoYXJQcmVkaWNhdGUkNQAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl
+                LkNoYXJQcmVkaWNhdGUkNQAAAAAAAAABAgAAeHA=\
+                """,
                 CharPredicate.IS_LETTER);
     }
 
@@ -76,8 +86,10 @@ public class CharPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl\n"
-                        + "LkNoYXJQcmVkaWNhdGUkNgAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl
+                LkNoYXJQcmVkaWNhdGUkNgAAAAAAAAABAgAAeHA=\
+                """,
                 CharPredicate.IS_LETTER_OR_DIGIT);
     }
 
@@ -86,8 +98,10 @@ public class CharPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl\n"
-                        + "LkNoYXJQcmVkaWNhdGUkNwAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl
+                LkNoYXJQcmVkaWNhdGUkNwAAAAAAAAABAgAAeHA=\
+                """,
                 CharPredicate.IS_WHITESPACE);
     }
 
@@ -96,8 +110,10 @@ public class CharPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl\n"
-                        + "LkNoYXJQcmVkaWNhdGUkOAAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUucHJpbWl0aXZl
+                LkNoYXJQcmVkaWNhdGUkOAAAAAAAAAABAgAAeHA=\
+                """,
                 CharPredicate.IS_UNDEFINED);
     }
 }

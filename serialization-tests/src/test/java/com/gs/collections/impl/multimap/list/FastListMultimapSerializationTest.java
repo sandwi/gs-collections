@@ -30,8 +30,10 @@ public class FastListMultimapSerializationTest extends MutableMultimapSerializat
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyADZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5saXN0LkZhc3RMaXN0TXVs\n"
-                + "dGltYXAAAAAAAAAAAQwAAHhwdwQAAAACdAABQXcEAAAAA3EAfgACdAABQnEAfgADcQB+AAN3BAAA\n"
-                + "AAFxAH4AAng=";
+        return """
+                rO0ABXNyADZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5saXN0LkZhc3RMaXN0TXVs
+                dGltYXAAAAAAAAAAAQwAAHhwdwQAAAACdAABQXcEAAAAA3EAfgACdAABQnEAfgADcQB+AAN3BAAA
+                AAFxAH4AAng=\
+                """;
     }
 }

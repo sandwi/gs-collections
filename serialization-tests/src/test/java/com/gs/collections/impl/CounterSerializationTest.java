@@ -17,7 +17,7 @@
 package com.gs.collections.impl;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CounterSerializationTest
 {
@@ -26,8 +26,10 @@ public class CounterSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAB9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5Db3VudGVyAAAAAAAAAAEMAAB4cHcEAAAA\n"
-                        + "AHg=",
+                """
+                rO0ABXNyAB9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5Db3VudGVyAAAAAAAAAAEMAAB4cHcEAAAA
+                AHg=\
+                """,
                 new Counter());
     }
 }

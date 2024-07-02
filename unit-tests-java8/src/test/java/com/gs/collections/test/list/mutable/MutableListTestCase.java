@@ -29,10 +29,10 @@ import com.gs.collections.test.MutableOrderedIterableTestCase;
 import com.gs.collections.test.collection.mutable.MutableCollectionTestCase;
 import com.gs.collections.test.list.ListIterableTestCase;
 import com.gs.collections.test.list.ListTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public interface MutableListTestCase extends MutableCollectionTestCase, ListTestCase, ListIterableTestCase, MutableOrderedIterableTestCase
 {

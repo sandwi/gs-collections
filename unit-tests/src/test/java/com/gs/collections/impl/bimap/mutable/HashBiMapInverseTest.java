@@ -19,7 +19,7 @@ package com.gs.collections.impl.bimap.mutable;
 import com.gs.collections.api.bimap.MutableBiMap;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.test.domain.Key;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class HashBiMapInverseTest extends AbstractMutableBiMapTestCase
 {

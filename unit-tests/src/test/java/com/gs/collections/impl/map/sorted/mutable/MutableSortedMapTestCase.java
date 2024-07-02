@@ -54,10 +54,11 @@ import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.ImmutableEntry;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.iList;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Abstract JUnit TestCase for {@link MutableSortedMap}s.
@@ -110,7 +111,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         MutableSortedMap<Integer, Integer> revMap = this.newMapWithKeysValues(Comparators.<Integer>reverseNaturalOrder(), 1, 1, 2, 2);
         Verify.assertEmpty(map.newEmpty());
         Verify.assertEmpty(revMap.newEmpty());
-        Assert.assertEquals(Comparators.<Integer>reverseNaturalOrder(), revMap.newEmpty().comparator());
+        Assertions.assertEquals(Comparators.<Integer>reverseNaturalOrder(), revMap.newEmpty().comparator());
     }
 
     @Override
@@ -135,7 +136,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         MutableSortedMap<Integer, String> sortedMap = this.newMapWithKeyValue(1, "One");
         ImmutableSortedMap<Integer, String> result = sortedMap.toImmutable();
         Verify.assertSize(1, result.castToSortedMap());
-        Assert.assertEquals("One", result.get(1));
+        Assertions.assertEquals("One", result.get(1));
         Verify.assertInstanceOf(ImmutableTreeMap.class, result);
     }
 
@@ -204,13 +205,13 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
     {
         MutableList<String> tapResult = Lists.mutable.of();
         MapIterable<Integer, String> map = this.newMapWithKeysValues(1, "One", 3, "Three", 2, "Two", 4, "Four");
-        Assert.assertSame(map, map.tap(tapResult::add));
-        Assert.assertEquals(map.toList(), tapResult);
+        Assertions.assertSame(map, map.tap(tapResult::add));
+        Assertions.assertEquals(map.toList(), tapResult);
 
         MutableList<String> revTapResult = Lists.mutable.of();
         MapIterable<Integer, String> revMap = this.newMapWithKeysValues(REV_INT_ORDER, 1, "One", 3, "Three", 2, "Two", 4, "Four");
-        Assert.assertSame(revMap, revMap.tap(revTapResult::add));
-        Assert.assertEquals(revMap.toList(), revTapResult);
+        Assertions.assertSame(revMap, revMap.tap(revTapResult::add));
+        Assertions.assertEquals(revMap.toList(), revTapResult);
     }
 
     @Override
@@ -307,7 +308,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         super.collectValues();
         MutableSortedMap<Integer, String> map = this.newMapWithKeysValues(REV_INT_ORDER, 1, "One", 2, "Two", 3, "Three");
         MutableSortedMap<Integer, String> actual = map.collectValues((argument1, argument2) -> new StringBuilder(argument2).reverse().toString());
-        Assert.assertEquals(TreeSortedMap.<Integer, String>
+        Assertions.assertEquals(TreeSortedMap.<Integer, String>
                 newMap(REV_INT_ORDER).with(1, "enO", 2, "owT", 3, "eerhT"), actual);
     }
 
@@ -328,7 +329,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
                 Interval.zeroTo(map.size() - 1),
                 pairs.collect((Function<Pair<?, Integer>, Integer>) Pair::getTwo));
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 map.zipWithIndex().toSet(),
                 map.zipWithIndex(UnifiedSet.<Pair<String, Integer>>newSet()));
     }
@@ -374,8 +375,8 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
                 "C", 3,
                 "D", 4);
         PartitionMutableList<Integer> partition = map.partition(IntegerPredicates.isEven());
-        Assert.assertEquals(iList(4, 2), partition.getSelected());
-        Assert.assertEquals(iList(3, 1), partition.getRejected());
+        Assertions.assertEquals(iList(4, 2), partition.getSelected());
+        Assertions.assertEquals(iList(3, 1), partition.getRejected());
     }
 
     @Override
@@ -389,8 +390,8 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
                 "C", 3,
                 "D", 4);
         PartitionMutableList<Integer> partition = map.partitionWith(Predicates2.in(), map.select(IntegerPredicates.isEven()));
-        Assert.assertEquals(iList(4, 2), partition.getSelected());
-        Assert.assertEquals(iList(3, 1), partition.getRejected());
+        Assertions.assertEquals(iList(4, 2), partition.getSelected());
+        Assertions.assertEquals(iList(3, 1), partition.getRejected());
     }
 
     @Override
@@ -473,7 +474,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
 
         MutableSortedMap<String, String> map = this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), "One", "odd", "Two", "even", "Three", "odd", "Four", "even");
         MutableSortedSetMultimap<String, String> flip = map.flip();
-        Assert.assertEquals(expected, flip);
+        Assertions.assertEquals(expected, flip);
         Verify.assertSortedSetsEqual(
                 TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), "Two", "Four"),
                 flip.get("even"));
@@ -498,12 +499,12 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
 
         MutableSortedMap<Integer, Integer> map = this.newMapWithKeysValues(REV_INT_ORDER, -1, 1, -2, 2, -3, 3);
         Iterator<Integer> iterator = map.iterator();
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         for (int i = 1; i < 4; ++i)
         {
-            Assert.assertEquals(i, iterator.next().intValue());
+            Assertions.assertEquals(i, iterator.next().intValue());
         }
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasNext());
     }
 
     @Override
@@ -513,13 +514,13 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         // Test without using null
 
         MutableSortedMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3);
-        Assert.assertTrue(map.entrySet().remove(ImmutableEntry.of("Two", 2)));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
+        Assertions.assertTrue(map.entrySet().remove(ImmutableEntry.of("Two", 2)));
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
 
-        Assert.assertFalse(map.entrySet().remove(ImmutableEntry.of("Four", 4)));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
+        Assertions.assertFalse(map.entrySet().remove(ImmutableEntry.of("Four", 4)));
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
 
-        Assert.assertFalse(map.entrySet().remove(null));
+        Assertions.assertFalse(map.entrySet().remove(null));
     }
 
     @Override
@@ -529,15 +530,15 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         // Test without using null
 
         MutableSortedMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3);
-        Assert.assertTrue(map.entrySet().removeAll(FastList.newListWith(
+        Assertions.assertTrue(map.entrySet().removeAll(FastList.newListWith(
                 ImmutableEntry.of("One", 1),
                 ImmutableEntry.of("Three", 3))));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("Two", 2), map);
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("Two", 2), map);
 
-        Assert.assertFalse(map.entrySet().removeAll(FastList.newListWith(ImmutableEntry.of("Four", 4))));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("Two", 2), map);
+        Assertions.assertFalse(map.entrySet().removeAll(FastList.newListWith(ImmutableEntry.of("Four", 4))));
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("Two", 2), map);
 
-        Assert.assertFalse(map.entrySet().remove(null));
+        Assertions.assertFalse(map.entrySet().remove(null));
     }
 
     @Override
@@ -549,17 +550,17 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         // TODO: delete?
 
         MutableSortedMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3);
-        Assert.assertFalse(map.entrySet().retainAll(FastList.newListWith(
+        Assertions.assertFalse(map.entrySet().retainAll(FastList.newListWith(
                 ImmutableEntry.of("One", 1),
                 ImmutableEntry.of("Two", 2),
                 ImmutableEntry.of("Three", 3),
                 ImmutableEntry.of("Four", 4))));
 
-        Assert.assertTrue(map.entrySet().retainAll(FastList.newListWith(
+        Assertions.assertTrue(map.entrySet().retainAll(FastList.newListWith(
                 ImmutableEntry.of("One", 1),
                 ImmutableEntry.of("Three", 3),
                 ImmutableEntry.of("Four", 4))));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
     }
 
     @Test
@@ -569,7 +570,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         MutableSortedMap<String, Integer> mutableSortedMap = new TreeSortedMap<String, Integer>(pairs.toArray(new Pair[]{}));
         MutableList<Map.Entry<String, Integer>> entries = FastList.newList(mutableSortedMap.entrySet());
         MutableList<Map.Entry<String, Integer>> sortedEntries = entries.toSortedListBy(Functions.getKeyFunction());
-        Assert.assertEquals(sortedEntries, entries);
+        Assertions.assertEquals(sortedEntries, entries);
     }
 
     @Test
@@ -600,12 +601,12 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         // Only use Comparable objects
 
         MutableSortedMap<Integer, String> map = this.newMapWithKeysValues(1, "One", 2, "Two");
-        Assert.assertNull(map.put(3, "Three"));
-        Assert.assertEquals(TreeSortedMap.newMapWith(1, "One", 2, "Two", 3, "Three"), map);
+        Assertions.assertNull(map.put(3, "Three"));
+        Assertions.assertEquals(TreeSortedMap.newMapWith(1, "One", 2, "Two", 3, "Three"), map);
 
         MutableSortedMap<Integer, String> revMap = this.newMapWithKeysValues(REV_INT_ORDER, 1, "One", 2, "Two");
-        Assert.assertNull(revMap.put(0, "Zero"));
-        Assert.assertEquals(TreeSortedMap.<Integer, String>newMap(REV_INT_ORDER).with(0, "Zero", 1, "One", 2, "Two"), revMap);
+        Assertions.assertNull(revMap.put(0, "Zero"));
+        Assertions.assertEquals(TreeSortedMap.<Integer, String>newMap(REV_INT_ORDER).with(0, "Zero", 1, "One", 2, "Two"), revMap);
     }
 
     @Override
@@ -623,7 +624,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
 
         MutableSortedMap<Integer, String> revMap = this.newMapWithKeysValues(REV_INT_ORDER, 1, "One", 2, "2");
         revMap.putAll(toAdd);
-        Assert.assertEquals(TreeSortedMap.<Integer, String>newMap(REV_INT_ORDER).with(1, "One", 2, "Two", 3, "Three"), revMap);
+        Assertions.assertEquals(TreeSortedMap.<Integer, String>newMap(REV_INT_ORDER).with(1, "One", 2, "Two", 3, "Three"), revMap);
     }
 
     @Test
@@ -652,9 +653,9 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         Verify.assertMapsEqual(revMap1, map2);
         Verify.assertMapsEqual(revMap3, map3);
 
-        Assert.assertNotEquals(map2, map3);
-        Assert.assertNotEquals(revMap1, revMap3);
-        Assert.assertNotEquals(map1, revMap3);
+        Assertions.assertNotEquals(map2, map3);
+        Assertions.assertNotEquals(revMap1, revMap3);
+        Assertions.assertNotEquals(map1, revMap3);
     }
 
     @Test
@@ -676,13 +677,13 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         Verify.assertEqualsAndHashCode(Maps.mutable.of(1, "1", 2, "2", 3, "3"), map);
         Verify.assertEqualsAndHashCode(Maps.immutable.of(1, "1", 2, "2", 3, "3"), map);
 
-        Assert.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2"));
-        Assert.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4"));
-        Assert.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2", 4, "4"));
+        Assertions.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2"));
+        Assertions.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4"));
+        Assertions.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2", 4, "4"));
 
-        Assert.assertNotEquals(map, this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), 1, "1", 2, "2"));
-        Assert.assertNotEquals(map, this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), 1, "1", 2, "2", 3, "3", 4, "4"));
-        Assert.assertNotEquals(map, this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), 1, "1", 2, "2", 4, "4"));
+        Assertions.assertNotEquals(map, this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), 1, "1", 2, "2"));
+        Assertions.assertNotEquals(map, this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), 1, "1", 2, "2", 3, "3", 4, "4"));
+        Assertions.assertNotEquals(map, this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), 1, "1", 2, "2", 4, "4"));
     }
 
     @Override
@@ -727,11 +728,11 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
     public void firstKey()
     {
         MutableSortedMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Four", 4);
-        Assert.assertEquals("Four", map.firstKey());
+        Assertions.assertEquals("Four", map.firstKey());
 
         MutableSortedMap<String, Integer> revMap = this.newMapWithKeysValues(Comparators.<String>reverseNaturalOrder(),
                 "One", 1, "Two", 2, "Four", 4);
-        Assert.assertEquals("Two", revMap.firstKey());
+        Assertions.assertEquals("Two", revMap.firstKey());
 
         MutableSortedMap<Object, Object> emptyMap = this.newMap();
         Verify.assertThrows(NoSuchElementException.class, (Runnable) emptyMap::firstKey);
@@ -741,11 +742,11 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
     public void lastKey()
     {
         MutableSortedMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Four", 4);
-        Assert.assertEquals("Two", map.lastKey());
+        Assertions.assertEquals("Two", map.lastKey());
 
         MutableSortedMap<String, Integer> revMap = this.newMapWithKeysValues(Comparators.<String>reverseNaturalOrder(),
                 "One", 1, "Two", 2, "Four", 4);
-        Assert.assertEquals("Four", revMap.lastKey());
+        Assertions.assertEquals("Four", revMap.lastKey());
 
         MutableSortedMap<Object, Object> emptyMap = this.newMap();
         Verify.assertThrows(NoSuchElementException.class, (Runnable) emptyMap::lastKey);
@@ -823,7 +824,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
     public void testToString()
     {
         MutableSortedMap<Integer, String> map = this.newMapWithKeysValues(1, "One", 2, "Two");
-        Assert.assertEquals("{1=One, 2=Two}", map.toString());
+        Assertions.assertEquals("{1=One, 2=Two}", map.toString());
     }
 
     @Test
@@ -831,7 +832,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
     {
         MutableSortedMap<Integer, String> map = this.newMapWithKeysValues(1, "One", 2, "Two");
         MutableSortedMap<Integer, String> clone = map.clone();
-        Assert.assertNotSame(map, clone);
+        Assertions.assertNotSame(map, clone);
         Verify.assertEqualsAndHashCode(map, clone);
     }
 
@@ -839,46 +840,50 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
     public void take()
     {
         MutableSortedMap<Integer, String> strings1 = this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4");
-        Assert.assertEquals(SortedMaps.mutable.of(strings1.comparator()), strings1.take(0));
-        Assert.assertSame(strings1.comparator(), strings1.take(0).comparator());
-        Assert.assertEquals(SortedMaps.mutable.of(strings1.comparator(), 1, "1", 2, "2", 3, "3"), strings1.take(3));
-        Assert.assertSame(strings1.comparator(), strings1.take(3).comparator());
-        Assert.assertEquals(SortedMaps.mutable.of(strings1.comparator(), 1, "1", 2, "2", 3, "3"), strings1.take(strings1.size() - 1));
+        Assertions.assertEquals(SortedMaps.mutable.of(strings1.comparator()), strings1.take(0));
+        Assertions.assertSame(strings1.comparator(), strings1.take(0).comparator());
+        Assertions.assertEquals(SortedMaps.mutable.of(strings1.comparator(), 1, "1", 2, "2", 3, "3"), strings1.take(3));
+        Assertions.assertSame(strings1.comparator(), strings1.take(3).comparator());
+        Assertions.assertEquals(SortedMaps.mutable.of(strings1.comparator(), 1, "1", 2, "2", 3, "3"), strings1.take(strings1.size() - 1));
 
         MutableSortedMap<Integer, String> expectedMap = this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), 1, "1", 2, "2", 3, "3", 4, "4");
         MutableSortedMap<Integer, String> strings2 = this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), 1, "1", 2, "2", 3, "3", 4, "4");
-        Assert.assertEquals(expectedMap, strings2.take(strings2.size()));
-        Assert.assertEquals(expectedMap, strings2.take(10));
-        Assert.assertEquals(expectedMap, strings2.take(Integer.MAX_VALUE));
+        Assertions.assertEquals(expectedMap, strings2.take(strings2.size()));
+        Assertions.assertEquals(expectedMap, strings2.take(10));
+        Assertions.assertEquals(expectedMap, strings2.take(Integer.MAX_VALUE));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void take_throws()
     {
-        this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4").take(-1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4").take(-1);
+        });
     }
 
     @Test
     public void drop()
     {
         MutableSortedMap<Integer, String> strings1 = this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4");
-        Assert.assertEquals(strings1, strings1.drop(0));
-        Assert.assertNotSame(strings1, strings1.drop(0));
-        Assert.assertSame(strings1.comparator(), strings1.drop(0).comparator());
-        Assert.assertEquals(SortedMaps.mutable.of(strings1.comparator(), 4, "4"), strings1.drop(3));
-        Assert.assertSame(strings1.comparator(), strings1.drop(3).comparator());
-        Assert.assertEquals(SortedMaps.mutable.of(strings1.comparator(), 4, "4"), strings1.drop(strings1.size() - 1));
+        Assertions.assertEquals(strings1, strings1.drop(0));
+        Assertions.assertNotSame(strings1, strings1.drop(0));
+        Assertions.assertSame(strings1.comparator(), strings1.drop(0).comparator());
+        Assertions.assertEquals(SortedMaps.mutable.of(strings1.comparator(), 4, "4"), strings1.drop(3));
+        Assertions.assertSame(strings1.comparator(), strings1.drop(3).comparator());
+        Assertions.assertEquals(SortedMaps.mutable.of(strings1.comparator(), 4, "4"), strings1.drop(strings1.size() - 1));
 
         MutableSortedMap<Integer, String> expectedMap = SortedMaps.mutable.of(Comparators.reverseNaturalOrder());
         MutableSortedMap<Integer, String> strings2 = this.newMapWithKeysValues(Comparators.reverseNaturalOrder(), 1, "1", 2, "2", 3, "3", 4, "4");
-        Assert.assertEquals(expectedMap, strings2.drop(strings2.size()));
-        Assert.assertEquals(expectedMap, strings2.drop(10));
-        Assert.assertEquals(expectedMap, strings2.drop(Integer.MAX_VALUE));
+        Assertions.assertEquals(expectedMap, strings2.drop(strings2.size()));
+        Assertions.assertEquals(expectedMap, strings2.drop(10));
+        Assertions.assertEquals(expectedMap, strings2.drop(Integer.MAX_VALUE));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void drop_throws()
     {
-        this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4").drop(-1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4").drop(-1);
+        });
     }
 }

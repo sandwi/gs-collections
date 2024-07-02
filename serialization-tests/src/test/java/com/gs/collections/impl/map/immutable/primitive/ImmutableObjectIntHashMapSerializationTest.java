@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.ObjectIntHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableObjectIntHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableObjectIntHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5B\n"
-                        + "YnN0cmFjdEltbXV0YWJsZU9iamVjdEludE1hcCRJbW11dGFibGVPYmplY3RJbnRNYXBTZXJpYWxp\n"
-                        + "emF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAACdAABMncEAAAAAnQAATF3BAAAAAF4",
+                """
+                rO0ABXNyAHVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5B
+                YnN0cmFjdEltbXV0YWJsZU9iamVjdEludE1hcCRJbW11dGFibGVPYmplY3RJbnRNYXBTZXJpYWxp
+                emF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAACdAABMncEAAAAAnQAATF3BAAAAAF4\
+                """,
                 new ImmutableObjectIntHashMap<String>(ObjectIntHashMap.newWithKeysValues("1", 1, "2", 2)));
     }
 }

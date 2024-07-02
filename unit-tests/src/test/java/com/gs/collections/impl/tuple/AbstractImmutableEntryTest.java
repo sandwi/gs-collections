@@ -16,8 +16,8 @@
 
 package com.gs.collections.impl.tuple;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class AbstractImmutableEntryTest
 {
@@ -25,13 +25,13 @@ public class AbstractImmutableEntryTest
     public void getKeyFunction()
     {
         ImmutableEntry<String, Integer> entry = new ImmutableEntry<>("foo", 2);
-        Assert.assertEquals("foo", AbstractImmutableEntry.<String>getKeyFunction().valueOf(entry));
+        Assertions.assertEquals("foo", AbstractImmutableEntry.<String>getKeyFunction().valueOf(entry));
     }
 
     @Test
     public void getValueFunction()
     {
         ImmutableEntry<String, Integer> entry = new ImmutableEntry<>("foo", 2);
-        Assert.assertEquals(Integer.valueOf(2), AbstractImmutableEntry.<Integer>getValueFunction().valueOf(entry));
+        Assertions.assertEquals(Integer.valueOf(2), AbstractImmutableEntry.<Integer>getValueFunction().valueOf(entry));
     }
 }

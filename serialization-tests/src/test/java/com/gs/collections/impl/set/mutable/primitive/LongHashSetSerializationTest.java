@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LongHashSetSerializationTest
 {
@@ -26,8 +26,10 @@ public class LongHashSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuTG9u\n"
-                        + "Z0hhc2hTZXQAAAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuTG9u
+                Z0hhc2hTZXQAAAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new LongHashSet());
     }
 }

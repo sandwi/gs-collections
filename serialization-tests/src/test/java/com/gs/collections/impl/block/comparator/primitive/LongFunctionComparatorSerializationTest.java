@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.comparator.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LongFunctionComparatorSerializationTest
 {
@@ -26,9 +26,11 @@ public class LongFunctionComparatorSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5jb21wYXJhdG9yLnByaW1pdGl2\n"
-                        + "ZS5Mb25nRnVuY3Rpb25Db21wYXJhdG9yAAAAAAAAAAECAAFMAAhmdW5jdGlvbnQAPkxjb20vZ3Mv\n"
-                        + "Y29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9Mb25nRnVuY3Rpb247eHBw\n",
+                """
+                rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5jb21wYXJhdG9yLnByaW1pdGl2
+                ZS5Mb25nRnVuY3Rpb25Db21wYXJhdG9yAAAAAAAAAAECAAFMAAhmdW5jdGlvbnQAPkxjb20vZ3Mv
+                Y29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9Mb25nRnVuY3Rpb247eHBw
+                """,
                 new LongFunctionComparator<Object>(null));
     }
 }

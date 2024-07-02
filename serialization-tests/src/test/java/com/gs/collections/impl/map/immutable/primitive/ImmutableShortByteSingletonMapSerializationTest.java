@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableShortByteSingletonMapSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableShortByteSingletonMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAE5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVTaG9ydEJ5dGVTaW5nbGV0b25NYXAAAAAAAAAAAQIAAlMABGtleTFCAAZ2YWx1ZTF4\n"
-                        + "cAABAQ==",
+                """
+                rO0ABXNyAE5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVTaG9ydEJ5dGVTaW5nbGV0b25NYXAAAAAAAAAAAQIAAlMABGtleTFCAAZ2YWx1ZTF4
+                cAABAQ==\
+                """,
                 new ImmutableShortByteSingletonMap((short) 1, (byte) 1));
     }
 }

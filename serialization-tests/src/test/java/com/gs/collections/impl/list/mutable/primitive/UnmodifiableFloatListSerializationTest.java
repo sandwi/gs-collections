@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableFloatListSerializationTest
 {
@@ -26,13 +26,15 @@ public class UnmodifiableFloatListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUucHJpbWl0aXZlLlVu\n"
-                        + "bW9kaWZpYWJsZUZsb2F0TGlzdAAAAAAAAAABAgAAeHIAWGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs\n"
-                        + "LmNvbGxlY3Rpb24ubXV0YWJsZS5wcmltaXRpdmUuQWJzdHJhY3RVbm1vZGlmaWFibGVGbG9hdENv\n"
-                        + "bGxlY3Rpb24AAAAAAAAAAQIAAUwACmNvbGxlY3Rpb250AERMY29tL2dzL2NvbGxlY3Rpb25zL2Fw\n"
-                        + "aS9jb2xsZWN0aW9uL3ByaW1pdGl2ZS9NdXRhYmxlRmxvYXRDb2xsZWN0aW9uO3hwc3IAPWNvbS5n\n"
-                        + "cy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5wcmltaXRpdmUuRmxvYXRBcnJheUxpc3QA\n"
-                        + "AAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUucHJpbWl0aXZlLlVu
+                bW9kaWZpYWJsZUZsb2F0TGlzdAAAAAAAAAABAgAAeHIAWGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs
+                LmNvbGxlY3Rpb24ubXV0YWJsZS5wcmltaXRpdmUuQWJzdHJhY3RVbm1vZGlmaWFibGVGbG9hdENv
+                bGxlY3Rpb24AAAAAAAAAAQIAAUwACmNvbGxlY3Rpb250AERMY29tL2dzL2NvbGxlY3Rpb25zL2Fw
+                aS9jb2xsZWN0aW9uL3ByaW1pdGl2ZS9NdXRhYmxlRmxvYXRDb2xsZWN0aW9uO3hwc3IAPWNvbS5n
+                cy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5wcmltaXRpdmUuRmxvYXRBcnJheUxpc3QA
+                AAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new UnmodifiableFloatList(new FloatArrayList()));
     }
 }

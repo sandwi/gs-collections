@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableByteArrayListSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableByteArrayListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu\n"
-                        + "SW1tdXRhYmxlQnl0ZUFycmF5TGlzdAAAAAAAAAABAgABWwAFaXRlbXN0AAJbQnhwdXIAAltCrPMX\n"
-                        + "+AYIVOACAAB4cAAAAAsBAgMEBQYHCAkKCw==",
+                """
+                rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu
+                SW1tdXRhYmxlQnl0ZUFycmF5TGlzdAAAAAAAAAABAgABWwAFaXRlbXN0AAJbQnhwdXIAAltCrPMX
+                +AYIVOACAAB4cAAAAAsBAgMEBQYHCAkKCw==\
+                """,
                 ImmutableByteArrayList.newListWith((byte) 1, (byte) 2, (byte) 3, (byte) 4, (byte) 5, (byte) 6, (byte) 7, (byte) 8, (byte) 9, (byte) 10, (byte) 11));
     }
 }

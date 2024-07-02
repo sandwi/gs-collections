@@ -19,8 +19,8 @@ package com.gs.collections.impl.multimap.set;
 import com.gs.collections.api.multimap.MutableMultimap;
 import com.gs.collections.api.tuple.Pair;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test of {@link SynchronizedPutUnifiedSetMultimap}.
@@ -107,6 +107,6 @@ public class SynchronizedPutUnifiedSetMultimapTest extends AbstractMutableSetMul
         MutableMultimap<String, Integer> multimap =
                 this.newMultimapWithKeysValues("One", 1, "One", 2);
         String toString = multimap.toString();
-        Assert.assertTrue("{One=[1, 2]}".equals(toString) || "{One=[2, 1]}".equals(toString));
+        Assertions.assertTrue("{One=[1, 2]}".equals(toString) || "{One=[2, 1]}".equals(toString));
     }
 }

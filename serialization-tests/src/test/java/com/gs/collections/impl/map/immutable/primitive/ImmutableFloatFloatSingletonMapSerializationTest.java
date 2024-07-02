@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableFloatFloatSingletonMapSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableFloatFloatSingletonMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAE9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVGbG9hdEZsb2F0U2luZ2xldG9uTWFwAAAAAAAAAAECAAJGAARrZXkxRgAGdmFsdWUx\n"
-                        + "eHA/gAAAP4AAAA==",
+                """
+                rO0ABXNyAE9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVGbG9hdEZsb2F0U2luZ2xldG9uTWFwAAAAAAAAAAECAAJGAARrZXkxRgAGdmFsdWUx
+                eHA/gAAAP4AAAA==\
+                """,
                 new ImmutableFloatFloatSingletonMap(1.0f, 1.0f));
     }
 }

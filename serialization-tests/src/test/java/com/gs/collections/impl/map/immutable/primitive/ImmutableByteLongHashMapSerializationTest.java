@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.ByteLongHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableByteLongHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableByteLongHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVCeXRlTG9uZ0hhc2hNYXAkSW1tdXRhYmxlQnl0ZUxvbmdNYXBTZXJpYWxpemF0aW9u\n"
-                        + "UHJveHkAAAAAAAAAAQwAAHhwdxYAAAACAQAAAAAAAAABAgAAAAAAAAACeA==",
+                """
+                rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVCeXRlTG9uZ0hhc2hNYXAkSW1tdXRhYmxlQnl0ZUxvbmdNYXBTZXJpYWxpemF0aW9u
+                UHJveHkAAAAAAAAAAQwAAHhwdxYAAAACAQAAAAAAAAABAgAAAAAAAAACeA==\
+                """,
                 new ImmutableByteLongHashMap(ByteLongHashMap.newWithKeysValues((byte) 1, 1L, (byte) 2, 2L)));
     }
 }

@@ -16,7 +16,7 @@
 
 package com.gs.collections.impl.test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AssertNotEqualsTest
 {
@@ -32,7 +32,7 @@ public class AssertNotEqualsTest
     @Test
     public void stringObjectObject()
     {
-        Verify.assertNotEquals("", new Object(), new Object());
+        Verify.assertNotEquals(new Object(), new Object(), "");
     }
 
     @Test
@@ -46,7 +46,7 @@ public class AssertNotEqualsTest
     @Test
     public void stringStringString()
     {
-        Verify.assertNotEquals("", "1", "2");
+        Verify.assertNotEquals("1", "2", "");
     }
 
     @Test
@@ -64,7 +64,7 @@ public class AssertNotEqualsTest
     @Test
     public void stringDoubleDoubleDouble()
     {
-        Verify.assertNotEquals("", 1.0d, 2.0d, DOUBLE_DELTA);
+        Verify.assertNotEquals(1.0d, 2.0d, DOUBLE_DELTA, "");
     }
 
     @Test
@@ -82,7 +82,7 @@ public class AssertNotEqualsTest
     @Test
     public void stringFloatFloatFloat()
     {
-        Verify.assertNotEquals("", 1.0f, 2.0f, FLOAT_DELTA);
+        Verify.assertNotEquals(1.0f, 2.0f, FLOAT_DELTA, "");
     }
 
     @Test
@@ -94,7 +94,7 @@ public class AssertNotEqualsTest
     @Test
     public void stringLongLong()
     {
-        Verify.assertNotEquals("", 1L, 2L);
+        Verify.assertNotEquals(1L, 2L, "");
     }
 
     @Test
@@ -106,7 +106,7 @@ public class AssertNotEqualsTest
     @Test
     public void stringBooleanBoolean()
     {
-        Verify.assertNotEquals("", true, false);
+        Verify.assertNotEquals(true, false, "");
     }
 
     @Test
@@ -118,7 +118,7 @@ public class AssertNotEqualsTest
     @Test
     public void stringByteByte()
     {
-        Verify.assertNotEquals("", (byte) 1, (byte) 2);
+        Verify.assertNotEquals((byte) 1, (byte) 2, "");
     }
 
     @Test
@@ -130,7 +130,7 @@ public class AssertNotEqualsTest
     @Test
     public void stringCharChar()
     {
-        Verify.assertNotEquals("", '1', '2');
+        Verify.assertNotEquals('1', '2', "");
     }
 
     @Test
@@ -142,7 +142,7 @@ public class AssertNotEqualsTest
     @Test
     public void stringShortShort()
     {
-        Verify.assertNotEquals("", (short) 1, (short) 2);
+        Verify.assertNotEquals((short) 1, (short) 2, "");
     }
 
     @Test
@@ -154,6 +154,6 @@ public class AssertNotEqualsTest
     @Test
     public void stringIntInt()
     {
-        Verify.assertNotEquals("", 1, 2);
+        Verify.assertNotEquals(1, 2, "");
     }
 }

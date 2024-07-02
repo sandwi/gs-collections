@@ -64,7 +64,6 @@ import com.gs.collections.impl.utility.LazyIterate;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 public class FJIterateAcceptanceTest
 {

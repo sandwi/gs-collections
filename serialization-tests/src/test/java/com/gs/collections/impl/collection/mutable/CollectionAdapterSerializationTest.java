@@ -18,7 +18,7 @@ package com.gs.collections.impl.collection.mutable;
 
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CollectionAdapterSerializationTest
 {
@@ -27,10 +27,12 @@ public class CollectionAdapterSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuQ29sbGVj\n"
-                        + "dGlvbkFkYXB0ZXIAAAAAAAAAAQIAAUwACGRlbGVnYXRldAAWTGphdmEvdXRpbC9Db2xsZWN0aW9u\n"
-                        + "O3hwc3IALWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAA\n"
-                        + "AAABDAAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuQ29sbGVj
+                dGlvbkFkYXB0ZXIAAAAAAAAAAQIAAUwACGRlbGVnYXRldAAWTGphdmEvdXRpbC9Db2xsZWN0aW9u
+                O3hwc3IALWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAA
+                AAABDAAAeHB3BAAAAAB4\
+                """,
                 new CollectionAdapter<Object>(Lists.mutable.of()));
     }
 }

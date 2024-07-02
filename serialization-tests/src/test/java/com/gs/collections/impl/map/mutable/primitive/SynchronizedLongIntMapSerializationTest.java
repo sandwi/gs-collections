@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SynchronizedLongIntMapSerializationTest
 {
@@ -26,11 +26,13 @@ public class SynchronizedLongIntMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU3lu\n"
-                        + "Y2hyb25pemVkTG9uZ0ludE1hcAAAAAAAAAABAgACTAAEbG9ja3QAEkxqYXZhL2xhbmcvT2JqZWN0\n"
-                        + "O0wAA21hcHQAOExjb20vZ3MvY29sbGVjdGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0YWJsZUxv\n"
-                        + "bmdJbnRNYXA7eHBxAH4AA3NyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5w\n"
-                        + "cmltaXRpdmUuTG9uZ0ludEhhc2hNYXAAAAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU3lu
+                Y2hyb25pemVkTG9uZ0ludE1hcAAAAAAAAAABAgACTAAEbG9ja3QAEkxqYXZhL2xhbmcvT2JqZWN0
+                O0wAA21hcHQAOExjb20vZ3MvY29sbGVjdGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0YWJsZUxv
+                bmdJbnRNYXA7eHBxAH4AA3NyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5w
+                cmltaXRpdmUuTG9uZ0ludEhhc2hNYXAAAAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new SynchronizedLongIntMap(new LongIntHashMap()));
     }
 }

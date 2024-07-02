@@ -18,7 +18,7 @@ package com.gs.collections.impl;
 
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableRichIterableSerializationTest
 {
@@ -27,10 +27,12 @@ public class UnmodifiableRichIterableSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5Vbm1vZGlmaWFibGVSaWNoSXRlcmFibGUA\n"
-                        + "AAAAAAAAAQIAAUwACGl0ZXJhYmxldAAlTGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvUmljaEl0ZXJh\n"
-                        + "YmxlO3hwc3IALWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAA\n"
-                        + "AAAAAAABDAAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5Vbm1vZGlmaWFibGVSaWNoSXRlcmFibGUA
+                AAAAAAAAAQIAAUwACGl0ZXJhYmxldAAlTGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvUmljaEl0ZXJh
+                YmxlO3hwc3IALWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAA
+                AAAAAAABDAAAeHB3BAAAAAB4\
+                """,
                 UnmodifiableRichIterable.of(Lists.mutable.of()));
     }
 }

@@ -16,8 +16,8 @@
 
 package com.gs.collections.impl.test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SerializeTestHelperTest
 {
@@ -26,8 +26,8 @@ public class SerializeTestHelperTest
     {
         String input = "Test";
         String output = SerializeTestHelper.serializeDeserialize(input);
-        Assert.assertEquals(input, output);
-        Assert.assertNotSame(input, output);
+        Assertions.assertEquals(input, output);
+        Assertions.assertNotSame(input, output);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class SerializeTestHelperTest
             return;
         }
 
-        Assert.fail();
+        Assertions.fail();
     }
 
     @Test
@@ -59,7 +59,7 @@ public class SerializeTestHelperTest
             return;
         }
 
-        Assert.fail();
+        Assertions.fail();
     }
 
     @Test

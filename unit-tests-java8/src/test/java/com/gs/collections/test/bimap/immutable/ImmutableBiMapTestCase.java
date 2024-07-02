@@ -17,7 +17,6 @@
 package com.gs.collections.test.bimap.immutable;
 
 import com.gs.collections.api.bimap.ImmutableBiMap;
-import org.junit.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
 

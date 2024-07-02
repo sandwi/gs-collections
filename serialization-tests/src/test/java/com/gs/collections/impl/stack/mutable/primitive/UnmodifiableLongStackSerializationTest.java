@@ -17,7 +17,7 @@
 package com.gs.collections.impl.stack.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableLongStackSerializationTest
 {
@@ -26,11 +26,13 @@ public class UnmodifiableLongStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLnByaW1pdGl2ZS5V\n"
-                        + "bm1vZGlmaWFibGVMb25nU3RhY2sAAAAAAAAAAQIAAUwABXN0YWNrdAA5TGNvbS9ncy9jb2xsZWN0\n"
-                        + "aW9ucy9hcGkvc3RhY2svcHJpbWl0aXZlL011dGFibGVMb25nU3RhY2s7eHBzcgA+Y29tLmdzLmNv\n"
-                        + "bGxlY3Rpb25zLmltcGwuc3RhY2subXV0YWJsZS5wcmltaXRpdmUuTG9uZ0FycmF5U3RhY2sAAAAA\n"
-                        + "AAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLnByaW1pdGl2ZS5V
+                bm1vZGlmaWFibGVMb25nU3RhY2sAAAAAAAAAAQIAAUwABXN0YWNrdAA5TGNvbS9ncy9jb2xsZWN0
+                aW9ucy9hcGkvc3RhY2svcHJpbWl0aXZlL011dGFibGVMb25nU3RhY2s7eHBzcgA+Y29tLmdzLmNv
+                bGxlY3Rpb25zLmltcGwuc3RhY2subXV0YWJsZS5wcmltaXRpdmUuTG9uZ0FycmF5U3RhY2sAAAAA
+                AAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new UnmodifiableLongStack(new LongArrayStack()));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure.checked.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CheckedObjectBooleanProcedureSerializationTest
 {
@@ -36,11 +36,13 @@ public class CheckedObjectBooleanProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAGpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuY2hlY2tlZC5w\n"
-                        + "cmltaXRpdmUuQ2hlY2tlZE9iamVjdEJvb2xlYW5Qcm9jZWR1cmVTZXJpYWxpemF0aW9uVGVzdCQx\n"
-                        + "AAAAAAAAAAECAAB4cgBXY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2sucHJvY2VkdXJlLmNo\n"
-                        + "ZWNrZWQucHJpbWl0aXZlLkNoZWNrZWRPYmplY3RCb29sZWFuUHJvY2VkdXJlAAAAAAAAAAECAAB4\n"
-                        + "cA==",
+                """
+                rO0ABXNyAGpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuY2hlY2tlZC5w
+                cmltaXRpdmUuQ2hlY2tlZE9iamVjdEJvb2xlYW5Qcm9jZWR1cmVTZXJpYWxpemF0aW9uVGVzdCQx
+                AAAAAAAAAAECAAB4cgBXY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2sucHJvY2VkdXJlLmNo
+                ZWNrZWQucHJpbWl0aXZlLkNoZWNrZWRPYmplY3RCb29sZWFuUHJvY2VkdXJlAAAAAAAAAAECAAB4
+                cA==\
+                """,
                 CHECKED_OBJECT_BOOLEAN_PROCEDURE);
     }
 }

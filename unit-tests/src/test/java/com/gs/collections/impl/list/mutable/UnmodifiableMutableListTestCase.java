@@ -22,8 +22,8 @@ import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.list.fixed.UnmodifiableMemoryEfficientListTestCase;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Abstract JUnit test for {@link UnmodifiableMutableList}.
@@ -33,8 +33,8 @@ public abstract class UnmodifiableMutableListTestCase extends UnmodifiableMemory
     @Test
     public void testClone()
     {
-        Assert.assertEquals(this.getCollection(), this.getCollection().clone());
-        Assert.assertNotSame(this.getCollection(), this.getCollection().clone());
+        Assertions.assertEquals(this.getCollection(), this.getCollection().clone());
+        Assertions.assertNotSame(this.getCollection(), this.getCollection().clone());
     }
 
     @Test
@@ -62,11 +62,11 @@ public abstract class UnmodifiableMutableListTestCase extends UnmodifiableMemory
     public void listIterator()
     {
         ListIterator<Integer> it = this.getCollection().listIterator();
-        Assert.assertFalse(it.hasPrevious());
-        Assert.assertEquals(-1, it.previousIndex());
-        Assert.assertEquals(0, it.nextIndex());
+        Assertions.assertFalse(it.hasPrevious());
+        Assertions.assertEquals(-1, it.previousIndex());
+        Assertions.assertEquals(0, it.nextIndex());
         it.next();
-        Assert.assertEquals(1, it.nextIndex());
+        Assertions.assertEquals(1, it.nextIndex());
 
         Verify.assertThrows(UnsupportedOperationException.class, () -> it.set(null));
 
@@ -79,11 +79,11 @@ public abstract class UnmodifiableMutableListTestCase extends UnmodifiableMemory
     public void subListListIterator()
     {
         ListIterator<Integer> it = this.getCollection().subList(0, 1).listIterator();
-        Assert.assertFalse(it.hasPrevious());
-        Assert.assertEquals(-1, it.previousIndex());
-        Assert.assertEquals(0, it.nextIndex());
+        Assertions.assertFalse(it.hasPrevious());
+        Assertions.assertEquals(-1, it.previousIndex());
+        Assertions.assertEquals(0, it.nextIndex());
         it.next();
-        Assert.assertEquals(1, it.nextIndex());
+        Assertions.assertEquals(1, it.nextIndex());
 
         Verify.assertThrows(UnsupportedOperationException.class, () -> it.set(null));
 
@@ -199,6 +199,6 @@ public abstract class UnmodifiableMutableListTestCase extends UnmodifiableMemory
     @Test
     public void testEquals()
     {
-        Assert.assertEquals(this.getCollection(), this.getCollection());
+        Assertions.assertEquals(this.getCollection(), this.getCollection());
     }
 }

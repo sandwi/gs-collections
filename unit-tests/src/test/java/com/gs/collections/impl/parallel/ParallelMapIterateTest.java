@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
 import com.gs.collections.api.map.MutableMap;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ParallelMapIterateTest
 {

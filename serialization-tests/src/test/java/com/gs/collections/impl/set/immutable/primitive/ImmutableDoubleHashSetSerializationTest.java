@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.immutable.primitive;
 
 import com.gs.collections.impl.set.mutable.primitive.DoubleHashSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableDoubleHashSetSerializationTest
 {
@@ -27,8 +27,10 @@ public class ImmutableDoubleHashSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVEb3VibGVFbXB0eVNldAAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVEb3VibGVFbXB0eVNldAAAAAAAAAABAgAAeHA=\
+                """,
                 new DoubleHashSet().toImmutable());
     }
 }

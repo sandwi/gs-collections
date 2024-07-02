@@ -17,7 +17,7 @@
 package com.gs.collections.impl.bag.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableDoubleSingletonBagSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableDoubleSingletonBagSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVEb3VibGVTaW5nbGV0b25CYWcAAAAAAAAAAQIAAUQACGVsZW1lbnQxeHBAAAAAAAAA\n"
-                        + "AA==",
+                """
+                rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVEb3VibGVTaW5nbGV0b25CYWcAAAAAAAAAAQIAAUQACGVsZW1lbnQxeHBAAAAAAAAA
+                AA==\
+                """,
                 new ImmutableDoubleSingletonBag(2.0));
     }
 }

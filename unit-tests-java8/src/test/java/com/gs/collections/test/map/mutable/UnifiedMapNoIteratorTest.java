@@ -25,7 +25,8 @@ import com.gs.collections.api.map.MutableMap;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.test.NoIteratorTestCase;
 import com.gs.junit.runners.Java8Runner;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Java8Runner.class)
@@ -41,12 +42,13 @@ public class UnifiedMapNoIteratorTest implements MutableMapTestCase, NoIteratorT
         MutableMap<Object, T> result = new UnifiedMapNoIterator<>();
         for (T each : elements)
         {
-            Assert.assertNull(result.put(random.nextDouble(), each));
+            Assertions.assertNull(result.put(random.nextDouble(), each));
         }
         return result;
     }
 
     @Override
+    @Test
     public void Iterable_next()
     {
         NoIteratorTestCase.super.Iterable_next();
@@ -59,24 +61,28 @@ public class UnifiedMapNoIteratorTest implements MutableMapTestCase, NoIteratorT
     }
 
     @Override
+    @Test
     public void RichIterable_getFirst()
     {
         NoIteratorTestCase.super.RichIterable_getFirst();
     }
 
     @Override
+    @Test
     public void RichIterable_getLast()
     {
         NoIteratorTestCase.super.RichIterable_getLast();
     }
 
     @Override
+    @Test
     public void RichIterable_getFirst_and_getLast()
     {
         // Not applicable
     }
 
     @Override
+    @Test
     public void RichIterable_getLast_empty_null()
     {
         // Not applicable

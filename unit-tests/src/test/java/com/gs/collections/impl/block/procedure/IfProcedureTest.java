@@ -22,8 +22,8 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,9 +40,9 @@ public class IfProcedureTest
         LOGGER.info("{}", ifProcedure);
         MutableList<String> list = FastList.newListWith("1", "2");
         Iterate.forEach(list, ifProcedure);
-        Assert.assertEquals(1, list1.size());
-        Verify.assertContains("1", list1);
-        Assert.assertEquals(1, list2.size());
-        Verify.assertContains("2", list2);
+        Assertions.assertEquals(1, list1.size());
+        Verify.assertContains(list1, "1");
+        Assertions.assertEquals(1, list2.size());
+        Verify.assertContains(list2, "2");
     }
 }

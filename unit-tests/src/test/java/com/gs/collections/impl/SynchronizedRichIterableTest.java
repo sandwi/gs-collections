@@ -27,10 +27,11 @@ import com.gs.collections.impl.lazy.LazyIterableAdapter;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.multimap.list.FastListMultimap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase
 {
@@ -46,8 +47,8 @@ public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase
     {
         RichIterable<Integer> integers = this.newWith(-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         PartitionIterable<Integer> result = integers.partition(IntegerPredicates.isEven());
-        Assert.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
-        Assert.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
+        Assertions.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
+        Assertions.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
     }
 
     @Override
@@ -56,14 +57,15 @@ public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase
     {
         RichIterable<Integer> integers = this.newWith(-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         PartitionIterable<Integer> result = integers.partitionWith(Predicates2.in(), FastList.newListWith(-2, 0, 2, 4, 6, 8));
-        Assert.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
-        Assert.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
+        Assertions.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
+        Assertions.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
     }
 
     @Override
+    @Test
     public void equalsAndHashCode()
     {
-        Assert.assertNotEquals(this.newWith(), this.newWith());
+        Assertions.assertNotEquals(this.newWith(), this.newWith());
     }
 
     @Override
@@ -73,8 +75,8 @@ public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase
         RichIterable<Integer> list = this.newWith(1, 2, 3, 4, 5, 6, 7);
         Multimap<Boolean, Integer> multimap = list.groupBy(object -> IntegerPredicates.isOdd().accept(object));
 
-        Assert.assertEquals(FastList.newListWith(1, 3, 5, 7), multimap.get(Boolean.TRUE));
-        Assert.assertEquals(FastList.newListWith(2, 4, 6), multimap.get(Boolean.FALSE));
+        Assertions.assertEquals(FastList.newListWith(1, 3, 5, 7), multimap.get(Boolean.TRUE));
+        Assertions.assertEquals(FastList.newListWith(2, 4, 6), multimap.get(Boolean.FALSE));
     }
 
     @Test
@@ -84,8 +86,8 @@ public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase
         MutableMultimap<Boolean, Integer> multimap = new FastListMultimap<>();
         list.groupBy(object -> IntegerPredicates.isOdd().accept(object), multimap);
 
-        Assert.assertEquals(FastList.newListWith(1, 3, 5, 7), multimap.get(Boolean.TRUE));
-        Assert.assertEquals(FastList.newListWith(2, 4, 6), multimap.get(Boolean.FALSE));
+        Assertions.assertEquals(FastList.newListWith(1, 3, 5, 7), multimap.get(Boolean.TRUE));
+        Assertions.assertEquals(FastList.newListWith(2, 4, 6), multimap.get(Boolean.FALSE));
     }
 
     @Test
@@ -94,13 +96,15 @@ public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase
         RichIterable<Integer> integers = this.newWith(-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9).asLazy();
         Verify.assertInstanceOf(LazyIterableAdapter.class, integers);
         PartitionIterable<Integer> result = integers.partitionWith(Predicates2.in(), FastList.newListWith(-2, 0, 2, 4, 6, 8));
-        Assert.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
-        Assert.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
+        Assertions.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
+        Assertions.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nullCheck()
     {
-        SynchronizedRichIterable.of(null, null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            SynchronizedRichIterable.of(null, null);
+        });
     }
 }

@@ -28,8 +28,8 @@ import com.gs.collections.impl.list.mutable.primitive.LongArrayList;
 import com.gs.collections.impl.list.mutable.primitive.ShortArrayList;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.utility.internal.IterableIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for the null handling behavior of {@link Iterate}, {@link ArrayIterate}, {@link ArrayListIterate},
@@ -432,19 +432,19 @@ public class IterateNullTest
     @Test
     public void detectArrayList()
     {
-        Verify.assertThrows(NullPointerException.class, () -> Assert.assertNull(ArrayListIterate.detect(null, null)));
+        Verify.assertThrows(NullPointerException.class, () -> Assertions.assertNull(ArrayListIterate.detect(null, null)));
     }
 
     @Test
     public void detectList()
     {
-        Verify.assertThrows(NullPointerException.class, () -> Assert.assertNull(ListIterate.detect(null, null)));
+        Verify.assertThrows(NullPointerException.class, () -> Assertions.assertNull(ListIterate.detect(null, null)));
     }
 
     @Test
     public void detectIterable()
     {
-        Verify.assertThrows(NullPointerException.class, () -> Assert.assertNull(IterableIterate.detect(null, null)));
+        Verify.assertThrows(NullPointerException.class, () -> Assertions.assertNull(IterableIterate.detect(null, null)));
     }
 
     @Test
@@ -468,19 +468,19 @@ public class IterateNullTest
     @Test
     public void injectArrayList()
     {
-        Verify.assertThrows(NullPointerException.class, () -> Assert.assertNull(ArrayListIterate.injectInto(null, null, null)));
+        Verify.assertThrows(NullPointerException.class, () -> Assertions.assertNull(ArrayListIterate.injectInto(null, null, null)));
     }
 
     @Test
     public void injectList()
     {
-        Verify.assertThrows(NullPointerException.class, () -> Assert.assertNull(ListIterate.injectInto(null, null, null)));
+        Verify.assertThrows(NullPointerException.class, () -> Assertions.assertNull(ListIterate.injectInto(null, null, null)));
     }
 
     @Test
     public void injectIterable()
     {
-        Verify.assertThrows(NullPointerException.class, () -> Assert.assertNull(IterableIterate.injectInto(null, null, null)));
+        Verify.assertThrows(NullPointerException.class, () -> Assertions.assertNull(IterableIterate.injectInto(null, null, null)));
     }
 
     @Test

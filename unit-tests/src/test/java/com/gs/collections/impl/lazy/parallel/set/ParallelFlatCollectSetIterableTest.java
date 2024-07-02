@@ -25,8 +25,8 @@ import com.gs.collections.impl.block.function.NegativeIntervalFunction;
 import com.gs.collections.impl.lazy.parallel.ParallelIterableTestCase;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ParallelFlatCollectSetIterableTest extends ParallelIterableTestCase
 {
@@ -77,7 +77,7 @@ public class ParallelFlatCollectSetIterableTest extends ParallelIterableTestCase
     {
         Function<Integer, Boolean> isOddFunction = object -> IntegerPredicates.isOdd().accept(object);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getExpected().toBag().groupBy(isOddFunction),
                 this.classUnderTest().groupBy(isOddFunction));
     }
@@ -86,7 +86,7 @@ public class ParallelFlatCollectSetIterableTest extends ParallelIterableTestCase
     @Override
     public void groupByEach()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getExpected().toBag().groupByEach(new NegativeIntervalFunction()),
                 this.classUnderTest().groupByEach(new NegativeIntervalFunction()));
     }

@@ -23,8 +23,8 @@ import com.gs.collections.api.iterator.MutableBooleanIterator;
 import com.gs.collections.impl.bag.mutable.primitive.BooleanHashBag;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Abstract JUnit test for {@link MutableBooleanCollection}s.
@@ -47,8 +47,8 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         collection.clear();
         Verify.assertSize(0, collection);
         Verify.assertEmpty(collection);
-        Assert.assertFalse(collection.contains(true));
-        Assert.assertFalse(collection.contains(false));
+        Assertions.assertFalse(collection.contains(true));
+        Assertions.assertFalse(collection.contains(false));
 
         MutableBooleanCollection collection0 = this.newWith();
         MutableBooleanCollection collection1 = this.newWith(false);
@@ -70,16 +70,16 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Verify.assertSize(0, collection2);
         Verify.assertSize(0, collection3);
         Verify.assertSize(0, collection4);
-        Assert.assertFalse(collection1.contains(false));
-        Assert.assertFalse(collection2.contains(true));
-        Assert.assertFalse(collection3.contains(true));
-        Assert.assertFalse(collection3.contains(false));
-        Assert.assertFalse(collection4.contains(false));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection0);
-        Assert.assertEquals(this.newMutableCollectionWith(), collection1);
-        Assert.assertEquals(this.newMutableCollectionWith(), collection2);
-        Assert.assertEquals(this.newMutableCollectionWith(), collection3);
-        Assert.assertEquals(this.newMutableCollectionWith(), collection4);
+        Assertions.assertFalse(collection1.contains(false));
+        Assertions.assertFalse(collection2.contains(true));
+        Assertions.assertFalse(collection3.contains(true));
+        Assertions.assertFalse(collection3.contains(false));
+        Assertions.assertFalse(collection4.contains(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection0);
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection1);
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection2);
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection3);
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection4);
     }
 
     @Override
@@ -96,12 +96,12 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     {
         super.containsAllArray();
         MutableBooleanCollection emptyCollection = this.newWith();
-        Assert.assertFalse(emptyCollection.containsAll(true));
-        Assert.assertFalse(emptyCollection.containsAll(false));
-        Assert.assertFalse(emptyCollection.containsAll(false, true, false));
+        Assertions.assertFalse(emptyCollection.containsAll(true));
+        Assertions.assertFalse(emptyCollection.containsAll(false));
+        Assertions.assertFalse(emptyCollection.containsAll(false, true, false));
         emptyCollection.add(false);
-        Assert.assertFalse(emptyCollection.containsAll(true));
-        Assert.assertTrue(emptyCollection.containsAll(false));
+        Assertions.assertFalse(emptyCollection.containsAll(true));
+        Assertions.assertTrue(emptyCollection.containsAll(false));
     }
 
     @Override
@@ -110,246 +110,246 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     {
         super.containsAllIterable();
         MutableBooleanCollection emptyCollection = this.newWith();
-        Assert.assertTrue(emptyCollection.containsAll(new BooleanArrayList()));
-        Assert.assertFalse(emptyCollection.containsAll(BooleanArrayList.newListWith(true)));
-        Assert.assertFalse(emptyCollection.containsAll(BooleanArrayList.newListWith(false)));
+        Assertions.assertTrue(emptyCollection.containsAll(new BooleanArrayList()));
+        Assertions.assertFalse(emptyCollection.containsAll(BooleanArrayList.newListWith(true)));
+        Assertions.assertFalse(emptyCollection.containsAll(BooleanArrayList.newListWith(false)));
         emptyCollection.add(false);
-        Assert.assertFalse(emptyCollection.containsAll(BooleanArrayList.newListWith(true)));
-        Assert.assertTrue(emptyCollection.containsAll(BooleanArrayList.newListWith(false)));
+        Assertions.assertFalse(emptyCollection.containsAll(BooleanArrayList.newListWith(true)));
+        Assertions.assertTrue(emptyCollection.containsAll(BooleanArrayList.newListWith(false)));
     }
 
     @Test
     public void add()
     {
         MutableBooleanCollection emptyCollection = this.newWith();
-        Assert.assertTrue(emptyCollection.add(true));
-        Assert.assertEquals(this.newMutableCollectionWith(true), emptyCollection);
-        Assert.assertTrue(emptyCollection.add(false));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false), emptyCollection);
-        Assert.assertTrue(emptyCollection.add(true));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true), emptyCollection);
-        Assert.assertTrue(emptyCollection.add(false));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false), emptyCollection);
+        Assertions.assertTrue(emptyCollection.add(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(true), emptyCollection);
+        Assertions.assertTrue(emptyCollection.add(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false), emptyCollection);
+        Assertions.assertTrue(emptyCollection.add(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true), emptyCollection);
+        Assertions.assertTrue(emptyCollection.add(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false), emptyCollection);
         MutableBooleanCollection collection = this.classUnderTest();
-        Assert.assertTrue(collection.add(false));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false), collection);
+        Assertions.assertTrue(collection.add(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false), collection);
     }
 
     @Test
     public void addAllArray()
     {
         MutableBooleanCollection collection = this.classUnderTest();
-        Assert.assertFalse(collection.addAll());
-        Assert.assertTrue(collection.addAll(false, true, false));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false), collection);
-        Assert.assertTrue(collection.addAll(this.newMutableCollectionWith(true, false, true, false, true)));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false, true, false, true, false, true), collection);
+        Assertions.assertFalse(collection.addAll());
+        Assertions.assertTrue(collection.addAll(false, true, false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false), collection);
+        Assertions.assertTrue(collection.addAll(this.newMutableCollectionWith(true, false, true, false, true)));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false, true, false, true, false, true), collection);
     }
 
     @Test
     public void addAllIterable()
     {
         MutableBooleanCollection collection = this.classUnderTest();
-        Assert.assertFalse(collection.addAll(this.newMutableCollectionWith()));
-        Assert.assertTrue(collection.addAll(this.newMutableCollectionWith(false, true, false)));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false), collection);
-        Assert.assertTrue(collection.addAll(this.newMutableCollectionWith(true, false, true, false, true)));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false, true, false, true, false, true), collection);
+        Assertions.assertFalse(collection.addAll(this.newMutableCollectionWith()));
+        Assertions.assertTrue(collection.addAll(this.newMutableCollectionWith(false, true, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false), collection);
+        Assertions.assertTrue(collection.addAll(this.newMutableCollectionWith(true, false, true, false, true)));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false, true, false, true, false, true), collection);
 
         MutableBooleanCollection emptyCollection = this.newWith();
-        Assert.assertTrue(emptyCollection.addAll(BooleanArrayList.newListWith(true, false, true, false, true)));
-        Assert.assertFalse(emptyCollection.addAll(new BooleanArrayList()));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false, true), emptyCollection);
+        Assertions.assertTrue(emptyCollection.addAll(BooleanArrayList.newListWith(true, false, true, false, true)));
+        Assertions.assertFalse(emptyCollection.addAll(new BooleanArrayList()));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false, true), emptyCollection);
     }
 
     @Test
     public void remove()
     {
         MutableBooleanCollection collection = this.classUnderTest();
-        Assert.assertTrue(collection.remove(false));
-        Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
-        Assert.assertFalse(collection.remove(false));
-        Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
-        Assert.assertTrue(collection.remove(true));
-        Assert.assertEquals(this.newMutableCollectionWith(true), collection);
+        Assertions.assertTrue(collection.remove(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true), collection);
+        Assertions.assertFalse(collection.remove(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true), collection);
+        Assertions.assertTrue(collection.remove(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(true), collection);
 
         MutableBooleanCollection collection1 = this.newWith();
-        Assert.assertFalse(collection1.remove(false));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection1);
-        Assert.assertTrue(collection1.add(false));
-        Assert.assertTrue(collection1.add(false));
-        Assert.assertTrue(collection1.remove(false));
-        Assert.assertEquals(this.newMutableCollectionWith(false), collection1);
-        Assert.assertTrue(collection1.remove(false));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection1);
+        Assertions.assertFalse(collection1.remove(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection1);
+        Assertions.assertTrue(collection1.add(false));
+        Assertions.assertTrue(collection1.add(false));
+        Assertions.assertTrue(collection1.remove(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), collection1);
+        Assertions.assertTrue(collection1.remove(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection1);
 
         MutableBooleanCollection collection2 = this.newWith();
-        Assert.assertFalse(collection2.remove(true));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection2);
-        Assert.assertTrue(collection2.add(true));
-        Assert.assertTrue(collection2.add(true));
-        Assert.assertTrue(collection2.remove(true));
-        Assert.assertEquals(this.newMutableCollectionWith(true), collection2);
-        Assert.assertTrue(collection2.remove(true));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection2);
+        Assertions.assertFalse(collection2.remove(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection2);
+        Assertions.assertTrue(collection2.add(true));
+        Assertions.assertTrue(collection2.add(true));
+        Assertions.assertTrue(collection2.remove(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(true), collection2);
+        Assertions.assertTrue(collection2.remove(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection2);
     }
 
     @Test
     public void removeAll()
     {
-        Assert.assertFalse(this.newWith().removeAll(true));
+        Assertions.assertFalse(this.newWith().removeAll(true));
 
         MutableBooleanCollection collection = this.classUnderTest();
-        Assert.assertFalse(collection.removeAll());
-        Assert.assertTrue(collection.removeAll(true));
-        Assert.assertEquals(this.newMutableCollectionWith(false), collection);
-        Assert.assertFalse(collection.removeAll(true));
-        Assert.assertEquals(this.newMutableCollectionWith(false), collection);
-        Assert.assertTrue(collection.removeAll(false, true));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection);
+        Assertions.assertFalse(collection.removeAll());
+        Assertions.assertTrue(collection.removeAll(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), collection);
+        Assertions.assertFalse(collection.removeAll(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), collection);
+        Assertions.assertTrue(collection.removeAll(false, true));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection);
 
         MutableBooleanCollection booleanArrayCollection = this.newWith(false, false);
-        Assert.assertFalse(booleanArrayCollection.removeAll(true));
-        Assert.assertEquals(this.newMutableCollectionWith(false, false), booleanArrayCollection);
-        Assert.assertTrue(booleanArrayCollection.removeAll(false));
-        Assert.assertEquals(this.newMutableCollectionWith(), booleanArrayCollection);
+        Assertions.assertFalse(booleanArrayCollection.removeAll(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(false, false), booleanArrayCollection);
+        Assertions.assertTrue(booleanArrayCollection.removeAll(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(), booleanArrayCollection);
         MutableBooleanCollection collection1 = this.classUnderTest();
-        Assert.assertFalse(collection1.removeAll());
-        Assert.assertTrue(collection1.removeAll(true, false));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection1);
+        Assertions.assertFalse(collection1.removeAll());
+        Assertions.assertTrue(collection1.removeAll(true, false));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection1);
 
         MutableBooleanCollection trueFalseList = this.newWith(true, false);
-        Assert.assertTrue(trueFalseList.removeAll(true));
-        Assert.assertEquals(this.newMutableCollectionWith(false), trueFalseList);
+        Assertions.assertTrue(trueFalseList.removeAll(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), trueFalseList);
 
         MutableBooleanCollection collection2 = this.newWith(true, false, true, false, true);
-        Assert.assertFalse(collection2.removeAll());
-        Assert.assertTrue(collection2.removeAll(true, true));
-        Assert.assertEquals(this.newMutableCollectionWith(false, false), collection2);
+        Assertions.assertFalse(collection2.removeAll());
+        Assertions.assertTrue(collection2.removeAll(true, true));
+        Assertions.assertEquals(this.newMutableCollectionWith(false, false), collection2);
 
         MutableBooleanCollection collection3 = this.newWith(true, false, true, false, true);
-        Assert.assertFalse(collection3.removeAll());
-        Assert.assertTrue(collection3.removeAll(true, false));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection3);
+        Assertions.assertFalse(collection3.removeAll());
+        Assertions.assertTrue(collection3.removeAll(true, false));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection3);
 
         MutableBooleanCollection collection4 = this.newWith(true, false, true, false, true);
-        Assert.assertFalse(collection4.removeAll());
-        Assert.assertTrue(collection4.removeAll(false, false));
-        Assert.assertEquals(this.newMutableCollectionWith(true, true, true), collection4);
+        Assertions.assertFalse(collection4.removeAll());
+        Assertions.assertTrue(collection4.removeAll(false, false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true, true), collection4);
     }
 
     @Test
     public void removeAll_iterable()
     {
         MutableBooleanCollection collection = this.classUnderTest();
-        Assert.assertFalse(collection.removeAll(this.newMutableCollectionWith()));
-        Assert.assertTrue(collection.removeAll(this.newMutableCollectionWith(false)));
-        Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
-        Assert.assertTrue(collection.removeAll(this.newMutableCollectionWith(true, true)));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection);
+        Assertions.assertFalse(collection.removeAll(this.newMutableCollectionWith()));
+        Assertions.assertTrue(collection.removeAll(this.newMutableCollectionWith(false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true), collection);
+        Assertions.assertTrue(collection.removeAll(this.newMutableCollectionWith(true, true)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection);
 
         MutableBooleanCollection list = this.classUnderTest();
-        Assert.assertFalse(list.removeAll(new BooleanArrayList()));
+        Assertions.assertFalse(list.removeAll(new BooleanArrayList()));
         MutableBooleanCollection booleanArrayList = this.newWith(false, false);
-        Assert.assertFalse(booleanArrayList.removeAll(new BooleanArrayList(true)));
-        Assert.assertEquals(this.newMutableCollectionWith(false, false), booleanArrayList);
-        Assert.assertTrue(booleanArrayList.removeAll(new BooleanArrayList(false)));
-        Assert.assertEquals(this.newMutableCollectionWith(), booleanArrayList);
-        Assert.assertTrue(list.removeAll(new BooleanArrayList(true)));
-        Assert.assertEquals(this.newMutableCollectionWith(false), list);
-        Assert.assertTrue(list.removeAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(this.newMutableCollectionWith(), list);
-        Assert.assertFalse(list.removeAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(this.newMutableCollectionWith(), list);
+        Assertions.assertFalse(booleanArrayList.removeAll(new BooleanArrayList(true)));
+        Assertions.assertEquals(this.newMutableCollectionWith(false, false), booleanArrayList);
+        Assertions.assertTrue(booleanArrayList.removeAll(new BooleanArrayList(false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), booleanArrayList);
+        Assertions.assertTrue(list.removeAll(new BooleanArrayList(true)));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), list);
+        Assertions.assertTrue(list.removeAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list);
+        Assertions.assertFalse(list.removeAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list);
 
         MutableBooleanCollection list1 = this.newWith(true, false, true, true);
-        Assert.assertFalse(list1.removeAll(new BooleanArrayList()));
-        Assert.assertTrue(list1.removeAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertFalse(list1.removeAll(new BooleanArrayList()));
+        Assertions.assertTrue(list1.removeAll(BooleanArrayList.newListWith(true, true)));
         Verify.assertSize(1, list1);
-        Assert.assertFalse(list1.contains(true));
-        Assert.assertEquals(this.newMutableCollectionWith(false), list1);
-        Assert.assertTrue(list1.removeAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertEquals(this.newMutableCollectionWith(), list1);
+        Assertions.assertFalse(list1.contains(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), list1);
+        Assertions.assertTrue(list1.removeAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list1);
 
         MutableBooleanCollection list2 = this.newWith(true, false, true, false, true);
-        Assert.assertTrue(list2.removeAll(BooleanHashBag.newBagWith(true, false)));
-        Assert.assertEquals(this.newMutableCollectionWith(), list2);
+        Assertions.assertTrue(list2.removeAll(BooleanHashBag.newBagWith(true, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list2);
     }
 
     @Test
     public void retainAll_iterable()
     {
         MutableBooleanCollection collection = this.classUnderTest();
-        Assert.assertFalse(collection.retainAll(true, false));
-        Assert.assertTrue(collection.retainAll(true));
-        Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
-        Assert.assertTrue(collection.retainAll(false, false));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection);
+        Assertions.assertFalse(collection.retainAll(true, false));
+        Assertions.assertTrue(collection.retainAll(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true), collection);
+        Assertions.assertTrue(collection.retainAll(false, false));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection);
 
         MutableBooleanCollection list = this.classUnderTest();
-        Assert.assertFalse(list.retainAll(false, false, true));
+        Assertions.assertFalse(list.retainAll(false, false, true));
         MutableBooleanCollection booleanArrayList = this.newWith(false, false);
-        Assert.assertFalse(booleanArrayList.retainAll(false));
-        Assert.assertEquals(this.newMutableCollectionWith(false, false), booleanArrayList);
-        Assert.assertTrue(booleanArrayList.retainAll(true));
-        Assert.assertEquals(this.newMutableCollectionWith(), booleanArrayList);
-        Assert.assertTrue(list.retainAll(false));
-        Assert.assertEquals(this.newMutableCollectionWith(false), list);
-        Assert.assertTrue(list.retainAll());
-        Assert.assertEquals(this.newMutableCollectionWith(), list);
-        Assert.assertFalse(list.retainAll(true, false));
-        Assert.assertEquals(this.newMutableCollectionWith(), list);
+        Assertions.assertFalse(booleanArrayList.retainAll(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(false, false), booleanArrayList);
+        Assertions.assertTrue(booleanArrayList.retainAll(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(), booleanArrayList);
+        Assertions.assertTrue(list.retainAll(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), list);
+        Assertions.assertTrue(list.retainAll());
+        Assertions.assertEquals(this.newMutableCollectionWith(), list);
+        Assertions.assertFalse(list.retainAll(true, false));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list);
 
         MutableBooleanCollection list1 = this.newWith(true, false, true, true);
-        Assert.assertFalse(list1.retainAll(false, false, true));
-        Assert.assertTrue(list1.retainAll(false, false));
+        Assertions.assertFalse(list1.retainAll(false, false, true));
+        Assertions.assertTrue(list1.retainAll(false, false));
         Verify.assertSize(1, list1);
-        Assert.assertFalse(list1.contains(true));
-        Assert.assertEquals(this.newMutableCollectionWith(false), list1);
-        Assert.assertTrue(list1.retainAll(true, true));
-        Assert.assertEquals(this.newMutableCollectionWith(), list1);
+        Assertions.assertFalse(list1.contains(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), list1);
+        Assertions.assertTrue(list1.retainAll(true, true));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list1);
 
         MutableBooleanCollection list2 = this.newWith(true, false, true, false, true);
-        Assert.assertTrue(list2.retainAll());
-        Assert.assertEquals(this.newMutableCollectionWith(), list2);
+        Assertions.assertTrue(list2.retainAll());
+        Assertions.assertEquals(this.newMutableCollectionWith(), list2);
     }
 
     @Test
     public void retainAll()
     {
         MutableBooleanCollection collection = this.classUnderTest();
-        Assert.assertFalse(collection.retainAll(this.newMutableCollectionWith(true, false)));
-        Assert.assertTrue(collection.retainAll(this.newMutableCollectionWith(true)));
-        Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
-        Assert.assertTrue(collection.retainAll(this.newMutableCollectionWith(false, false)));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection);
+        Assertions.assertFalse(collection.retainAll(this.newMutableCollectionWith(true, false)));
+        Assertions.assertTrue(collection.retainAll(this.newMutableCollectionWith(true)));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true), collection);
+        Assertions.assertTrue(collection.retainAll(this.newMutableCollectionWith(false, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection);
 
         MutableBooleanCollection list = this.classUnderTest();
-        Assert.assertFalse(list.retainAll(BooleanArrayList.newListWith(false, false, true)));
+        Assertions.assertFalse(list.retainAll(BooleanArrayList.newListWith(false, false, true)));
         MutableBooleanCollection booleanArrayList = this.newWith(false, false);
-        Assert.assertFalse(booleanArrayList.retainAll(new BooleanArrayList(false)));
-        Assert.assertEquals(this.newMutableCollectionWith(false, false), booleanArrayList);
-        Assert.assertTrue(booleanArrayList.retainAll(new BooleanArrayList(true)));
-        Assert.assertEquals(this.newMutableCollectionWith(), booleanArrayList);
-        Assert.assertTrue(list.retainAll(new BooleanArrayList(false)));
-        Assert.assertEquals(this.newMutableCollectionWith(false), list);
-        Assert.assertTrue(list.retainAll(new BooleanArrayList()));
-        Assert.assertEquals(this.newMutableCollectionWith(), list);
-        Assert.assertFalse(list.retainAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(this.newMutableCollectionWith(), list);
+        Assertions.assertFalse(booleanArrayList.retainAll(new BooleanArrayList(false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(false, false), booleanArrayList);
+        Assertions.assertTrue(booleanArrayList.retainAll(new BooleanArrayList(true)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), booleanArrayList);
+        Assertions.assertTrue(list.retainAll(new BooleanArrayList(false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), list);
+        Assertions.assertTrue(list.retainAll(new BooleanArrayList()));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list);
+        Assertions.assertFalse(list.retainAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list);
 
         MutableBooleanCollection list1 = this.newWith(true, false, true, true);
-        Assert.assertFalse(list1.retainAll(BooleanArrayList.newListWith(false, false, true)));
-        Assert.assertTrue(list1.retainAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertFalse(list1.retainAll(BooleanArrayList.newListWith(false, false, true)));
+        Assertions.assertTrue(list1.retainAll(BooleanArrayList.newListWith(false, false)));
         Verify.assertSize(1, list1);
-        Assert.assertFalse(list1.contains(true));
-        Assert.assertEquals(this.newMutableCollectionWith(false), list1);
-        Assert.assertTrue(list1.retainAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertEquals(this.newMutableCollectionWith(), list1);
+        Assertions.assertFalse(list1.contains(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(false), list1);
+        Assertions.assertTrue(list1.retainAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list1);
 
         MutableBooleanCollection list2 = this.newWith(true, false, true, false, true);
-        Assert.assertTrue(list2.retainAll(new BooleanHashBag()));
-        Assert.assertEquals(this.newMutableCollectionWith(), list2);
+        Assertions.assertTrue(list2.retainAll(new BooleanHashBag()));
+        Assertions.assertEquals(this.newMutableCollectionWith(), list2);
     }
 
     @Test
@@ -361,12 +361,12 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         MutableBooleanCollection collection1 = this.newWith().with(true).with(false).with(true);
         MutableBooleanCollection collection2 = this.newWith().with(true).with(false).with(true).with(false);
         MutableBooleanCollection collection3 = this.newWith().with(true).with(false).with(true).with(false).with(true);
-        Assert.assertSame(emptyCollection, collection);
-        Assert.assertEquals(this.newMutableCollectionWith(true), collection);
-        Assert.assertEquals(this.newMutableCollectionWith(true, false), collection0);
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true), collection1);
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false), collection2);
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false, true), collection3);
+        Assertions.assertSame(emptyCollection, collection);
+        Assertions.assertEquals(this.newMutableCollectionWith(true), collection);
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false), collection0);
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true), collection1);
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false), collection2);
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false, true), collection3);
     }
 
     @Test
@@ -378,47 +378,47 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         MutableBooleanCollection collection1 = this.newWith().withAll(this.newMutableCollectionWith(true, false, true));
         MutableBooleanCollection collection2 = this.newWith().withAll(this.newMutableCollectionWith(true, false, true, false));
         MutableBooleanCollection collection3 = this.newWith().withAll(this.newMutableCollectionWith(true, false, true, false, true));
-        Assert.assertSame(emptyCollection, collection);
-        Assert.assertEquals(this.newMutableCollectionWith(true), collection);
-        Assert.assertEquals(this.newMutableCollectionWith(true, false), collection0);
-        Assert.assertEquals(this.classUnderTest(), collection1);
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false), collection2);
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false, true), collection3);
+        Assertions.assertSame(emptyCollection, collection);
+        Assertions.assertEquals(this.newMutableCollectionWith(true), collection);
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false), collection0);
+        Assertions.assertEquals(this.classUnderTest(), collection1);
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false), collection2);
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true, false, true), collection3);
     }
 
     @Test
     public void without()
     {
         MutableBooleanCollection collection = this.newWith(true, false, true, false, true);
-        Assert.assertEquals(this.newMutableCollectionWith(true, true, false, true), collection.without(false));
-        Assert.assertEquals(this.newMutableCollectionWith(true, false, true), collection.without(true));
-        Assert.assertEquals(this.newMutableCollectionWith(true, true), collection.without(false));
-        Assert.assertEquals(this.newMutableCollectionWith(true), collection.without(true));
-        Assert.assertEquals(this.newMutableCollectionWith(true), collection.without(false));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection.without(true));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection.without(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true, false, true), collection.without(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, false, true), collection.without(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true), collection.without(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true), collection.without(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(true), collection.without(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection.without(true));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection.without(false));
 
         MutableBooleanCollection collection1 = this.newWith(true, false, true, false, true);
-        Assert.assertSame(collection1, collection1.without(false));
-        Assert.assertEquals(this.newMutableCollectionWith(true, true, false, true), collection1);
+        Assertions.assertSame(collection1, collection1.without(false));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true, false, true), collection1);
     }
 
     @Test
     public void withoutAll()
     {
         MutableBooleanCollection mainCollection = this.newWith(true, false, true, false, true);
-        Assert.assertEquals(this.newMutableCollectionWith(true, true, true), mainCollection.withoutAll(this.newMutableCollectionWith(false, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true, true), mainCollection.withoutAll(this.newMutableCollectionWith(false, false)));
 
         MutableBooleanCollection collection = this.newWith(true, false, true, false, true);
-        Assert.assertEquals(this.newMutableCollectionWith(true, true, true), collection.withoutAll(BooleanHashBag.newBagWith(false)));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection.withoutAll(BooleanHashBag.newBagWith(true, false)));
-        Assert.assertEquals(this.newMutableCollectionWith(), collection.withoutAll(BooleanHashBag.newBagWith(true, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true, true), collection.withoutAll(BooleanHashBag.newBagWith(false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection.withoutAll(BooleanHashBag.newBagWith(true, false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(), collection.withoutAll(BooleanHashBag.newBagWith(true, false)));
 
         MutableBooleanCollection trueCollection = this.newWith(true, true, true);
-        Assert.assertEquals(this.newMutableCollectionWith(true, true, true), trueCollection.withoutAll(BooleanArrayList.newListWith(false)));
+        Assertions.assertEquals(this.newMutableCollectionWith(true, true, true), trueCollection.withoutAll(BooleanArrayList.newListWith(false)));
         MutableBooleanCollection mutableBooleanCollection = trueCollection.withoutAll(BooleanArrayList.newListWith(true));
-        Assert.assertEquals(this.newMutableCollectionWith(), mutableBooleanCollection);
-        Assert.assertSame(trueCollection, mutableBooleanCollection);
+        Assertions.assertEquals(this.newMutableCollectionWith(), mutableBooleanCollection);
+        Assertions.assertSame(trueCollection, mutableBooleanCollection);
     }
 
     @Test
@@ -426,16 +426,16 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     {
         MutableBooleanCollection collection = this.classUnderTest();
         Verify.assertInstanceOf(this.newWith(true, false, true).asSynchronized().getClass(), collection.asSynchronized());
-        Assert.assertEquals(this.newWith(true, false, true).asSynchronized(), collection.asSynchronized());
-        Assert.assertEquals(collection, collection.asSynchronized());
+        Assertions.assertEquals(this.newWith(true, false, true).asSynchronized(), collection.asSynchronized());
+        Assertions.assertEquals(collection, collection.asSynchronized());
     }
 
     @Test
     public void asUnmodifiable()
     {
         Verify.assertInstanceOf(this.newWith(true, false, true).asUnmodifiable().getClass(), this.classUnderTest().asUnmodifiable());
-        Assert.assertEquals(this.newWith(true, false, true).asUnmodifiable(), this.classUnderTest().asUnmodifiable());
-        Assert.assertEquals(this.classUnderTest(), this.classUnderTest().asUnmodifiable());
+        Assertions.assertEquals(this.newWith(true, false, true).asUnmodifiable(), this.classUnderTest().asUnmodifiable());
+        Assertions.assertEquals(this.classUnderTest(), this.classUnderTest().asUnmodifiable());
     }
 
     @Test
@@ -448,13 +448,13 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         for (int i = 0; i < iterationCount; i++)
         {
             Verify.assertSize(iterableSize--, booleanIterable);
-            Assert.assertTrue(iterator.hasNext());
+            Assertions.assertTrue(iterator.hasNext());
             iterator.next();
             iterator.remove();
             Verify.assertSize(iterableSize, booleanIterable);
         }
         Verify.assertEmpty(booleanIterable);
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasNext());
         Verify.assertThrows(NoSuchElementException.class, (Runnable) iterator::next);
     }
 
@@ -463,7 +463,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     {
         MutableBooleanCollection booleanIterable = this.newWith(true, false);
         MutableBooleanIterator iterator = booleanIterable.booleanIterator();
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         Verify.assertThrows(IllegalStateException.class, iterator::remove);
     }
 

@@ -407,9 +407,8 @@ public abstract class AbstractBag<T>
     @Override
     public <R extends MutableBooleanCollection> R collectBoolean(final BooleanFunction<? super T> booleanFunction, final R target)
     {
-        if (target instanceof MutableBooleanBag)
+        if (target instanceof MutableBooleanBag targetBag)
         {
-            final MutableBooleanBag targetBag = (MutableBooleanBag) target;
             this.forEachWithOccurrences(new ObjectIntProcedure<T>()
             {
                 public void value(T each, int occurrences)
@@ -438,9 +437,8 @@ public abstract class AbstractBag<T>
     @Override
     public <R extends MutableByteCollection> R collectByte(final ByteFunction<? super T> byteFunction, final R target)
     {
-        if (target instanceof MutableByteBag)
+        if (target instanceof MutableByteBag targetBag)
         {
-            final MutableByteBag targetBag = (MutableByteBag) target;
             this.forEachWithOccurrences(new ObjectIntProcedure<T>()
             {
                 public void value(T each, int occurrences)
@@ -469,9 +467,8 @@ public abstract class AbstractBag<T>
     @Override
     public <R extends MutableCharCollection> R collectChar(final CharFunction<? super T> charFunction, final R target)
     {
-        if (target instanceof MutableCharBag)
+        if (target instanceof MutableCharBag targetBag)
         {
-            final MutableCharBag targetBag = (MutableCharBag) target;
             this.forEachWithOccurrences(new ObjectIntProcedure<T>()
             {
                 public void value(T each, int occurrences)
@@ -500,9 +497,8 @@ public abstract class AbstractBag<T>
     @Override
     public <R extends MutableDoubleCollection> R collectDouble(final DoubleFunction<? super T> doubleFunction, final R target)
     {
-        if (target instanceof MutableDoubleBag)
+        if (target instanceof MutableDoubleBag targetBag)
         {
-            final MutableDoubleBag targetBag = (MutableDoubleBag) target;
             this.forEachWithOccurrences(new ObjectIntProcedure<T>()
             {
                 public void value(T each, int occurrences)
@@ -531,9 +527,8 @@ public abstract class AbstractBag<T>
     @Override
     public <R extends MutableFloatCollection> R collectFloat(final FloatFunction<? super T> floatFunction, final R target)
     {
-        if (target instanceof MutableFloatBag)
+        if (target instanceof MutableFloatBag targetBag)
         {
-            final MutableFloatBag targetBag = (MutableFloatBag) target;
             this.forEachWithOccurrences(new ObjectIntProcedure<T>()
             {
                 public void value(T each, int occurrences)
@@ -562,9 +557,8 @@ public abstract class AbstractBag<T>
     @Override
     public <R extends MutableIntCollection> R collectInt(final IntFunction<? super T> intFunction, final R target)
     {
-        if (target instanceof MutableIntBag)
+        if (target instanceof MutableIntBag targetBag)
         {
-            final MutableIntBag targetBag = (MutableIntBag) target;
             this.forEachWithOccurrences(new ObjectIntProcedure<T>()
             {
                 public void value(T each, int occurrences)
@@ -593,9 +587,8 @@ public abstract class AbstractBag<T>
     @Override
     public <R extends MutableLongCollection> R collectLong(final LongFunction<? super T> longFunction, final R target)
     {
-        if (target instanceof MutableLongBag)
+        if (target instanceof MutableLongBag targetBag)
         {
-            final MutableLongBag targetBag = (MutableLongBag) target;
             this.forEachWithOccurrences(new ObjectIntProcedure<T>()
             {
                 public void value(T each, int occurrences)
@@ -624,9 +617,8 @@ public abstract class AbstractBag<T>
     @Override
     public <R extends MutableShortCollection> R collectShort(final ShortFunction<? super T> shortFunction, final R target)
     {
-        if (target instanceof MutableShortBag)
+        if (target instanceof MutableShortBag targetBag)
         {
-            final MutableShortBag targetBag = (MutableShortBag) target;
             this.forEachWithOccurrences(new ObjectIntProcedure<T>()
             {
                 public void value(T each, int occurrences)

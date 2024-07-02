@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SumOfIntProcedureSerializationTest
 {
@@ -26,10 +26,12 @@ public class SumOfIntProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 2L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuU3VtT2ZEb3Vi\n"
-                        + "bGVQcm9jZWR1cmUAAAAAAAAAAgIAA0QADGNvbXBlbnNhdGlvbkQABnJlc3VsdEwACGZ1bmN0aW9u\n"
-                        + "dABATGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0RvdWJs\n"
-                        + "ZUZ1bmN0aW9uO3hwAAAAAAAAAAAAAAAAAAAAAHA=",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuU3VtT2ZEb3Vi
+                bGVQcm9jZWR1cmUAAAAAAAAAAgIAA0QADGNvbXBlbnNhdGlvbkQABnJlc3VsdEwACGZ1bmN0aW9u
+                dABATGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0RvdWJs
+                ZUZ1bmN0aW9uO3hwAAAAAAAAAAAAAAAAAAAAAHA=\
+                """,
                 new SumOfDoubleProcedure<Integer>(null));
     }
 }

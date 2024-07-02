@@ -17,7 +17,7 @@
 package com.gs.collections.impl.stack.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableShortArrayStackSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableShortArrayStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUucHJpbWl0aXZl\n"
-                        + "LkltbXV0YWJsZVNob3J0QXJyYXlTdGFjayRJbW11dGFibGVTaG9ydFN0YWNrU2VyaWFsaXphdGlv\n"
-                        + "blByb3h5AAAAAAAAAAEMAAB4cHcKAAAAAwADAAIAAXg=",
+                """
+                rO0ABXNyAHBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUucHJpbWl0aXZl
+                LkltbXV0YWJsZVNob3J0QXJyYXlTdGFjayRJbW11dGFibGVTaG9ydFN0YWNrU2VyaWFsaXphdGlv
+                blByb3h5AAAAAAAAAAEMAAB4cHcKAAAAAwADAAIAAXg=\
+                """,
                 ImmutableShortArrayStack.newStackWith((short) 1, (short) 2, (short) 3));
     }
 }

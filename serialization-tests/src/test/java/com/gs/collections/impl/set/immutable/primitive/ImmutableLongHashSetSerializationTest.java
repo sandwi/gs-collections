@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.immutable.primitive;
 
 import com.gs.collections.impl.set.mutable.primitive.LongHashSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableLongHashSetSerializationTest
 {
@@ -27,8 +27,10 @@ public class ImmutableLongHashSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVMb25nRW1wdHlTZXQAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVMb25nRW1wdHlTZXQAAAAAAAAAAQIAAHhw\
+                """,
                 new LongHashSet().toImmutable());
     }
 }

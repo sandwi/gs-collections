@@ -25,8 +25,10 @@ import com.gs.collections.api.tuple.primitive.ObjectIntPair;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link UnmodifiableSortedBag}.
@@ -61,6 +63,7 @@ public class UnmodifiableSortedBagTest extends AbstractMutableSortedBagTestCase
     }
 
     @Override
+    @Test
     public void equalsAndHashCode()
     {
         super.equalsAndHashCode();
@@ -69,42 +72,48 @@ public class UnmodifiableSortedBagTest extends AbstractMutableSortedBagTestCase
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void toString_with_collection_containing_self()
     {
-        super.toString_with_collection_containing_self();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.toString_with_collection_containing_self();
 
-        MutableCollection<Object> collection = this.newWith(1);
-        collection.add(collection);
-        String simpleName = collection.getClass().getSimpleName();
-        String string = collection.toString();
-        Assert.assertTrue(
-                ("[1, (this " + simpleName + ")]").equals(string)
-                        || ("[(this " + simpleName + "), 1]").equals(string));
+            MutableCollection<Object> collection = this.newWith(1);
+            collection.add(collection);
+            String simpleName = collection.getClass().getSimpleName();
+            String string = collection.toString();
+            Assertions.assertTrue(
+                    ("[1, (this " + simpleName + ")]").equals(string)
+                            || ("[(this " + simpleName + "), 1]").equals(string));
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void makeString_with_collection_containing_self()
     {
-        super.makeString_with_collection_containing_self();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.makeString_with_collection_containing_self();
 
-        MutableCollection<Object> collection = this.newWith(1, 2, 3);
-        collection.add(collection);
-        Assert.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
+            MutableCollection<Object> collection = this.newWith(1, 2, 3);
+            collection.add(collection);
+            Assertions.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void appendString_with_collection_containing_self()
     {
-        super.appendString_with_collection_containing_self();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.appendString_with_collection_containing_self();
 
-        MutableCollection<Object> collection = this.newWith(1, 2, 3);
-        collection.add(collection);
-        Appendable builder = new StringBuilder();
-        collection.appendString(builder);
-        Assert.assertEquals(collection.toString(), '[' + builder.toString() + ']');
+            MutableCollection<Object> collection = this.newWith(1, 2, 3);
+            collection.add(collection);
+            Appendable builder = new StringBuilder();
+            collection.appendString(builder);
+            Assertions.assertEquals(collection.toString(), '[' + builder.toString() + ']');
+        });
     }
 
     @Override
@@ -127,35 +136,35 @@ public class UnmodifiableSortedBagTest extends AbstractMutableSortedBagTestCase
     {
         MutableSortedBag<Integer> bag = this.newWith(-1, 0, 1, 1, 2);
         Iterator<Integer> iterator = bag.iterator();
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(-1), iterator.next());
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(0), iterator.next());
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(1), iterator.next());
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(1), iterator.next());
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(2), iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(-1), iterator.next());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(0), iterator.next());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(1), iterator.next());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(1), iterator.next());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(2), iterator.next());
+        Assertions.assertFalse(iterator.hasNext());
 
         MutableSortedBag<Integer> revBag = this.newWith(Comparators.reverseNaturalOrder(), -1, 0, 1, 1, 2);
         Iterator<Integer> revIterator = revBag.iterator();
-        Assert.assertTrue(revIterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(2), revIterator.next());
-        Assert.assertTrue(revIterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(1), revIterator.next());
-        Assert.assertTrue(revIterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(1), revIterator.next());
-        Assert.assertTrue(revIterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(0), revIterator.next());
-        Assert.assertTrue(revIterator.hasNext());
-        Assert.assertEquals(Integer.valueOf(-1), revIterator.next());
-        Assert.assertFalse(revIterator.hasNext());
+        Assertions.assertTrue(revIterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(2), revIterator.next());
+        Assertions.assertTrue(revIterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(1), revIterator.next());
+        Assertions.assertTrue(revIterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(1), revIterator.next());
+        Assertions.assertTrue(revIterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(0), revIterator.next());
+        Assertions.assertTrue(revIterator.hasNext());
+        Assertions.assertEquals(Integer.valueOf(-1), revIterator.next());
+        Assertions.assertFalse(revIterator.hasNext());
 
         Iterator<Integer> iterator3 = this.newWith(Comparators.reverseNaturalOrder(), 2, 1, 1, 0, -1).iterator();
         Verify.assertThrows(UnsupportedOperationException.class, iterator3::remove);
-        Assert.assertEquals(Integer.valueOf(2), iterator3.next());
+        Assertions.assertEquals(Integer.valueOf(2), iterator3.next());
         Verify.assertThrows(UnsupportedOperationException.class, iterator3::remove);
     }
 
@@ -179,161 +188,205 @@ public class UnmodifiableSortedBagTest extends AbstractMutableSortedBagTestCase
     {
         Verify.assertInstanceOf(UnmodifiableSortedBag.class, this.newWith().asUnmodifiable());
         MutableSortedBag<Object> bag = this.newWith();
-        Assert.assertSame(bag, bag.asUnmodifiable());
+        Assertions.assertSame(bag, bag.asUnmodifiable());
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeIfWith()
     {
-        super.removeIfWith();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeIfWith();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void clear()
     {
-        super.clear();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.clear();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addAll()
     {
-        super.addAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.addAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addAllIterable()
     {
-        super.addAllIterable();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.addAllIterable();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeIf()
     {
-        super.removeIf();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeIf();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeAll()
     {
-        super.removeAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeAllIterable()
     {
-        super.removeAllIterable();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeAllIterable();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void retainAll()
     {
-        super.retainAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.retainAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void retainAllIterable()
     {
-        super.retainAllIterable();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.retainAllIterable();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void add()
     {
-        super.add();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.add();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addOccurrences()
     {
-        super.addOccurrences();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.addOccurrences();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addOccurrences_throws()
     {
-        super.addOccurrences_throws();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.addOccurrences_throws();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeObject()
     {
-        super.removeObject();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeObject();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeOccurrences()
     {
-        super.removeOccurrences();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeOccurrences();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeOccurrences_throws()
     {
-        super.removeOccurrences_throws();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeOccurrences_throws();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void setOccurrences()
     {
-        super.setOccurrences();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.setOccurrences();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void setOccurrences_throws()
     {
-        super.setOccurrences_throws();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.setOccurrences_throws();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void forEachWithOccurrences()
     {
-        super.forEachWithOccurrences();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.forEachWithOccurrences();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void with()
     {
-        super.with();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.with();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withAll()
     {
-        super.withAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.withAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void without()
     {
-        super.without();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.without();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withoutAll()
     {
-        super.withoutAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.withoutAll();
+        });
     }
 
     @Override
@@ -342,7 +395,7 @@ public class UnmodifiableSortedBagTest extends AbstractMutableSortedBagTestCase
     {
         MutableSortedBag<Integer> set = this.newWith(1, 2, 3);
         MutableSortedBag<Integer> clone = set.clone();
-        Assert.assertSame(set, clone);
+        Assertions.assertSame(set, clone);
         Verify.assertSortedBagsEqual(set, clone);
     }
 }

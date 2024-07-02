@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ShortLongHashMapSerializationTest
 {
@@ -26,8 +26,10 @@ public class ShortLongHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU2hv\n"
-                        + "cnRMb25nSGFzaE1hcAAAAAAAAAABDAAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU2hv
+                cnRMb25nSGFzaE1hcAAAAAAAAAABDAAAeHB3BAAAAAB4\
+                """,
                 new ShortLongHashMap());
     }
 }

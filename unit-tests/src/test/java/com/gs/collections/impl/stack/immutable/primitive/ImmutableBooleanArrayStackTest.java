@@ -19,8 +19,8 @@ package com.gs.collections.impl.stack.immutable.primitive;
 import com.gs.collections.api.stack.primitive.ImmutableBooleanStack;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.stack.mutable.primitive.BooleanArrayStack;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ImmutableBooleanArrayStack}.
@@ -36,12 +36,12 @@ public class ImmutableBooleanArrayStackTest extends AbstractImmutableBooleanStac
     @Test
     public void newWithIterable()
     {
-        Assert.assertEquals(BooleanArrayStack.newStackWith(true, true, false), this.newWithIterable(BooleanArrayList.newListWith(true, true, false)));
+        Assertions.assertEquals(BooleanArrayStack.newStackWith(true, true, false), this.newWithIterable(BooleanArrayList.newListWith(true, true, false)));
     }
 
     @Test
     public void newWithTopToBottom()
     {
-        Assert.assertEquals(BooleanArrayStack.newStackFromTopToBottom(true, true, false), this.newWithTopToBottom(true, true, false));
+        Assertions.assertEquals(BooleanArrayStack.newStackFromTopToBottom(true, true, false), this.newWithTopToBottom(true, true, false));
     }
 }

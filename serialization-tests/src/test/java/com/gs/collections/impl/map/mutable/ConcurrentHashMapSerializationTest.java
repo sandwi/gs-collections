@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ConcurrentHashMapSerializationTest
 {
@@ -26,8 +26,10 @@ public class ConcurrentHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5Db25jdXJyZW50SGFz\n"
-                        + "aE1hcAAAAAAAAAABDAAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyADVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5Db25jdXJyZW50SGFz
+                aE1hcAAAAAAAAAABDAAAeHB3BAAAAAB4\
+                """,
                 new ConcurrentHashMap<Object, Object>(0));
     }
 }

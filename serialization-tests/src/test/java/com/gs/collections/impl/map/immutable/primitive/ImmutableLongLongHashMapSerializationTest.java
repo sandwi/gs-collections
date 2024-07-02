@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.LongLongHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableLongLongHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableLongLongHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVMb25nTG9uZ0hhc2hNYXAkSW1tdXRhYmxlTG9uZ0xvbmdNYXBTZXJpYWxpemF0aW9u\n"
-                        + "UHJveHkAAAAAAAAAAQwAAHhwdyQAAAACAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAJ4\n",
+                """
+                rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVMb25nTG9uZ0hhc2hNYXAkSW1tdXRhYmxlTG9uZ0xvbmdNYXBTZXJpYWxpemF0aW9u
+                UHJveHkAAAAAAAAAAQwAAHhwdyQAAAACAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAJ4
+                """,
                 new ImmutableLongLongHashMap(LongLongHashMap.newWithKeysValues(1L, 1L, 2L, 2L)));
     }
 }

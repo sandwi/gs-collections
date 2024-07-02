@@ -25,8 +25,10 @@ import com.gs.collections.impl.block.factory.HashingStrategies;
 import com.gs.collections.impl.block.function.PassThruFunction0;
 import com.gs.collections.impl.map.immutable.ImmutableMemoryEfficientMapTestCase;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link ImmutableEmptyMapWithHashingStrategy}.
@@ -64,7 +66,7 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
     public void testToString()
     {
         ImmutableMap<Integer, String> map = this.classUnderTest();
-        Assert.assertEquals("{}", map.toString());
+        Assertions.assertEquals("{}", map.toString());
     }
 
     @Override
@@ -83,11 +85,11 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
 
         // Absent key behavior
         ImmutableMap<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertNull(classUnderTest.get(absentKey));
-        Assert.assertFalse(classUnderTest.containsValue(absentValue));
+        Assertions.assertNull(classUnderTest.get(absentKey));
+        Assertions.assertFalse(classUnderTest.containsValue(absentValue));
 
         // Still unchanged
-        Assert.assertEquals(this.equalUnifiedMap(), classUnderTest);
+        Assertions.assertEquals(this.equalUnifiedMap(), classUnderTest);
     }
 
     @Override
@@ -99,10 +101,10 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
 
         // Absent key behavior
         ImmutableMap<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertEquals(absentValue, classUnderTest.getIfAbsent(absentKey, new PassThruFunction0<>(absentValue)));
+        Assertions.assertEquals(absentValue, classUnderTest.getIfAbsent(absentKey, new PassThruFunction0<>(absentValue)));
 
         // Still unchanged
-        Assert.assertEquals(this.equalUnifiedMap(), classUnderTest);
+        Assertions.assertEquals(this.equalUnifiedMap(), classUnderTest);
     }
 
     @Override
@@ -114,10 +116,10 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
 
         // Absent key behavior
         ImmutableMap<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertEquals(absentValue, classUnderTest.getIfAbsentValue(absentKey, absentValue));
+        Assertions.assertEquals(absentValue, classUnderTest.getIfAbsentValue(absentKey, absentValue));
 
         // Still unchanged
-        Assert.assertEquals(this.equalUnifiedMap(), classUnderTest);
+        Assertions.assertEquals(this.equalUnifiedMap(), classUnderTest);
     }
 
     @Override
@@ -129,10 +131,10 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
 
         // Absent key behavior
         ImmutableMap<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertEquals(absentValue, classUnderTest.getIfAbsentWith(absentKey, String::valueOf, absentValue));
+        Assertions.assertEquals(absentValue, classUnderTest.getIfAbsentWith(absentKey, String::valueOf, absentValue));
 
         // Still unchanged
-        Assert.assertEquals(this.equalUnifiedMap(), classUnderTest);
+        Assertions.assertEquals(this.equalUnifiedMap(), classUnderTest);
     }
 
     @Override
@@ -142,14 +144,14 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
         Integer absentKey = this.size() + 1;
 
         ImmutableMap<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertNull(classUnderTest.ifPresentApply(absentKey, Functions.<String>getPassThru()));
+        Assertions.assertNull(classUnderTest.ifPresentApply(absentKey, Functions.<String>getPassThru()));
     }
 
     @Override
     @Test
     public void notEmpty()
     {
-        Assert.assertFalse(this.classUnderTest().notEmpty());
+        Assertions.assertFalse(this.classUnderTest().notEmpty());
     }
 
     @Override
@@ -158,8 +160,8 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
     {
         ImmutableMap<Integer, String> map = this.classUnderTest();
 
-        Assert.assertTrue(map.allSatisfy(String.class::isInstance));
-        Assert.assertTrue(map.allSatisfy("Monkey"::equals));
+        Assertions.assertTrue(map.allSatisfy(String.class::isInstance));
+        Assertions.assertTrue(map.allSatisfy("Monkey"::equals));
     }
 
     @Override
@@ -168,8 +170,8 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
     {
         ImmutableMap<Integer, String> map = this.classUnderTest();
 
-        Assert.assertTrue(map.noneSatisfy(Integer.class::isInstance));
-        Assert.assertTrue(map.noneSatisfy("Monkey"::equals));
+        Assertions.assertTrue(map.noneSatisfy(Integer.class::isInstance));
+        Assertions.assertTrue(map.noneSatisfy("Monkey"::equals));
     }
 
     @Override
@@ -178,47 +180,56 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
     {
         ImmutableMap<Integer, String> map = this.classUnderTest();
 
-        Assert.assertFalse(map.anySatisfy(String.class::isInstance));
-        Assert.assertFalse(map.anySatisfy("Monkey"::equals));
+        Assertions.assertFalse(map.anySatisfy(String.class::isInstance));
+        Assertions.assertFalse(map.anySatisfy("Monkey"::equals));
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void max()
     {
-        ImmutableMap<Integer, String> map = this.classUnderTest();
+        assertThrows(NoSuchElementException.class, () -> {
+            ImmutableMap<Integer, String> map = this.classUnderTest();
 
-        map.max();
+            map.max();
+        });
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void maxBy()
     {
-        ImmutableMap<Integer, String> map = this.classUnderTest();
+        assertThrows(NoSuchElementException.class, () -> {
+            ImmutableMap<Integer, String> map = this.classUnderTest();
 
-        map.maxBy(Functions.getStringPassThru());
+            map.maxBy(Functions.getStringPassThru());
+        });
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void min()
     {
-        ImmutableMap<Integer, String> map = this.classUnderTest();
+        assertThrows(NoSuchElementException.class, () -> {
+            ImmutableMap<Integer, String> map = this.classUnderTest();
 
-        map.min();
+            map.min();
+        });
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void minBy()
     {
-        ImmutableMap<Integer, String> map = this.classUnderTest();
+        assertThrows(NoSuchElementException.class, () -> {
+            ImmutableMap<Integer, String> map = this.classUnderTest();
 
-        map.minBy(Functions.getStringPassThru());
+            map.minBy(Functions.getStringPassThru());
+        });
     }
 
     @Override
+    @Test
     public void select()
     {
         ImmutableMap<Integer, String> map = this.classUnderTest();
@@ -227,6 +238,7 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
     }
 
     @Override
+    @Test
     public void reject()
     {
         ImmutableMap<Integer, String> map = this.classUnderTest();
@@ -235,10 +247,11 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
     }
 
     @Override
+    @Test
     public void detect()
     {
         ImmutableMap<Integer, String> map = this.classUnderTest();
-        Assert.assertNull(map.detect((ignored1, ignored2) -> true));
+        Assertions.assertNull(map.detect((ignored1, ignored2) -> true));
     }
 
     @Override

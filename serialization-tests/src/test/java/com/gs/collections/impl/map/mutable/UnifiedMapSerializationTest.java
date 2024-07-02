@@ -17,29 +17,37 @@
 package com.gs.collections.impl.map.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnifiedMapSerializationTest
 {
     public static final String UNIFIED_MAP_KEY_SET =
-            "rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5VbmlmaWVkU2V0AAAA\n"
-                    + "AAAAAAEMAAB4cHcIAAAAAD9AAAB4";
+            """
+            rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5VbmlmaWVkU2V0AAAA
+            AAAAAAEMAAB4cHcIAAAAAD9AAAB4\
+            """;
     public static final String UNIFIED_MAP_ENTRY_SET =
-            "rO0ABXNyADdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5VbmlmaWVkTWFwJEVu\n"
-                    + "dHJ5U2V0AAAAAAAAAAECAAFMAAZ0aGlzJDB0ADBMY29tL2dzL2NvbGxlY3Rpb25zL2ltcGwvbWFw\n"
-                    + "L211dGFibGUvVW5pZmllZE1hcDt4cHNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0\n"
-                    + "YWJsZS5VbmlmaWVkTWFwAAAAAAAAAAEMAAB4cHcIAAAAAD9AAAB4";
+            """
+            rO0ABXNyADdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5VbmlmaWVkTWFwJEVu
+            dHJ5U2V0AAAAAAAAAAECAAFMAAZ0aGlzJDB0ADBMY29tL2dzL2NvbGxlY3Rpb25zL2ltcGwvbWFw
+            L211dGFibGUvVW5pZmllZE1hcDt4cHNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0
+            YWJsZS5VbmlmaWVkTWFwAAAAAAAAAAEMAAB4cHcIAAAAAD9AAAB4\
+            """;
     public static final String UNIFIED_MAP_VALUES =
-            "rO0ABXNyAC1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuRmFzdExpc3QAAAAA\n"
-                    + "AAAAAQwAAHhwdwQAAAAAeA==";
+            """
+            rO0ABXNyAC1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuRmFzdExpc3QAAAAA
+            AAAAAQwAAHhwdwQAAAAAeA==\
+            """;
 
     @Test
     public void serializedForm()
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5VbmlmaWVkTWFwAAAA\n"
-                        + "AAAAAAEMAAB4cHcIAAAAAD9AAAB4",
+                """
+                rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5VbmlmaWVkTWFwAAAA
+                AAAAAAEMAAB4cHcIAAAAAD9AAAB4\
+                """,
                 UnifiedMap.newMap());
     }
 
@@ -65,7 +73,7 @@ public class UnifiedMapSerializationTest
     public void values()
     {
         Verify.assertSerializedForm(
-                UNIFIED_MAP_VALUES,
-                UnifiedMap.newMap().values());
+                UnifiedMap.newMap().values(),
+                UNIFIED_MAP_VALUES);
     }
 }

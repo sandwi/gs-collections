@@ -23,8 +23,8 @@ import com.gs.collections.api.IntIterable;
 import com.gs.collections.api.list.primitive.ImmutableIntList;
 import com.gs.collections.impl.block.factory.primitive.IntPredicates;
 import com.gs.collections.impl.list.immutable.primitive.AbstractImmutableIntListTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CodePointListTest extends AbstractImmutableIntListTestCase
 {
@@ -49,13 +49,13 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     public void stringBuilder()
     {
         CodePointList list = CodePointList.from(UNICODE_STRING);
-        Assert.assertEquals(UNICODE_STRING, new StringBuilder(list).toString());
+        Assertions.assertEquals(UNICODE_STRING, new StringBuilder(list).toString());
         CodePointList list2 = CodePointList.from(UNICODE_EMOJI_STRING);
-        Assert.assertEquals(UNICODE_EMOJI_STRING, new StringBuilder(list2).toString());
+        Assertions.assertEquals(UNICODE_EMOJI_STRING, new StringBuilder(list2).toString());
         CodePointList list3 = CodePointList.from(UNICODE_EMOJI_STRING2);
-        Assert.assertEquals(UNICODE_EMOJI_STRING2, new StringBuilder(list3).toString());
+        Assertions.assertEquals(UNICODE_EMOJI_STRING2, new StringBuilder(list3).toString());
         CodePointList list4 = CodePointList.from("Hello World!");
-        Assert.assertEquals("Hello World!", new StringBuilder(list4).toString());
+        Assertions.assertEquals("Hello World!", new StringBuilder(list4).toString());
     }
 
     @Test
@@ -63,70 +63,70 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     {
         CodePointList adapt = CodePointList.from(UNICODE_STRING);
         CharSequence sequence = adapt.subSequence(1, 3);
-        Assert.assertEquals(UNICODE_STRING.subSequence(1, 3), sequence);
+        Assertions.assertEquals(UNICODE_STRING.subSequence(1, 3), sequence);
     }
 
     @Override
     @Test
     public void max()
     {
-        Assert.assertEquals(9L, this.newWith(1, 2, 9).max());
-        Assert.assertEquals(32L, this.newWith(1, 0, 9, 30, 31, 32).max());
-        Assert.assertEquals(32L, this.newWith(0, 9, 30, 31, 32).max());
-        Assert.assertEquals(31L, this.newWith(31, 0, 30).max());
-        Assert.assertEquals(39L, this.newWith(32, 39, 35).max());
-        Assert.assertEquals(this.classUnderTest().size(), this.classUnderTest().max());
+        Assertions.assertEquals(9L, this.newWith(1, 2, 9).max());
+        Assertions.assertEquals(32L, this.newWith(1, 0, 9, 30, 31, 32).max());
+        Assertions.assertEquals(32L, this.newWith(0, 9, 30, 31, 32).max());
+        Assertions.assertEquals(31L, this.newWith(31, 0, 30).max());
+        Assertions.assertEquals(39L, this.newWith(32, 39, 35).max());
+        Assertions.assertEquals(this.classUnderTest().size(), this.classUnderTest().max());
     }
 
     @Override
     @Test
     public void min()
     {
-        Assert.assertEquals(1L, this.newWith(1, 2, 9).min());
-        Assert.assertEquals(0L, this.newWith(1, 0, 9, 30, 31, 32).min());
-        Assert.assertEquals(31L, this.newWith(31, 32, 33).min());
-        Assert.assertEquals(32L, this.newWith(32, 39, 35).min());
-        Assert.assertEquals(1L, this.classUnderTest().min());
+        Assertions.assertEquals(1L, this.newWith(1, 2, 9).min());
+        Assertions.assertEquals(0L, this.newWith(1, 0, 9, 30, 31, 32).min());
+        Assertions.assertEquals(31L, this.newWith(31, 32, 33).min());
+        Assertions.assertEquals(32L, this.newWith(32, 39, 35).min());
+        Assertions.assertEquals(1L, this.classUnderTest().min());
     }
 
     @Override
     @Test
     public void allSatisfy()
     {
-        Assert.assertFalse(this.newWith(1, 0, 2).allSatisfy(IntPredicates.greaterThan(0)));
-        Assert.assertTrue(this.newWith(1, 2, 3).allSatisfy(IntPredicates.greaterThan(0)));
-        Assert.assertFalse(this.newWith(1, 0, 31, 32).allSatisfy(IntPredicates.greaterThan(0)));
-        Assert.assertFalse(this.newWith(1, 0, 31, 32).allSatisfy(IntPredicates.greaterThan(0)));
-        Assert.assertTrue(this.newWith(1, 2, 31, 32).allSatisfy(IntPredicates.greaterThan(0)));
-        Assert.assertFalse(this.newWith(32).allSatisfy(IntPredicates.equal(33)));
+        Assertions.assertFalse(this.newWith(1, 0, 2).allSatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertTrue(this.newWith(1, 2, 3).allSatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertFalse(this.newWith(1, 0, 31, 32).allSatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertFalse(this.newWith(1, 0, 31, 32).allSatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertTrue(this.newWith(1, 2, 31, 32).allSatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertFalse(this.newWith(32).allSatisfy(IntPredicates.equal(33)));
         IntIterable iterable = this.newWith(0, 1, 2);
-        Assert.assertFalse(iterable.allSatisfy(value -> 3 < value));
-        Assert.assertTrue(iterable.allSatisfy(IntPredicates.lessThan(3)));
+        Assertions.assertFalse(iterable.allSatisfy(value -> 3 < value));
+        Assertions.assertTrue(iterable.allSatisfy(IntPredicates.lessThan(3)));
 
         IntIterable iterable1 = this.classUnderTest();
         int size = iterable1.size();
-        Assert.assertEquals(size == 0, iterable1.allSatisfy(IntPredicates.greaterThan(3)));
-        Assert.assertEquals(size < 3, iterable1.allSatisfy(IntPredicates.lessThan(3)));
+        Assertions.assertEquals(size == 0, iterable1.allSatisfy(IntPredicates.greaterThan(3)));
+        Assertions.assertEquals(size < 3, iterable1.allSatisfy(IntPredicates.lessThan(3)));
     }
 
     @Override
     @Test
     public void anySatisfy()
     {
-        Assert.assertTrue(this.newWith(1, 2).anySatisfy(IntPredicates.greaterThan(0)));
-        Assert.assertFalse(this.newWith(1, 2).anySatisfy(IntPredicates.equal(0)));
-        Assert.assertTrue(this.newWith(31, 32).anySatisfy(IntPredicates.greaterThan(0)));
-        Assert.assertTrue(this.newWith(2, 31, 32).anySatisfy(IntPredicates.greaterThan(0)));
-        Assert.assertFalse(this.newWith(1, 31, 32).anySatisfy(IntPredicates.equal(0)));
-        Assert.assertTrue(this.newWith(32).anySatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertTrue(this.newWith(1, 2).anySatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertFalse(this.newWith(1, 2).anySatisfy(IntPredicates.equal(0)));
+        Assertions.assertTrue(this.newWith(31, 32).anySatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertTrue(this.newWith(2, 31, 32).anySatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertFalse(this.newWith(1, 31, 32).anySatisfy(IntPredicates.equal(0)));
+        Assertions.assertTrue(this.newWith(32).anySatisfy(IntPredicates.greaterThan(0)));
         IntIterable iterable = this.newWith(0, 1, 2);
-        Assert.assertTrue(iterable.anySatisfy(value -> value < 3));
-        Assert.assertFalse(iterable.anySatisfy(IntPredicates.greaterThan(3)));
+        Assertions.assertTrue(iterable.anySatisfy(value -> value < 3));
+        Assertions.assertFalse(iterable.anySatisfy(IntPredicates.greaterThan(3)));
 
         IntIterable iterable1 = this.classUnderTest();
         int size = iterable1.size();
-        Assert.assertEquals(size > 3, iterable1.anySatisfy(IntPredicates.greaterThan(3)));
-        Assert.assertEquals(size != 0, iterable1.anySatisfy(IntPredicates.lessThan(3)));
+        Assertions.assertEquals(size > 3, iterable1.anySatisfy(IntPredicates.greaterThan(3)));
+        Assertions.assertEquals(size != 0, iterable1.anySatisfy(IntPredicates.lessThan(3)));
     }
 
     @Override
@@ -139,7 +139,7 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
         {
             expectedString.appendCodePoint(each + 1);
         }
-        Assert.assertEquals(expectedString.toString(), this.classUnderTest().toString());
+        Assertions.assertEquals(expectedString.toString(), this.classUnderTest().toString());
     }
 
     @Override
@@ -157,9 +157,9 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
             expectedString.append(each == size - 1 ? "" : ", ");
             expectedString1.append(each == size - 1 ? "" : "/");
         }
-        Assert.assertEquals(expectedString.toString(), list.makeString());
-        Assert.assertEquals(expectedString1.toString(), list.makeString("/"));
-        Assert.assertEquals(this.classUnderTest().toString(), this.classUnderTest().makeString("", "", ""));
+        Assertions.assertEquals(expectedString.toString(), list.makeString());
+        Assertions.assertEquals(expectedString1.toString(), list.makeString("/"));
+        Assertions.assertEquals(this.classUnderTest().toString(), this.classUnderTest().makeString("", "", ""));
     }
 
     @Override
@@ -179,13 +179,13 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
         ImmutableIntList list = this.classUnderTest();
         StringBuilder appendable2 = new StringBuilder();
         list.appendString(appendable2);
-        Assert.assertEquals(expectedString.toString(), appendable2.toString());
+        Assertions.assertEquals(expectedString.toString(), appendable2.toString());
         StringBuilder appendable3 = new StringBuilder();
         list.appendString(appendable3, "/");
-        Assert.assertEquals(expectedString1.toString(), appendable3.toString());
+        Assertions.assertEquals(expectedString1.toString(), appendable3.toString());
         StringBuilder appendable4 = new StringBuilder();
         this.classUnderTest().appendString(appendable4, "", "", "");
-        Assert.assertEquals(this.classUnderTest().toString(), appendable4.toString());
+        Assertions.assertEquals(this.classUnderTest().toString(), appendable4.toString());
     }
 
     @SuppressWarnings("StringBufferMayBeStringBuilder")
@@ -205,13 +205,13 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
         ImmutableIntList list = this.classUnderTest();
         StringBuffer appendable2 = new StringBuffer();
         list.appendString(appendable2);
-        Assert.assertEquals(expectedString.toString(), appendable2.toString());
+        Assertions.assertEquals(expectedString.toString(), appendable2.toString());
         StringBuffer appendable3 = new StringBuffer();
         list.appendString(appendable3, "/");
-        Assert.assertEquals(expectedString1.toString(), appendable3.toString());
+        Assertions.assertEquals(expectedString1.toString(), appendable3.toString());
         StringBuffer appendable4 = new StringBuffer();
         this.classUnderTest().appendString(appendable4, "", "", "");
-        Assert.assertEquals(this.classUnderTest().toString(), appendable4.toString());
+        Assertions.assertEquals(this.classUnderTest().toString(), appendable4.toString());
     }
 
     @Test
@@ -230,22 +230,22 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
         ImmutableIntList list = this.classUnderTest();
         SBAppendable appendable2 = new SBAppendable();
         list.appendString(appendable2);
-        Assert.assertEquals(expectedString.toString(), appendable2.toString());
+        Assertions.assertEquals(expectedString.toString(), appendable2.toString());
         SBAppendable appendable3 = new SBAppendable();
         list.appendString(appendable3, "/");
-        Assert.assertEquals(expectedString1.toString(), appendable3.toString());
+        Assertions.assertEquals(expectedString1.toString(), appendable3.toString());
         SBAppendable appendable4 = new SBAppendable();
         this.classUnderTest().appendString(appendable4, "", "", "");
-        Assert.assertEquals(this.classUnderTest().toString(), appendable4.toString());
+        Assertions.assertEquals(this.classUnderTest().toString(), appendable4.toString());
     }
 
     @Test
     public void collectCodePointUnicode()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UNICODE_STRING.codePoints().boxed().collect(Collectors.toList()),
                 CodePointList.from(UNICODE_STRING).collect(i -> i));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UNICODE_STRING.codePoints().boxed().collect(Collectors.toList()),
                 CodePointList.from(UNICODE_STRING).collect(i -> i));
     }
@@ -254,28 +254,28 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     public void selectCodePointUnicode()
     {
         String string = CodePointList.from(UNICODE_STRING).select(Character::isBmpCodePoint).toString();
-        Assert.assertEquals("\u3042\u3044\u3046", string);
+        Assertions.assertEquals("\u3042\u3044\u3046", string);
     }
 
     @Test
     public void allSatisfyUnicode()
     {
-        Assert.assertTrue(CodePointList.from("\u3042\u3044\u3046").allSatisfy(Character::isBmpCodePoint));
-        Assert.assertFalse(CodePointList.from("\uD840\uDC00\uD840\uDC03\uD83D\uDE09").allSatisfy(Character::isBmpCodePoint));
+        Assertions.assertTrue(CodePointList.from("\u3042\u3044\u3046").allSatisfy(Character::isBmpCodePoint));
+        Assertions.assertFalse(CodePointList.from("\uD840\uDC00\uD840\uDC03\uD83D\uDE09").allSatisfy(Character::isBmpCodePoint));
     }
 
     @Test
     public void anySatisfyUnicode()
     {
-        Assert.assertTrue(CodePointList.from("\u3042\u3044\u3046").anySatisfy(Character::isBmpCodePoint));
-        Assert.assertFalse(CodePointList.from("\uD840\uDC00\uD840\uDC03\uD83D\uDE09").anySatisfy(Character::isBmpCodePoint));
+        Assertions.assertTrue(CodePointList.from("\u3042\u3044\u3046").anySatisfy(Character::isBmpCodePoint));
+        Assertions.assertFalse(CodePointList.from("\uD840\uDC00\uD840\uDC03\uD83D\uDE09").anySatisfy(Character::isBmpCodePoint));
     }
 
     @Test
     public void noneSatisfyUnicode()
     {
-        Assert.assertFalse(CodePointList.from("\u3042\u3044\u3046").noneSatisfy(Character::isBmpCodePoint));
-        Assert.assertTrue(CodePointList.from("\uD840\uDC00\uD840\uDC03\uD83D\uDE09").noneSatisfy(Character::isBmpCodePoint));
+        Assertions.assertFalse(CodePointList.from("\u3042\u3044\u3046").noneSatisfy(Character::isBmpCodePoint));
+        Assertions.assertTrue(CodePointList.from("\uD840\uDC00\uD840\uDC03\uD83D\uDE09").noneSatisfy(Character::isBmpCodePoint));
     }
 
     @Test
@@ -283,7 +283,7 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     {
         StringBuilder builder = new StringBuilder();
         CodePointList.from(UNICODE_STRING).forEach(builder::appendCodePoint);
-        Assert.assertEquals(UNICODE_STRING, builder.toString());
+        Assertions.assertEquals(UNICODE_STRING, builder.toString());
     }
 
     @Test
@@ -291,13 +291,13 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     {
         StringBuilder builder = new StringBuilder();
         CodePointList.from(UNICODE_STRING).asReversed().forEach(builder::appendCodePoint);
-        Assert.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
+        Assertions.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
 
         StringBuilder builder2 = new StringBuilder();
         CodePointList.from("\uD840\uDC00\u3042\uD840\uDC03\u3044\uD83D\uDE09\u3046").asReversed().forEach(builder2::appendCodePoint);
-        Assert.assertEquals("\u3046\uD83D\uDE09\u3044\uD840\uDC03\u3042\uD840\uDC00", builder2.toString());
+        Assertions.assertEquals("\u3046\uD83D\uDE09\u3044\uD840\uDC03\u3042\uD840\uDC00", builder2.toString());
 
-        CodePointList.from("").asReversed().forEach((int codePoint) -> Assert.fail());
+        CodePointList.from("").asReversed().forEach((int codePoint) -> Assertions.fail());
     }
 
     @Test
@@ -305,17 +305,17 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     {
         StringBuilder builder = new StringBuilder();
         CodePointList.from("\u3042\uDC00\uD840\u3044\uDC03\uD840\u3046\uDE09\uD83D").asReversed().forEach(builder::appendCodePoint);
-        Assert.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
+        Assertions.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
 
         StringBuilder builder2 = new StringBuilder();
         CodePointList.from("\u3042\uD840\u3044\uD840\u3046\uD840").asReversed().forEach(builder2::appendCodePoint);
-        Assert.assertEquals("\uD840\u3046\uD840\u3044\uD840\u3042", builder2.toString());
+        Assertions.assertEquals("\uD840\u3046\uD840\u3044\uD840\u3042", builder2.toString());
 
         StringBuilder builder3 = new StringBuilder();
         CodePointList.from("\u3042\uDC00\u3044\uDC03\u3046\uDC06").asReversed().forEach(builder3::appendCodePoint);
-        Assert.assertEquals("\uDC06\u3046\uDC03\u3044\uDC00\u3042", builder3.toString());
+        Assertions.assertEquals("\uDC06\u3046\uDC03\u3044\uDC00\u3042", builder3.toString());
 
-        CodePointList.from("").asReversed().forEach((int codePoint) -> Assert.fail());
+        CodePointList.from("").asReversed().forEach((int codePoint) -> Assertions.fail());
     }
 
     @Test
@@ -323,13 +323,13 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     {
         StringBuilder builder = new StringBuilder();
         CodePointList.from(UNICODE_STRING).toReversed().forEach(builder::appendCodePoint);
-        Assert.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
+        Assertions.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
 
         StringBuilder builder2 = new StringBuilder();
         CodePointList.from("\uD840\uDC00\u3042\uD840\uDC03\u3044\uD83D\uDE09\u3046").toReversed().forEach(builder2::appendCodePoint);
-        Assert.assertEquals("\u3046\uD83D\uDE09\u3044\uD840\uDC03\u3042\uD840\uDC00", builder2.toString());
+        Assertions.assertEquals("\u3046\uD83D\uDE09\u3044\uD840\uDC03\u3042\uD840\uDC00", builder2.toString());
 
-        CodePointList.from("").toReversed().forEach((int codePoint) -> Assert.fail());
+        CodePointList.from("").toReversed().forEach((int codePoint) -> Assertions.fail());
     }
 
     @Test
@@ -337,17 +337,17 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     {
         StringBuilder builder = new StringBuilder();
         CodePointList.from("\u3042\uDC00\uD840\u3044\uDC03\uD840\u3046\uDE09\uD83D").toReversed().forEach(builder::appendCodePoint);
-        Assert.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
+        Assertions.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
 
         StringBuilder builder2 = new StringBuilder();
         CodePointList.from("\u3042\uD840\u3044\uD840\u3046\uD840").toReversed().forEach(builder2::appendCodePoint);
-        Assert.assertEquals("\uD840\u3046\uD840\u3044\uD840\u3042", builder2.toString());
+        Assertions.assertEquals("\uD840\u3046\uD840\u3044\uD840\u3042", builder2.toString());
 
         StringBuilder builder3 = new StringBuilder();
         CodePointList.from("\u3042\uDC00\u3044\uDC03\u3046\uDC06").toReversed().forEach(builder3::appendCodePoint);
-        Assert.assertEquals("\uDC06\u3046\uDC03\u3044\uDC00\u3042", builder3.toString());
+        Assertions.assertEquals("\uDC06\u3046\uDC03\u3044\uDC00\u3042", builder3.toString());
 
-        CodePointList.from("").toReversed().forEach((int codePoint) -> Assert.fail());
+        CodePointList.from("").toReversed().forEach((int codePoint) -> Assertions.fail());
     }
 
     @Test
@@ -389,16 +389,17 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     @Test
     public void distinctUnicode()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "\uD840\uDC00\uD840\uDC03\uD83D\uDE09",
                 CodePointList.from("\uD840\uDC00\uD840\uDC03\uD83D\uDE09\uD840\uDC00\uD840\uDC03\uD83D\uDE09").distinct().toString());
     }
 
     @Override
+    @Test
     public void toReversed()
     {
         super.toReversed();
-        Assert.assertEquals("cba", CodePointList.from("abc").toReversed().toString());
+        Assertions.assertEquals("cba", CodePointList.from("abc").toReversed().toString());
     }
 
     private static class SBAppendable implements Appendable

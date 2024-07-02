@@ -23,8 +23,8 @@ import com.gs.collections.impl.math.SumProcedure;
 import com.gs.collections.impl.parallel.BatchIterable;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ImmutableUnifiedSet}.
@@ -66,7 +66,7 @@ public class ImmutableUnifiedSetTest extends AbstractImmutableUnifiedSetTestCase
     {
         super.newCollection();
         ImmutableSet<Integer> set = ImmutableUnifiedSet.newSet(UnifiedSet.<Integer>newSet());
-        Assert.assertTrue(set.isEmpty());
+        Assertions.assertTrue(set.isEmpty());
         Verify.assertSize(0, set);
     }
 
@@ -74,7 +74,7 @@ public class ImmutableUnifiedSetTest extends AbstractImmutableUnifiedSetTestCase
     public void getBatchCount()
     {
         BatchIterable<Integer> integerBatchIterable = (BatchIterable<Integer>) this.newSet(1, 2, 3, 4, 5, 6);
-        Assert.assertEquals(2, integerBatchIterable.getBatchCount(3));
+        Assertions.assertEquals(2, integerBatchIterable.getBatchCount(3));
     }
 
     @Test
@@ -83,6 +83,6 @@ public class ImmutableUnifiedSetTest extends AbstractImmutableUnifiedSetTestCase
         Sum sum = new IntegerSum(0);
         BatchIterable<Integer> integerBatchIterable = (BatchIterable<Integer>) this.newSet(1, 2, 3, 4, 5);
         integerBatchIterable.batchForEach(new SumProcedure<>(sum), 0, 1);
-        Assert.assertEquals(15, sum.getValue());
+        Assertions.assertEquals(15, sum.getValue());
     }
 }

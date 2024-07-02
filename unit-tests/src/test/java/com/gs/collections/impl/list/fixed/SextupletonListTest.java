@@ -26,8 +26,8 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestCase
 {
@@ -63,13 +63,13 @@ public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestC
     @Test
     public void testContains()
     {
-        Assert.assertTrue(this.list.contains("1"));
-        Assert.assertTrue(this.list.contains("2"));
-        Assert.assertTrue(this.list.contains("3"));
-        Assert.assertTrue(this.list.contains("4"));
-        Assert.assertTrue(this.list.contains("5"));
-        Assert.assertTrue(this.list.contains("6"));
-        Assert.assertFalse(this.list.contains("7"));
+        Assertions.assertTrue(this.list.contains("1"));
+        Assertions.assertTrue(this.list.contains("2"));
+        Assertions.assertTrue(this.list.contains("3"));
+        Assertions.assertTrue(this.list.contains("4"));
+        Assertions.assertTrue(this.list.contains("5"));
+        Assertions.assertTrue(this.list.contains("6"));
+        Assertions.assertFalse(this.list.contains("7"));
     }
 
     @Test
@@ -112,21 +112,21 @@ public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestC
     public void testSet()
     {
         MutableList<String> list = Lists.fixedSize.of("1", "2", "3", "4", "5", "6");
-        Assert.assertEquals("1", list.set(0, "6"));
-        Assert.assertEquals("2", list.set(1, "5"));
-        Assert.assertEquals("3", list.set(2, "4"));
-        Assert.assertEquals("4", list.set(3, "3"));
-        Assert.assertEquals("5", list.set(4, "2"));
-        Assert.assertEquals("6", list.set(5, "1"));
-        Assert.assertEquals(FastList.newListWith("6", "5", "4", "3", "2", "1"), list);
+        Assertions.assertEquals("1", list.set(0, "6"));
+        Assertions.assertEquals("2", list.set(1, "5"));
+        Assertions.assertEquals("3", list.set(2, "4"));
+        Assertions.assertEquals("4", list.set(3, "3"));
+        Assertions.assertEquals("5", list.set(4, "2"));
+        Assertions.assertEquals("6", list.set(5, "1"));
+        Assertions.assertEquals(FastList.newListWith("6", "5", "4", "3", "2", "1"), list);
         Verify.assertThrows(IndexOutOfBoundsException.class, () -> list.set(6, "0"));
     }
 
     private void assertUnchanged()
     {
         Verify.assertSize(6, this.list);
-        Verify.assertNotContains("7", this.list);
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6"), this.list);
+        Verify.assertNotContains(this.list, "7");
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6"), this.list);
     }
 
     @Test
@@ -134,15 +134,15 @@ public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestC
     {
         Verify.assertPostSerializedEqualsAndHashCode(this.list);
         MutableList<String> copyOfList = SerializeTestHelper.serializeDeserialize(this.list);
-        Assert.assertNotSame(this.list, copyOfList);
+        Assertions.assertNotSame(this.list, copyOfList);
     }
 
     @Test
     public void testGetFirstGetLast()
     {
         MutableList<String> list6 = Lists.fixedSize.of("1", "2", "3", "4", "5", "6");
-        Assert.assertEquals("1", list6.getFirst());
-        Assert.assertEquals("6", list6.getLast());
+        Assertions.assertEquals("1", list6.getFirst());
+        Assertions.assertEquals("6", list6.getLast());
     }
 
     @Test
@@ -151,7 +151,7 @@ public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestC
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3", "4", "5", "6");
         source.forEach(CollectionAddProcedure.on(result));
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6"), result);
     }
 
     @Test
@@ -164,8 +164,8 @@ public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestC
             result.add(each);
             indexSum[0] += index;
         });
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6"), result);
-        Assert.assertEquals(15, indexSum[0]);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6"), result);
+        Assertions.assertEquals(15, indexSum[0]);
     }
 
     @Test
@@ -174,7 +174,7 @@ public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestC
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3", "4", "5", "6");
         source.forEachWith(Procedures2.fromProcedure(result::add), null);
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6"), result);
     }
 
     @Test
@@ -184,7 +184,7 @@ public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestC
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX");
         for (String each : list)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
     }
 
@@ -196,7 +196,7 @@ public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestC
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX");
         for (String each : subList)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
     }
 
@@ -204,7 +204,7 @@ public class SextupletonListTest extends AbstractMemoryEfficientMutableListTestC
     public void without()
     {
         MutableList<Integer> list = new SextupletonList<>(1, 2, 3, 2, 3, 4);
-        Assert.assertSame(list, list.without(9));
+        Assertions.assertSame(list, list.without(9));
         list = list.without(2);
         Verify.assertListsEqual(FastList.newListWith(1, 3, 2, 3, 4), list);
         Verify.assertInstanceOf(QuintupletonList.class, list);

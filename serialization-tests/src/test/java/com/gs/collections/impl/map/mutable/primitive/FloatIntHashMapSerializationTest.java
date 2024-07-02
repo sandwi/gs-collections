@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FloatIntHashMapSerializationTest
 {
@@ -26,8 +26,10 @@ public class FloatIntHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuRmxv\n"
-                        + "YXRJbnRIYXNoTWFwAAAAAAAAAAEMAAB4cHcEAAAAAHg=",
+                """
+                rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuRmxv
+                YXRJbnRIYXNoTWFwAAAAAAAAAAEMAAB4cHcEAAAAAHg=\
+                """,
                 new FloatIntHashMap());
     }
 }

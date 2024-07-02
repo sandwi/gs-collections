@@ -19,7 +19,7 @@ package com.gs.collections.impl.multimap;
 import com.gs.collections.api.multimap.Multimap;
 import com.gs.collections.api.multimap.MutableMultimap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class MultimapSerializationTestCase
 {

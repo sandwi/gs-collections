@@ -16,7 +16,7 @@
 
 package com.gs.collections.impl.lazy.parallel.set.sorted;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public abstract class NonParallelSortedSetIterableTestCase extends ParallelSortedSetIterableTestCase
 {

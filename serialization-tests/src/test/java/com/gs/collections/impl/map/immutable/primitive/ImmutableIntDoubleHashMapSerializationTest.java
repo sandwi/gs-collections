@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.IntDoubleHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableIntDoubleHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableIntDoubleHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVJbnREb3VibGVIYXNoTWFwJEltbXV0YWJsZUludERvdWJsZU1hcFNlcmlhbGl6YXRp\n"
-                        + "b25Qcm94eQAAAAAAAAABDAAAeHB3HAAAAAIAAAABP/AAAAAAAAAAAAACQAAAAAAAAAB4",
+                """
+                rO0ABXNyAHFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVJbnREb3VibGVIYXNoTWFwJEltbXV0YWJsZUludERvdWJsZU1hcFNlcmlhbGl6YXRp
+                b25Qcm94eQAAAAAAAAABDAAAeHB3HAAAAAIAAAABP/AAAAAAAAAAAAACQAAAAAAAAAB4\
+                """,
                 new ImmutableIntDoubleHashMap(IntDoubleHashMap.newWithKeysValues(1, 1.0, 2, 2.0)));
     }
 }

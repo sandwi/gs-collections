@@ -16,8 +16,8 @@
 
 package com.gs.collections.impl.map.mutable.primitive;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SynchronizedObjectBooleanMapTest extends AbstractMutableObjectBooleanMapTestCase
 {
@@ -64,6 +64,6 @@ public class SynchronizedObjectBooleanMapTest extends AbstractMutableObjectBoole
     public void asSynchronized()
     {
         super.asSynchronized();
-        Assert.assertSame(this.map, this.map.asSynchronized());
+        Assertions.assertSame(this.map, this.map.asSynchronized());
     }
 }

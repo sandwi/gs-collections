@@ -19,8 +19,8 @@ package com.gs.collections.impl.map.immutable.primitive;
 import com.gs.collections.api.map.primitive.ImmutableObjectBooleanMap;
 import com.gs.collections.impl.map.mutable.primitive.AbstractObjectBooleanMapTestCase;
 import com.gs.collections.impl.map.mutable.primitive.ObjectBooleanHashMap;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractImmutableObjectBooleanMapTestCase extends AbstractObjectBooleanMapTestCase
 {
@@ -63,6 +63,6 @@ public abstract class AbstractImmutableObjectBooleanMapTestCase extends Abstract
     {
         super.toImmutable();
         ImmutableObjectBooleanMap<String> map = this.classUnderTest();
-        Assert.assertSame(map, map.toImmutable());
+        Assertions.assertSame(map, map.toImmutable());
     }
 }

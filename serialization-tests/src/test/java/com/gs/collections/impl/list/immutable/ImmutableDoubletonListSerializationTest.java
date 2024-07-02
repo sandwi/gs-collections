@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableDoubletonListSerializationTest
 {
@@ -25,10 +25,12 @@ public class ImmutableDoubletonListSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVE\n"
-                        + "b3VibGV0b25MaXN0AAAAAAAAAAECAAJMAAhlbGVtZW50MXQAEkxqYXZhL2xhbmcvT2JqZWN0O0wA\n"
-                        + "CGVsZW1lbnQycQB+AAF4cHNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4\n"
-                        + "cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAABc3EAfgADAAAAAg==",
-                new ImmutableDoubletonList<Integer>(1, 2));
+                new ImmutableDoubletonList<Integer>(1, 2),
+                """
+                rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVE
+                b3VibGV0b25MaXN0AAAAAAAAAAECAAJMAAhlbGVtZW50MXQAEkxqYXZhL2xhbmcvT2JqZWN0O0wA
+                CGVsZW1lbnQycQB+AAF4cHNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4
+                cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAABc3EAfgADAAAAAg==\
+                """);
     }
 }

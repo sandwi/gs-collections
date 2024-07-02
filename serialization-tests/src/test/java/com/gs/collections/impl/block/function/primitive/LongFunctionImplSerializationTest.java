@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class LongFunctionImplSerializationTest
 {
@@ -36,10 +36,12 @@ public final class LongFunctionImplSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu\n"
-                        + "TG9uZ0Z1bmN0aW9uSW1wbFNlcmlhbGl6YXRpb25UZXN0JDEAAAAAAAAAAQIAAHhyAEFjb20uZ3Mu\n"
-                        + "Y29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUuTG9uZ0Z1bmN0aW9uSW1w\n"
-                        + "bAAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAFRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu
+                TG9uZ0Z1bmN0aW9uSW1wbFNlcmlhbGl6YXRpb25UZXN0JDEAAAAAAAAAAQIAAHhyAEFjb20uZ3Mu
+                Y29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUuTG9uZ0Z1bmN0aW9uSW1w
+                bAAAAAAAAAABAgAAeHA=\
+                """,
                 LONG_FUNCTION);
     }
 }

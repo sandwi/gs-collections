@@ -26,12 +26,12 @@ import com.gs.collections.impl.factory.Bags;
 import com.gs.collections.impl.factory.Sets;
 import com.gs.collections.test.bag.TransformsToBagTrait;
 import com.gs.collections.test.set.UnsortedSetLikeTestTrait;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isOneOf;
-import static org.junit.Assert.assertThat;
 
 public interface UnsortedBiMapTestCase extends BiMapTestCase, TransformsToBagTrait, UnsortedSetLikeTestTrait
 {
@@ -61,11 +61,13 @@ public interface UnsortedBiMapTestCase extends BiMapTestCase, TransformsToBagTra
     default void RichIterable_toString()
     {
         String string = this.newWith(3, 2, 1).toString();
-        Pattern pattern = Pattern.compile("^\\{\\d\\.\\d+(E-\\d)?=(\\d),"
-                + " \\d\\.\\d+(E-\\d)?=(\\d),"
-                + " \\d\\.\\d+(E-\\d)?=(\\d)\\}$");
+        Pattern pattern = Pattern.compile("""
+                ^\\{\\d\\.\\d+(E-\\d)?=(\\d),\
+                 \\d\\.\\d+(E-\\d)?=(\\d),\
+                 \\d\\.\\d+(E-\\d)?=(\\d)\\}$\
+                """);
         Matcher matcher = pattern.matcher(string);
-        Assert.assertTrue(string, matcher.matches());
+        Assertions.assertTrue(matcher.matches(), string);
 
         assertEquals(
                 Bags.immutable.with("1", "2", "3"),

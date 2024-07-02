@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CharFunctionSerializationTest
 {
@@ -26,8 +26,10 @@ public class CharFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu\n"
-                        + "Q2hhckZ1bmN0aW9uJDEAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu
+                Q2hhckZ1bmN0aW9uJDEAAAAAAAAAAQIAAHhw\
+                """,
                 CharFunction.TO_UPPERCASE);
     }
 
@@ -36,8 +38,10 @@ public class CharFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu\n"
-                        + "Q2hhckZ1bmN0aW9uJDIAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu
+                Q2hhckZ1bmN0aW9uJDIAAAAAAAAAAQIAAHhw\
+                """,
                 CharFunction.TO_LOWERCASE);
     }
 }

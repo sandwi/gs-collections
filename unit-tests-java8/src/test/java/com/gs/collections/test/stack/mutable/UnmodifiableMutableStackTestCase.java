@@ -18,7 +18,9 @@ package com.gs.collections.test.stack.mutable;
 
 import com.gs.collections.api.stack.MutableStack;
 import com.gs.collections.test.UnmodifiableIterableTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface UnmodifiableMutableStackTestCase extends MutableStackTestCase, UnmodifiableIterableTestCase
 {
@@ -30,18 +32,22 @@ public interface UnmodifiableMutableStackTestCase extends MutableStackTestCase, 
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void MutableStack_pop()
     {
-        MutableStack<Integer> mutableStack = this.newWith(5, 1, 4, 2, 3);
-        mutableStack.pop();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            MutableStack<Integer> mutableStack = this.newWith(5, 1, 4, 2, 3);
+            mutableStack.pop();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void MutableStack_pop_throws()
     {
-        MutableStack<Integer> mutableStack = this.newWith();
-        mutableStack.pop();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            MutableStack<Integer> mutableStack = this.newWith();
+            mutableStack.pop();
+        });
     }
 }

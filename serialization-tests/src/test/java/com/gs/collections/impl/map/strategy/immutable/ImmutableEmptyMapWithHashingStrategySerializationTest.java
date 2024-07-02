@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.strategy.immutable;
 
 import com.gs.collections.impl.block.factory.HashingStrategies;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableEmptyMapWithHashingStrategySerializationTest
 {
@@ -27,10 +27,12 @@ public class ImmutableEmptyMapWithHashingStrategySerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAGBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc3RyYXRlZ3kuaW1tdXRhYmxlLklt\n"
-                        + "bXV0YWJsZU1hcFdpdGhIYXNoaW5nU3RyYXRlZ3lTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwA\n"
-                        + "AHhwc3IAR2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuSGFzaGluZ1N0cmF0\n"
-                        + "ZWdpZXMkRGVmYXVsdFN0cmF0ZWd5AAAAAAAAAAECAAB4cHcEAAAAAHg=",
+                """
+                rO0ABXNyAGBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc3RyYXRlZ3kuaW1tdXRhYmxlLklt
+                bXV0YWJsZU1hcFdpdGhIYXNoaW5nU3RyYXRlZ3lTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwA
+                AHhwc3IAR2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuSGFzaGluZ1N0cmF0
+                ZWdpZXMkRGVmYXVsdFN0cmF0ZWd5AAAAAAAAAAECAAB4cHcEAAAAAHg=\
+                """,
                 new ImmutableEmptyMapWithHashingStrategy<Object, Object>(HashingStrategies.defaultStrategy()));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.parallel;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CollectProcedureCombinerSerializationTest
 {
@@ -26,13 +26,15 @@ public class CollectProcedureCombinerSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5Db2xsZWN0UHJvY2VkdXJl\n"
-                        + "Q29tYmluZXIAAAAAAAAAAQIAAHhyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5B\n"
-                        + "YnN0cmFjdFRyYW5zZm9ybWVyQmFzZWRDb21iaW5lcgAAAAAAAAABAgABTAAGcmVzdWx0dAAWTGph\n"
-                        + "dmEvdXRpbC9Db2xsZWN0aW9uO3hyADpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5B\n"
-                        + "YnN0cmFjdFByb2NlZHVyZUNvbWJpbmVyAAAAAAAAAAECAAFaAA11c2VDb21iaW5lT25leHAAc3IA\n"
-                        + "LWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAAAAABDAAA\n"
-                        + "eHB3BAAAAAB4",
+                """
+                rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5Db2xsZWN0UHJvY2VkdXJl
+                Q29tYmluZXIAAAAAAAAAAQIAAHhyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5B
+                YnN0cmFjdFRyYW5zZm9ybWVyQmFzZWRDb21iaW5lcgAAAAAAAAABAgABTAAGcmVzdWx0dAAWTGph
+                dmEvdXRpbC9Db2xsZWN0aW9uO3hyADpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5B
+                YnN0cmFjdFByb2NlZHVyZUNvbWJpbmVyAAAAAAAAAAECAAFaAA11c2VDb21iaW5lT25leHAAc3IA
+                LWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAAAAABDAAA
+                eHB3BAAAAAB4\
+                """,
                 new CollectProcedureCombiner<Object, Object>(null, null, 1, false));
     }
 }

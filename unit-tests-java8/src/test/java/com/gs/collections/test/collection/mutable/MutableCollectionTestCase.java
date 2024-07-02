@@ -26,12 +26,12 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.test.CollectionTestCase;
 import com.gs.collections.test.IterableTestCase;
 import com.gs.collections.test.RichIterableTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.assertThat;
 
 public interface MutableCollectionTestCase extends CollectionTestCase, RichIterableTestCase
 {
@@ -68,7 +68,7 @@ public interface MutableCollectionTestCase extends CollectionTestCase, RichItera
         String s = "";
 
         MutableCollection<String> collection = this.newWith();
-        Assert.assertTrue(collection.add(s));
+        Assertions.assertTrue(collection.add(s));
         IterableTestCase.assertEquals(this.allowsDuplicates(), collection.add(s));
         IterableTestCase.assertEquals(this.allowsDuplicates() ? 2 : 1, collection.size());
     }
@@ -84,44 +84,44 @@ public interface MutableCollectionTestCase extends CollectionTestCase, RichItera
     default void MutableCollection_removeIf()
     {
         MutableCollection<Integer> collection1 = this.newWith(5, 5, 4, 4, 3, 3, 2, 2, 1, 1);
-        Assert.assertTrue(collection1.removeIf(Predicates.cast(each -> each % 2 == 0)));
+        Assertions.assertTrue(collection1.removeIf(Predicates.cast(each -> each % 2 == 0)));
         IterableTestCase.assertEquals(this.getExpectedFiltered(5, 5, 3, 3, 1, 1), collection1);
 
         MutableCollection<Integer> collection2 = this.newWith(1, 2, 3);
-        Assert.assertFalse(collection2.removeIf(Predicates.cast(each -> each > 4)));
+        Assertions.assertFalse(collection2.removeIf(Predicates.cast(each -> each > 4)));
         IterableTestCase.assertEquals(this.getExpectedFiltered(1, 2, 3), collection2);
-        Assert.assertTrue(collection2.removeIf(Predicates.cast(each -> each > 0)));
+        Assertions.assertTrue(collection2.removeIf(Predicates.cast(each -> each > 0)));
 
         MutableCollection<Integer> collection3 = this.newWith();
-        Assert.assertFalse(collection3.removeIf(Predicates.cast(each -> each % 2 == 0)));
+        Assertions.assertFalse(collection3.removeIf(Predicates.cast(each -> each % 2 == 0)));
         IterableTestCase.assertEquals(this.getExpectedFiltered(), collection3);
 
         MutableCollection<Integer> collection4 = this.newWith(2, 2, 4, 6);
-        Assert.assertTrue(collection4.removeIf(Predicates.cast(each -> each % 2 == 0)));
+        Assertions.assertTrue(collection4.removeIf(Predicates.cast(each -> each % 2 == 0)));
         IterableTestCase.assertEquals(this.getExpectedFiltered(), collection4);
-        Assert.assertFalse(collection4.removeIf(Predicates.cast(each -> each % 2 == 0)));
+        Assertions.assertFalse(collection4.removeIf(Predicates.cast(each -> each % 2 == 0)));
     }
 
     @Test
     default void MutableCollection_removeIfWith()
     {
         MutableCollection<Integer> collection1 = this.newWith(5, 5, 4, 4, 3, 3, 2, 2, 1, 1);
-        Assert.assertTrue(collection1.removeIfWith(Predicates2.<Integer>in(), Lists.immutable.with(5, 3, 1)));
+        Assertions.assertTrue(collection1.removeIfWith(Predicates2.<Integer>in(), Lists.immutable.with(5, 3, 1)));
         IterableTestCase.assertEquals(this.getExpectedFiltered(4, 4, 2, 2), collection1);
 
         MutableCollection<Integer> collection2 = this.newWith(1, 2, 3);
-        Assert.assertFalse(collection2.removeIfWith(Predicates2.<Integer>in(), Lists.immutable.with(4)));
+        Assertions.assertFalse(collection2.removeIfWith(Predicates2.<Integer>in(), Lists.immutable.with(4)));
         IterableTestCase.assertEquals(this.getExpectedFiltered(1, 2, 3), collection2);
-        Assert.assertTrue(collection2.removeIfWith(Predicates2.<Integer>in(), Lists.immutable.with(1, 2, 3)));
+        Assertions.assertTrue(collection2.removeIfWith(Predicates2.<Integer>in(), Lists.immutable.with(1, 2, 3)));
 
         MutableCollection<Integer> collection3 = this.newWith();
-        Assert.assertFalse(collection3.removeIfWith(Predicates2.<Integer>in(), Lists.immutable.with()));
+        Assertions.assertFalse(collection3.removeIfWith(Predicates2.<Integer>in(), Lists.immutable.with()));
         IterableTestCase.assertEquals(this.getExpectedFiltered(), collection3);
 
         MutableCollection<Integer> collection4 = this.newWith(2, 2, 4, 6);
-        Assert.assertTrue(collection4.removeIfWith(Predicates2.greaterThan(), 1));
+        Assertions.assertTrue(collection4.removeIfWith(Predicates2.greaterThan(), 1));
         IterableTestCase.assertEquals(this.getExpectedFiltered(), collection4);
-        Assert.assertFalse(collection4.removeIfWith(Predicates2.greaterThan(), 1));
+        Assertions.assertFalse(collection4.removeIfWith(Predicates2.greaterThan(), 1));
     }
 
     @Test

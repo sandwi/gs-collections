@@ -20,7 +20,7 @@ import java.util.Collection;
 
 import com.gs.collections.api.tuple.Pair;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ZipWithIndexProcedureSerializationTest
 {
@@ -29,9 +29,11 @@ public class ZipWithIndexProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuWmlwV2l0aElu\n"
-                        + "ZGV4UHJvY2VkdXJlAAAAAAAAAAECAAJJAAVpbmRleEwABnRhcmdldHQAFkxqYXZhL3V0aWwvQ29s\n"
-                        + "bGVjdGlvbjt4cAAAAABw",
+                """
+                rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuWmlwV2l0aElu
+                ZGV4UHJvY2VkdXJlAAAAAAAAAAECAAJJAAVpbmRleEwABnRhcmdldHQAFkxqYXZhL3V0aWwvQ29s
+                bGVjdGlvbjt4cAAAAABw\
+                """,
                 new ZipWithIndexProcedure<Object, Collection<Pair<Object, Integer>>>(null));
     }
 }

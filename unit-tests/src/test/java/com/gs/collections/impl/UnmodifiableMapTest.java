@@ -23,9 +23,11 @@ import com.gs.collections.api.map.MutableMap;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.factory.Maps;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UnmodifiableMapTest
 {
@@ -36,7 +38,7 @@ public class UnmodifiableMapTest
     private MutableMap<String, List<String>> mutableMap;
     private UnmodifiableMap<String, List<String>> unmodifiableMap;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.mutableMap = Maps.mutable.<String, List<String>>of(
@@ -60,25 +62,25 @@ public class UnmodifiableMapTest
     @Test
     public void testIsEmpty()
     {
-        Assert.assertEquals(this.mutableMap.isEmpty(), this.unmodifiableMap.isEmpty());
+        Assertions.assertEquals(this.mutableMap.isEmpty(), this.unmodifiableMap.isEmpty());
     }
 
     @Test
     public void testContainsKey()
     {
-        Assert.assertTrue(this.unmodifiableMap.containsKey(ROCK_OUT));
+        Assertions.assertTrue(this.unmodifiableMap.containsKey(ROCK_OUT));
     }
 
     @Test
     public void testContainsValue()
     {
-        Assert.assertTrue(this.unmodifiableMap.containsValue(MASTERS_OF_ROCK));
+        Assertions.assertTrue(this.unmodifiableMap.containsValue(MASTERS_OF_ROCK));
     }
 
     @Test
     public void testGet()
     {
-        Assert.assertEquals(MASTERS_OF_ROCK, this.unmodifiableMap.get(ROCK_OUT));
+        Assertions.assertEquals(MASTERS_OF_ROCK, this.unmodifiableMap.get(ROCK_OUT));
     }
 
     @Test
@@ -108,7 +110,7 @@ public class UnmodifiableMapTest
     @Test
     public void testKeySet()
     {
-        Assert.assertEquals(this.mutableMap.keySet(), this.unmodifiableMap.keySet());
+        Assertions.assertEquals(this.mutableMap.keySet(), this.unmodifiableMap.keySet());
     }
 
     @Test
@@ -120,13 +122,13 @@ public class UnmodifiableMapTest
     @Test
     public void testEntrySet()
     {
-        Assert.assertEquals(this.mutableMap.entrySet(), this.unmodifiableMap.entrySet());
+        Assertions.assertEquals(this.mutableMap.entrySet(), this.unmodifiableMap.entrySet());
     }
 
     @Test
     public void testToString()
     {
-        Assert.assertEquals(this.mutableMap.toString(), this.unmodifiableMap.toString());
+        Assertions.assertEquals(this.mutableMap.toString(), this.unmodifiableMap.toString());
     }
 
     @Test
@@ -142,10 +144,12 @@ public class UnmodifiableMapTest
         Verify.assertEqualsAndHashCode(this.mutableMap, this.unmodifiableMap);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void notNull()
     {
-        new UnmodifiableMap<>(null);
+        assertThrows(NullPointerException.class, () -> {
+            new UnmodifiableMap<>(null);
+        });
     }
 
     @Test

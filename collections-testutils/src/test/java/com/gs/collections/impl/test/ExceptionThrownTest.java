@@ -18,8 +18,8 @@ package com.gs.collections.impl.test;
 
 import java.util.concurrent.Callable;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test to make sure that methods like {@link Verify#assertThrows(Class, Runnable)} really throw when
@@ -33,11 +33,11 @@ public class ExceptionThrownTest
         try
         {
             Verify.assertThrows(NullPointerException.class, new EmptyRunnable());
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(ExceptionThrownTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), ExceptionThrownTest.class.getName());
         }
     }
 
@@ -47,11 +47,11 @@ public class ExceptionThrownTest
         try
         {
             Verify.assertThrows(NullPointerException.class, new EmptyCallable());
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(ExceptionThrownTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), ExceptionThrownTest.class.getName());
         }
     }
 
@@ -70,11 +70,11 @@ public class ExceptionThrownTest
                             throw new IllegalStateException();
                         }
                     });
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(ExceptionThrownTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), ExceptionThrownTest.class.getName());
         }
     }
 

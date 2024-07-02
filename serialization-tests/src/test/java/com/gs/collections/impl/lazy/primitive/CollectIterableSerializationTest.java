@@ -17,7 +17,7 @@
 package com.gs.collections.impl.lazy.primitive;
 
 import com.gs.collections.impl.block.factory.PrimitiveFunctions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CollectIterableSerializationTest
 {
@@ -25,11 +25,13 @@ public class CollectIterableSerializationTest
     public void intSerialization()
     {
         LazyIterableTestHelper<Integer> integerLazyIterableTestHelper = new LazyIterableTestHelper<Integer>(
-                "rO0ABXNyAFBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0SW50\n"
-                        + "SXRlcmFibGUkSW50RnVuY3Rpb25Ub1Byb2NlZHVyZQAAAAAAAAABAgABTAAIZnVuY3Rpb250AD1M\n"
-                        + "Y29tL2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9jay9mdW5jdGlvbi9wcmltaXRpdmUvSW50RnVuY3Rp\n"
-                        + "b247eHBzcgBKY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5QcmltaXRpdmVG\n"
-                        + "dW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9JbnQAAAAAAAAAAQIAAHhw");
+                """
+                rO0ABXNyAFBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0SW50
+                SXRlcmFibGUkSW50RnVuY3Rpb25Ub1Byb2NlZHVyZQAAAAAAAAABAgABTAAIZnVuY3Rpb250AD1M
+                Y29tL2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9jay9mdW5jdGlvbi9wcmltaXRpdmUvSW50RnVuY3Rp
+                b247eHBzcgBKY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5QcmltaXRpdmVG
+                dW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9JbnQAAAAAAAAAAQIAAHhw\
+                """);
         CollectIntIterable<Integer> collectIntIterable = new CollectIntIterable<Integer>(
                 integerLazyIterableTestHelper,
                 PrimitiveFunctions.unboxIntegerToInt());
@@ -41,11 +43,13 @@ public class CollectIterableSerializationTest
     public void doubleSerialization()
     {
         LazyIterableTestHelper<Integer> integerLazyIterableTestHelper = new LazyIterableTestHelper<Integer>(
-                "rO0ABXNyAFZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0RG91\n"
-                        + "YmxlSXRlcmFibGUkRG91YmxlRnVuY3Rpb25Ub1Byb2NlZHVyZQAAAAAAAAABAgABTAAIZnVuY3Rp\n"
-                        + "b250AEBMY29tL2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9jay9mdW5jdGlvbi9wcmltaXRpdmUvRG91\n"
-                        + "YmxlRnVuY3Rpb247eHBzcgBNY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Q\n"
-                        + "cmltaXRpdmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9Eb3VibGUAAAAAAAAAAQIAAHhw");
+                """
+                rO0ABXNyAFZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0RG91
+                YmxlSXRlcmFibGUkRG91YmxlRnVuY3Rpb25Ub1Byb2NlZHVyZQAAAAAAAAABAgABTAAIZnVuY3Rp
+                b250AEBMY29tL2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9jay9mdW5jdGlvbi9wcmltaXRpdmUvRG91
+                YmxlRnVuY3Rpb247eHBzcgBNY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Q
+                cmltaXRpdmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9Eb3VibGUAAAAAAAAAAQIAAHhw\
+                """);
         CollectDoubleIterable<Integer> collectDoubleIterable = new CollectDoubleIterable<Integer>(
                 integerLazyIterableTestHelper,
                 PrimitiveFunctions.unboxIntegerToDouble());
@@ -57,11 +61,13 @@ public class CollectIterableSerializationTest
     public void floatSerialization()
     {
         LazyIterableTestHelper<Integer> integerLazyIterableTestHelper = new LazyIterableTestHelper<Integer>(
-                "rO0ABXNyAFRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0Rmxv\n"
-                        + "YXRJdGVyYWJsZSRGbG9hdEZ1bmN0aW9uVG9Qcm9jZWR1cmUAAAAAAAAAAQIAAUwACGZ1bmN0aW9u\n"
-                        + "dAA/TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0Zsb2F0\n"
-                        + "RnVuY3Rpb247eHBzcgBMY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Qcmlt\n"
-                        + "aXRpdmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9GbG9hdAAAAAAAAAABAgAAeHA=");
+                """
+                rO0ABXNyAFRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0Rmxv
+                YXRJdGVyYWJsZSRGbG9hdEZ1bmN0aW9uVG9Qcm9jZWR1cmUAAAAAAAAAAQIAAUwACGZ1bmN0aW9u
+                dAA/TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0Zsb2F0
+                RnVuY3Rpb247eHBzcgBMY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Qcmlt
+                aXRpdmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9GbG9hdAAAAAAAAAABAgAAeHA=\
+                """);
 
         CollectFloatIterable<Integer> collectFloatIterable = new CollectFloatIterable<Integer>(
                 integerLazyIterableTestHelper,
@@ -74,11 +80,13 @@ public class CollectIterableSerializationTest
     public void longSerialization()
     {
         LazyIterableTestHelper<Integer> integerLazyIterableTestHelper = new LazyIterableTestHelper<Integer>(
-                "rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0TG9u\n"
-                        + "Z0l0ZXJhYmxlJExvbmdGdW5jdGlvblRvUHJvY2VkdXJlAAAAAAAAAAECAAFMAAhmdW5jdGlvbnQA\n"
-                        + "Pkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9Mb25nRnVu\n"
-                        + "Y3Rpb247eHBzcgBLY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5QcmltaXRp\n"
-                        + "dmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9Mb25nAAAAAAAAAAECAAB4cA==");
+                """
+                rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0TG9u
+                Z0l0ZXJhYmxlJExvbmdGdW5jdGlvblRvUHJvY2VkdXJlAAAAAAAAAAECAAFMAAhmdW5jdGlvbnQA
+                Pkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9Mb25nRnVu
+                Y3Rpb247eHBzcgBLY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5QcmltaXRp
+                dmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9Mb25nAAAAAAAAAAECAAB4cA==\
+                """);
 
         CollectLongIterable<Integer> collectLongIterable = new CollectLongIterable<Integer>(
                 integerLazyIterableTestHelper,
@@ -91,11 +99,13 @@ public class CollectIterableSerializationTest
     public void shortSerialization()
     {
         LazyIterableTestHelper<Integer> integerLazyIterableTestHelper = new LazyIterableTestHelper<Integer>(
-                "rO0ABXNyAFRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0U2hv\n"
-                        + "cnRJdGVyYWJsZSRTaG9ydEZ1bmN0aW9uVG9Qcm9jZWR1cmUAAAAAAAAAAQIAAUwACGZ1bmN0aW9u\n"
-                        + "dAA/TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL1Nob3J0\n"
-                        + "RnVuY3Rpb247eHBzcgBMY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Qcmlt\n"
-                        + "aXRpdmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9TaG9ydAAAAAAAAAABAgAAeHA=");
+                """
+                rO0ABXNyAFRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0U2hv
+                cnRJdGVyYWJsZSRTaG9ydEZ1bmN0aW9uVG9Qcm9jZWR1cmUAAAAAAAAAAQIAAUwACGZ1bmN0aW9u
+                dAA/TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL1Nob3J0
+                RnVuY3Rpb247eHBzcgBMY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Qcmlt
+                aXRpdmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9TaG9ydAAAAAAAAAABAgAAeHA=\
+                """);
 
         CollectShortIterable<Integer> collectShortIterable = new CollectShortIterable<Integer>(
                 integerLazyIterableTestHelper,
@@ -108,11 +118,13 @@ public class CollectIterableSerializationTest
     public void byteSerialization()
     {
         LazyIterableTestHelper<Integer> integerLazyIterableTestHelper = new LazyIterableTestHelper<Integer>(
-                "rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0Qnl0\n"
-                        + "ZUl0ZXJhYmxlJEJ5dGVGdW5jdGlvblRvUHJvY2VkdXJlAAAAAAAAAAECAAFMAAhmdW5jdGlvbnQA\n"
-                        + "Pkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9CeXRlRnVu\n"
-                        + "Y3Rpb247eHBzcgBLY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5QcmltaXRp\n"
-                        + "dmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9CeXRlAAAAAAAAAAECAAB4cA==");
+                """
+                rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0Qnl0
+                ZUl0ZXJhYmxlJEJ5dGVGdW5jdGlvblRvUHJvY2VkdXJlAAAAAAAAAAECAAFMAAhmdW5jdGlvbnQA
+                Pkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9CeXRlRnVu
+                Y3Rpb247eHBzcgBLY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5QcmltaXRp
+                dmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9CeXRlAAAAAAAAAAECAAB4cA==\
+                """);
 
         CollectByteIterable<Integer> collectByteIterable = new CollectByteIterable<Integer>(
                 integerLazyIterableTestHelper,
@@ -125,11 +137,13 @@ public class CollectIterableSerializationTest
     public void charSerialization()
     {
         LazyIterableTestHelper<Integer> integerLazyIterableTestHelper = new LazyIterableTestHelper<Integer>(
-                "rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0Q2hh\n"
-                        + "ckl0ZXJhYmxlJENoYXJGdW5jdGlvblRvUHJvY2VkdXJlAAAAAAAAAAECAAFMAAhmdW5jdGlvbnQA\n"
-                        + "Pkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9DaGFyRnVu\n"
-                        + "Y3Rpb247eHBzcgBLY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5QcmltaXRp\n"
-                        + "dmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9DaGFyAAAAAAAAAAECAAB4cA==");
+                """
+                rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0Q2hh
+                ckl0ZXJhYmxlJENoYXJGdW5jdGlvblRvUHJvY2VkdXJlAAAAAAAAAAECAAFMAAhmdW5jdGlvbnQA
+                Pkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9DaGFyRnVu
+                Y3Rpb247eHBzcgBLY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5QcmltaXRp
+                dmVGdW5jdGlvbnMkVW5ib3hJbnRlZ2VyVG9DaGFyAAAAAAAAAAECAAB4cA==\
+                """);
 
         CollectCharIterable<Integer> collectCharIterable = new CollectCharIterable<Integer>(
                 integerLazyIterableTestHelper,
@@ -142,11 +156,13 @@ public class CollectIterableSerializationTest
     public void booleanSerialization()
     {
         LazyIterableTestHelper<Integer> integerLazyIterableTestHelper = new LazyIterableTestHelper<Integer>(
-                "rO0ABXNyAFhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0Qm9v\n"
-                        + "bGVhbkl0ZXJhYmxlJEJvb2xlYW5GdW5jdGlvblRvUHJvY2VkdXJlAAAAAAAAAAECAAFMAAhmdW5j\n"
-                        + "dGlvbnQAQUxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9C\n"
-                        + "b29sZWFuRnVuY3Rpb247eHBzcgBKY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9y\n"
-                        + "eS5QcmltaXRpdmVGdW5jdGlvbnMkSW50ZWdlcklzUG9zaXRpdmUAAAAAAAAAAQIAAHhw");
+                """
+                rO0ABXNyAFhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5sYXp5LnByaW1pdGl2ZS5Db2xsZWN0Qm9v
+                bGVhbkl0ZXJhYmxlJEJvb2xlYW5GdW5jdGlvblRvUHJvY2VkdXJlAAAAAAAAAAECAAFMAAhmdW5j
+                dGlvbnQAQUxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9C
+                b29sZWFuRnVuY3Rpb247eHBzcgBKY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9y
+                eS5QcmltaXRpdmVGdW5jdGlvbnMkSW50ZWdlcklzUG9zaXRpdmUAAAAAAAAAAQIAAHhw\
+                """);
 
         CollectBooleanIterable<Integer> collectBooleanIterable = new CollectBooleanIterable<Integer>(
                 integerLazyIterableTestHelper,

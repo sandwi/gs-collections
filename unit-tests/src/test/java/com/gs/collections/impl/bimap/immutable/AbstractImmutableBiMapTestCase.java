@@ -18,8 +18,8 @@ package com.gs.collections.impl.bimap.immutable;
 
 import com.gs.collections.api.bimap.ImmutableBiMap;
 import com.gs.collections.impl.map.immutable.ImmutableMapIterableTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractImmutableBiMapTestCase extends ImmutableMapIterableTestCase
 {
@@ -44,43 +44,43 @@ public abstract class AbstractImmutableBiMapTestCase extends ImmutableMapIterabl
     @Test
     public void testToString()
     {
-        Assert.assertEquals("{1=1, 2=2, 3=3, 4=4}", this.classUnderTest().toString());
+        Assertions.assertEquals("{1=1, 2=2, 3=3, 4=4}", this.classUnderTest().toString());
     }
 
     @Test
     public void testNewEmpty()
     {
-        Assert.assertTrue(this.newEmpty().isEmpty());
+        Assertions.assertTrue(this.newEmpty().isEmpty());
     }
 
     @Test
     public void testNewWithMap()
     {
-        Assert.assertEquals(this.classUnderTest(), this.newWithMap());
+        Assertions.assertEquals(this.classUnderTest(), this.newWithMap());
     }
 
     @Test
     public void testNewWithHashBiMap()
     {
-        Assert.assertEquals(this.classUnderTest(), this.newWithHashBiMap());
+        Assertions.assertEquals(this.classUnderTest(), this.newWithHashBiMap());
     }
 
     @Test
     public void testNewWithImmutableMap()
     {
-        Assert.assertEquals(this.classUnderTest(), this.newWithImmutableMap());
+        Assertions.assertEquals(this.classUnderTest(), this.newWithImmutableMap());
     }
 
     @Test
     public void containsKey()
     {
-        Assert.assertTrue(this.classUnderTest().containsKey(1));
-        Assert.assertFalse(this.classUnderTest().containsKey(5));
+        Assertions.assertTrue(this.classUnderTest().containsKey(1));
+        Assertions.assertFalse(this.classUnderTest().containsKey(5));
     }
 
     @Test
     public void toImmutable()
     {
-        Assert.assertEquals(this.classUnderTest(), this.classUnderTest().toImmutable());
+        Assertions.assertEquals(this.classUnderTest(), this.classUnderTest().toImmutable());
     }
 }

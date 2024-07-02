@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableIntIntEmptyMapSerializationTest
 {
@@ -26,8 +26,10 @@ public class ImmutableIntIntEmptyMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVJbnRJbnRFbXB0eU1hcAAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVJbnRJbnRFbXB0eU1hcAAAAAAAAAABAgAAeHA=\
+                """,
                 new ImmutableIntIntEmptyMap());
     }
 }

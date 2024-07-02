@@ -22,8 +22,8 @@ import com.gs.collections.impl.block.factory.IntegerPredicates;
 import com.gs.collections.impl.block.function.NegativeIntervalFunction;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ParallelFlatCollectDistinctSetIterableTest extends ParallelUnsortedSetIterableTestCase
 {
@@ -49,7 +49,7 @@ public class ParallelFlatCollectDistinctSetIterableTest extends ParallelUnsorted
     {
         Function<Integer, Boolean> isOddFunction = object -> IntegerPredicates.isOdd().accept(object);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getExpected().toSet().groupBy(isOddFunction),
                 this.classUnderTest().groupBy(isOddFunction));
     }
@@ -58,7 +58,7 @@ public class ParallelFlatCollectDistinctSetIterableTest extends ParallelUnsorted
     @Override
     public void groupByEach()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getExpected().toSet().groupByEach(new NegativeIntervalFunction()),
                 this.classUnderTest().groupByEach(new NegativeIntervalFunction()));
     }

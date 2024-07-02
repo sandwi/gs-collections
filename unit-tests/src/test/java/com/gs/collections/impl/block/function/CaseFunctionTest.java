@@ -21,8 +21,8 @@ import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.block.factory.Functions;
 import com.gs.collections.impl.block.factory.Predicates;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CaseFunctionTest
 {
@@ -30,7 +30,7 @@ public class CaseFunctionTest
     public void noopCase()
     {
         CaseFunction<Integer, Integer> function = new CaseFunction<>();
-        Assert.assertNull(function.valueOf(42));
+        Assertions.assertNull(function.valueOf(42));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class CaseFunctionTest
         CaseFunction<Integer, Integer> function = new CaseFunction<>();
         function.addCase(ignored -> true, Functions.getIntegerPassThru());
         Integer fortyTwo = 42;
-        Assert.assertEquals(fortyTwo, function.valueOf(fortyTwo));
+        Assertions.assertEquals(fortyTwo, function.valueOf(fortyTwo));
     }
 
     @Test
@@ -50,13 +50,13 @@ public class CaseFunctionTest
                 Predicates.attributeGreaterThan(Foo.TO_VALUE, 5.0D),
                 Functions.getFixedValue("Patience, grasshopper"));
 
-        Assert.assertEquals("Yow!", function.valueOf(new Foo("", 1.0D)));
+        Assertions.assertEquals("Yow!", function.valueOf(new Foo("", 1.0D)));
 
         function.setDefault(Functions.getFixedValue("Patience, young grasshopper"));
-        Assert.assertEquals("Patience, grasshopper", function.valueOf(new Foo("", 6.0D)));
-        Assert.assertEquals("Patience, young grasshopper", function.valueOf(new Foo("", 1.0D)));
+        Assertions.assertEquals("Patience, grasshopper", function.valueOf(new Foo("", 6.0D)));
+        Assertions.assertEquals("Patience, young grasshopper", function.valueOf(new Foo("", 1.0D)));
 
-        Verify.assertContains("CaseFunction", function.toString());
+        Verify.assertContains(function.toString(), "CaseFunction");
     }
 
     public static final class Foo implements Comparable<Foo>

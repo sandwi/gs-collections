@@ -20,8 +20,8 @@ import com.gs.collections.api.set.primitive.ByteSet;
 import com.gs.collections.api.set.primitive.ImmutableByteSet;
 import com.gs.collections.impl.list.mutable.primitive.ByteArrayList;
 import com.gs.collections.impl.set.mutable.primitive.AbstractImmutableByteHashSetTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ImmutableByteSet} created from the freeze() method.
@@ -69,7 +69,7 @@ public class ImmutableByteByteMapKeySetTest extends AbstractImmutableByteHashSet
         ByteByteHashMap byteByteHashMap = ByteByteHashMap.newWithKeysValues(collision1, (byte) 0, collision2, (byte) 0);
         byteByteHashMap.removeKey(collision2);
         ByteSet byteSet = byteByteHashMap.keySet().freeze();
-        Assert.assertTrue(byteSet.contains(collision1));
-        Assert.assertFalse(byteSet.contains(collision2));
+        Assertions.assertTrue(byteSet.contains(collision1));
+        Assertions.assertFalse(byteSet.contains(collision2));
     }
 }

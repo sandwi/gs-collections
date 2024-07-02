@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 import com.gs.collections.impl.jmh.runner.AbstractJMHTestRunner;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.list.mutable.FastList;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -63,72 +63,72 @@ public class NoneSatisfyTest extends AbstractJMHTestRunner
     @Benchmark
     public void short_circuit_middle_serial_lazy_jdk()
     {
-        Assert.assertFalse(this.integersJDK.stream().noneMatch(each -> each > SIZE / 2));
+        Assertions.assertFalse(this.integersJDK.stream().noneMatch(each -> each > SIZE / 2));
     }
 
     @Benchmark
     public void short_circuit_middle_serial_lazy_streams_gsc()
     {
-        Assert.assertFalse(this.integersGSC.stream().noneMatch(each -> each > SIZE / 2));
+        Assertions.assertFalse(this.integersGSC.stream().noneMatch(each -> each > SIZE / 2));
     }
 
     @Benchmark
     public void process_none_serial_lazy_jdk()
     {
-        Assert.assertTrue(this.integersJDK.stream().noneMatch(each -> each < 0));
+        Assertions.assertTrue(this.integersJDK.stream().noneMatch(each -> each < 0));
     }
 
     @Benchmark
     public void process_none_serial_lazy_streams_gsc()
     {
-        Assert.assertTrue(this.integersGSC.stream().noneMatch(each -> each < 0));
+        Assertions.assertTrue(this.integersGSC.stream().noneMatch(each -> each < 0));
     }
 
     @Benchmark
     public void short_circuit_middle_serial_eager_gsc()
     {
-        Assert.assertFalse(this.integersGSC.noneSatisfy(each -> each > SIZE / 2));
+        Assertions.assertFalse(this.integersGSC.noneSatisfy(each -> each > SIZE / 2));
     }
 
     @Benchmark
     public void process_none_serial_eager_gsc()
     {
-        Assert.assertTrue(this.integersGSC.noneSatisfy(each -> each < 0));
+        Assertions.assertTrue(this.integersGSC.noneSatisfy(each -> each < 0));
     }
 
     @Benchmark
     public void short_circuit_middle_serial_lazy_gsc()
     {
-        Assert.assertFalse(this.integersGSC.asLazy().noneSatisfy(each -> each > SIZE / 2));
+        Assertions.assertFalse(this.integersGSC.asLazy().noneSatisfy(each -> each > SIZE / 2));
     }
 
     @Benchmark
     public void process_none_serial_lazy_gsc()
     {
-        Assert.assertTrue(this.integersGSC.asLazy().noneSatisfy(each -> each < 0));
+        Assertions.assertTrue(this.integersGSC.asLazy().noneSatisfy(each -> each < 0));
     }
 
     @Benchmark
     public void short_circuit_middle_parallel_lazy_jdk()
     {
-        Assert.assertFalse(this.integersJDK.parallelStream().noneMatch(each -> each == SIZE / 2 - 1));
+        Assertions.assertFalse(this.integersJDK.parallelStream().noneMatch(each -> each == SIZE / 2 - 1));
     }
 
     @Benchmark
     public void process_all_parallel_lazy_jdk()
     {
-        Assert.assertTrue(this.integersJDK.parallelStream().noneMatch(each -> each < 0));
+        Assertions.assertTrue(this.integersJDK.parallelStream().noneMatch(each -> each < 0));
     }
 
     @Benchmark
     public void short_circuit_middle_parallel_lazy_gsc()
     {
-        Assert.assertFalse(this.integersGSC.asParallel(this.executorService, BATCH_SIZE).noneSatisfy(each -> each == SIZE / 2 - 1));
+        Assertions.assertFalse(this.integersGSC.asParallel(this.executorService, BATCH_SIZE).noneSatisfy(each -> each == SIZE / 2 - 1));
     }
 
     @Benchmark
     public void process_all_parallel_lazy_gsc()
     {
-        Assert.assertTrue(this.integersGSC.asParallel(this.executorService, BATCH_SIZE).noneSatisfy(each -> each < 0));
+        Assertions.assertTrue(this.integersGSC.asParallel(this.executorService, BATCH_SIZE).noneSatisfy(each -> each < 0));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.parallel;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PassThruCombinerSerializationTest
 {
@@ -26,8 +26,10 @@ public class PassThruCombinerSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5QYXNzVGhydUNvbWJpbmVy\n"
-                        + "AAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyADFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5QYXNzVGhydUNvbWJpbmVy
+                AAAAAAAAAAECAAB4cA==\
+                """,
                 new PassThruCombiner<Object>());
     }
 }

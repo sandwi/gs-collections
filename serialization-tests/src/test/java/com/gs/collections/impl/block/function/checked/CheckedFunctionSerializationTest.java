@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function.checked;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CheckedFunctionSerializationTest
 {
@@ -37,10 +37,12 @@ public class CheckedFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5jaGVja2VkLkNo\n"
-                        + "ZWNrZWRGdW5jdGlvblNlcmlhbGl6YXRpb25UZXN0JDEAAAAAAAAAAQIAAHhyAD5jb20uZ3MuY29s\n"
-                        + "bGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5jaGVja2VkLkNoZWNrZWRGdW5jdGlvbgAAAAAA\n"
-                        + "AAABAgAAeHA=",
+                """
+                rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5jaGVja2VkLkNo
+                ZWNrZWRGdW5jdGlvblNlcmlhbGl6YXRpb25UZXN0JDEAAAAAAAAAAQIAAHhyAD5jb20uZ3MuY29s
+                bGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5jaGVja2VkLkNoZWNrZWRGdW5jdGlvbgAAAAAA
+                AAABAgAAeHA=\
+                """,
                 CHECKED_FUNCTION);
     }
 }

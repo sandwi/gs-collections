@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.comparator.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IntFunctionComparatorSerializationTest
 {
@@ -26,9 +26,11 @@ public class IntFunctionComparatorSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5jb21wYXJhdG9yLnByaW1pdGl2\n"
-                        + "ZS5JbnRGdW5jdGlvbkNvbXBhcmF0b3IAAAAAAAAAAQIAAUwACGZ1bmN0aW9udAA9TGNvbS9ncy9j\n"
-                        + "b2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0ludEZ1bmN0aW9uO3hwcA==\n",
+                """
+                rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5jb21wYXJhdG9yLnByaW1pdGl2
+                ZS5JbnRGdW5jdGlvbkNvbXBhcmF0b3IAAAAAAAAAAQIAAUwACGZ1bmN0aW9udAA9TGNvbS9ncy9j
+                b2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0ludEZ1bmN0aW9uO3hwcA==
+                """,
                 new IntFunctionComparator<Object>(null));
     }
 }

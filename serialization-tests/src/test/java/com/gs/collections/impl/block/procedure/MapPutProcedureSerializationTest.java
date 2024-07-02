@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MapPutProcedureSerializationTest
 {
@@ -26,8 +26,10 @@ public class MapPutProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWFwUHV0UHJv\n"
-                        + "Y2VkdXJlAAAAAAAAAAECAAFMAAZuZXdNYXB0AA9MamF2YS91dGlsL01hcDt4cHA=",
+                """
+                rO0ABXNyADdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWFwUHV0UHJv
+                Y2VkdXJlAAAAAAAAAAECAAFMAAZuZXdNYXB0AA9MamF2YS91dGlsL01hcDt4cHA=\
+                """,
                 new MapPutProcedure<Object, Object>(null));
     }
 }

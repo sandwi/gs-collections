@@ -17,7 +17,7 @@
 package com.gs.collections.impl.bag.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableFloatHashBagSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableFloatHashBagSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAGljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVGbG9hdEhhc2hCYWckSW1tdXRhYmxlRmxvYXRCYWdTZXJpYWxpemF0aW9uUHJveHkA\n"
-                        + "AAAAAAAAAQwAAHhwdxQAAAACP4AAAAAAAAFAAAAAAAAAAXg=",
+                """
+                rO0ABXNyAGljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVGbG9hdEhhc2hCYWckSW1tdXRhYmxlRmxvYXRCYWdTZXJpYWxpemF0aW9uUHJveHkA
+                AAAAAAAAAQwAAHhwdxQAAAACP4AAAAAAAAFAAAAAAAAAAXg=\
+                """,
                 ImmutableFloatHashBag.newBagWith(1.0f, 2.0f));
     }
 }

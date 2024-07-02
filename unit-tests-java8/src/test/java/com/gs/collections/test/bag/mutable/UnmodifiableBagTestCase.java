@@ -19,7 +19,9 @@ package com.gs.collections.test.bag.mutable;
 import com.gs.collections.api.bag.MutableBag;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.test.UnmodifiableMutableCollectionTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface UnmodifiableBagTestCase extends UnmodifiableMutableCollectionTestCase, MutableBagTestCase
 {
@@ -49,18 +51,22 @@ public interface UnmodifiableBagTestCase extends UnmodifiableMutableCollectionTe
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void MutableBag_addOccurrences()
     {
-        MutableBag<Integer> mutableBag = this.newWith(1, 2, 2, 3, 3, 3);
-        mutableBag.addOccurrences(4, 4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            MutableBag<Integer> mutableBag = this.newWith(1, 2, 2, 3, 3, 3);
+            mutableBag.addOccurrences(4, 4);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void MutableBag_removeOccurrences()
     {
-        MutableBag<Integer> mutableBag = this.newWith(1, 2, 2, 3, 3, 3);
-        mutableBag.removeOccurrences(4, 4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            MutableBag<Integer> mutableBag = this.newWith(1, 2, 2, 3, 3, 3);
+            mutableBag.removeOccurrences(4, 4);
+        });
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.parallel;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CountCombinerSerializationTest
 {
@@ -26,9 +26,11 @@ public class CountCombinerSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5Db3VudENvbWJpbmVyAAAA\n"
-                        + "AAAAAAECAAFJAAVjb3VudHhyADpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5BYnN0\n"
-                        + "cmFjdFByb2NlZHVyZUNvbWJpbmVyAAAAAAAAAAECAAFaAA11c2VDb21iaW5lT25leHABAAAAAA==\n",
+                """
+                rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5Db3VudENvbWJpbmVyAAAA
+                AAAAAAECAAFJAAVjb3VudHhyADpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5wYXJhbGxlbC5BYnN0
+                cmFjdFByb2NlZHVyZUNvbWJpbmVyAAAAAAAAAAECAAFaAA11c2VDb21iaW5lT25leHABAAAAAA==
+                """,
                 new CountCombiner<Object>());
     }
 }

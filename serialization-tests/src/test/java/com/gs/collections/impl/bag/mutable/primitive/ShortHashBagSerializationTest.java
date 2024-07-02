@@ -17,7 +17,7 @@
 package com.gs.collections.impl.bag.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ShortHashBagSerializationTest
 {
@@ -26,8 +26,10 @@ public class ShortHashBagSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcubXV0YWJsZS5wcmltaXRpdmUuU2hv\n"
-                        + "cnRIYXNoQmFnAAAAAAAAAAEMAAB4cHcEAAAAAHg=",
+                """
+                rO0ABXNyADpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcubXV0YWJsZS5wcmltaXRpdmUuU2hv
+                cnRIYXNoQmFnAAAAAAAAAAEMAAB4cHcEAAAAAHg=\
+                """,
                 new ShortHashBag());
     }
 }

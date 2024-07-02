@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IntDoubleHashMapSerializationTest
 {
@@ -26,8 +26,10 @@ public class IntDoubleHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuSW50\n"
-                        + "RG91YmxlSGFzaE1hcAAAAAAAAAABDAAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuSW50
+                RG91YmxlSGFzaE1hcAAAAAAAAAABDAAAeHB3BAAAAAB4\
+                """,
                 new IntDoubleHashMap());
     }
 }

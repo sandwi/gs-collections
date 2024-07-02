@@ -29,8 +29,10 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.parallel.ParallelIterate;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CompositeFastListTest extends AbstractListTestCase
 {
@@ -97,7 +99,7 @@ public class CompositeFastListTest extends AbstractListTestCase
         list.add("1");
         list.add("2");
         Verify.assertSize(2, list);
-        Verify.assertContains("1", list);
+        Verify.assertContains(list, "1");
     }
 
     @Test
@@ -113,7 +115,7 @@ public class CompositeFastListTest extends AbstractListTestCase
         Collection<String> evenStrings = ParallelIterate.collect(evens2, Object::toString);
         Verify.assertInstanceOf(CompositeFastList.class, evenStrings);
         Verify.assertSize(50_000, evenStrings);
-        Assert.assertEquals(integers.select(e -> e <= 100_000).select(IntegerPredicates.isEven()).collect(Object::toString).toList(), evenStrings);
+        Assertions.assertEquals(integers.select(e -> e <= 100_000).select(IntegerPredicates.isEven()).collect(Object::toString).toList(), evenStrings);
 
         Collection<Integer> odds = ParallelIterate.select(integers, IntegerPredicates.isOdd());
         Verify.assertInstanceOf(CompositeFastList.class, odds);
@@ -123,7 +125,7 @@ public class CompositeFastListTest extends AbstractListTestCase
         Collection<String> oddStrings = ParallelIterate.collect(odds2, Object::toString);
         Verify.assertInstanceOf(CompositeFastList.class, oddStrings);
         Verify.assertSize(50_000, oddStrings);
-        Assert.assertEquals(integers.select(e -> e <= 100_000).select(IntegerPredicates.isOdd()).collect(Object::toString).toList(), oddStrings);
+        Assertions.assertEquals(integers.select(e -> e <= 100_000).select(IntegerPredicates.isOdd()).collect(Object::toString).toList(), oddStrings);
 
         MutableList<Integer> range = Interval.fromTo(-1_234_567, 1_234_567).toList().shuffleThis();
         Collection<Integer> positives = ParallelIterate.select(range, IntegerPredicates.isPositive());
@@ -131,20 +133,20 @@ public class CompositeFastListTest extends AbstractListTestCase
         Verify.assertSize(1_234_567, positives);
         Collection<Integer> evenPositives = ParallelIterate.select(positives, IntegerPredicates.isEven());
         Verify.assertSize(617_283, evenPositives);
-        Assert.assertEquals(2000, ParallelIterate.count(evenPositives, e -> e <= 4000));
+        Assertions.assertEquals(2000, ParallelIterate.count(evenPositives, e -> e <= 4000));
         Collection<Integer> oddPositives = ParallelIterate.select(positives, IntegerPredicates.isOdd());
         Verify.assertSize(617_284, oddPositives);
-        Assert.assertEquals(2000, ParallelIterate.count(oddPositives, e -> e <= 4000));
+        Assertions.assertEquals(2000, ParallelIterate.count(oddPositives, e -> e <= 4000));
 
         Collection<Integer> negatives = ParallelIterate.select(range, IntegerPredicates.isNegative());
         Verify.assertInstanceOf(CompositeFastList.class, negatives);
         Verify.assertSize(1_234_567, negatives);
         Collection<Integer> evenNegatives = ParallelIterate.select(negatives, IntegerPredicates.isEven());
         Verify.assertSize(617_283, evenNegatives);
-        Assert.assertEquals(2000, ParallelIterate.count(evenNegatives, e -> e >= -4000));
+        Assertions.assertEquals(2000, ParallelIterate.count(evenNegatives, e -> e >= -4000));
         Collection<Integer> oddNegatives = ParallelIterate.select(negatives, IntegerPredicates.isOdd());
         Verify.assertSize(617_284, oddNegatives);
-        Assert.assertEquals(2000, ParallelIterate.count(oddNegatives, e -> e >= -4000));
+        Assertions.assertEquals(2000, ParallelIterate.count(oddNegatives, e -> e >= -4000));
     }
 
     @Test
@@ -154,12 +156,12 @@ public class CompositeFastListTest extends AbstractListTestCase
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("A", "B", "C", "B"));
         list.addAll(FastList.newListWith("Cat", "Dog", "Mouse", "Bird"));
-        Assert.assertEquals("1", list.get(0));
-        Assert.assertEquals("2", list.get(1));
-        Assert.assertEquals("A", list.get(4));
-        Assert.assertEquals("4", list.get(3));
-        Assert.assertEquals("Cat", list.get(8));
-        Assert.assertEquals("Bird", list.get(11));
+        Assertions.assertEquals("1", list.get(0));
+        Assertions.assertEquals("2", list.get(1));
+        Assertions.assertEquals("A", list.get(4));
+        Assertions.assertEquals("4", list.get(3));
+        Assertions.assertEquals("Cat", list.get(8));
+        Assertions.assertEquals("Bird", list.get(11));
         Verify.assertThrows(IndexOutOfBoundsException.class, () -> list.get(12));
     }
 
@@ -171,14 +173,14 @@ public class CompositeFastListTest extends AbstractListTestCase
         list.addAll(FastList.newListWith("A", "B", "C", "B"));
         list.add(3, "NEW");
         Verify.assertSize(9, list);
-        Assert.assertEquals("NEW", list.get(3));
-        Assert.assertEquals("4", list.get(4));
+        Assertions.assertEquals("NEW", list.get(3));
+        Assertions.assertEquals("4", list.get(4));
         list.add(0, "START");
         Verify.assertSize(10, list);
-        Assert.assertEquals("START", list.getFirst());
+        Assertions.assertEquals("START", list.getFirst());
         list.add(10, "END");
         Verify.assertSize(11, list);
-        Assert.assertEquals("END", list.getLast());
+        Assertions.assertEquals("END", list.getLast());
     }
 
     @Override
@@ -191,8 +193,8 @@ public class CompositeFastListTest extends AbstractListTestCase
         composite.addAll(FastList.newListWith(6, 5, 4));
         composite.addAll(FastList.newListWith(3, 2, 1));
         CompositeFastList<Integer> reversed = composite.reverseThis();
-        Assert.assertSame(composite, reversed);
-        Assert.assertEquals(Interval.oneTo(9), reversed);
+        Assertions.assertSame(composite, reversed);
+        Assertions.assertEquals(Interval.oneTo(9), reversed);
     }
 
     @Override
@@ -210,13 +212,13 @@ public class CompositeFastListTest extends AbstractListTestCase
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("A", "B", "C", "B"));
-        Assert.assertEquals("1", list.set(0, "NEW"));
+        Assertions.assertEquals("1", list.set(0, "NEW"));
         Verify.assertSize(8, list);
-        Assert.assertEquals("NEW", list.getFirst());
-        Assert.assertEquals("2", list.get(1));
-        Assert.assertEquals("B", list.set(7, "END"));
+        Assertions.assertEquals("NEW", list.getFirst());
+        Assertions.assertEquals("2", list.get(1));
+        Assertions.assertEquals("B", list.set(7, "END"));
         Verify.assertSize(8, list);
-        Assert.assertEquals("END", list.getLast());
+        Assertions.assertEquals("END", list.getLast());
     }
 
     @Test
@@ -231,9 +233,9 @@ public class CompositeFastListTest extends AbstractListTestCase
         compositeList.addAll(list2);
         compositeList.addAll(list3);
 
-        Assert.assertEquals(Integer.valueOf(4), compositeList.get(3));
-        Assert.assertEquals(Integer.valueOf(4), compositeList.set(3, 99));
-        Assert.assertEquals(Integer.valueOf(99), compositeList.get(3));
+        Assertions.assertEquals(Integer.valueOf(4), compositeList.get(3));
+        Assertions.assertEquals(Integer.valueOf(4), compositeList.set(3, 99));
+        Assertions.assertEquals(Integer.valueOf(99), compositeList.get(3));
     }
 
     @Override
@@ -246,11 +248,11 @@ public class CompositeFastListTest extends AbstractListTestCase
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
         list.addAll(FastList.newListWith("3", "B", "3", "X"));
 
-        Assert.assertEquals(2, list.indexOf("3"));
-        Assert.assertEquals(5, list.indexOf("B"));
-        Assert.assertEquals(11, list.indexOf("X"));
+        Assertions.assertEquals(2, list.indexOf("3"));
+        Assertions.assertEquals(5, list.indexOf("B"));
+        Assertions.assertEquals(11, list.indexOf("X"));
 
-        Assert.assertEquals(-1, list.indexOf("missing"));
+        Assertions.assertEquals(-1, list.indexOf("missing"));
     }
 
     @Override
@@ -261,9 +263,9 @@ public class CompositeFastListTest extends AbstractListTestCase
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
-        Assert.assertEquals(6, list.lastIndexOf("3"));
-        Assert.assertEquals(3, list.lastIndexOf("4"));
-        Assert.assertEquals(-1, list.lastIndexOf("missing"));
+        Assertions.assertEquals(6, list.lastIndexOf("3"));
+        Assertions.assertEquals(3, list.lastIndexOf("4"));
+        Assertions.assertEquals(-1, list.lastIndexOf("missing"));
     }
 
     @Test
@@ -272,12 +274,12 @@ public class CompositeFastListTest extends AbstractListTestCase
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
-        Assert.assertEquals("1", list.remove(0));
+        Assertions.assertEquals("1", list.remove(0));
         Verify.assertSize(7, list);
-        Assert.assertEquals("2", list.getFirst());
-        Assert.assertEquals("B", list.remove(6));
+        Assertions.assertEquals("2", list.getFirst());
+        Assertions.assertEquals("B", list.remove(6));
         Verify.assertSize(6, list);
-        Assert.assertEquals("3", list.getLast());
+        Assertions.assertEquals("3", list.getLast());
     }
 
     @Override
@@ -290,13 +292,13 @@ public class CompositeFastListTest extends AbstractListTestCase
         list.addAll(Lists.mutable.<String>of());
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
         list.addAll(Lists.mutable.<String>of());
-        Assert.assertArrayEquals(new String[]{"1", "2", "3", "4", "3", "B", "3", "B"}, list.toArray());
+        Assertions.assertArrayEquals(new String[]{"1", "2", "3", "4", "3", "B", "3", "B"}, list.toArray());
     }
 
     @Test
     public void testEmptyIterator()
     {
-        Assert.assertFalse(new CompositeFastList<String>().iterator().hasNext());
+        Assertions.assertFalse(new CompositeFastList<String>().iterator().hasNext());
     }
 
     @Override
@@ -308,8 +310,8 @@ public class CompositeFastListTest extends AbstractListTestCase
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
         list.clear();
-        Assert.assertTrue(list.isEmpty());
-        Assert.assertEquals(0, list.size());
+        Assertions.assertTrue(list.isEmpty());
+        Assertions.assertEquals(0, list.size());
     }
 
     @Test
@@ -318,7 +320,7 @@ public class CompositeFastListTest extends AbstractListTestCase
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
-        Assert.assertTrue(list.containsAll(FastList.newList().with("2", "B")));
+        Assertions.assertTrue(list.containsAll(FastList.newList().with("2", "B")));
     }
 
     @Override
@@ -408,8 +410,8 @@ public class CompositeFastListTest extends AbstractListTestCase
 
         Verify.assertEqualsAndHashCode(list2, composite2);
 
-        Assert.assertNotEquals(firstBit, composite2);
-        Assert.assertNotEquals(composite2, firstBit);
+        Assertions.assertNotEquals(firstBit, composite2);
+        Assertions.assertNotEquals(composite2, firstBit);
 
         MutableList<String> list1 = FastList.newListWith("one", null, "three");
 
@@ -464,21 +466,21 @@ public class CompositeFastListTest extends AbstractListTestCase
         ListIterator<String> listIterator = composite.listIterator();
         listIterator.add("four");
         Verify.assertSize(4, composite);
-        Assert.assertTrue(listIterator.hasNext());
+        Assertions.assertTrue(listIterator.hasNext());
         String element = listIterator.next();
 
-        Assert.assertEquals("one", element);
+        Assertions.assertEquals("one", element);
 
         String element3 = listIterator.next();
 
-        Assert.assertEquals("two", element3);
+        Assertions.assertEquals("two", element3);
 
         String element2 = listIterator.previous();
-        Assert.assertEquals("two", element2);
+        Assertions.assertEquals("two", element2);
 
         String element1 = listIterator.next();
 
-        Assert.assertEquals("two", element1);
+        Assertions.assertEquals("two", element1);
 
         listIterator.remove();
 
@@ -502,7 +504,7 @@ public class CompositeFastListTest extends AbstractListTestCase
         sublist.remove("X");
         Verify.assertContainsAll(sublist, "B", "C");
         Verify.assertContainsAll(list, "A", "B", "C", "D");
-        Assert.assertEquals("C", sublist.set(1, "R"));
+        Assertions.assertEquals("C", sublist.set(1, "R"));
         Verify.assertContainsAll(sublist, "B", "R");
         Verify.assertContainsAll(list, "A", "B", "R", "D");
         sublist.clear();
@@ -513,7 +515,7 @@ public class CompositeFastListTest extends AbstractListTestCase
     @Test
     public void notRandomAccess()
     {
-        Assert.assertFalse(this.newWith() instanceof RandomAccess);
+        Assertions.assertFalse(this.newWith() instanceof RandomAccess);
     }
 
     @Test
@@ -528,27 +530,29 @@ public class CompositeFastListTest extends AbstractListTestCase
         iterator1.next();
         iterator1.next();
         iterator1.remove();
-        Assert.assertEquals("d", iterator1.next());
-        Assert.assertEquals(FastList.newListWith("a", "b", "d"), undertest);
+        Assertions.assertEquals("d", iterator1.next());
+        Assertions.assertEquals(FastList.newListWith("a", "b", "d"), undertest);
 
         Iterator<String> iterator2 = undertest.iterator();
         iterator2.next();
         iterator2.next();
         iterator2.remove();
-        Assert.assertEquals(FastList.newListWith("a", "d"), undertest);
+        Assertions.assertEquals(FastList.newListWith("a", "d"), undertest);
 
         Iterator<String> iterator3 = undertest.iterator();
         iterator3.next();
         iterator3.remove();
-        Assert.assertEquals(FastList.newListWith("d"), undertest);
+        Assertions.assertEquals(FastList.newListWith("d"), undertest);
         iterator3.next();
         iterator3.remove();
-        Assert.assertEquals(FastList.newList(), undertest);
+        Assertions.assertEquals(FastList.newList(), undertest);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void removingFromIteratorIsUncoolFromEmptyIterator()
     {
-        new CompositeFastList<String>().iterator().remove();
+        assertThrows(IllegalStateException.class, () -> {
+            new CompositeFastList<String>().iterator().remove();
+        });
     }
 }

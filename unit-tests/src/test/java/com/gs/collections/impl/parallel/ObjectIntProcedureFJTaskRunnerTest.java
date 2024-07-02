@@ -24,14 +24,14 @@ import com.gs.collections.impl.block.factory.ObjectIntProcedures;
 import com.gs.collections.impl.block.procedure.DoNothingProcedure;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ObjectIntProcedureFJTaskRunnerTest
 {
     private ObjectIntProcedureFJTaskRunner<Integer, ObjectIntProcedure<Integer>> undertest;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.undertest = new ObjectIntProcedureFJTaskRunner<>(

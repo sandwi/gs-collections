@@ -22,8 +22,8 @@ import java.util.TreeMap;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.factory.SortedMaps;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableSortedMapTest
 {
@@ -36,7 +36,7 @@ public class UnmodifiableSortedMapTest
     @Test
     public void comparator()
     {
-        Assert.assertEquals(Comparators.<Integer>reverseNaturalOrder(), this.revMap.comparator());
+        Assertions.assertEquals(Comparators.<Integer>reverseNaturalOrder(), this.revMap.comparator());
     }
 
     @Test
@@ -63,15 +63,15 @@ public class UnmodifiableSortedMapTest
     @Test
     public void firstKey()
     {
-        Assert.assertEquals(1, this.map.firstKey().intValue());
-        Assert.assertEquals(4, this.revMap.firstKey().intValue());
+        Assertions.assertEquals(1, this.map.firstKey().intValue());
+        Assertions.assertEquals(4, this.revMap.firstKey().intValue());
     }
 
     @Test
     public void lasKey()
     {
-        Assert.assertEquals(4, this.map.lastKey().intValue());
-        Assert.assertEquals(1, this.revMap.lastKey().intValue());
+        Assertions.assertEquals(4, this.map.lastKey().intValue());
+        Assertions.assertEquals(1, this.revMap.lastKey().intValue());
     }
 
     private void checkMutability(Map<Integer, String> map)

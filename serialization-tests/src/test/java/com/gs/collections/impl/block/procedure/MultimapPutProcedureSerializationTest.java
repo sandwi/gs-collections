@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MultimapPutProcedureSerializationTest
 {
@@ -26,10 +26,12 @@ public class MultimapPutProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTXVsdGltYXBQ\n"
-                        + "dXRQcm9jZWR1cmUAAAAAAAAAAQIAAkwAC2tleUZ1bmN0aW9udAAwTGNvbS9ncy9jb2xsZWN0aW9u\n"
-                        + "cy9hcGkvYmxvY2svZnVuY3Rpb24vRnVuY3Rpb247TAAIbXVsdGltYXB0ADFMY29tL2dzL2NvbGxl\n"
-                        + "Y3Rpb25zL2FwaS9tdWx0aW1hcC9NdXRhYmxlTXVsdGltYXA7eHBwcA==",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTXVsdGltYXBQ
+                dXRQcm9jZWR1cmUAAAAAAAAAAQIAAkwAC2tleUZ1bmN0aW9udAAwTGNvbS9ncy9jb2xsZWN0aW9u
+                cy9hcGkvYmxvY2svZnVuY3Rpb24vRnVuY3Rpb247TAAIbXVsdGltYXB0ADFMY29tL2dzL2NvbGxl
+                Y3Rpb25zL2FwaS9tdWx0aW1hcC9NdXRhYmxlTXVsdGltYXA7eHBwcA==\
+                """,
                 new MultimapPutProcedure<Object, Object>(null, null));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableShortObjectMapSerializationTest
 {
@@ -26,11 +26,13 @@ public class UnmodifiableShortObjectMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t\n"
-                        + "b2RpZmlhYmxlU2hvcnRPYmplY3RNYXAAAAAAAAAAAQIAAUwAA21hcHQAPExjb20vZ3MvY29sbGVj\n"
-                        + "dGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0YWJsZVNob3J0T2JqZWN0TWFwO3hwc3IAQGNvbS5n\n"
-                        + "cy5jb2xsZWN0aW9ucy5pbXBsLm1hcC5tdXRhYmxlLnByaW1pdGl2ZS5TaG9ydE9iamVjdEhhc2hN\n"
-                        + "YXAAAAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t
+                b2RpZmlhYmxlU2hvcnRPYmplY3RNYXAAAAAAAAAAAQIAAUwAA21hcHQAPExjb20vZ3MvY29sbGVj
+                dGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0YWJsZVNob3J0T2JqZWN0TWFwO3hwc3IAQGNvbS5n
+                cy5jb2xsZWN0aW9ucy5pbXBsLm1hcC5tdXRhYmxlLnByaW1pdGl2ZS5TaG9ydE9iamVjdEhhc2hN
+                YXAAAAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new UnmodifiableShortObjectMap<Object>(new ShortObjectHashMap<Object>()));
     }
 }

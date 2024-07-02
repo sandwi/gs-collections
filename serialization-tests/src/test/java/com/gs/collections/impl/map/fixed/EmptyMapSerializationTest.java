@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.fixed;
 
 import com.gs.collections.impl.factory.Maps;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class EmptyMapSerializationTest
 {
@@ -27,8 +27,10 @@ public class EmptyMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyACpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuZml4ZWQuRW1wdHlNYXAAAAAAAAAA\n"
-                        + "AQIAAHhw",
+                """
+                rO0ABXNyACpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuZml4ZWQuRW1wdHlNYXAAAAAAAAAA
+                AQIAAHhw\
+                """,
                 Maps.fixedSize.of());
     }
 }

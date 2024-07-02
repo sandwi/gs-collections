@@ -18,14 +18,16 @@ package com.gs.collections.impl.bimap.immutable;
 
 import com.gs.collections.impl.factory.Maps;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableHashBiMapSerializationTest
 {
-    private static final String SERIALIZED_FORM = "rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iaW1hcC5pbW11dGFibGUuSW1tdXRhYmxl\n"
-            + "QmlNYXBTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAABc3IAEWphdmEubGFuZy5J\n"
-            + "bnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4\n"
-            + "cAAAAAFzcgATamF2YS5sYW5nLkNoYXJhY3RlcjSLR9lrGiZ4AgABQwAFdmFsdWV4cABheA==";
+    private static final String SERIALIZED_FORM = """
+            rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iaW1hcC5pbW11dGFibGUuSW1tdXRhYmxl
+            QmlNYXBTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAABc3IAEWphdmEubGFuZy5J
+            bnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4
+            cAAAAAFzcgATamF2YS5sYW5nLkNoYXJhY3RlcjSLR9lrGiZ4AgABQwAFdmFsdWV4cABheA==\
+            """;
 
     @Test
     public void serializedForm()

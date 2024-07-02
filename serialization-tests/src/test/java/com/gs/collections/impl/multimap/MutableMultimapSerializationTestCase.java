@@ -18,14 +18,14 @@ package com.gs.collections.impl.multimap;
 
 import com.gs.collections.api.multimap.Multimap;
 import com.gs.collections.api.multimap.MutableMultimap;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 public abstract class MutableMultimapSerializationTestCase
         extends MultimapSerializationTestCase
 {
     private MutableMultimap<String, String> mutableMultimap;
 
-    @Before
+    @BeforeEach
     public void buildUnderTest()
     {
         this.mutableMultimap = this.createEmpty();

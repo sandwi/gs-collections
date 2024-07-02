@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableFloatFloatMapSerializationTest
 {
@@ -26,11 +26,13 @@ public class UnmodifiableFloatFloatMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t\n"
-                        + "b2RpZmlhYmxlRmxvYXRGbG9hdE1hcAAAAAAAAAABAgABTAADbWFwdAA7TGNvbS9ncy9jb2xsZWN0\n"
-                        + "aW9ucy9hcGkvbWFwL3ByaW1pdGl2ZS9NdXRhYmxlRmxvYXRGbG9hdE1hcDt4cHNyAD9jb20uZ3Mu\n"
-                        + "Y29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuRmxvYXRGbG9hdEhhc2hNYXAA\n"
-                        + "AAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t
+                b2RpZmlhYmxlRmxvYXRGbG9hdE1hcAAAAAAAAAABAgABTAADbWFwdAA7TGNvbS9ncy9jb2xsZWN0
+                aW9ucy9hcGkvbWFwL3ByaW1pdGl2ZS9NdXRhYmxlRmxvYXRGbG9hdE1hcDt4cHNyAD9jb20uZ3Mu
+                Y29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuRmxvYXRGbG9hdEhhc2hNYXAA
+                AAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new UnmodifiableFloatFloatMap(new FloatFloatHashMap()));
     }
 }

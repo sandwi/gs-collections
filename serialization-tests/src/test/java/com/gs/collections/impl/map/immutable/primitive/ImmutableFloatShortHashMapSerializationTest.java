@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.FloatShortHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableFloatShortHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableFloatShortHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVGbG9hdFNob3J0SGFzaE1hcCRJbW11dGFibGVGbG9hdFNob3J0TWFwU2VyaWFsaXph\n"
-                        + "dGlvblByb3h5AAAAAAAAAAEMAAB4cHcQAAAAAj+AAAAAAUAAAAAAAng=",
+                """
+                rO0ABXNyAHNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVGbG9hdFNob3J0SGFzaE1hcCRJbW11dGFibGVGbG9hdFNob3J0TWFwU2VyaWFsaXph
+                dGlvblByb3h5AAAAAAAAAAEMAAB4cHcQAAAAAj+AAAAAAUAAAAAAAng=\
+                """,
                 new ImmutableFloatShortHashMap(FloatShortHashMap.newWithKeysValues(1.0f, (short) 1, 2.0f, (short) 2)));
     }
 }

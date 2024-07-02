@@ -24,8 +24,8 @@ import com.gs.collections.api.tuple.Pair;
 import com.gs.collections.api.tuple.Twin;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TuplesTest
 {
@@ -35,23 +35,23 @@ public class TuplesTest
         Pair<String, String> pair = Tuples.pair("1", "2");
         Map.Entry<String, String> entry = pair.toEntry();
         Pair<String, String> pair2 = Tuples.pairFrom(entry);
-        Assert.assertEquals(pair, pair2);
+        Assertions.assertEquals(pair, pair2);
     }
 
     @Test
     public void pair()
     {
         Pair<String, String> pair = Tuples.pair("1", "2");
-        Assert.assertEquals("1", pair.getOne());
-        Assert.assertEquals("2", pair.getTwo());
+        Assertions.assertEquals("1", pair.getOne());
+        Assertions.assertEquals("2", pair.getTwo());
     }
 
     @Test
     public void twin()
     {
         Twin<String> twin = Tuples.twin("1", "2");
-        Assert.assertEquals("1", twin.getOne());
-        Assert.assertEquals("2", twin.getTwo());
+        Assertions.assertEquals("1", twin.getOne());
+        Assertions.assertEquals("2", twin.getTwo());
     }
 
     @Test
@@ -63,8 +63,8 @@ public class TuplesTest
 
         Verify.assertEqualsAndHashCode(pair1, pair1);
         Verify.assertEqualsAndHashCode(pair1, pair1a);
-        Assert.assertNotEquals(pair1, pair2);
-        Assert.assertNotEquals(pair1, new Object());
+        Assertions.assertNotEquals(pair1, pair2);
+        Assertions.assertNotEquals(pair1, new Object());
     }
 
     @Test
@@ -82,7 +82,7 @@ public class TuplesTest
     {
         Pair<String, String> pair1 = Tuples.pair("1", "1");
 
-        Assert.assertEquals("1:1", pair1.toString());
+        Assertions.assertEquals("1:1", pair1.toString());
     }
 
     @Test
@@ -90,8 +90,8 @@ public class TuplesTest
     {
         Integer two = 2;
         Pair<String, Integer> pair = Tuples.pair("One", two);
-        Assert.assertEquals("One", ((Function<Pair<String, ?>, String>) Pair::getOne).valueOf(pair));
-        Assert.assertSame(two, ((Function<Pair<?, Integer>, Integer>) Pair::getTwo).valueOf(pair));
+        Assertions.assertEquals("One", ((Function<Pair<String, ?>, String>) Pair::getOne).valueOf(pair));
+        Assertions.assertSame(two, ((Function<Pair<?, Integer>, Integer>) Pair::getTwo).valueOf(pair));
     }
 
     @Test
@@ -100,15 +100,15 @@ public class TuplesTest
         Pair<String, Integer> pair = Tuples.pair("One", 1);
         Pair<Integer, String> swappedPair = pair.swap();
         Pair<Integer, String> expectedPair = Tuples.pair(1, "One");
-        Assert.assertEquals(Integer.valueOf(1), swappedPair.getOne());
-        Assert.assertEquals("One", swappedPair.getTwo());
-        Assert.assertEquals(expectedPair, swappedPair);
+        Assertions.assertEquals(Integer.valueOf(1), swappedPair.getOne());
+        Assertions.assertEquals("One", swappedPair.getTwo());
+        Assertions.assertEquals(expectedPair, swappedPair);
 
         Twin<String> twin = Tuples.twin("One", "1");
         Twin<String> swappedTwin = twin.swap();
         Twin<String> expectedTwin = Tuples.twin("1", "One");
-        Assert.assertEquals("1", swappedTwin.getOne());
-        Assert.assertEquals("One", swappedTwin.getTwo());
-        Assert.assertEquals(expectedTwin, swappedTwin);
+        Assertions.assertEquals("1", swappedTwin.getOne());
+        Assertions.assertEquals("One", swappedTwin.getTwo());
+        Assertions.assertEquals(expectedTwin, swappedTwin);
     }
 }

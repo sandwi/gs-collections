@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.sorted.immutable;
 
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableTreeSetSerializationTest
 {
@@ -27,16 +27,20 @@ public class ImmutableTreeSetSerializationTest
     {
         Verify.assertSerializedForm(
                 2L,
-                "rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11\n"
-                        + "dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAABHNyABFq\n"
-                        + "YXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoas\n"
-                        + "lR0LlOCLAgAAeHAAAAABc3EAfgACAAAAAnNxAH4AAgAAAANzcQB+AAIAAAAEeA==",
+                """
+                rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11
+                dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAABHNyABFq
+                YXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoas
+                lR0LlOCLAgAAeHAAAAABc3EAfgACAAAAAnNxAH4AAgAAAANzcQB+AAIAAAAEeA==\
+                """,
                 ImmutableTreeSet.newSetWith(1, 2, 3, 4));
 
         Verify.assertSerializedForm(
                 2L,
-                "rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11\n"
-                        + "dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAAAHg=",
+                """
+                rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11
+                dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAAAHg=\
+                """,
                 ImmutableTreeSet.newSetWith());
     }
 
@@ -45,20 +49,24 @@ public class ImmutableTreeSetSerializationTest
     {
         Verify.assertSerializedForm(
                 2L,
-                "rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11\n"
-                        + "dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwc3IASGNvbS5ncy5j\n"
-                        + "b2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkTmF0dXJhbE9yZGVyQ29t\n"
-                        + "cGFyYXRvcgAAAAAAAAABAgAAeHB3BAAAAARzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIA\n"
-                        + "AUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXNxAH4ABAAAAAJz\n"
-                        + "cQB+AAQAAAADc3EAfgAEAAAABHg=",
+                """
+                rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11
+                dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwc3IASGNvbS5ncy5j
+                b2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkTmF0dXJhbE9yZGVyQ29t
+                cGFyYXRvcgAAAAAAAAABAgAAeHB3BAAAAARzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIA
+                AUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXNxAH4ABAAAAAJz
+                cQB+AAQAAAADc3EAfgAEAAAABHg=\
+                """,
                 ImmutableTreeSet.newSetWith(Comparators.naturalOrder(), 1, 2, 3, 4));
 
         Verify.assertSerializedForm(
                 2L,
-                "rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11\n"
-                        + "dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwc3IASGNvbS5ncy5j\n"
-                        + "b2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkTmF0dXJhbE9yZGVyQ29t\n"
-                        + "cGFyYXRvcgAAAAAAAAABAgAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11
+                dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwc3IASGNvbS5ncy5j
+                b2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkTmF0dXJhbE9yZGVyQ29t
+                cGFyYXRvcgAAAAAAAAABAgAAeHB3BAAAAAB4\
+                """,
                 ImmutableTreeSet.newSetWith(Comparators.naturalOrder()));
     }
 }

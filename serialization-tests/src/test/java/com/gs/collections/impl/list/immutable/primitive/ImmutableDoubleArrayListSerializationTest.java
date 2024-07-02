@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableDoubleArrayListSerializationTest
 {
@@ -26,10 +26,12 @@ public class ImmutableDoubleArrayListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu\n"
-                        + "SW1tdXRhYmxlRG91YmxlQXJyYXlMaXN0AAAAAAAAAAECAAFbAAVpdGVtc3QAAltEeHB1cgACW0Q+\n"
-                        + "powUq2NaHgIAAHhwAAAACz/wAAAAAAAAQAAAAAAAAABACAAAAAAAAEAQAAAAAAAAQBQAAAAAAABA\n"
-                        + "GAAAAAAAAEAcAAAAAAAAQCAAAAAAAABAIgAAAAAAAEAkAAAAAAAAQCYAAAAAAAA=",
+                """
+                rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu
+                SW1tdXRhYmxlRG91YmxlQXJyYXlMaXN0AAAAAAAAAAECAAFbAAVpdGVtc3QAAltEeHB1cgACW0Q+
+                powUq2NaHgIAAHhwAAAACz/wAAAAAAAAQAAAAAAAAABACAAAAAAAAEAQAAAAAAAAQBQAAAAAAABA
+                GAAAAAAAAEAcAAAAAAAAQCAAAAAAAABAIgAAAAAAAEAkAAAAAAAAQCYAAAAAAAA=\
+                """,
                 ImmutableDoubleArrayList.newListWith(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0));
     }
 }

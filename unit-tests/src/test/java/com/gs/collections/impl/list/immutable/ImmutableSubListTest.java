@@ -20,8 +20,10 @@ import java.util.ListIterator;
 
 import com.gs.collections.api.list.ImmutableList;
 import com.gs.collections.impl.factory.Lists;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ImmutableSubListTest extends AbstractImmutableListTestCase
 {
@@ -36,38 +38,44 @@ public class ImmutableSubListTest extends AbstractImmutableListTestCase
     {
         ImmutableList<Integer> subList = this.classUnderTest();
         ListIterator<Integer> iterator = subList.listIterator();
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertFalse(iterator.hasPrevious());
-        Assert.assertEquals(Integer.valueOf(1), iterator.next());
-        Assert.assertEquals(Integer.valueOf(2), iterator.next());
-        Assert.assertEquals(Integer.valueOf(3), iterator.next());
-        Assert.assertTrue(iterator.hasPrevious());
-        Assert.assertEquals(Integer.valueOf(3), iterator.previous());
-        Assert.assertEquals(Integer.valueOf(2), iterator.previous());
-        Assert.assertEquals(Integer.valueOf(1), iterator.previous());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasPrevious());
+        Assertions.assertEquals(Integer.valueOf(1), iterator.next());
+        Assertions.assertEquals(Integer.valueOf(2), iterator.next());
+        Assertions.assertEquals(Integer.valueOf(3), iterator.next());
+        Assertions.assertTrue(iterator.hasPrevious());
+        Assertions.assertEquals(Integer.valueOf(3), iterator.previous());
+        Assertions.assertEquals(Integer.valueOf(2), iterator.previous());
+        Assertions.assertEquals(Integer.valueOf(1), iterator.previous());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void testSubListListIteratorSet_throws()
     {
-        ImmutableList<Integer> subList = this.classUnderTest();
-        ListIterator<Integer> iterator = subList.listIterator();
-        iterator.set(4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            ImmutableList<Integer> subList = this.classUnderTest();
+            ListIterator<Integer> iterator = subList.listIterator();
+            iterator.set(4);
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void testSubListListIteratorRemove_throws()
     {
-        ImmutableList<Integer> subList = this.classUnderTest();
-        ListIterator<Integer> iterator = subList.listIterator();
-        iterator.remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            ImmutableList<Integer> subList = this.classUnderTest();
+            ListIterator<Integer> iterator = subList.listIterator();
+            iterator.remove();
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void testSubListListIteratorAdd_throws()
     {
-        ImmutableList<Integer> subList = this.classUnderTest();
-        ListIterator<Integer> iterator = subList.listIterator();
-        iterator.add(4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            ImmutableList<Integer> subList = this.classUnderTest();
+            ListIterator<Integer> iterator = subList.listIterator();
+            iterator.add(4);
+        });
     }
 }

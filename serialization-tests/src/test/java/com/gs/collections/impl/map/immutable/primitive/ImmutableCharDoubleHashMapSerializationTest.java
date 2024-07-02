@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.CharDoubleHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableCharDoubleHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableCharDoubleHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVDaGFyRG91YmxlSGFzaE1hcCRJbW11dGFibGVDaGFyRG91YmxlTWFwU2VyaWFsaXph\n"
-                        + "dGlvblByb3h5AAAAAAAAAAEMAAB4cHcYAAAAAgABP/AAAAAAAAAAAkAAAAAAAAAAeA==",
+                """
+                rO0ABXNyAHNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVDaGFyRG91YmxlSGFzaE1hcCRJbW11dGFibGVDaGFyRG91YmxlTWFwU2VyaWFsaXph
+                dGlvblByb3h5AAAAAAAAAAEMAAB4cHcYAAAAAgABP/AAAAAAAAAAAkAAAAAAAAAAeA==\
+                """,
                 new ImmutableCharDoubleHashMap(CharDoubleHashMap.newWithKeysValues((char) 1, 1.0, (char) 2, 2.0)));
     }
 }

@@ -24,9 +24,11 @@ import com.gs.collections.impl.block.factory.Functions;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.multimap.list.FastListMultimap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link UnmodifiableRichIterable}.
@@ -48,7 +50,7 @@ public class UnmodifiableRichIterableTest extends AbstractRichIterableTestCase
         return UnmodifiableRichIterable.of(Lists.mutable.of(elements));
     }
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.mutableCollection = Lists.mutable.of(METALLICA, BON_JOVI, EUROPE, SCORPIONS);
@@ -58,31 +60,31 @@ public class UnmodifiableRichIterableTest extends AbstractRichIterableTestCase
     @Test
     public void testDelegatingMethods()
     {
-        Assert.assertTrue(this.mutableCollection.notEmpty());
-        Assert.assertTrue(this.unmodifiableCollection.notEmpty());
-        Assert.assertFalse(this.mutableCollection.isEmpty());
-        Assert.assertFalse(this.unmodifiableCollection.isEmpty());
+        Assertions.assertTrue(this.mutableCollection.notEmpty());
+        Assertions.assertTrue(this.unmodifiableCollection.notEmpty());
+        Assertions.assertFalse(this.mutableCollection.isEmpty());
+        Assertions.assertFalse(this.unmodifiableCollection.isEmpty());
         Verify.assertIterableSize(this.mutableCollection.size(), this.unmodifiableCollection);
-        Assert.assertEquals(this.mutableCollection.getFirst(), this.unmodifiableCollection.getFirst());
-        Assert.assertEquals(this.mutableCollection.getLast(), this.unmodifiableCollection.getLast());
+        Assertions.assertEquals(this.mutableCollection.getFirst(), this.unmodifiableCollection.getFirst());
+        Assertions.assertEquals(this.mutableCollection.getLast(), this.unmodifiableCollection.getLast());
     }
 
     @Test
     public void converters()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.mutableCollection.toBag(),
                 this.unmodifiableCollection.toBag());
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.mutableCollection.asLazy().toBag(),
                 this.unmodifiableCollection.asLazy().toBag());
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
                 this.mutableCollection.toArray(),
                 this.unmodifiableCollection.toArray());
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
                 this.mutableCollection.toArray(EMPTY_STRING_ARRAY),
                 this.unmodifiableCollection.toArray(EMPTY_STRING_ARRAY));
-        Assert.assertEquals(this.mutableCollection.toList(), this.unmodifiableCollection.toList());
+        Assertions.assertEquals(this.mutableCollection.toList(), this.unmodifiableCollection.toList());
         Verify.assertListsEqual(Lists.mutable.of(BON_JOVI, EUROPE, METALLICA, SCORPIONS),
                 this.unmodifiableCollection
                         .toSortedList());
@@ -96,18 +98,20 @@ public class UnmodifiableRichIterableTest extends AbstractRichIterableTestCase
         Verify.assertSize(4, this.unmodifiableCollection.toMap(Functions.getStringPassThru(), Functions.getStringPassThru()));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nullCheck()
     {
-        UnmodifiableRichIterable.of(null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            UnmodifiableRichIterable.of(null);
+        });
     }
 
     @Test
     @Override
     public void equalsAndHashCode()
     {
-        Assert.assertNotEquals(this.newWith(1, 2, 3).hashCode(), this.newWith(1, 2, 3).hashCode());
-        Assert.assertNotEquals(this.newWith(1, 2, 3), this.newWith(1, 2, 3));
+        Assertions.assertNotEquals(this.newWith(1, 2, 3).hashCode(), this.newWith(1, 2, 3).hashCode());
+        Assertions.assertNotEquals(this.newWith(1, 2, 3), this.newWith(1, 2, 3));
     }
 
     @Test
@@ -116,8 +120,8 @@ public class UnmodifiableRichIterableTest extends AbstractRichIterableTestCase
     {
         PartitionIterable<String> partition = this.mutableCollection.partition(ignored -> true);
         PartitionIterable<String> unmodifiablePartition = this.unmodifiableCollection.partition(ignored -> true);
-        Assert.assertEquals(partition.getSelected(), unmodifiablePartition.getSelected());
-        Assert.assertEquals(partition.getRejected(), unmodifiablePartition.getRejected());
+        Assertions.assertEquals(partition.getSelected(), unmodifiablePartition.getSelected());
+        Assertions.assertEquals(partition.getRejected(), unmodifiablePartition.getRejected());
     }
 
     @Test
@@ -126,15 +130,15 @@ public class UnmodifiableRichIterableTest extends AbstractRichIterableTestCase
     {
         PartitionIterable<String> partition = this.mutableCollection.partitionWith((ignored1, ignored2) -> true, null);
         PartitionIterable<String> unmodifiablePartition = this.unmodifiableCollection.partitionWith((ignored1, ignored2) -> true, null);
-        Assert.assertEquals(partition.getSelected(), unmodifiablePartition.getSelected());
-        Assert.assertEquals(partition.getRejected(), unmodifiablePartition.getRejected());
+        Assertions.assertEquals(partition.getSelected(), unmodifiablePartition.getSelected());
+        Assertions.assertEquals(partition.getRejected(), unmodifiablePartition.getRejected());
     }
 
     @Test
     @Override
     public void groupBy()
     {
-        Assert.assertEquals(this.mutableCollection.groupBy(Functions.getStringPassThru()), this.unmodifiableCollection.groupBy(Functions.getStringPassThru()));
-        Assert.assertEquals(this.mutableCollection.groupBy(Functions.getStringPassThru(), FastListMultimap.<String, String>newMultimap()), this.unmodifiableCollection.groupBy(Functions.getStringPassThru(), FastListMultimap.<String, String>newMultimap()));
+        Assertions.assertEquals(this.mutableCollection.groupBy(Functions.getStringPassThru()), this.unmodifiableCollection.groupBy(Functions.getStringPassThru()));
+        Assertions.assertEquals(this.mutableCollection.groupBy(Functions.getStringPassThru(), FastListMultimap.<String, String>newMultimap()), this.unmodifiableCollection.groupBy(Functions.getStringPassThru(), FastListMultimap.<String, String>newMultimap()));
     }
 }

@@ -19,7 +19,7 @@ package com.gs.collections.impl.list.mutable;
 import java.util.LinkedList;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableMutableListSerializationTest
 {
@@ -27,22 +27,26 @@ public class UnmodifiableMutableListSerializationTest
     public void serializedForm_random_access()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp\n"
-                        + "ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgAtY29tLmdz\n"
-                        + "LmNvbGxlY3Rpb25zLmltcGwubGlzdC5tdXRhYmxlLkZhc3RMaXN0AAAAAAAAAAEMAAB4cHcEAAAA\n"
-                        + "AHh4",
-                UnmodifiableMutableList.of(FastList.newList()));
+                UnmodifiableMutableList.of(FastList.newList()),
+                """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp
+                ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgAtY29tLmdz
+                LmNvbGxlY3Rpb25zLmltcGwubGlzdC5tdXRhYmxlLkZhc3RMaXN0AAAAAAAAAAEMAAB4cHcEAAAA
+                AHh4\
+                """);
     }
 
     @Test
     public void serializedForm_not_random_access()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp\n"
-                        + "ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgAwY29tLmdz\n"
-                        + "LmNvbGxlY3Rpb25zLmltcGwubGlzdC5tdXRhYmxlLkxpc3RBZGFwdGVyAAAAAAAAAAECAAFMAAhk\n"
-                        + "ZWxlZ2F0ZXQAEExqYXZhL3V0aWwvTGlzdDt4cHNyABRqYXZhLnV0aWwuTGlua2VkTGlzdAwpU11K\n"
-                        + "YIgiAwAAeHB3BAAAAAB4eA==",
-                UnmodifiableMutableList.of(new LinkedList<Object>()));
+                UnmodifiableMutableList.of(new LinkedList<Object>()),
+                """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp
+                ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgAwY29tLmdz
+                LmNvbGxlY3Rpb25zLmltcGwubGlzdC5tdXRhYmxlLkxpc3RBZGFwdGVyAAAAAAAAAAECAAFMAAhk
+                ZWxlZ2F0ZXQAEExqYXZhL3V0aWwvTGlzdDt4cHNyABRqYXZhLnV0aWwuTGlua2VkTGlzdAwpU11K
+                YIgiAwAAeHB3BAAAAAB4eA==\
+                """);
     }
 }

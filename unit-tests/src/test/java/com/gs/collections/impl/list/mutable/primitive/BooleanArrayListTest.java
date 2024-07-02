@@ -20,8 +20,8 @@ import java.lang.reflect.Field;
 import java.util.BitSet;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link BooleanArrayList}.
@@ -49,11 +49,11 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
         Verify.assertEmpty(arrayList);
         Field items = BooleanArrayList.class.getDeclaredField("items");
         items.setAccessible(true);
-        Assert.assertEquals(64L, ((BitSet) items.get(arrayList)).size());
+        Assertions.assertEquals(64L, ((BitSet) items.get(arrayList)).size());
         BooleanArrayList arrayList1 = new BooleanArrayList(64);
-        Assert.assertEquals(64L, ((BitSet) items.get(arrayList1)).size());
+        Assertions.assertEquals(64L, ((BitSet) items.get(arrayList1)).size());
         BooleanArrayList arrayList2 = new BooleanArrayList(65);
-        Assert.assertEquals(128L, ((BitSet) items.get(arrayList2)).size());
+        Assertions.assertEquals(128L, ((BitSet) items.get(arrayList2)).size());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
         listWithCapacity.addAtIndex(64, true);
         Field items = BooleanArrayList.class.getDeclaredField("items");
         items.setAccessible(true);
-        Assert.assertEquals(128L, ((BitSet) items.get(listWithCapacity)).size());
+        Assertions.assertEquals(128L, ((BitSet) items.get(listWithCapacity)).size());
     }
 
     @Override
@@ -93,11 +93,11 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
         BooleanArrayList arrayList1 = new BooleanArrayList().with(true, true, false);
         BooleanArrayList arrayList2 = new BooleanArrayList().with(true, true, false, true);
         BooleanArrayList arrayList3 = new BooleanArrayList().with(true, true, false, true, false);
-        Assert.assertSame(emptyList, arrayList);
-        Assert.assertEquals(BooleanArrayList.newListWith(true), arrayList);
-        Assert.assertEquals(BooleanArrayList.newListWith(false, false), arrayList0);
-        Assert.assertEquals(BooleanArrayList.newListWith(true, true, false), arrayList1);
-        Assert.assertEquals(BooleanArrayList.newListWith(true, true, false, true), arrayList2);
-        Assert.assertEquals(BooleanArrayList.newListWith(true, true, false, true, false), arrayList3);
+        Assertions.assertSame(emptyList, arrayList);
+        Assertions.assertEquals(BooleanArrayList.newListWith(true), arrayList);
+        Assertions.assertEquals(BooleanArrayList.newListWith(false, false), arrayList0);
+        Assertions.assertEquals(BooleanArrayList.newListWith(true, true, false), arrayList1);
+        Assertions.assertEquals(BooleanArrayList.newListWith(true, true, false, true), arrayList2);
+        Assertions.assertEquals(BooleanArrayList.newListWith(true, true, false, true, false), arrayList3);
     }
 }

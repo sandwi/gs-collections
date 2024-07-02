@@ -33,8 +33,10 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link EmptyMap}.
@@ -57,7 +59,7 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     @Test
     public void containsValue()
     {
-        Assert.assertFalse(new EmptyMap<>().containsValue("One"));
+        Assertions.assertFalse(new EmptyMap<>().containsValue("One"));
     }
 
     @Test
@@ -70,11 +72,11 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void empty()
     {
         Verify.assertEmpty(new EmptyMap<>());
-        Assert.assertFalse(new EmptyMap<>().notEmpty());
+        Assertions.assertFalse(new EmptyMap<>().notEmpty());
         Verify.assertEmpty(new EmptyMap<>());
-        Assert.assertFalse(new EmptyMap<>().notEmpty());
+        Assertions.assertFalse(new EmptyMap<>().notEmpty());
         Verify.assertEmpty(Maps.fixedSize.of());
-        Assert.assertFalse(Maps.fixedSize.of().notEmpty());
+        Assertions.assertFalse(Maps.fixedSize.of().notEmpty());
     }
 
     @Test
@@ -105,7 +107,7 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void testClone()
     {
         MutableMap<String, String> map = this.classUnderTest();
-        Assert.assertSame(map, map.clone());
+        Assertions.assertSame(map, map.clone());
     }
 
     @Test
@@ -115,29 +117,29 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
         MutableMap<Object, Object> map = new EmptyMap<>();
 
         map.forEach(procedure);
-        Assert.assertFalse(procedure.called);
+        Assertions.assertFalse(procedure.called);
 
         map.forEachKey(procedure);
-        Assert.assertFalse(procedure.called);
+        Assertions.assertFalse(procedure.called);
 
         map.forEachValue(procedure);
-        Assert.assertFalse(procedure.called);
+        Assertions.assertFalse(procedure.called);
 
         map.forEachKeyValue(procedure);
-        Assert.assertFalse(procedure.called);
+        Assertions.assertFalse(procedure.called);
 
         map.forEachWith(procedure, new Object());
-        Assert.assertFalse(procedure.called);
+        Assertions.assertFalse(procedure.called);
 
         map.forEachWithIndex(procedure);
-        Assert.assertFalse(procedure.called);
+        Assertions.assertFalse(procedure.called);
     }
 
     @Override
     @Test
     public void testToString()
     {
-        Assert.assertEquals("{}", new EmptyMap<Integer, String>().toString());
+        Assertions.assertEquals("{}", new EmptyMap<Integer, String>().toString());
     }
 
     @Override
@@ -172,7 +174,7 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void detect()
     {
         MutableMap<String, String> map = this.classUnderTest();
-        Assert.assertNull(map.detect((ignored1, ignored2) -> true));
+        Assertions.assertNull(map.detect((ignored1, ignored2) -> true));
     }
 
     @Override
@@ -192,7 +194,7 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void allSatisfy()
     {
         MutableMap<String, String> map = this.classUnderTest();
-        Assert.assertTrue(map.allSatisfy(ignored -> true));
+        Assertions.assertTrue(map.allSatisfy(ignored -> true));
     }
 
     @Override
@@ -200,7 +202,7 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void anySatisfy()
     {
         MutableMap<String, String> map = this.classUnderTest();
-        Assert.assertFalse(map.anySatisfy(ignored -> true));
+        Assertions.assertFalse(map.anySatisfy(ignored -> true));
     }
 
     @Override
@@ -208,35 +210,43 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void noneSatisfy()
     {
         MutableMap<String, String> map = this.classUnderTest();
-        Assert.assertTrue(map.noneSatisfy(ignored -> true));
+        Assertions.assertTrue(map.noneSatisfy(ignored -> true));
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void max()
     {
-        this.classUnderTest().max();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().max();
+        });
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void maxBy()
     {
-        this.classUnderTest().maxBy(Functions.getStringPassThru());
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().maxBy(Functions.getStringPassThru());
+        });
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void min()
     {
-        this.classUnderTest().min();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().min();
+        });
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void minBy()
     {
-        this.classUnderTest().minBy(Functions.getStringPassThru());
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().minBy(Functions.getStringPassThru());
+        });
     }
 
     private static class StubProcedure<T>
@@ -362,9 +372,9 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void getIfAbsent_function()
     {
         MutableMap<Integer, String> map = new EmptyMap<>();
-        Assert.assertNull(map.get(4));
-        Assert.assertEquals("4", map.getIfAbsent(4, new PassThruFunction0<>("4")));
-        Assert.assertNull(map.get(4));
+        Assertions.assertNull(map.get(4));
+        Assertions.assertEquals("4", map.getIfAbsent(4, new PassThruFunction0<>("4")));
+        Assertions.assertNull(map.get(4));
     }
 
     @Override
@@ -372,9 +382,9 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void getIfAbsent()
     {
         MutableMap<Integer, String> map = new EmptyMap<>();
-        Assert.assertNull(map.get(4));
-        Assert.assertEquals("4", map.getIfAbsentValue(4, "4"));
-        Assert.assertNull(map.get(4));
+        Assertions.assertNull(map.get(4));
+        Assertions.assertEquals("4", map.getIfAbsentValue(4, "4"));
+        Assertions.assertNull(map.get(4));
     }
 
     @Override
@@ -382,9 +392,9 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void getIfAbsentWith()
     {
         MutableMap<Integer, String> map = new EmptyMap<>();
-        Assert.assertNull(map.get(4));
-        Assert.assertEquals("4", map.getIfAbsentWith(4, String::valueOf, 4));
-        Assert.assertNull(map.get(4));
+        Assertions.assertNull(map.get(4));
+        Assertions.assertEquals("4", map.getIfAbsentWith(4, String::valueOf, 4));
+        Assertions.assertNull(map.get(4));
     }
 
     @Override
@@ -392,14 +402,14 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     public void ifPresentApply()
     {
         MutableMap<Integer, String> map = new EmptyMap<>();
-        Assert.assertNull(map.ifPresentApply(4, Functions.<String>getPassThru()));
+        Assertions.assertNull(map.ifPresentApply(4, Functions.<String>getPassThru()));
     }
 
     @Override
     @Test
     public void notEmpty()
     {
-        Assert.assertFalse(new EmptyMap<Integer, String>().notEmpty());
+        Assertions.assertFalse(new EmptyMap<Integer, String>().notEmpty());
     }
 
     @Override
@@ -431,6 +441,7 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     }
 
     @Override
+    @Test
     public void withKeyValue()
     {
         MutableMap<Integer, String> map = new EmptyMap<Integer, String>().withKeyValue(1, "A");
@@ -439,6 +450,7 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     }
 
     @Override
+    @Test
     public void withAllKeyValueArguments()
     {
         MutableMap<Integer, String> map1 = new EmptyMap<Integer, String>().withAllKeyValueArguments(Tuples.pair(1, "A"));
@@ -451,19 +463,21 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
     }
 
     @Override
+    @Test
     public void withoutKey()
     {
         MutableMap<Integer, String> map = new EmptyMap<>();
         MutableMap<Integer, String> mapWithout = map.withoutKey(1);
-        Assert.assertSame(map, mapWithout);
+        Assertions.assertSame(map, mapWithout);
     }
 
     @Override
+    @Test
     public void withoutAllKeys()
     {
         MutableMap<Integer, String> map = new EmptyMap<>();
         MutableMap<Integer, String> mapWithout = map.withoutAllKeys(FastList.newListWith(1, 2));
-        Assert.assertSame(map, mapWithout);
+        Assertions.assertSame(map, mapWithout);
     }
 
     @Override
@@ -476,6 +490,6 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest
         {
             collection.add(eachValue);
         }
-        Assert.assertEquals(FastList.newListWith(), collection);
+        Assertions.assertEquals(FastList.newListWith(), collection);
     }
 }

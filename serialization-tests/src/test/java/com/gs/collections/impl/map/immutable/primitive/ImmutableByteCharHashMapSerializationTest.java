@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.ByteCharHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableByteCharHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableByteCharHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVCeXRlQ2hhckhhc2hNYXAkSW1tdXRhYmxlQnl0ZUNoYXJNYXBTZXJpYWxpemF0aW9u\n"
-                        + "UHJveHkAAAAAAAAAAQwAAHhwdwoAAAACAQABAgACeA==",
+                """
+                rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVCeXRlQ2hhckhhc2hNYXAkSW1tdXRhYmxlQnl0ZUNoYXJNYXBTZXJpYWxpemF0aW9u
+                UHJveHkAAAAAAAAAAQwAAHhwdwoAAAACAQABAgACeA==\
+                """,
                 new ImmutableByteCharHashMap(ByteCharHashMap.newWithKeysValues((byte) 1, (char) 1, (byte) 2, (char) 2)));
     }
 }

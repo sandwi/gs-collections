@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MultiReaderUnifiedSetSerializationTest
 {
@@ -26,9 +26,11 @@ public class MultiReaderUnifiedSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5NdWx0aVJlYWRlclVu\n"
-                        + "aWZpZWRTZXQAAAAAAAAAAQwAAHhwc3IALmNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLnNldC5tdXRh\n"
-                        + "YmxlLlVuaWZpZWRTZXQAAAAAAAAAAQwAAHhwdwgAAAAAP0AAAHh4",
+                """
+                rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5NdWx0aVJlYWRlclVu
+                aWZpZWRTZXQAAAAAAAAAAQwAAHhwc3IALmNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLnNldC5tdXRh
+                YmxlLlVuaWZpZWRTZXQAAAAAAAAAAQwAAHhwdwgAAAAAP0AAAHh4\
+                """,
                 MultiReaderUnifiedSet.newSet());
     }
 }

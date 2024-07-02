@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableByteBooleanMapSerializationTest
 {
@@ -26,11 +26,13 @@ public class UnmodifiableByteBooleanMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t\n"
-                        + "b2RpZmlhYmxlQnl0ZUJvb2xlYW5NYXAAAAAAAAAAAQIAAUwAA21hcHQAPExjb20vZ3MvY29sbGVj\n"
-                        + "dGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0YWJsZUJ5dGVCb29sZWFuTWFwO3hwc3IAQGNvbS5n\n"
-                        + "cy5jb2xsZWN0aW9ucy5pbXBsLm1hcC5tdXRhYmxlLnByaW1pdGl2ZS5CeXRlQm9vbGVhbkhhc2hN\n"
-                        + "YXAAAAAAAAAAAQwAAHhwdwgAAAAAPwAAAHg=",
+                """
+                rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t
+                b2RpZmlhYmxlQnl0ZUJvb2xlYW5NYXAAAAAAAAAAAQIAAUwAA21hcHQAPExjb20vZ3MvY29sbGVj
+                dGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0YWJsZUJ5dGVCb29sZWFuTWFwO3hwc3IAQGNvbS5n
+                cy5jb2xsZWN0aW9ucy5pbXBsLm1hcC5tdXRhYmxlLnByaW1pdGl2ZS5CeXRlQm9vbGVhbkhhc2hN
+                YXAAAAAAAAAAAQwAAHhwdwgAAAAAPwAAAHg=\
+                """,
                 new UnmodifiableByteBooleanMap(new ByteBooleanHashMap()));
     }
 }

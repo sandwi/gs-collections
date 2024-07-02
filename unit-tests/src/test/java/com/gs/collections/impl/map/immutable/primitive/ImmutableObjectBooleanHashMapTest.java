@@ -19,8 +19,8 @@ package com.gs.collections.impl.map.immutable.primitive;
 import com.gs.collections.api.map.primitive.ImmutableObjectBooleanMap;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.map.mutable.primitive.ObjectBooleanHashMap;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ImmutableObjectBooleanHashMap}.
@@ -38,9 +38,9 @@ public class ImmutableObjectBooleanHashMapTest extends AbstractImmutableObjectBo
     {
         ImmutableObjectBooleanMap<String> map1 = this.classUnderTest();
         ImmutableObjectBooleanMap<String> expected = ObjectBooleanHashMap.newWithKeysValues("0", true, "1", true, "2", false, "3", false).toImmutable();
-        Assert.assertEquals(expected, map1.newWithKeyValue("3", false));
-        Assert.assertNotSame(map1, map1.newWithKeyValue("3", false));
-        Assert.assertEquals(this.classUnderTest(), map1);
+        Assertions.assertEquals(expected, map1.newWithKeyValue("3", false));
+        Assertions.assertNotSame(map1, map1.newWithKeyValue("3", false));
+        Assertions.assertEquals(this.classUnderTest(), map1);
     }
 
     @Test
@@ -48,9 +48,9 @@ public class ImmutableObjectBooleanHashMapTest extends AbstractImmutableObjectBo
     {
         ImmutableObjectBooleanMap<String> map1 = this.classUnderTest();
         ImmutableObjectBooleanMap<String> expected = this.newWithKeysValues("0", true, "1", true);
-        Assert.assertEquals(expected, map1.newWithoutKey("2"));
-        Assert.assertNotSame(map1, map1.newWithoutKey("2"));
-        Assert.assertEquals(this.classUnderTest(), map1);
+        Assertions.assertEquals(expected, map1.newWithoutKey("2"));
+        Assertions.assertNotSame(map1, map1.newWithoutKey("2"));
+        Assertions.assertEquals(this.classUnderTest(), map1);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class ImmutableObjectBooleanHashMapTest extends AbstractImmutableObjectBo
     {
         ImmutableObjectBooleanMap<String> map1 = this.classUnderTest();
         ImmutableObjectBooleanMap<String> expected = this.newWithKeysValues("1", true);
-        Assert.assertEquals(expected, map1.newWithoutAllKeys(FastList.newListWith("0", "2")));
-        Assert.assertNotSame(map1, map1.newWithoutAllKeys(FastList.newListWith("0", "2")));
-        Assert.assertEquals(this.classUnderTest(), map1);
+        Assertions.assertEquals(expected, map1.newWithoutAllKeys(FastList.newListWith("0", "2")));
+        Assertions.assertNotSame(map1, map1.newWithoutAllKeys(FastList.newListWith("0", "2")));
+        Assertions.assertEquals(this.classUnderTest(), map1);
     }
 }

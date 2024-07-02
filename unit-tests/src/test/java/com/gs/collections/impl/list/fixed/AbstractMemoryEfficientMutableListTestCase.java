@@ -33,15 +33,15 @@ import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.stack.mutable.ArrayStack;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractMemoryEfficientMutableListTestCase
 {
     protected MutableList<String> list;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.list = this.classUnderTest();
@@ -72,8 +72,8 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     {
         this.list.shuffleThis();
         MutableList<String> sortedList = this.list.sortThis();
-        Assert.assertSame(this.list, sortedList);
-        Assert.assertEquals(
+        Assertions.assertSame(this.list, sortedList);
+        Assertions.assertEquals(
                 this.getNStrings(),
                 sortedList);
     }
@@ -82,7 +82,7 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     public void sortThisBy()
     {
         this.list.shuffleThis();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getNStrings(),
                 this.list.sortThisBy(Functions.getStringToInteger()));
     }
@@ -91,7 +91,7 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     public void sortThisByInt()
     {
         this.list.shuffleThis();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getNStrings(),
                 this.list.sortThisByInt(Integer::parseInt));
     }
@@ -101,14 +101,14 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     {
         PartitionMutableList<String> partition = this.getNStrings().partition(s -> Integer.parseInt(s) % 2 == 0);
         MutableList<String> expected = FastList.newList(partition.getRejected()).withAll(partition.getSelected());
-        Assert.assertEquals(expected, this.list.sortThisByBoolean(s -> Integer.parseInt(s) % 2 == 0));
+        Assertions.assertEquals(expected, this.list.sortThisByBoolean(s -> Integer.parseInt(s) % 2 == 0));
     }
 
     @Test
     public void sortThisByChar()
     {
         this.list.shuffleThis();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getNStrings(),
                 this.list.sortThisByChar(string -> string.charAt(0)));
     }
@@ -117,7 +117,7 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     public void sortThisByByte()
     {
         this.list.shuffleThis();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getNStrings(),
                 this.list.sortThisByByte(Byte::parseByte));
     }
@@ -126,7 +126,7 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     public void sortThisByShort()
     {
         this.list.shuffleThis();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getNStrings(),
                 this.list.sortThisByShort(Short::parseShort));
     }
@@ -135,7 +135,7 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     public void sortThisByFloat()
     {
         this.list.shuffleThis();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getNStrings(),
                 this.list.sortThisByFloat(Float::parseFloat));
     }
@@ -144,7 +144,7 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     public void sortThisByLong()
     {
         this.list.shuffleThis();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getNStrings(),
                 this.list.sortThisByLong(Long::parseLong));
     }
@@ -153,7 +153,7 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     public void sortThisByDouble()
     {
         this.list.shuffleThis();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.getNStrings(),
                 this.list.sortThisByDouble(Double::parseDouble));
     }
@@ -164,8 +164,8 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
         MutableList<String> expected = FastList.newList(this.list);
         MutableList<String> actual = this.list.reverseThis();
         Collections.reverse(expected);
-        Assert.assertEquals(actual, expected);
-        Assert.assertSame(this.list, actual);
+        Assertions.assertEquals(actual, expected);
+        Assertions.assertSame(this.list, actual);
     }
 
     @Test
@@ -173,18 +173,18 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     {
         MutableList<String> actual = this.list.toReversed();
         MutableList<String> expected = FastList.newList(this.list).reverseThis();
-        Assert.assertEquals(actual, expected);
-        Assert.assertNotSame(this.list, actual);
+        Assertions.assertEquals(actual, expected);
+        Assertions.assertNotSame(this.list, actual);
     }
 
     @Test
     public void with()
     {
         MutableList<String> list = this.classUnderTest();
-        Assert.assertFalse(list.contains("11"));
+        Assertions.assertFalse(list.contains("11"));
         MutableList<String> listWith = list.with("11");
-        Assert.assertTrue(listWith.containsAll(list));
-        Assert.assertTrue(listWith.contains("11"));
+        Assertions.assertTrue(listWith.containsAll(list));
+        Assertions.assertTrue(listWith.contains("11"));
         Verify.assertInstanceOf(FixedSizeList.class, listWith);
     }
 
@@ -194,10 +194,10 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
         MutableList<String> list = this.classUnderTest();
         Verify.assertContainsNone(list, "11", "12");
         MutableList<String> listWith = list.withAll(FastList.newListWith("11", "12"));
-        Assert.assertTrue(listWith.containsAll(list));
+        Assertions.assertTrue(listWith.containsAll(list));
         Verify.assertContainsAll(listWith, "11", "12");
         Verify.assertInstanceOf(FixedSizeList.class, listWith);
-        Assert.assertSame(listWith, listWith.withAll(FastList.<String>newList()));
+        Assertions.assertSame(listWith, listWith.withAll(FastList.<String>newList()));
     }
 
     @Test
@@ -205,17 +205,17 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
     {
         MutableList<String> list = this.classUnderTest().with("11").with("12");
         MutableList<String> listWithout = list.withoutAll(FastList.newListWith("11", "12"));
-        Assert.assertTrue(listWithout.containsAll(this.classUnderTest()));
+        Assertions.assertTrue(listWithout.containsAll(this.classUnderTest()));
         Verify.assertContainsNone(listWithout, "11", "12");
         Verify.assertInstanceOf(FixedSizeList.class, listWithout);
-        Assert.assertSame(listWithout, listWithout.withoutAll(FastList.<String>newList()));
+        Assertions.assertSame(listWithout, listWithout.withoutAll(FastList.<String>newList()));
     }
 
     @Test
     public void toStack()
     {
         MutableStack<String> stack = this.classUnderTest().toStack();
-        Assert.assertEquals(ArrayStack.newStack(this.classUnderTest()), stack);
+        Assertions.assertEquals(ArrayStack.newStack(this.classUnderTest()), stack);
     }
 
     @Test
@@ -225,7 +225,7 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
         Procedure2<Counter, String> sumAggregator = (aggregate, value) -> aggregate.add(Integer.parseInt(value));
         MapIterable<String, Counter> actual = this.classUnderTest().aggregateInPlaceBy(groupBy, Counter::new, sumAggregator);
         MapIterable<String, Counter> expected = FastList.newList(this.classUnderTest()).aggregateInPlaceBy(groupBy, Counter::new, sumAggregator);
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -235,6 +235,6 @@ public abstract class AbstractMemoryEfficientMutableListTestCase
         Function2<Integer, String, Integer> sumAggregator = (aggregate, value) -> aggregate + Integer.parseInt(value);
         MapIterable<String, Integer> actual = this.classUnderTest().aggregateBy(groupBy, () -> 0, sumAggregator);
         MapIterable<String, Integer> expected = FastList.newList(this.classUnderTest()).aggregateBy(groupBy, () -> 0, sumAggregator);
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 }

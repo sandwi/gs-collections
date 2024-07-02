@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LongBooleanHashMapSerializationTest
 {
@@ -26,8 +26,10 @@ public class LongBooleanHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuTG9u\n"
-                        + "Z0Jvb2xlYW5IYXNoTWFwAAAAAAAAAAEMAAB4cHcIAAAAAD8AAAB4",
+                """
+                rO0ABXNyAEBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuTG9u
+                Z0Jvb2xlYW5IYXNoTWFwAAAAAAAAAAEMAAB4cHcIAAAAAD8AAAB4\
+                """,
                 new LongBooleanHashMap());
     }
 }

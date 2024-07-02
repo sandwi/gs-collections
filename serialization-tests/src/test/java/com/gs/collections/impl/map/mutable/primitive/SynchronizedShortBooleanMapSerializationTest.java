@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SynchronizedShortBooleanMapSerializationTest
 {
@@ -26,12 +26,14 @@ public class SynchronizedShortBooleanMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU3lu\n"
-                        + "Y2hyb25pemVkU2hvcnRCb29sZWFuTWFwAAAAAAAAAAECAAJMAARsb2NrdAASTGphdmEvbGFuZy9P\n"
-                        + "YmplY3Q7TAADbWFwdAA9TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvbWFwL3ByaW1pdGl2ZS9NdXRh\n"
-                        + "YmxlU2hvcnRCb29sZWFuTWFwO3hwcQB+AANzcgBBY29tLmdzLmNvbGxlY3Rpb25zLmltcGwubWFw\n"
-                        + "Lm11dGFibGUucHJpbWl0aXZlLlNob3J0Qm9vbGVhbkhhc2hNYXAAAAAAAAAAAQwAAHhwdwgAAAAA\n"
-                        + "PwAAAHg=",
+                """
+                rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU3lu
+                Y2hyb25pemVkU2hvcnRCb29sZWFuTWFwAAAAAAAAAAECAAJMAARsb2NrdAASTGphdmEvbGFuZy9P
+                YmplY3Q7TAADbWFwdAA9TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvbWFwL3ByaW1pdGl2ZS9NdXRh
+                YmxlU2hvcnRCb29sZWFuTWFwO3hwcQB+AANzcgBBY29tLmdzLmNvbGxlY3Rpb25zLmltcGwubWFw
+                Lm11dGFibGUucHJpbWl0aXZlLlNob3J0Qm9vbGVhbkhhc2hNYXAAAAAAAAAAAQwAAHhwdwgAAAAA
+                PwAAAHg=\
+                """,
                 new SynchronizedShortBooleanMap(new ShortBooleanHashMap()));
     }
 }

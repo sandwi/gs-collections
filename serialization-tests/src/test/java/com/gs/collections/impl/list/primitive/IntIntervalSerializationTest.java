@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IntIntervalSerializationTest
 {
@@ -26,8 +26,10 @@ public class IntIntervalSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LnByaW1pdGl2ZS5JbnRJbnRlcnZh\n"
-                        + "bAAAAAAAAAABAgADSQAEZnJvbUkABHN0ZXBJAAJ0b3hwAAAAAAAAAAEAAAAA",
+                """
+                rO0ABXNyADJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LnByaW1pdGl2ZS5JbnRJbnRlcnZh
+                bAAAAAAAAAABAgADSQAEZnJvbUkABHN0ZXBJAAJ0b3hwAAAAAAAAAAEAAAAA\
+                """,
                 IntInterval.fromToBy(0, 0, 1));
     }
 }

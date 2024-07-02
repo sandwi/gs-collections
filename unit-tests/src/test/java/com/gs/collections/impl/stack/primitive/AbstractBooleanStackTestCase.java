@@ -24,8 +24,10 @@ import com.gs.collections.impl.collection.mutable.primitive.AbstractBooleanItera
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.stack.mutable.ArrayStack;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Abstract JUnit test for {@link BooleanStack}.
@@ -57,21 +59,21 @@ public abstract class AbstractBooleanStackTestCase extends AbstractBooleanIterab
         int size = this.classUnderTest().size();
         for (int i = 0; i < size; i++)
         {
-            Assert.assertTrue(iterator.hasNext());
+            Assertions.assertTrue(iterator.hasNext());
             boolean sizeEven = (size & 1) == 0;
             boolean iEven = (i & 1) == 0;
-            Assert.assertEquals(sizeEven != iEven, iterator.next());
+            Assertions.assertEquals(sizeEven != iEven, iterator.next());
         }
-        Assert.assertFalse(iterator.hasNext());
-        Assert.assertEquals((this.classUnderTest().size() & 1) != 0, this.classUnderTest().booleanIterator().next());
+        Assertions.assertFalse(iterator.hasNext());
+        Assertions.assertEquals((this.classUnderTest().size() & 1) != 0, this.classUnderTest().booleanIterator().next());
     }
 
     @Test
     public void peek()
     {
-        Assert.assertEquals((this.classUnderTest().size() & 1) != 0, this.classUnderTest().peek());
-        Assert.assertEquals(BooleanArrayList.newListWith(), this.classUnderTest().peek(0));
-        Assert.assertEquals(BooleanArrayList.newListWith((this.classUnderTest().size() & 1) != 0, (this.classUnderTest().size() & 1) == 0),
+        Assertions.assertEquals((this.classUnderTest().size() & 1) != 0, this.classUnderTest().peek());
+        Assertions.assertEquals(BooleanArrayList.newListWith(), this.classUnderTest().peek(0));
+        Assertions.assertEquals(BooleanArrayList.newListWith((this.classUnderTest().size() & 1) != 0, (this.classUnderTest().size() & 1) == 0),
                 this.classUnderTest().peek(2));
     }
 
@@ -83,26 +85,32 @@ public abstract class AbstractBooleanStackTestCase extends AbstractBooleanIterab
         {
             boolean sizeEven = (this.classUnderTest().size() & 1) == 0;
             boolean iEven = (i & 1) == 0;
-            Assert.assertEquals(sizeEven != iEven, this.classUnderTest().peekAt(i));
+            Assertions.assertEquals(sizeEven != iEven, this.classUnderTest().peekAt(i));
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void peek_at_index_less_than_zero_throws_exception()
     {
-        this.classUnderTest().peekAt(-1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.classUnderTest().peekAt(-1);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void peek_at_index_greater_than_size_throws_exception()
     {
-        this.classUnderTest().peekAt(this.classUnderTest().size() + 1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.classUnderTest().peekAt(this.classUnderTest().size() + 1);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void peek_at_index_equal_to_size_throws_exception()
     {
-        this.classUnderTest().peekAt(this.classUnderTest().size());
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.classUnderTest().peekAt(this.classUnderTest().size());
+        });
     }
 
     @Override
@@ -110,7 +118,7 @@ public abstract class AbstractBooleanStackTestCase extends AbstractBooleanIterab
     public void testToString()
     {
         super.testToString();
-        Assert.assertEquals(this.createExpectedString("[", ", ", "]"), this.classUnderTest().toString());
+        Assertions.assertEquals(this.createExpectedString("[", ", ", "]"), this.classUnderTest().toString());
     }
 
     @Override
@@ -124,7 +132,7 @@ public abstract class AbstractBooleanStackTestCase extends AbstractBooleanIterab
         {
             list.add((i & 1) != 0);
         }
-        Assert.assertEquals(list, this.classUnderTest().toList());
+        Assertions.assertEquals(list, this.classUnderTest().toList());
     }
 
     @Override
@@ -132,9 +140,9 @@ public abstract class AbstractBooleanStackTestCase extends AbstractBooleanIterab
     public void makeString()
     {
         super.makeString();
-        Assert.assertEquals(this.createExpectedString("", ", ", ""), this.classUnderTest().makeString());
-        Assert.assertEquals(this.createExpectedString("", "|", ""), this.classUnderTest().makeString("|"));
-        Assert.assertEquals(this.createExpectedString("{", "|", "}"), this.classUnderTest().makeString("{", "|", "}"));
+        Assertions.assertEquals(this.createExpectedString("", ", ", ""), this.classUnderTest().makeString());
+        Assertions.assertEquals(this.createExpectedString("", "|", ""), this.classUnderTest().makeString("|"));
+        Assertions.assertEquals(this.createExpectedString("{", "|", "}"), this.classUnderTest().makeString("{", "|", "}"));
     }
 
     protected String createExpectedString(String start, String sep, String end)
@@ -159,21 +167,21 @@ public abstract class AbstractBooleanStackTestCase extends AbstractBooleanIterab
         super.appendString();
         StringBuilder appendable1 = new StringBuilder();
         this.classUnderTest().appendString(appendable1);
-        Assert.assertEquals(this.createExpectedString("", ", ", ""), appendable1.toString());
+        Assertions.assertEquals(this.createExpectedString("", ", ", ""), appendable1.toString());
 
         StringBuilder appendable2 = new StringBuilder();
         this.classUnderTest().appendString(appendable2, "|");
-        Assert.assertEquals(this.createExpectedString("", "|", ""), appendable2.toString());
+        Assertions.assertEquals(this.createExpectedString("", "|", ""), appendable2.toString());
 
         StringBuilder appendable3 = new StringBuilder();
         this.classUnderTest().appendString(appendable3, "{", "|", "}");
-        Assert.assertEquals(this.createExpectedString("{", "|", "}"), appendable3.toString());
+        Assertions.assertEquals(this.createExpectedString("{", "|", "}"), appendable3.toString());
     }
 
     @Test
     public void toImmutable()
     {
-        Assert.assertEquals(this.classUnderTest(), this.classUnderTest().toImmutable());
+        Assertions.assertEquals(this.classUnderTest(), this.classUnderTest().toImmutable());
         Verify.assertInstanceOf(ImmutableBooleanStack.class, this.classUnderTest().toImmutable());
     }
 }

@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.ByteFloatHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableByteFloatHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableByteFloatHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVCeXRlRmxvYXRIYXNoTWFwJEltbXV0YWJsZUJ5dGVGbG9hdE1hcFNlcmlhbGl6YXRp\n"
-                        + "b25Qcm94eQAAAAAAAAABDAAAeHB3DgAAAAIBP4AAAAJAAAAAeA==",
+                """
+                rO0ABXNyAHFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVCeXRlRmxvYXRIYXNoTWFwJEltbXV0YWJsZUJ5dGVGbG9hdE1hcFNlcmlhbGl6YXRp
+                b25Qcm94eQAAAAAAAAABDAAAeHB3DgAAAAIBP4AAAAJAAAAAeA==\
+                """,
                 new ImmutableByteFloatHashMap(ByteFloatHashMap.newWithKeysValues((byte) 1, 1.0f, (byte) 2, 2.0f)));
     }
 }

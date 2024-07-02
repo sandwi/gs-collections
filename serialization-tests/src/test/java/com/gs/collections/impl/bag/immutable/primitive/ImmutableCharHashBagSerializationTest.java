@@ -18,8 +18,8 @@ package com.gs.collections.impl.bag.immutable.primitive;
 
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableCharHashBagSerializationTest
 {
@@ -28,9 +28,11 @@ public class ImmutableCharHashBagSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAGdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVDaGFySGFzaEJhZyRJbW11dGFibGVDaGFyQmFnU2VyaWFsaXphdGlvblByb3h5AAAA\n"
-                        + "AAAAAAEMAAB4cHcQAAAAAgBhAAAAAQBiAAAAAXg=",
+                """
+                rO0ABXNyAGdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVDaGFySGFzaEJhZyRJbW11dGFibGVDaGFyQmFnU2VyaWFsaXphdGlvblByb3h5AAAA
+                AAAAAAEMAAB4cHcQAAAAAgBhAAAAAQBiAAAAAXg=\
+                """,
                 ImmutableCharHashBag.newBagWith('a', 'b'));
     }
 
@@ -38,16 +40,18 @@ public class ImmutableCharHashBagSerializationTest
     public void deserialize()
     {
         ImmutableCharHashBag immutableCharHashBag = SerializeTestHelper.serializeDeserialize(ImmutableCharHashBag.newBagWith('a', 'b'));
-        Assert.assertEquals(ImmutableCharHashBag.newBagWith('a', 'b'), immutableCharHashBag);
+        Assertions.assertEquals(ImmutableCharHashBag.newBagWith('a', 'b'), immutableCharHashBag);
     }
 
     @Test
     public void decode()
     {
         Verify.assertDeserializedForm(
-                "rO0ABXNyAGdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVDaGFySGFzaEJhZyRJbW11dGFibGVDaGFyQmFnU2VyaWFsaXphdGlvblByb3h5AAAA\n"
-                        + "AAAAAAEMAAB4cHcQAAAAAgBhAAAAAQBiAAAAAXg=",
-                ImmutableCharHashBag.newBagWith('a', 'b'));
+                ImmutableCharHashBag.newBagWith('a', 'b'),
+                """
+                rO0ABXNyAGdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVDaGFySGFzaEJhZyRJbW11dGFibGVDaGFyQmFnU2VyaWFsaXphdGlvblByb3h5AAAA
+                AAAAAAEMAAB4cHcQAAAAAgBhAAAAAQBiAAAAAXg=\
+                """);
     }
 }

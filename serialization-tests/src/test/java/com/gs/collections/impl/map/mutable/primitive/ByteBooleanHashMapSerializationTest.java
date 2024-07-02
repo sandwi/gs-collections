@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ByteBooleanHashMapSerializationTest
 {
@@ -26,8 +26,10 @@ public class ByteBooleanHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuQnl0\n"
-                        + "ZUJvb2xlYW5IYXNoTWFwAAAAAAAAAAEMAAB4cHcIAAAAAD8AAAB4",
+                """
+                rO0ABXNyAEBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuQnl0
+                ZUJvb2xlYW5IYXNoTWFwAAAAAAAAAAEMAAB4cHcIAAAAAD8AAAB4\
+                """,
                 new ByteBooleanHashMap());
     }
 }

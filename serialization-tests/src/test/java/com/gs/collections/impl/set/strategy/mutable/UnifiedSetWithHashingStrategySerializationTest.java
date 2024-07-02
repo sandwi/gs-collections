@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.strategy.mutable;
 
 import com.gs.collections.impl.block.factory.HashingStrategies;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnifiedSetWithHashingStrategySerializationTest
 {
@@ -27,10 +27,12 @@ public class UnifiedSetWithHashingStrategySerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc3RyYXRlZ3kubXV0YWJsZS5Vbmlm\n"
-                        + "aWVkU2V0V2l0aEhhc2hpbmdTdHJhdGVneQAAAAAAAAABDAAAeHBzcgBHY29tLmdzLmNvbGxlY3Rp\n"
-                        + "b25zLmltcGwuYmxvY2suZmFjdG9yeS5IYXNoaW5nU3RyYXRlZ2llcyREZWZhdWx0U3RyYXRlZ3kA\n"
-                        + "AAAAAAAAAQIAAHhwdwgAAAAAP0AAAHg=",
+                """
+                rO0ABXNyAEpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc3RyYXRlZ3kubXV0YWJsZS5Vbmlm
+                aWVkU2V0V2l0aEhhc2hpbmdTdHJhdGVneQAAAAAAAAABDAAAeHBzcgBHY29tLmdzLmNvbGxlY3Rp
+                b25zLmltcGwuYmxvY2suZmFjdG9yeS5IYXNoaW5nU3RyYXRlZ2llcyREZWZhdWx0U3RyYXRlZ3kA
+                AAAAAAAAAQIAAHhwdwgAAAAAP0AAAHg=\
+                """,
                 UnifiedSetWithHashingStrategy.newSet(HashingStrategies.defaultStrategy()));
     }
 }

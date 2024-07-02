@@ -26,8 +26,8 @@ import com.gs.collections.impl.block.factory.Predicates;
 import com.gs.collections.impl.collection.mutable.UnmodifiableMutableCollectionTestCase;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMutableCollectionTestCase<Integer>
 {
@@ -43,10 +43,10 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
         MutableSet<String> union = set.union(UnifiedSet.newSetWith("a", "b", "c", "1"));
         Verify.assertSize(set.size() + 3, union);
-        Assert.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
+        Assertions.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
         Verify.assertContainsAll(union, "a", "b", "c");
 
-        Assert.assertEquals(set, set.union(UnifiedSet.newSetWith("1")));
+        Assertions.assertEquals(set, set.union(UnifiedSet.newSetWith("1")));
     }
 
     @Test
@@ -55,10 +55,10 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
         MutableSet<String> union = set.unionInto(UnifiedSet.newSetWith("a", "b", "c", "1"), UnifiedSet.<String>newSet());
         Verify.assertSize(set.size() + 3, union);
-        Assert.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
+        Assertions.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
         Verify.assertContainsAll(union, "a", "b", "c");
 
-        Assert.assertEquals(set, set.unionInto(UnifiedSet.newSetWith("1"), UnifiedSet.<String>newSet()));
+        Assertions.assertEquals(set, set.unionInto(UnifiedSet.newSetWith("1"), UnifiedSet.<String>newSet()));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
         MutableSet<String> intersect = set.intersect(UnifiedSet.newSetWith("a", "b", "c", "1"));
         Verify.assertSize(1, intersect);
-        Assert.assertEquals(UnifiedSet.newSetWith("1"), intersect);
+        Assertions.assertEquals(UnifiedSet.newSetWith("1"), intersect);
 
         Verify.assertEmpty(set.intersect(UnifiedSet.newSetWith("not present")));
     }
@@ -78,7 +78,7 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
         MutableSet<String> intersect = set.intersectInto(UnifiedSet.newSetWith("a", "b", "c", "1"), UnifiedSet.<String>newSet());
         Verify.assertSize(1, intersect);
-        Assert.assertEquals(UnifiedSet.newSetWith("1"), intersect);
+        Assertions.assertEquals(UnifiedSet.newSetWith("1"), intersect);
 
         Verify.assertEmpty(set.intersectInto(UnifiedSet.newSetWith("not present"), UnifiedSet.<String>newSet()));
     }
@@ -88,8 +88,8 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
         MutableSet<String> difference = set.difference(UnifiedSet.newSetWith("2", "3", "4", "not present"));
-        Assert.assertEquals(UnifiedSet.newSetWith("1"), difference);
-        Assert.assertEquals(set, set.difference(UnifiedSet.newSetWith("not present")));
+        Assertions.assertEquals(UnifiedSet.newSetWith("1"), difference);
+        Assertions.assertEquals(set, set.difference(UnifiedSet.newSetWith("not present")));
     }
 
     @Test
@@ -97,8 +97,8 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
         MutableSet<String> difference = set.differenceInto(UnifiedSet.newSetWith("2", "3", "4", "not present"), UnifiedSet.<String>newSet());
-        Assert.assertEquals(UnifiedSet.newSetWith("1"), difference);
-        Assert.assertEquals(set, set.differenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.<String>newSet()));
+        Assertions.assertEquals(UnifiedSet.newSetWith("1"), difference);
+        Assertions.assertEquals(set, set.differenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.<String>newSet()));
     }
 
     @Test
@@ -106,11 +106,11 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
         MutableSet<String> difference = set.symmetricDifference(UnifiedSet.newSetWith("2", "3", "4", "5", "not present"));
-        Verify.assertContains("1", difference);
-        Assert.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
+        Verify.assertContains(difference, "1");
+        Assertions.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
         for (int i = 2; i <= set.size(); i++)
         {
-            Verify.assertNotContains(String.valueOf(i), difference);
+            Verify.assertNotContains(difference, String.valueOf(i));
         }
 
         Verify.assertSize(set.size() + 1, set.symmetricDifference(UnifiedSet.newSetWith("not present")));
@@ -123,11 +123,11 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
         MutableSet<String> difference = set.symmetricDifferenceInto(
                 UnifiedSet.newSetWith("2", "3", "4", "5", "not present"),
                 UnifiedSet.<String>newSet());
-        Verify.assertContains("1", difference);
-        Assert.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
+        Verify.assertContains(difference, "1");
+        Assertions.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
         for (int i = 2; i <= set.size(); i++)
         {
-            Verify.assertNotContains(String.valueOf(i), difference);
+            Verify.assertNotContains(difference, String.valueOf(i));
         }
 
         Verify.assertSize(
@@ -139,15 +139,15 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
     public void isSubsetOf()
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
-        Assert.assertTrue(set.isSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
+        Assertions.assertTrue(set.isSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
     }
 
     @Test
     public void isProperSubsetOf()
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
-        Assert.assertTrue(set.isProperSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
-        Assert.assertFalse(set.isProperSubsetOf(set));
+        Assertions.assertTrue(set.isProperSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
+        Assertions.assertFalse(set.isProperSubsetOf(set));
     }
 
     @Test
@@ -166,7 +166,7 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();
         LazyIterable<Pair<String, String>> cartesianProduct = set.cartesianProduct(UnifiedSet.newSetWith("One", "Two"));
         Verify.assertIterableSize(set.size() * 2, cartesianProduct);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 set,
                 cartesianProduct
                         .select(Predicates.attributeEqual((Function<Pair<?, String>, String>) Pair::getTwo, "One"))

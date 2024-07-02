@@ -17,15 +17,19 @@
 package com.gs.collections.impl.string.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CharAdapterSerializationTest
 {
-    public static final String EMPTY_CHAR_ADAPTER = "rO0ABXNyADRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdHJpbmcuaW1tdXRhYmxlLkNoYXJBZGFw\n"
-            + "dGVyAAAAAAAAAAECAAFMAAdhZGFwdGVkdAASTGphdmEvbGFuZy9TdHJpbmc7eHB0AAA=";
-    public static final String HELLO_WORLD_STRING = "rO0ABXNyADRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdHJpbmcuaW1tdXRhYmxlLkNoYXJBZGFw\n"
-            + "dGVyAAAAAAAAAAECAAFMAAdhZGFwdGVkdAASTGphdmEvbGFuZy9TdHJpbmc7eHB0AAxIZWxsbyBX\n"
-            + "b3JsZCE=";
+    public static final String EMPTY_CHAR_ADAPTER = """
+            rO0ABXNyADRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdHJpbmcuaW1tdXRhYmxlLkNoYXJBZGFw
+            dGVyAAAAAAAAAAECAAFMAAdhZGFwdGVkdAASTGphdmEvbGFuZy9TdHJpbmc7eHB0AAA=\
+            """;
+    public static final String HELLO_WORLD_STRING = """
+            rO0ABXNyADRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdHJpbmcuaW1tdXRhYmxlLkNoYXJBZGFw
+            dGVyAAAAAAAAAAECAAFMAAdhZGFwdGVkdAASTGphdmEvbGFuZy9TdHJpbmc7eHB0AAxIZWxsbyBX
+            b3JsZCE=\
+            """;
 
     @Test
     public void serializedForm()

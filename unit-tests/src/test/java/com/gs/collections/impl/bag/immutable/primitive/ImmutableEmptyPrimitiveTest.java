@@ -25,7 +25,7 @@ import com.gs.collections.impl.factory.primitive.IntBags;
 import com.gs.collections.impl.factory.primitive.LongBags;
 import com.gs.collections.impl.factory.primitive.ShortBags;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for empty() methods of primitive classes

@@ -414,9 +414,9 @@ public abstract class AbstractArrayAdapter<T>
         {
             return false;
         }
-        if (that instanceof AbstractArrayAdapter)
+        if (that instanceof AbstractArrayAdapter adapter)
         {
-            return this.abstractArrayAdapterEquals((AbstractArrayAdapter<?>) that);
+            return this.abstractArrayAdapterEquals(adapter);
         }
         return InternalArrayIterate.arrayEqualsList(this.items, this.items.length, (List<?>) that);
     }

@@ -18,7 +18,7 @@ package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.block.procedure.primitive.InjectIntoLongProcedure;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class InjectIntoLongProcedureSerializationTest
 {
@@ -27,10 +27,12 @@ public class InjectIntoLongProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUucHJpbWl0aXZl\n"
-                        + "LkluamVjdEludG9Mb25nUHJvY2VkdXJlAAAAAAAAAAECAAJKAAZyZXN1bHRMAAhmdW5jdGlvbnQA\n"
-                        + "Skxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9Mb25nT2Jq\n"
-                        + "ZWN0VG9Mb25nRnVuY3Rpb247eHAAAAAAAAAAAHA=",
+                """
+                rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUucHJpbWl0aXZl
+                LkluamVjdEludG9Mb25nUHJvY2VkdXJlAAAAAAAAAAECAAJKAAZyZXN1bHRMAAhmdW5jdGlvbnQA
+                Skxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL3ByaW1pdGl2ZS9Mb25nT2Jq
+                ZWN0VG9Mb25nRnVuY3Rpb247eHAAAAAAAAAAAHA=\
+                """,
                 new InjectIntoLongProcedure<Object>(0L, null));
     }
 }

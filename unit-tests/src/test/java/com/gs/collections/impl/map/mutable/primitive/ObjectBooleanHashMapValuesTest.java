@@ -31,8 +31,6 @@ import com.gs.collections.impl.collection.mutable.primitive.UnmodifiableBooleanC
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * JUnit test for {@link ObjectBooleanHashMap#values()}.

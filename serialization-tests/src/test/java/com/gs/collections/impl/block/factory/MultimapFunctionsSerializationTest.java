@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.factory;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MultimapFunctionsSerializationTest
 {
@@ -26,9 +26,11 @@ public class MultimapFunctionsSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5Lk11bHRpbWFwRnVu\n"
-                        + "Y3Rpb25zJE11bHRpbWFwR2V0RnVuY3Rpb24AAAAAAAAAAQIAAUwACG11bHRpbWFwdAAqTGNvbS9n\n"
-                        + "cy9jb2xsZWN0aW9ucy9hcGkvbXVsdGltYXAvTXVsdGltYXA7eHBw",
+                """
+                rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5Lk11bHRpbWFwRnVu
+                Y3Rpb25zJE11bHRpbWFwR2V0RnVuY3Rpb24AAAAAAAAAAQIAAUwACG11bHRpbWFwdAAqTGNvbS9n
+                cy9jb2xsZWN0aW9ucy9hcGkvbXVsdGltYXAvTXVsdGltYXA7eHBw\
+                """,
                 MultimapFunctions.get(null));
     }
 }

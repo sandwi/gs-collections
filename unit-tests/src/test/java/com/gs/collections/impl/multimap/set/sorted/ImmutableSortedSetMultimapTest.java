@@ -39,8 +39,8 @@ import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTestCase
 {
@@ -61,8 +61,8 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
     {
         UnifiedMap<Integer, ImmutableSortedSet<Integer>> map = UnifiedMap.newWithKeysValues(1, TreeSortedSet.newSetWith(1).toImmutable());
         ImmutableSortedSetMultimap<Integer, Integer> immutableMap = new ImmutableSortedSetMultimapImpl<>(map, null);
-        Assert.assertEquals(FastList.newListWith(1), immutableMap.get(1).toList());
-        Assert.assertNull(immutableMap.comparator());
+        Assertions.assertEquals(FastList.newListWith(1), immutableMap.get(1).toList());
+        Assertions.assertNull(immutableMap.comparator());
         Verify.assertSize(1, immutableMap);
     }
 
@@ -70,7 +70,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
     public void testNewEmpty()
     {
         ImmutableSortedSetMultimap<Integer, Integer> map = new ImmutableSortedSetMultimapImpl<>(UnifiedMap.<Integer, ImmutableSortedSet<Integer>>newMap(), Collections.<Integer>reverseOrder());
-        Assert.assertEquals(Collections.<Integer>reverseOrder(), map.newEmpty().comparator());
+        Assertions.assertEquals(Collections.<Integer>reverseOrder(), map.newEmpty().comparator());
         Verify.assertEmpty(map.newEmpty());
     }
 
@@ -91,6 +91,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
     }
 
     @Override
+    @Test
     public void allowDuplicates()
     {
         // Sets do not allow duplicates
@@ -106,7 +107,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         multimap.put("Three", 3);
         multimap.put("Three", 3);
         multimap.toImmutable().forEachKeyMultiValues((key, values) -> collection.add(Tuples.pair(key, values)));
-        Assert.assertEquals(UnifiedSet.newSetWith(Tuples.pair("Two", TreeSortedSet.newSetWith(Comparators.<Integer>reverseNaturalOrder(), 2, 1)), Tuples.pair("Three", TreeSortedSet.newSetWith(Comparators.<Integer>reverseNaturalOrder(), 3, 3))), collection);
+        Assertions.assertEquals(UnifiedSet.newSetWith(Tuples.pair("Two", TreeSortedSet.newSetWith(Comparators.<Integer>reverseNaturalOrder(), 2, 1)), Tuples.pair("Three", TreeSortedSet.newSetWith(Comparators.<Integer>reverseNaturalOrder(), 3, 3))), collection);
     }
 
     @Override
@@ -119,8 +120,8 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
                 .newWith("Less than 3", 2)
                 .newWith("Less than 3", 2);
         UnsortedSetMultimap<Integer, String> flipped = multimap.flip();
-        Assert.assertEquals(Sets.immutable.with("Less than 3"), flipped.get(2));
-        Assert.assertEquals(Sets.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
+        Assertions.assertEquals(Sets.immutable.with("Less than 3"), flipped.get(2));
+        Assertions.assertEquals(Sets.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
     }
 
     @Override
@@ -135,9 +136,9 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         TreeSortedSetMultimap<String, Integer> expectedMultimap = TreeSortedSetMultimap.newMultimap(Comparators.<Integer>reverseNaturalOrder());
         expectedMultimap.putAll("Two", FastList.newListWith(4, 2));
         ImmutableSortedSetMultimap<String, Integer> expectedImmutableMultimap = expectedMultimap.toImmutable();
-        Assert.assertEquals(expectedImmutableMultimap, selectedMultimap);
+        Assertions.assertEquals(expectedImmutableMultimap, selectedMultimap);
         Verify.assertIterablesEqual(expectedImmutableMultimap.get("Two"), selectedMultimap.get("Two"));
-        Assert.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
+        Assertions.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
     }
 
     @Override
@@ -152,9 +153,9 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         TreeSortedSetMultimap<String, Integer> expectedMultimap = TreeSortedSetMultimap.newMultimap(Comparators.<Integer>reverseNaturalOrder());
         expectedMultimap.putAll("One", FastList.newListWith(3, 1));
         ImmutableSortedSetMultimap<String, Integer> expectedImmutableMultimap = expectedMultimap.toImmutable();
-        Assert.assertEquals(expectedImmutableMultimap, rejectedMultimap);
+        Assertions.assertEquals(expectedImmutableMultimap, rejectedMultimap);
         Verify.assertIterablesEqual(expectedImmutableMultimap.get("One"), rejectedMultimap.get("One"));
-        Assert.assertEquals(expectedMultimap.comparator(), rejectedMultimap.comparator());
+        Assertions.assertEquals(expectedMultimap.comparator(), rejectedMultimap.comparator());
     }
 
     @Override
@@ -171,9 +172,9 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         TreeSortedSetMultimap<Integer, Integer> expectedMultimap = TreeSortedSetMultimap.newMultimap(Comparators.<Integer>reverseNaturalOrder());
         expectedMultimap.putAll(2, FastList.newListWith(5, 4, 3, 2, 2));
         ImmutableSortedSetMultimap<Integer, Integer> expectedImmutableMultimap = expectedMultimap.toImmutable();
-        Assert.assertEquals(expectedImmutableMultimap, selectedMultimap);
+        Assertions.assertEquals(expectedImmutableMultimap, selectedMultimap);
         Verify.assertIterablesEqual(expectedImmutableMultimap.get(2), selectedMultimap.get(2));
-        Assert.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
+        Assertions.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
     }
 
     @Override
@@ -190,9 +191,9 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         TreeSortedSetMultimap<Integer, Integer> expectedMultimap = TreeSortedSetMultimap.newMultimap(Comparators.<Integer>reverseNaturalOrder());
         expectedMultimap.putAll(3, FastList.newListWith(5, 4, 2, 2));
         ImmutableSortedSetMultimap<Integer, Integer> expectedImmutableMultimap = expectedMultimap.toImmutable();
-        Assert.assertEquals(expectedImmutableMultimap, selectedMultimap);
+        Assertions.assertEquals(expectedImmutableMultimap, selectedMultimap);
         Verify.assertIterablesEqual(expectedImmutableMultimap.get(3), selectedMultimap.get(3));
-        Assert.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
+        Assertions.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
     }
 
     @Override
@@ -208,14 +209,14 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         expectedMultimap1.putAll(1, FastList.newListWith("4Value", "3Value", "2Value", "1Value"));
         expectedMultimap1.putAll(2, FastList.newListWith("5Value", "4Value", "3Value", "2Value"));
         ImmutableBagMultimap<Integer, String> expectedImmutableMultimap1 = expectedMultimap1.toImmutable();
-        Assert.assertEquals(expectedImmutableMultimap1, collectedMultimap1);
+        Assertions.assertEquals(expectedImmutableMultimap1, collectedMultimap1);
 
         ImmutableBagMultimap<Integer, String> collectedMultimap2 = immutableMap.collectKeysValues((key, value) -> Tuples.pair(1, value + "Value"));
         HashBagMultimap<Integer, String> expectedMultimap2 = HashBagMultimap.newMultimap();
         expectedMultimap2.putAll(1, FastList.newListWith("4Value", "3Value", "2Value", "1Value"));
         expectedMultimap2.putAll(1, FastList.newListWith("5Value", "4Value", "3Value", "2Value"));
         ImmutableBagMultimap<Integer, String> expectedImmutableMultimap2 = expectedMultimap2.toImmutable();
-        Assert.assertEquals(expectedImmutableMultimap2, collectedMultimap2);
+        Assertions.assertEquals(expectedImmutableMultimap2, collectedMultimap2);
     }
 
     @Override
@@ -231,6 +232,6 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         expectedMultimap.putAll("1", FastList.newListWith("4Value", "3Value", "2Value", "1Value"));
         expectedMultimap.putAll("2", FastList.newListWith("5Value", "4Value", "3Value", "2Value"));
         ImmutableListMultimap<String, String> expectedImmutableMultimap = expectedMultimap.toImmutable();
-        Assert.assertEquals(expectedImmutableMultimap, collectedMultimap);
+        Assertions.assertEquals(expectedImmutableMultimap, collectedMultimap);
     }
 }

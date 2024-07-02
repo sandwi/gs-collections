@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableFloatArrayListSerializationTest
 {
@@ -26,10 +26,12 @@ public class ImmutableFloatArrayListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu\n"
-                        + "SW1tdXRhYmxlRmxvYXRBcnJheUxpc3QAAAAAAAAAAQIAAVsABWl0ZW1zdAACW0Z4cHVyAAJbRguc\n"
-                        + "gYki4AxCAgAAeHAAAAALP4AAAEAAAABAQAAAQIAAAECgAABAwAAAQOAAAEEAAABBEAAAQSAAAEEw\n"
-                        + "AAA=",
+                """
+                rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu
+                SW1tdXRhYmxlRmxvYXRBcnJheUxpc3QAAAAAAAAAAQIAAVsABWl0ZW1zdAACW0Z4cHVyAAJbRguc
+                gYki4AxCAgAAeHAAAAALP4AAAEAAAABAQAAAQIAAAECgAABAwAAAQOAAAEEAAABBEAAAQSAAAEEw
+                AAA=\
+                """,
                 ImmutableFloatArrayList.newListWith(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f));
     }
 }

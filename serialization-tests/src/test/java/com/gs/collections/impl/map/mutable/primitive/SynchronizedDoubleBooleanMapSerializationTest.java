@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SynchronizedDoubleBooleanMapSerializationTest
 {
@@ -26,12 +26,14 @@ public class SynchronizedDoubleBooleanMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU3lu\n"
-                        + "Y2hyb25pemVkRG91YmxlQm9vbGVhbk1hcAAAAAAAAAABAgACTAAEbG9ja3QAEkxqYXZhL2xhbmcv\n"
-                        + "T2JqZWN0O0wAA21hcHQAPkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0\n"
-                        + "YWJsZURvdWJsZUJvb2xlYW5NYXA7eHBxAH4AA3NyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5t\n"
-                        + "YXAubXV0YWJsZS5wcmltaXRpdmUuRG91YmxlQm9vbGVhbkhhc2hNYXAAAAAAAAAAAQwAAHhwdwgA\n"
-                        + "AAAAPwAAAHg=",
+                """
+                rO0ABXNyAEpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU3lu
+                Y2hyb25pemVkRG91YmxlQm9vbGVhbk1hcAAAAAAAAAABAgACTAAEbG9ja3QAEkxqYXZhL2xhbmcv
+                T2JqZWN0O0wAA21hcHQAPkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0
+                YWJsZURvdWJsZUJvb2xlYW5NYXA7eHBxAH4AA3NyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5t
+                YXAubXV0YWJsZS5wcmltaXRpdmUuRG91YmxlQm9vbGVhbkhhc2hNYXAAAAAAAAAAAQwAAHhwdwgA
+                AAAAPwAAAHg=\
+                """,
                 new SynchronizedDoubleBooleanMap(new DoubleBooleanHashMap()));
     }
 }

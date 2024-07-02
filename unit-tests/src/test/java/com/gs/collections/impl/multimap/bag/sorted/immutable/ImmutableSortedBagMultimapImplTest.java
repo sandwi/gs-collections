@@ -33,8 +33,8 @@ import com.gs.collections.impl.multimap.bag.sorted.mutable.TreeBagMultimap;
 import com.gs.collections.impl.multimap.list.FastListMultimap;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultimapTestCase
 {
@@ -61,8 +61,8 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
         mutableMap.put("Less than 3", 2);
         ImmutableSortedBagMultimap<String, Integer> multimap = mutableMap.toImmutable();
         ImmutableBagMultimap<Integer, String> flipped = multimap.flip();
-        Assert.assertEquals(Bags.immutable.with("Less than 3", "Less than 3"), flipped.get(2));
-        Assert.assertEquals(Bags.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
+        Assertions.assertEquals(Bags.immutable.with("Less than 3", "Less than 3"), flipped.get(2));
+        Assertions.assertEquals(Bags.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
     }
 
     @Override
@@ -85,7 +85,7 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
         expectedMultimap.putAll("1", FastList.newListWith("4Value", "3Value", "2Value", "1Value", "1Value"));
         expectedMultimap.putAll("2", FastList.newListWith("5Value", "4Value", "3Value", "2Value", "2Value"));
         ImmutableListMultimap<String, String> expectedImmutableMultimap = expectedMultimap.toImmutable();
-        Assert.assertEquals(expectedImmutableMultimap, collectedMultimap);
+        Assertions.assertEquals(expectedImmutableMultimap, collectedMultimap);
     }
 
     @Override
@@ -101,9 +101,9 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
         ImmutableSortedBagMultimap<Integer, Integer> selectedMultimap = immutableMultimap.rejectKeysMultiValues((key, values) -> (key % 2 == 0 || Iterate.sizeOf(values) > 4));
         TreeBagMultimap<Integer, Integer> expectedMultimap = TreeBagMultimap.newMultimap(Comparators.<Integer>reverseNaturalOrder());
         expectedMultimap.putAll(3, FastList.newListWith(4, 3, 1, 1));
-        Assert.assertEquals(expectedMultimap, selectedMultimap);
+        Assertions.assertEquals(expectedMultimap, selectedMultimap);
         Verify.assertSortedBagsEqual(expectedMultimap.toImmutable().get(3), selectedMultimap.get(3));
-        Assert.assertEquals(expectedMultimap.toImmutable().comparator(), selectedMultimap.comparator());
+        Assertions.assertEquals(expectedMultimap.toImmutable().comparator(), selectedMultimap.comparator());
     }
 
     @Test
@@ -111,8 +111,8 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
     {
         ImmutableSortedBagMultimap<Integer, Integer> map = new ImmutableSortedBagMultimapImpl<>(Maps.immutable.empty());
         ImmutableSortedBagMultimap<Integer, Integer> map2 = new ImmutableSortedBagMultimapImpl<>(Maps.immutable.empty(), Comparators.reverseNaturalOrder());
-        Assert.assertEquals(this.classUnderTest(), map);
-        Assert.assertEquals(TreeBagMultimap.newMultimap(Comparators.reverseNaturalOrder()), map2);
+        Assertions.assertEquals(this.classUnderTest(), map);
+        Assertions.assertEquals(TreeBagMultimap.newMultimap(Comparators.reverseNaturalOrder()), map2);
     }
 
     @Test

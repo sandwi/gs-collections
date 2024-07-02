@@ -25,8 +25,10 @@ import com.gs.collections.impl.collection.mutable.primitive.AbstractBooleanItera
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.primitive.SynchronizedBooleanIterable;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link SynchronizedBooleanIterable}s
@@ -57,10 +59,12 @@ public class SynchronizedBooleanIterableTest extends AbstractBooleanIterableTest
         return FastList.newListWith(elements);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void null_iterable_throws()
     {
-        SynchronizedBooleanIterable iterable = SynchronizedBooleanIterable.of(null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            SynchronizedBooleanIterable iterable = SynchronizedBooleanIterable.of(null);
+        });
     }
 
     @Override
@@ -72,11 +76,11 @@ public class SynchronizedBooleanIterableTest extends AbstractBooleanIterableTest
         BooleanIterator iterator = iterable.booleanIterator();
         for (int i = 0; i < 4; i++)
         {
-            Assert.assertTrue(iterator.hasNext());
-            Assert.assertTrue(list.remove(iterator.next()));
+            Assertions.assertTrue(iterator.hasNext());
+            Assertions.assertTrue(list.remove(iterator.next()));
         }
         Verify.assertEmpty(list);
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasNext());
 
         Verify.assertThrows(NoSuchElementException.class, (Runnable) iterator::next);
     }
@@ -89,12 +93,14 @@ public class SynchronizedBooleanIterableTest extends AbstractBooleanIterableTest
     }
 
     @Override
+    @Test
     public void testHashCode()
     {
         //Testing hashCode() is not applicable.
     }
 
     @Override
+    @Test
     public void newCollection()
     {
         //Testing newCollection() is not applicable.

@@ -48,10 +48,11 @@ import com.gs.collections.impl.set.mutable.SetAdapter;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link CollectionAdapter}.
@@ -74,10 +75,12 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
         return new CollectionAdapter<>(FastList.<T>newList());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void null_throws()
     {
-        new CollectionAdapter<>(null);
+        assertThrows(NullPointerException.class, () -> {
+            new CollectionAdapter<>(null);
+        });
     }
 
     @Override
@@ -141,7 +144,7 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
 
         MutableCollection<Number> numbers = this.<Number>newSet().with(1, 2.0, 3, 4.0, 5);
         MutableCollection<Integer> integers = numbers.selectInstancesOf(Integer.class);
-        Assert.assertEquals(HashBag.newBagWith(1, 3, 5), integers.toBag());
+        Assertions.assertEquals(HashBag.newBagWith(1, 3, 5), integers.toBag());
     }
 
     @Override
@@ -150,10 +153,10 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
     {
         super.collect();
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.newSetWith("1", "2", "3", "4"),
                 this.newSet().with(1, 2, 3, 4).collect(String::valueOf));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.newSetWith("1", "2", "3", "4"),
                 this.newSet().with(1, 2, 3, 4).collect(
                         String::valueOf,
@@ -167,10 +170,10 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
         super.flatCollect();
 
         Function<Integer, Iterable<Integer>> function = Interval::oneTo;
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(1, 1, 2, 1, 2, 3, 1, 2, 3, 4),
                 this.<Integer>newList().with(1, 2, 3, 4).flatCollect(function));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(1, 1, 2, 1, 2, 3, 1, 2, 3, 4),
                 this.<Integer>newList().with(1, 2, 3, 4).flatCollect(function));
     }
@@ -184,8 +187,8 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
         MutableCollection<Integer> list2 = this.<Integer>newList().with(1, 2, 3);
         MutableCollection<Integer> list3 = this.<Integer>newList().with(2, 3, 4);
         Verify.assertEqualsAndHashCode(list1, list2);
-        Assert.assertNotEquals(list1, null);
-        Assert.assertNotEquals(list2, list3);
+        Assertions.assertNotEquals(list1, null);
+        Assertions.assertNotEquals(list2, list3);
     }
 
     @Test
@@ -202,7 +205,7 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
         MutableCollection<Integer> deserializedCollection = SerializeTestHelper.serializeDeserialize(collection);
         Verify.assertSize(5, deserializedCollection);
         Verify.assertContainsAll(deserializedCollection, 1, 2, 3, 4, 5);
-        Assert.assertEquals(collection, deserializedCollection);
+        Assertions.assertEquals(collection, deserializedCollection);
     }
 
     @Test
@@ -229,7 +232,7 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
                         Boolean.TRUE, FastList.newListWith(1, 3, 5, 7),
                         Boolean.FALSE, FastList.newListWith(2, 4, 6));
 
-        Assert.assertEquals(expected, multimap.toMap());
+        Assertions.assertEquals(expected, multimap.toMap());
     }
 
     @Override
@@ -247,11 +250,11 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
 
         Multimap<Integer, Integer> actual =
                 underTest.groupByEach(intervalFunction);
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
         Multimap<Integer, Integer> actualWithTarget =
                 underTest.groupByEach(intervalFunction, this.<Integer>newWith().groupByEach(intervalFunction));
-        Assert.assertEquals(expected, actualWithTarget);
+        Assertions.assertEquals(expected, actualWithTarget);
     }
 
     @Test
@@ -272,10 +275,10 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
     @Test
     public void testEquals()
     {
-        Assert.assertEquals(new CollectionAdapter<>(FastList.newList()), new CollectionAdapter<>(FastList.newList()));
-        Assert.assertNotEquals(new CollectionAdapter<>(FastList.newList()), new CollectionAdapter<>(FastList.newListWith(1)));
-        Assert.assertEquals(new CollectionAdapter<>(FastList.newListWith(1)), new CollectionAdapter<>(FastList.newListWith(1)));
-        Assert.assertNotEquals(new CollectionAdapter<>(FastList.newListWith(1)), new CollectionAdapter<>(FastList.newListWith(2)));
+        Assertions.assertEquals(new CollectionAdapter<>(FastList.newList()), new CollectionAdapter<>(FastList.newList()));
+        Assertions.assertNotEquals(new CollectionAdapter<>(FastList.newList()), new CollectionAdapter<>(FastList.newListWith(1)));
+        Assertions.assertEquals(new CollectionAdapter<>(FastList.newListWith(1)), new CollectionAdapter<>(FastList.newListWith(1)));
+        Assertions.assertNotEquals(new CollectionAdapter<>(FastList.newListWith(1)), new CollectionAdapter<>(FastList.newListWith(2)));
     }
 
     @Test
@@ -290,7 +293,7 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
     public void chunk_large_size()
     {
         MutableCollection<String> collection = this.newWith("1", "2", "3", "4", "5", "6", "7");
-        Assert.assertEquals(collection.toList(), collection.chunk(10).getFirst());
+        Assertions.assertEquals(collection.toList(), collection.chunk(10).getFirst());
     }
 
     @Override
@@ -299,8 +302,8 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
     {
         MutableCollection<Integer> integers = this.newWith(-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         PartitionMutableCollection<Integer> result = integers.partition(IntegerPredicates.isEven());
-        Assert.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
-        Assert.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
+        Assertions.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
+        Assertions.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
     }
 
     @Override
@@ -309,7 +312,7 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
     {
         MutableCollection<Integer> integers = this.newWith(-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         PartitionMutableCollection<Integer> result = integers.partitionWith(Predicates2.in(), integers.select(IntegerPredicates.isEven()));
-        Assert.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
-        Assert.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
+        Assertions.assertEquals(iList(-2, 0, 2, 4, 6, 8), result.getSelected());
+        Assertions.assertEquals(iList(-3, -1, 1, 3, 5, 7, 9), result.getRejected());
     }
 }

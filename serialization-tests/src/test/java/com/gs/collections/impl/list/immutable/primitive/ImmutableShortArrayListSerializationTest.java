@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableShortArrayListSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableShortArrayListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu\n"
-                        + "SW1tdXRhYmxlU2hvcnRBcnJheUxpc3QAAAAAAAAAAQIAAVsABWl0ZW1zdAACW1N4cHVyAAJbU++D\n"
-                        + "LgblXbD6AgAAeHAAAAALAAEAAgADAAQABQAGAAcACAAJAAoACw==",
+                """
+                rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu
+                SW1tdXRhYmxlU2hvcnRBcnJheUxpc3QAAAAAAAAAAQIAAVsABWl0ZW1zdAACW1N4cHVyAAJbU++D
+                LgblXbD6AgAAeHAAAAALAAEAAgADAAQABQAGAAcACAAJAAoACw==\
+                """,
                 ImmutableShortArrayList.newListWith((short) 1, (short) 2, (short) 3, (short) 4, (short) 5, (short) 6, (short) 7, (short) 8, (short) 9, (short) 10, (short) 11));
     }
 }

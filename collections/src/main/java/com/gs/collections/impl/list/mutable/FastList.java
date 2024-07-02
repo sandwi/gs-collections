@@ -1413,9 +1413,9 @@ public class FastList<T>
         {
             return false;
         }
-        if (that instanceof FastList)
+        if (that instanceof FastList list)
         {
-            return this.fastListEquals((FastList<?>) that);
+            return this.fastListEquals(list);
         }
         return InternalArrayIterate.arrayEqualsList(this.items, this.size, (List<?>) that);
     }

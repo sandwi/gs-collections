@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class BagAddOccurrencesProcedureSerializationTest
 {
@@ -26,9 +26,11 @@ public class BagAddOccurrencesProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQmFnQWRkT2Nj\n"
-                        + "dXJyZW5jZXNQcm9jZWR1cmUAAAAAAAAAAQIAAUwACm11dGFibGVCYWd0ACdMY29tL2dzL2NvbGxl\n"
-                        + "Y3Rpb25zL2FwaS9iYWcvTXV0YWJsZUJhZzt4cHA=",
+                """
+                rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQmFnQWRkT2Nj
+                dXJyZW5jZXNQcm9jZWR1cmUAAAAAAAAAAQIAAUwACm11dGFibGVCYWd0ACdMY29tL2dzL2NvbGxl
+                Y3Rpb25zL2FwaS9iYWcvTXV0YWJsZUJhZzt4cHA=\
+                """,
                 BagAddOccurrencesProcedure.on(null));
     }
 }

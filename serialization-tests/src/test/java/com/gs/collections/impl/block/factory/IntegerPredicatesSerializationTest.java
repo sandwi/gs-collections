@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.factory;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IntegerPredicatesSerializationTest
 {
@@ -26,9 +26,11 @@ public class IntegerPredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk\n"
-                        + "aWNhdGVzJEludGVnZXJJc1plcm8AAAAAAAAAAQIAAHhyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1w\n"
-                        + "bC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk
+                aWNhdGVzJEludGVnZXJJc1plcm8AAAAAAAAAAQIAAHhyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1w
+                bC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMAAAAAAAAAAQIAAHhw\
+                """,
                 IntegerPredicates.isZero());
     }
 
@@ -37,9 +39,11 @@ public class IntegerPredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk\n"
-                        + "aWNhdGVzJEludGVnZXJJc1Bvc2l0aXZlAAAAAAAAAAECAAB4cgAwY29tLmdzLmNvbGxlY3Rpb25z\n"
-                        + "LmltcGwuYmxvY2suZmFjdG9yeS5QcmVkaWNhdGVzAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk
+                aWNhdGVzJEludGVnZXJJc1Bvc2l0aXZlAAAAAAAAAAECAAB4cgAwY29tLmdzLmNvbGxlY3Rpb25z
+                LmltcGwuYmxvY2suZmFjdG9yeS5QcmVkaWNhdGVzAAAAAAAAAAECAAB4cA==\
+                """,
                 IntegerPredicates.isPositive());
     }
 
@@ -48,9 +52,11 @@ public class IntegerPredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk\n"
-                        + "aWNhdGVzJEludGVnZXJJc05lZ2F0aXZlAAAAAAAAAAECAAB4cgAwY29tLmdzLmNvbGxlY3Rpb25z\n"
-                        + "LmltcGwuYmxvY2suZmFjdG9yeS5QcmVkaWNhdGVzAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAEljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk
+                aWNhdGVzJEludGVnZXJJc05lZ2F0aXZlAAAAAAAAAAECAAB4cgAwY29tLmdzLmNvbGxlY3Rpb25z
+                LmltcGwuYmxvY2suZmFjdG9yeS5QcmVkaWNhdGVzAAAAAAAAAAECAAB4cA==\
+                """,
                 IntegerPredicates.isNegative());
     }
 
@@ -59,9 +65,11 @@ public class IntegerPredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk\n"
-                        + "aWNhdGVzJEludGVnZXJJc09kZAAAAAAAAAABAgAAeHIAMGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs\n"
-                        + "LmJsb2NrLmZhY3RvcnkuUHJlZGljYXRlcwAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk
+                aWNhdGVzJEludGVnZXJJc09kZAAAAAAAAAABAgAAeHIAMGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs
+                LmJsb2NrLmZhY3RvcnkuUHJlZGljYXRlcwAAAAAAAAABAgAAeHA=\
+                """,
                 IntegerPredicates.isOdd());
     }
 
@@ -70,9 +78,11 @@ public class IntegerPredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk\n"
-                        + "aWNhdGVzJEludGVnZXJJc0V2ZW4AAAAAAAAAAQIAAHhyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1w\n"
-                        + "bC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LkludGVnZXJQcmVk
+                aWNhdGVzJEludGVnZXJJc0V2ZW4AAAAAAAAAAQIAAHhyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1w
+                bC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMAAAAAAAAAAQIAAHhw\
+                """,
                 IntegerPredicates.isEven());
     }
 }

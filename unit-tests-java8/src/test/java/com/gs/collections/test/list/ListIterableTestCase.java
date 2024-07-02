@@ -26,7 +26,7 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.tuple.Tuples;
 import com.gs.collections.test.OrderedIterableWithDuplicatesTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
 import static com.gs.collections.test.IterableTestCase.assertEquals;

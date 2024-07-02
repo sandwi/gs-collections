@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.immutable.primitive;
 
 import com.gs.collections.impl.set.mutable.primitive.ShortHashSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableShortHashSetSerializationTest
 {
@@ -27,8 +27,10 @@ public class ImmutableShortHashSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVTaG9ydEVtcHR5U2V0AAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAEZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVTaG9ydEVtcHR5U2V0AAAAAAAAAAECAAB4cA==\
+                """,
                 new ShortHashSet().toImmutable());
     }
 }

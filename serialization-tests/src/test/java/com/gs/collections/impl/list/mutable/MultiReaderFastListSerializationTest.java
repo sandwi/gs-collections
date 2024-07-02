@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MultiReaderFastListSerializationTest
 {
@@ -26,9 +26,11 @@ public class MultiReaderFastListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuTXVsdGlSZWFkZXJG\n"
-                        + "YXN0TGlzdAAAAAAAAAABDAAAeHBzcgAtY29tLmdzLmNvbGxlY3Rpb25zLmltcGwubGlzdC5tdXRh\n"
-                        + "YmxlLkZhc3RMaXN0AAAAAAAAAAEMAAB4cHcEAAAAAHh4",
+                """
+                rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuTXVsdGlSZWFkZXJG
+                YXN0TGlzdAAAAAAAAAABDAAAeHBzcgAtY29tLmdzLmNvbGxlY3Rpb25zLmltcGwubGlzdC5tdXRh
+                YmxlLkZhc3RMaXN0AAAAAAAAAAEMAAB4cHcEAAAAAHh4\
+                """,
                 MultiReaderFastList.newList());
     }
 }

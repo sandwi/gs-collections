@@ -25,8 +25,8 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link TripletonList}.
@@ -56,10 +56,10 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void testContains()
     {
-        Assert.assertTrue(this.list.contains("1"));
-        Assert.assertTrue(this.list.contains("2"));
-        Assert.assertTrue(this.list.contains("3"));
-        Assert.assertFalse(this.list.contains("4"));
+        Assertions.assertTrue(this.list.contains("1"));
+        Assertions.assertTrue(this.list.contains("2"));
+        Assertions.assertTrue(this.list.contains("3"));
+        Assertions.assertFalse(this.list.contains("4"));
     }
 
     @Test
@@ -88,7 +88,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<String> newList = FastList.newList(this.list);
         newList.add("4");
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4"), newList);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4"), newList);
     }
 
     @Test
@@ -102,10 +102,10 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     public void testSet()
     {
         MutableList<String> list = Lists.fixedSize.of("1", "2", "3");
-        Assert.assertEquals("1", list.set(0, "3"));
-        Assert.assertEquals("2", list.set(1, "2"));
-        Assert.assertEquals("3", list.set(2, "1"));
-        Assert.assertEquals(FastList.newListWith("3", "2", "1"), list);
+        Assertions.assertEquals("1", list.set(0, "3"));
+        Assertions.assertEquals("2", list.set(1, "2"));
+        Assertions.assertEquals("3", list.set(2, "1"));
+        Assertions.assertEquals(FastList.newListWith("3", "2", "1"), list);
         Verify.assertThrows(IndexOutOfBoundsException.class, () -> list.set(3, "0"));
     }
 
@@ -113,8 +113,8 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         Verify.assertInstanceOf(TripletonList.class, this.list);
         Verify.assertSize(3, this.list);
-        Verify.assertNotContains("4", this.list);
-        Assert.assertEquals(FastList.newListWith("1", "2", "3"), this.list);
+        Verify.assertNotContains(this.list, "4");
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3"), this.list);
     }
 
     @Test
@@ -122,7 +122,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         Verify.assertPostSerializedEqualsAndHashCode(this.list);
         MutableList<String> copyOfList = SerializeTestHelper.serializeDeserialize(this.list);
-        Assert.assertNotSame(this.list, copyOfList);
+        Assertions.assertNotSame(this.list, copyOfList);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<String> list = Lists.fixedSize.of("1");
         Verify.assertSize(1, list);
-        Verify.assertItemAtIndex("1", 0, list);
+        Verify.assertItemAtIndex(0, list, "1");
     }
 
     @Test
@@ -148,7 +148,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3");
         source.forEach(CollectionAddProcedure.on(result));
-        Assert.assertEquals(FastList.newListWith("1", "2", "3"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3"), result);
     }
 
     @Test
@@ -157,7 +157,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3");
         source.forEach(0, 2, result::add);
-        Assert.assertEquals(FastList.newListWith("1", "2", "3"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3"), result);
     }
 
     @Test
@@ -170,8 +170,8 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
             result.add(each);
             indexSum[0] += index;
         });
-        Assert.assertEquals(FastList.newListWith("1", "2", "3"), result);
-        Assert.assertEquals(3, indexSum[0]);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3"), result);
+        Assertions.assertEquals(3, indexSum[0]);
     }
 
     @Test
@@ -184,8 +184,8 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
             result.add(each);
             indexSum[0] += index;
         });
-        Assert.assertEquals(FastList.newListWith("1", "2", "3"), result);
-        Assert.assertEquals(3, indexSum[0]);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3"), result);
+        Assertions.assertEquals(3, indexSum[0]);
     }
 
     @Test
@@ -194,15 +194,15 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3");
         source.forEachWith(Procedures2.fromProcedure(result::add), null);
-        Assert.assertEquals(FastList.newListWith("1", "2", "3"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3"), result);
     }
 
     @Test
     public void testGetFirstGetLast()
     {
         MutableList<String> list3 = Lists.fixedSize.of("1", "2", "3");
-        Assert.assertEquals("1", list3.getFirst());
-        Assert.assertEquals("3", list3.getLast());
+        Assertions.assertEquals("1", list3.getFirst());
+        Assertions.assertEquals("3", list3.getLast());
     }
 
     @Test
@@ -212,7 +212,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO", "THREE");
         for (String each : list)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
     }
 
@@ -224,19 +224,19 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO", "THREE");
         for (String each : subList)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
-        Assert.assertEquals("one", subList.getFirst());
-        Assert.assertEquals("three", subList.getLast());
+        Assertions.assertEquals("one", subList.getFirst());
+        Assertions.assertEquals("three", subList.getLast());
         MutableList<String> subList2 = list.subList(1, 2);
-        Assert.assertEquals("two", subList2.getFirst());
-        Assert.assertEquals("two", subList2.getLast());
+        Assertions.assertEquals("two", subList2.getFirst());
+        Assertions.assertEquals("two", subList2.getLast());
         MutableList<String> subList3 = list.subList(0, 1);
-        Assert.assertEquals("one", subList3.getFirst());
-        Assert.assertEquals("one", subList3.getLast());
+        Assertions.assertEquals("one", subList3.getFirst());
+        Assertions.assertEquals("one", subList3.getLast());
         MutableList<String> subList4 = subList.subList(1, 3);
-        Assert.assertEquals("two", subList4.getFirst());
-        Assert.assertEquals("three", subList4.getLast());
+        Assertions.assertEquals("two", subList4.getFirst());
+        Assertions.assertEquals("three", subList4.getLast());
     }
 
     @Test
@@ -244,18 +244,18 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<String> list = Lists.fixedSize.of("one", "two", "three");
         ListIterator<String> iterator = list.listIterator();
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertFalse(iterator.hasPrevious());
-        Assert.assertEquals("one", iterator.next());
-        Assert.assertEquals("two", iterator.next());
-        Assert.assertEquals("three", iterator.next());
-        Assert.assertTrue(iterator.hasPrevious());
-        Assert.assertEquals("three", iterator.previous());
-        Assert.assertEquals("two", iterator.previous());
-        Assert.assertEquals("one", iterator.previous());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasPrevious());
+        Assertions.assertEquals("one", iterator.next());
+        Assertions.assertEquals("two", iterator.next());
+        Assertions.assertEquals("three", iterator.next());
+        Assertions.assertTrue(iterator.hasPrevious());
+        Assertions.assertEquals("three", iterator.previous());
+        Assertions.assertEquals("two", iterator.previous());
+        Assertions.assertEquals("one", iterator.previous());
         iterator.set("1");
-        Assert.assertEquals("1", iterator.next());
-        Assert.assertEquals("1", list.getFirst());
+        Assertions.assertEquals("1", iterator.next());
+        Assertions.assertEquals("1", list.getFirst());
         list.subList(1, 3);
     }
 
@@ -265,17 +265,17 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> list = Lists.fixedSize.of("one", "two", "three");
         MutableList<String> subList = list.subList(1, 3);
         ListIterator<String> iterator = subList.listIterator();
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertFalse(iterator.hasPrevious());
-        Assert.assertEquals("two", iterator.next());
-        Assert.assertEquals("three", iterator.next());
-        Assert.assertTrue(iterator.hasPrevious());
-        Assert.assertEquals("three", iterator.previous());
-        Assert.assertEquals("two", iterator.previous());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasPrevious());
+        Assertions.assertEquals("two", iterator.next());
+        Assertions.assertEquals("three", iterator.next());
+        Assertions.assertTrue(iterator.hasPrevious());
+        Assertions.assertEquals("three", iterator.previous());
+        Assertions.assertEquals("two", iterator.previous());
         iterator.set("2");
-        Assert.assertEquals("2", iterator.next());
-        Assert.assertEquals("2", subList.getFirst());
-        Assert.assertEquals("2", list.get(1));
+        Assertions.assertEquals("2", iterator.next());
+        Assertions.assertEquals("2", subList.getFirst());
+        Assertions.assertEquals("2", list.get(1));
     }
 
     @Test
@@ -283,9 +283,9 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<String> list = Lists.fixedSize.of("one", "two", "three");
         MutableList<String> subList = list.subList(1, 3);
-        Assert.assertEquals("two", subList.set(0, "2"));
-        Assert.assertEquals("2", subList.getFirst());
-        Assert.assertEquals("2", list.get(1));
+        Assertions.assertEquals("two", subList.set(0, "2"));
+        Assertions.assertEquals("2", subList.getFirst());
+        Assertions.assertEquals("2", list.get(1));
     }
 
     @Test
@@ -302,7 +302,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> source = list.subList(1, 3);
         MutableList<String> result = Lists.mutable.of();
         source.forEach(CollectionAddProcedure.on(result));
-        Assert.assertEquals(FastList.newListWith("2", "3"), result);
+        Assertions.assertEquals(FastList.newListWith("2", "3"), result);
     }
 
     @Test
@@ -316,8 +316,8 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
             result.add(each);
             indexSum[0] += index;
         });
-        Assert.assertEquals(FastList.newListWith("2", "3"), result);
-        Assert.assertEquals(1, indexSum[0]);
+        Assertions.assertEquals(FastList.newListWith("2", "3"), result);
+        Assertions.assertEquals(1, indexSum[0]);
     }
 
     @Test
@@ -327,33 +327,33 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> source = list.subList(1, 3);
         MutableList<String> result = Lists.mutable.of();
         source.forEachWith(Procedures2.fromProcedure(result::add), null);
-        Assert.assertEquals(FastList.newListWith("2", "3"), result);
+        Assertions.assertEquals(FastList.newListWith("2", "3"), result);
     }
 
     @Test
     public void testIndexOf()
     {
         MutableList<String> list = Lists.fixedSize.of("1", null, "3");
-        Assert.assertEquals(0, list.indexOf("1"));
-        Assert.assertEquals(1, list.indexOf(null));
-        Assert.assertEquals(2, list.indexOf("3"));
-        Assert.assertEquals(-1, list.indexOf("4"));
+        Assertions.assertEquals(0, list.indexOf("1"));
+        Assertions.assertEquals(1, list.indexOf(null));
+        Assertions.assertEquals(2, list.indexOf("3"));
+        Assertions.assertEquals(-1, list.indexOf("4"));
     }
 
     @Test
     public void testLastIndexOf()
     {
         MutableList<String> list = Lists.fixedSize.of("1", null, "1");
-        Assert.assertEquals(2, list.lastIndexOf("1"));
-        Assert.assertEquals(1, list.lastIndexOf(null));
-        Assert.assertEquals(-1, list.lastIndexOf("4"));
+        Assertions.assertEquals(2, list.lastIndexOf("1"));
+        Assertions.assertEquals(1, list.lastIndexOf(null));
+        Assertions.assertEquals(-1, list.lastIndexOf("4"));
     }
 
     @Test
     public void without()
     {
         MutableList<Integer> list = new TripletonList<>(2, 3, 2);
-        Assert.assertSame(list, list.without(9));
+        Assertions.assertSame(list, list.without(9));
         list = list.without(2);
         Verify.assertListsEqual(FastList.newListWith(3, 2), list);
         Verify.assertInstanceOf(DoubletonList.class, list);

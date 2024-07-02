@@ -50,16 +50,12 @@ import com.gs.collections.impl.factory.Sets;
 import com.gs.collections.impl.list.mutable.MultiReaderFastList;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertIterablesEqual;
 import static com.gs.collections.impl.test.Verify.assertThrows;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public interface IterableTestCase
 {
@@ -69,53 +65,53 @@ public interface IterableTestCase
 
     static void assertEquals(Object o1, Object o2)
     {
-        if (o1 instanceof ListIterable<?> && o2 instanceof LazyIterable<?>)
+        if (o1 instanceof ListIterable<?> && o2 instanceof LazyIterable<?> iterable)
         {
-            IterableTestCase.assertEquals(o1, ((LazyIterable<?>) o2).toList());
+            IterableTestCase.assertEquals(o1, iterable.toList());
             return;
         }
-        if (o1 instanceof BooleanList && o2 instanceof LazyBooleanIterable)
+        if (o1 instanceof BooleanList && o2 instanceof LazyBooleanIterable iterable)
         {
-            IterableTestCase.assertEquals(o1, ((LazyBooleanIterable) o2).toList());
+            IterableTestCase.assertEquals(o1, iterable.toList());
             return;
         }
-        if (o1 instanceof ByteList && o2 instanceof LazyByteIterable)
+        if (o1 instanceof ByteList && o2 instanceof LazyByteIterable iterable)
         {
-            IterableTestCase.assertEquals(o1, ((LazyByteIterable) o2).toList());
+            IterableTestCase.assertEquals(o1, iterable.toList());
             return;
         }
-        if (o1 instanceof CharList && o2 instanceof LazyCharIterable)
+        if (o1 instanceof CharList && o2 instanceof LazyCharIterable iterable)
         {
-            IterableTestCase.assertEquals(o1, ((LazyCharIterable) o2).toList());
+            IterableTestCase.assertEquals(o1, iterable.toList());
             return;
         }
-        if (o1 instanceof DoubleList && o2 instanceof LazyDoubleIterable)
+        if (o1 instanceof DoubleList && o2 instanceof LazyDoubleIterable iterable)
         {
-            IterableTestCase.assertEquals(o1, ((LazyDoubleIterable) o2).toList());
+            IterableTestCase.assertEquals(o1, iterable.toList());
             return;
         }
-        if (o1 instanceof FloatList && o2 instanceof LazyFloatIterable)
+        if (o1 instanceof FloatList && o2 instanceof LazyFloatIterable iterable)
         {
-            IterableTestCase.assertEquals(o1, ((LazyFloatIterable) o2).toList());
+            IterableTestCase.assertEquals(o1, iterable.toList());
             return;
         }
-        if (o1 instanceof IntList && o2 instanceof LazyIntIterable)
+        if (o1 instanceof IntList && o2 instanceof LazyIntIterable iterable)
         {
-            IterableTestCase.assertEquals(o1, ((LazyIntIterable) o2).toList());
+            IterableTestCase.assertEquals(o1, iterable.toList());
             return;
         }
-        if (o1 instanceof LongList && o2 instanceof LazyLongIterable)
+        if (o1 instanceof LongList && o2 instanceof LazyLongIterable iterable)
         {
-            IterableTestCase.assertEquals(o1, ((LazyLongIterable) o2).toList());
+            IterableTestCase.assertEquals(o1, iterable.toList());
             return;
         }
-        if (o1 instanceof ShortList && o2 instanceof LazyShortIterable)
+        if (o1 instanceof ShortList && o2 instanceof LazyShortIterable iterable)
         {
-            IterableTestCase.assertEquals(o1, ((LazyShortIterable) o2).toList());
+            IterableTestCase.assertEquals(o1, iterable.toList());
             return;
         }
 
-        Assert.assertEquals(o1, o2);
+        Assertions.assertEquals(o1, o2);
         IterableTestCase.checkNotSame(o1, o2);
 
         if (o1 instanceof MultiReaderFastList<?> || o2 instanceof MultiReaderFastList<?>)
@@ -152,8 +148,8 @@ public interface IterableTestCase
         }
         if ((o1 instanceof Number && o2 instanceof Number)
                 || (o1 instanceof Boolean && o2 instanceof Boolean)
-                || o1 instanceof ImmutableCollection<?> && o2 instanceof ImmutableCollection<?>
-                && ((ImmutableCollection<?>) o1).isEmpty() && ((ImmutableCollection<?>) o2).isEmpty())
+                || o1 instanceof ImmutableCollection<?> collection && o2 instanceof ImmutableCollection<?> collection
+                && collection.isEmpty() && collection.isEmpty())
         {
             assertSame(o1, o2);
             return;
@@ -177,7 +173,7 @@ public interface IterableTestCase
     {
         Iterable<Integer> iterable = this.newWith(3, 3, 3, 2, 2, 1);
         Object deserialized = SerializeTestHelper.serializeDeserialize(iterable);
-        Assert.assertNotSame(iterable, deserialized);
+        Assertions.assertNotSame(iterable, deserialized);
     }
 
     @Test
@@ -216,10 +212,12 @@ public interface IterableTestCase
         IterableTestCase.assertEquals(Sets.immutable.with(3, 2, 1), set);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     default void Iterable_next_throws_on_empty()
     {
-        this.newWith().iterator().next();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().iterator().next();
+        });
     }
 
     @Test

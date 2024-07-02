@@ -57,8 +57,8 @@ public final class MultiReaderFastListMultimap<K, V>
     {
         this(
                 multimap.keysView().size(),
-                multimap instanceof MultiReaderFastListMultimap
-                        ? ((MultiReaderFastListMultimap<?, ?>) multimap).initialListCapacity
+                multimap instanceof MultiReaderFastListMultimap mrflm
+                        ? mrflm.initialListCapacity
                         : DEFAULT_CAPACITY);
         this.putAll(multimap);
     }

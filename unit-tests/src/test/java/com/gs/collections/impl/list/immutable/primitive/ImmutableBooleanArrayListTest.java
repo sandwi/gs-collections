@@ -20,8 +20,10 @@ import com.gs.collections.api.list.primitive.ImmutableBooleanList;
 import com.gs.collections.impl.factory.primitive.BooleanLists;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link ImmutableBooleanArrayList}.
@@ -34,16 +36,20 @@ public class ImmutableBooleanArrayListTest extends AbstractImmutableBooleanListT
         return ImmutableBooleanArrayList.newListWith(true, false, true);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void newCollection_throws_empty()
     {
-        ImmutableBooleanArrayList.newListWith();
+        assertThrows(IllegalArgumentException.class, () -> {
+            ImmutableBooleanArrayList.newListWith();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void newCollection_throws_single()
     {
-        ImmutableBooleanArrayList.newListWith(true);
+        assertThrows(IllegalArgumentException.class, () -> {
+            ImmutableBooleanArrayList.newListWith(true);
+        });
     }
 
     @Override
@@ -51,7 +57,7 @@ public class ImmutableBooleanArrayListTest extends AbstractImmutableBooleanListT
     public void newCollection()
     {
         super.newCollection();
-        Assert.assertEquals(BooleanArrayList.newListWith(true, false, true), ImmutableBooleanArrayList.newList(BooleanArrayList.newListWith(true, false, true)));
+        Assertions.assertEquals(BooleanArrayList.newListWith(true, false, true), ImmutableBooleanArrayList.newList(BooleanArrayList.newListWith(true, false, true)));
     }
 
     @Override

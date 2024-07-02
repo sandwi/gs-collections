@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AtomicCountProcedureSerializationTest
 {
@@ -26,12 +26,14 @@ public class AtomicCountProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQXRvbWljQ291\n"
-                        + "bnRQcm9jZWR1cmUAAAAAAAAAAQIAAkwABWNvdW50dAArTGphdmEvdXRpbC9jb25jdXJyZW50L2F0\n"
-                        + "b21pYy9BdG9taWNJbnRlZ2VyO0wACXByZWRpY2F0ZXQAMkxjb20vZ3MvY29sbGVjdGlvbnMvYXBp\n"
-                        + "L2Jsb2NrL3ByZWRpY2F0ZS9QcmVkaWNhdGU7eHBzcgApamF2YS51dGlsLmNvbmN1cnJlbnQuYXRv\n"
-                        + "bWljLkF0b21pY0ludGVnZXJWP17MjGwWigIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKG\n"
-                        + "rJUdC5TgiwIAAHhwAAAAAHA=",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQXRvbWljQ291
+                bnRQcm9jZWR1cmUAAAAAAAAAAQIAAkwABWNvdW50dAArTGphdmEvdXRpbC9jb25jdXJyZW50L2F0
+                b21pYy9BdG9taWNJbnRlZ2VyO0wACXByZWRpY2F0ZXQAMkxjb20vZ3MvY29sbGVjdGlvbnMvYXBp
+                L2Jsb2NrL3ByZWRpY2F0ZS9QcmVkaWNhdGU7eHBzcgApamF2YS51dGlsLmNvbmN1cnJlbnQuYXRv
+                bWljLkF0b21pY0ludGVnZXJWP17MjGwWigIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKG
+                rJUdC5TgiwIAAHhwAAAAAHA=\
+                """,
                 new AtomicCountProcedure<Object>(null));
     }
 }

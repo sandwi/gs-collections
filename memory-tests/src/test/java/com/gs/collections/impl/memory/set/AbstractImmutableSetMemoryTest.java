@@ -27,7 +27,6 @@ import com.gs.collections.api.block.procedure.primitive.IntProcedure;
 import com.gs.collections.api.list.primitive.IntList;
 import com.gs.collections.impl.memory.MemoryTestBench;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

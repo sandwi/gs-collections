@@ -23,10 +23,11 @@ import com.gs.collections.api.map.MutableMap;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.test.set.SetTestCase;
 import com.gs.junit.runners.Java8Runner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 // TODO MapIterable.keySet() should return SetIterable, and use SetIterableTestCase here
 @RunWith(Java8Runner.class)
@@ -55,10 +56,12 @@ public class UnifiedMapKeySetTest implements SetTestCase
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void Collection_add()
     {
-        // TODO Move up to a keySet view abstraction
-        SetTestCase.super.Collection_add();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            // TODO Move up to a keySet view abstraction
+            SetTestCase.super.Collection_add();
+        });
     }
 }

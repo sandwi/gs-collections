@@ -17,7 +17,7 @@
 package com.gs.collections.impl.stack.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableFloatEmptyStackSerializationTest
 {
@@ -26,8 +26,10 @@ public class ImmutableFloatEmptyStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUucHJpbWl0aXZl\n"
-                        + "LkltbXV0YWJsZUZsb2F0RW1wdHlTdGFjawAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUucHJpbWl0aXZl
+                LkltbXV0YWJsZUZsb2F0RW1wdHlTdGFjawAAAAAAAAABAgAAeHA=\
+                """,
                 new ImmutableFloatEmptyStack());
     }
 }

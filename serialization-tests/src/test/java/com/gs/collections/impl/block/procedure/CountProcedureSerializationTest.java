@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CountProcedureSerializationTest
 {
@@ -26,9 +26,11 @@ public class CountProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ291bnRQcm9j\n"
-                        + "ZWR1cmUAAAAAAAAAAQIAAkkABWNvdW50TAAJcHJlZGljYXRldAAyTGNvbS9ncy9jb2xsZWN0aW9u\n"
-                        + "cy9hcGkvYmxvY2svcHJlZGljYXRlL1ByZWRpY2F0ZTt4cAAAAABw",
+                """
+                rO0ABXNyADZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ291bnRQcm9j
+                ZWR1cmUAAAAAAAAAAQIAAkkABWNvdW50TAAJcHJlZGljYXRldAAyTGNvbS9ncy9jb2xsZWN0aW9u
+                cy9hcGkvYmxvY2svcHJlZGljYXRlL1ByZWRpY2F0ZTt4cAAAAABw\
+                """,
                 new CountProcedure<Object>(null));
     }
 }

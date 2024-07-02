@@ -27,8 +27,10 @@ import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.ImmutableEntry;
 import com.gs.collections.impl.tuple.Tuples;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link UnmodifiableTreeMap}.
@@ -225,38 +227,48 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void getIfAbsentPut()
     {
-        this.newMapWithKeysValues(1, "1", 2, "2", 3, "3").getIfAbsentPut(4, new PassThruFunction0<>("4"));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues(1, "1", 2, "2", 3, "3").getIfAbsentPut(4, new PassThruFunction0<>("4"));
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void getIfAbsentPutValue()
     {
-        this.newMapWithKeysValues(1, "1", 2, "2", 3, "3").getIfAbsentPut(4, "4");
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues(1, "1", 2, "2", 3, "3").getIfAbsentPut(4, "4");
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void getIfAbsentPutWithKey()
     {
-        this.newMapWithKeysValues(1, 1, 2, 2, 3, 3).getIfAbsentPutWithKey(4, Functions.getIntegerPassThru());
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues(1, 1, 2, 2, 3, 3).getIfAbsentPutWithKey(4, Functions.getIntegerPassThru());
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void getIfAbsentPutWith()
     {
-        this.newMapWithKeysValues(1, "1", 2, "2", 3, "3").getIfAbsentPutWith(4, String::valueOf, 4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues(1, "1", 2, "2", 3, "3").getIfAbsentPutWith(4, String::valueOf, 4);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void putAll()
     {
-        this.newMapWithKeysValues(1, "One", 2, "2").putAll(null);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues(1, "One", 2, "2").putAll(null);
+        });
     }
 
     @Override
@@ -280,7 +292,7 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
     public void asUnmodifiable()
     {
         MutableSortedMap<Integer, String> map = this.newMapWithKeysValues(1, "One", 2, "2");
-        Assert.assertSame(map, map.asUnmodifiable());
+        Assertions.assertSame(map, map.asUnmodifiable());
     }
 
     @Test
@@ -292,7 +304,7 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
 
         Verify.assertThrows(UnsupportedOperationException.class, () -> Iterate.getFirst(map.entrySet()).setValue("Three"));
 
-        Assert.assertEquals(this.newMapWithKeysValues(1, "One", 2, "2"), map);
+        Assertions.assertEquals(this.newMapWithKeysValues(1, "One", 2, "2"), map);
     }
 
     @Test
@@ -300,7 +312,7 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
     {
         MutableSortedMap<Integer, String> map = this.newMapWithKeyValue(1, "One").asUnmodifiable();
         Object[] entries = map.entrySet().toArray();
-        Assert.assertEquals(ImmutableEntry.of(1, "One"), entries[0]);
+        Assertions.assertEquals(ImmutableEntry.of(1, "One"), entries[0]);
     }
 
     @Test
@@ -308,7 +320,7 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
     {
         MutableSortedMap<Integer, String> map = this.newMapWithKeyValue(1, "One").asUnmodifiable();
         Object[] entries = map.entrySet().toArray(new Object[]{});
-        Assert.assertEquals(ImmutableEntry.of(1, "One"), entries[0]);
+        Assertions.assertEquals(ImmutableEntry.of(1, "One"), entries[0]);
     }
 
     @Override
@@ -319,52 +331,65 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
     }
 
     @Override
+    @Test
     public void add()
     {
         Verify.assertThrows(UnsupportedOperationException.class, () -> this.newMapWithKeyValue("A", 1).add(Tuples.pair("A", 3)));
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withKeyValue()
     {
-        this.newMapWithKeysValues(1, "One", 2, "2").withKeyValue(null, null);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues(1, "One", 2, "2").withKeyValue(null, null);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withAllKeyValues()
     {
-        this.newMapWithKeysValues("A", 1, "B", 2).withAllKeyValues(
-                FastList.newListWith(Tuples.pair("B", 22), Tuples.pair("C", 3)));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues("A", 1, "B", 2).withAllKeyValues(
+                    FastList.newListWith(Tuples.pair("B", 22), Tuples.pair("C", 3)));
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withAllKeyValueArguments()
     {
-        this.newMapWithKeysValues("A", 1, "B", 2).withAllKeyValueArguments(Tuples.pair("B", 22), Tuples.pair("C", 3));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues("A", 1, "B", 2).withAllKeyValueArguments(Tuples.pair("B", 22), Tuples.pair("C", 3));
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withoutKey()
     {
-        this.newMapWithKeysValues("A", 1, "B", 2).withoutKey("B");
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues("A", 1, "B", 2).withoutKey("B");
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withoutAllKeys()
     {
-        this.newMapWithKeysValues("A", 1, "B", 2, "C", 3).withoutAllKeys(FastList.newListWith("A", "C"));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues("A", 1, "B", 2, "C", 3).withoutAllKeys(FastList.newListWith("A", "C"));
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void with()
     {
-        this.newMapWithKeysValues(1, "1", 2, "2").with(Tuples.pair(3, "3"));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues(1, "1", 2, "2").with(Tuples.pair(3, "3"));
+        });
     }
 
     @Override
@@ -402,7 +427,7 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
     public void testClone()
     {
         MutableSortedMap<Integer, String> map = this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4");
-        Assert.assertSame(map, map.clone());
+        Assertions.assertSame(map, map.clone());
         Verify.assertInstanceOf(UnmodifiableTreeMap.class, map.clone());
     }
 
@@ -433,31 +458,39 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
         // Not applicable for unmodifiable adapter
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     @Override
     public void updateValue()
     {
-        this.<Integer, Integer>newMap().updateValue(0, () -> 0, Functions.identity());
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.<Integer, Integer>newMap().updateValue(0, () -> 0, Functions.identity());
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     @Override
     public void updateValue_collisions()
     {
-        this.<Integer, Integer>newMap().updateValue(0, () -> 0, Functions.identity());
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.<Integer, Integer>newMap().updateValue(0, () -> 0, Functions.identity());
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     @Override
     public void updateValueWith()
     {
-        this.<Integer, Integer>newMap().updateValueWith(0, () -> 0, (integer, parameter) -> 0, "test");
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.<Integer, Integer>newMap().updateValueWith(0, () -> 0, (integer, parameter) -> 0, "test");
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     @Override
     public void updateValueWith_collisions()
     {
-        this.<Integer, Integer>newMap().updateValueWith(0, () -> 0, (integer, parameter) -> 0, "test");
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.<Integer, Integer>newMap().updateValueWith(0, () -> 0, (integer, parameter) -> 0, "test");
+        });
     }
 }

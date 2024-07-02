@@ -22,8 +22,8 @@ import java.util.NoSuchElementException;
 import com.gs.collections.api.iterator.MutableBooleanIterator;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class BooleanHashSetTest extends AbstractBooleanSetTestCase
 {
@@ -44,7 +44,7 @@ public class BooleanHashSetTest extends AbstractBooleanSetTestCase
     {
         Field table = BooleanHashSet.class.getDeclaredField("state");
         table.setAccessible(true);
-        Assert.assertEquals(0, table.get(new BooleanHashSet()));
+        Assertions.assertEquals(0, table.get(new BooleanHashSet()));
     }
 
     @Override
@@ -62,11 +62,11 @@ public class BooleanHashSetTest extends AbstractBooleanSetTestCase
         BooleanHashSet setFromSet1 = BooleanHashSet.newSet(set1);
         BooleanHashSet setFromSet2 = BooleanHashSet.newSet(set2);
         BooleanHashSet setFromSet3 = BooleanHashSet.newSet(set3);
-        Assert.assertEquals(set3, setFromList);
-        Assert.assertEquals(set0, setFromSet0);
-        Assert.assertEquals(set1, setFromSet1);
-        Assert.assertEquals(set2, setFromSet2);
-        Assert.assertEquals(set3, setFromSet3);
+        Assertions.assertEquals(set3, setFromList);
+        Assertions.assertEquals(set0, setFromSet0);
+        Assertions.assertEquals(set1, setFromSet1);
+        Assertions.assertEquals(set2, setFromSet2);
+        Assertions.assertEquals(set3, setFromSet3);
     }
 
     @Override
@@ -77,23 +77,23 @@ public class BooleanHashSetTest extends AbstractBooleanSetTestCase
 
         BooleanHashSet falseSet = this.newWith(false);
         MutableBooleanIterator mutableBooleanIterator = falseSet.booleanIterator();
-        Assert.assertTrue(mutableBooleanIterator.hasNext());
-        Assert.assertFalse(mutableBooleanIterator.next());
+        Assertions.assertTrue(mutableBooleanIterator.hasNext());
+        Assertions.assertFalse(mutableBooleanIterator.next());
         mutableBooleanIterator.remove();
         Verify.assertEmpty(falseSet);
         Verify.assertThrows(NoSuchElementException.class, mutableBooleanIterator::next);
         Verify.assertThrows(IllegalStateException.class, mutableBooleanIterator::remove);
         BooleanHashSet trueSet = this.newWith(true);
         mutableBooleanIterator = trueSet.booleanIterator();
-        Assert.assertTrue(mutableBooleanIterator.hasNext());
-        Assert.assertTrue(mutableBooleanIterator.next());
+        Assertions.assertTrue(mutableBooleanIterator.hasNext());
+        Assertions.assertTrue(mutableBooleanIterator.next());
         mutableBooleanIterator.remove();
         Verify.assertEmpty(trueSet);
         Verify.assertThrows(NoSuchElementException.class, mutableBooleanIterator::next);
         Verify.assertThrows(IllegalStateException.class, mutableBooleanIterator::remove);
         BooleanHashSet emptySet = new BooleanHashSet();
         mutableBooleanIterator = emptySet.booleanIterator();
-        Assert.assertFalse(mutableBooleanIterator.hasNext());
+        Assertions.assertFalse(mutableBooleanIterator.hasNext());
         Verify.assertEmpty(emptySet);
         Verify.assertThrows(NoSuchElementException.class, mutableBooleanIterator::next);
         Verify.assertThrows(IllegalStateException.class, mutableBooleanIterator::remove);

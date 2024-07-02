@@ -21,23 +21,29 @@ import java.util.Random;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.test.UnmodifiableMutableCollectionTestCase;
 import com.gs.collections.test.list.UnmodifiableListTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface UnmodifiableMutableListTestCase extends UnmodifiableMutableCollectionTestCase, UnmodifiableListTestCase, MutableListTestCase
 {
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void MutableList_sortThis()
     {
-        this.newWith(5, 1, 4, 2, 3).sortThis();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(5, 1, 4, 2, 3).sortThis();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void MutableList_shuffleThis()
     {
-        this.newWith(5, 1, 4, 2, 3).shuffleThis();
-        this.newWith(5, 1, 4, 2, 3).shuffleThis(new Random(8));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(5, 1, 4, 2, 3).shuffleThis();
+            this.newWith(5, 1, 4, 2, 3).shuffleThis(new Random(8));
+        });
     }
 
     @Override
@@ -48,9 +54,11 @@ public interface UnmodifiableMutableListTestCase extends UnmodifiableMutableColl
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void MutableList_sortThis_comparator()
     {
-        this.newWith(5, 1, 4, 2, 3).sortThis(Comparators.reverseNaturalOrder());
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(5, 1, 4, 2, 3).sortThis(Comparators.reverseNaturalOrder());
+        });
     }
 }

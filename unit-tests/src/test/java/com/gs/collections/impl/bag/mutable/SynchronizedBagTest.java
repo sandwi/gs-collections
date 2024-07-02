@@ -31,8 +31,8 @@ import com.gs.collections.impl.factory.Bags;
 import com.gs.collections.impl.factory.Maps;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
 
@@ -60,16 +60,16 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
     @Test
     public void getFirst()
     {
-        Assert.assertNotNull(this.newWith(1, 2, 3).getFirst());
-        Assert.assertNull(this.newWith().getFirst());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getFirst());
+        Assertions.assertNull(this.newWith().getFirst());
     }
 
     @Override
     @Test
     public void getLast()
     {
-        Assert.assertNotNull(this.newWith(1, 2, 3).getLast());
-        Assert.assertNull(this.newWith().getLast());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getLast());
+        Assertions.assertNull(this.newWith().getLast());
     }
 
     @Override
@@ -80,8 +80,8 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
         Multimap<Boolean, Integer> multimap =
                 list.groupBy(object -> IntegerPredicates.isOdd().accept(object));
 
-        Assert.assertEquals(Bags.mutable.of(1, 3, 5, 7), multimap.get(Boolean.TRUE));
-        Assert.assertEquals(Bags.mutable.of(2, 4, 6), multimap.get(Boolean.FALSE));
+        Assertions.assertEquals(Bags.mutable.of(1, 3, 5, 7), multimap.get(Boolean.TRUE));
+        Assertions.assertEquals(Bags.mutable.of(2, 4, 6), multimap.get(Boolean.FALSE));
     }
 
     @Override
@@ -115,8 +115,8 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
 
         MutableBag<Integer> integers = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         PartitionMutableCollection<Integer> result = integers.partition(IntegerPredicates.isEven());
-        Assert.assertEquals(iBag(2, 2, 4, 4, 4, 4), result.getSelected());
-        Assert.assertEquals(iBag(1, 3, 3, 3), result.getRejected());
+        Assertions.assertEquals(iBag(2, 2, 4, 4, 4, 4), result.getSelected());
+        Assertions.assertEquals(iBag(1, 3, 3, 3), result.getRejected());
     }
 
     @Override
@@ -127,48 +127,48 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
 
         MutableBag<Integer> integers = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         PartitionMutableCollection<Integer> result = integers.partitionWith(Predicates2.in(), integers.select(IntegerPredicates.isEven()));
-        Assert.assertEquals(iBag(2, 2, 4, 4, 4, 4), result.getSelected());
-        Assert.assertEquals(iBag(1, 3, 3, 3), result.getRejected());
+        Assertions.assertEquals(iBag(2, 2, 4, 4, 4, 4), result.getSelected());
+        Assertions.assertEquals(iBag(1, 3, 3, 3), result.getRejected());
     }
 
     @Test
     public void selectByOccurrences()
     {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
-        Assert.assertEquals(iBag(1, 1, 1, 1, 3, 3), integers.selectByOccurrences(IntPredicates.isEven()));
+        Assertions.assertEquals(iBag(1, 1, 1, 1, 3, 3), integers.selectByOccurrences(IntPredicates.isEven()));
     }
 
     @Test
     public void addOccurrences()
     {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
-        Assert.assertEquals(0, integers.occurrencesOf(5));
+        Assertions.assertEquals(0, integers.occurrencesOf(5));
         integers.addOccurrences(5, 5);
-        Assert.assertEquals(5, integers.occurrencesOf(5));
+        Assertions.assertEquals(5, integers.occurrencesOf(5));
     }
 
     @Test
     public void removeOccurrences()
     {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
-        Assert.assertEquals(1, integers.occurrencesOf(4));
-        Assert.assertEquals(3, integers.occurrencesOf(2));
+        Assertions.assertEquals(1, integers.occurrencesOf(4));
+        Assertions.assertEquals(3, integers.occurrencesOf(2));
         integers.removeOccurrences(4, 1);
         integers.removeOccurrences(2, 2);
-        Assert.assertEquals(0, integers.occurrencesOf(4));
-        Assert.assertEquals(1, integers.occurrencesOf(2));
+        Assertions.assertEquals(0, integers.occurrencesOf(4));
+        Assertions.assertEquals(1, integers.occurrencesOf(2));
     }
 
     @Test
     public void setOccurrences()
     {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
-        Assert.assertEquals(0, integers.occurrencesOf(5));
-        Assert.assertEquals(3, integers.occurrencesOf(2));
+        Assertions.assertEquals(0, integers.occurrencesOf(5));
+        Assertions.assertEquals(3, integers.occurrencesOf(2));
         integers.setOccurrences(5, 5);
         integers.setOccurrences(2, 2);
-        Assert.assertEquals(5, integers.occurrencesOf(5));
-        Assert.assertEquals(2, integers.occurrencesOf(2));
+        Assertions.assertEquals(5, integers.occurrencesOf(5));
+        Assertions.assertEquals(2, integers.occurrencesOf(2));
     }
 
     @Test
@@ -176,7 +176,7 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
     {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
         MapIterable<Integer, Integer> result = integers.toMapOfItemToCount();
-        Assert.assertEquals(Maps.mutable.with(1, 4, 2, 3, 3, 2, 4, 1), result);
+        Assertions.assertEquals(Maps.mutable.with(1, 4, 2, 3, 3, 2, 4, 1), result);
     }
 
     @Test
@@ -184,7 +184,7 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
     {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1);
         String result = integers.toStringOfItemToCount();
-        Assert.assertEquals(Maps.mutable.with(1, 4).toString(), result);
+        Assertions.assertEquals(Maps.mutable.with(1, 4).toString(), result);
     }
 
     @Test
@@ -193,7 +193,7 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
         MutableBag<Integer> result = HashBag.newBag();
         integers.forEachWithOccurrences(result::setOccurrences);
-        Assert.assertEquals(integers, result);
+        Assertions.assertEquals(integers, result);
     }
 
     @Test
@@ -212,10 +212,10 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
         strings.addOccurrences("ten", 10);
         MutableList<ObjectIntPair<String>> top5 = strings.topOccurrences(5);
         Verify.assertSize(5, top5);
-        Assert.assertEquals("ten", top5.getFirst().getOne());
-        Assert.assertEquals(10, top5.getFirst().getTwo());
-        Assert.assertEquals("six", top5.getLast().getOne());
-        Assert.assertEquals(6, top5.getLast().getTwo());
+        Assertions.assertEquals("ten", top5.getFirst().getOne());
+        Assertions.assertEquals(10, top5.getFirst().getTwo());
+        Assertions.assertEquals("six", top5.getLast().getOne());
+        Assertions.assertEquals(6, top5.getLast().getTwo());
         Verify.assertSize(0, this.newWith().topOccurrences(5));
         Verify.assertSize(3, this.newWith("one", "two", "three").topOccurrences(5));
         Verify.assertSize(3, this.newWith("one", "two", "three").topOccurrences(1));
@@ -242,10 +242,10 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
         strings.addOccurrences("ten", 10);
         MutableList<ObjectIntPair<String>> bottom5 = strings.bottomOccurrences(5);
         Verify.assertSize(5, bottom5);
-        Assert.assertEquals("one", bottom5.getFirst().getOne());
-        Assert.assertEquals(1, bottom5.getFirst().getTwo());
-        Assert.assertEquals("five", bottom5.getLast().getOne());
-        Assert.assertEquals(5, bottom5.getLast().getTwo());
+        Assertions.assertEquals("one", bottom5.getFirst().getOne());
+        Assertions.assertEquals(1, bottom5.getFirst().getTwo());
+        Assertions.assertEquals("five", bottom5.getLast().getOne());
+        Assertions.assertEquals(5, bottom5.getLast().getTwo());
         Verify.assertSize(0, this.newWith().bottomOccurrences(5));
         Verify.assertSize(3, this.newWith("one", "two", "three").topOccurrences(5));
         Verify.assertSize(3, this.newWith("one", "two", "three").topOccurrences(1));

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MinByProcedureSerializationTest
 {
@@ -26,11 +26,13 @@ public class MinByProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWluQnlQcm9j\n"
-                        + "ZWR1cmUAAAAAAAAAAQIABFoAEnZpc2l0ZWRBdExlYXN0T25jZUwAEWNhY2hlZFJlc3VsdFZhbHVl\n"
-                        + "dAAWTGphdmEvbGFuZy9Db21wYXJhYmxlO0wACGZ1bmN0aW9udAAwTGNvbS9ncy9jb2xsZWN0aW9u\n"
-                        + "cy9hcGkvYmxvY2svZnVuY3Rpb24vRnVuY3Rpb247TAAGcmVzdWx0dAASTGphdmEvbGFuZy9PYmpl\n"
-                        + "Y3Q7eHAAcHBw",
+                """
+                rO0ABXNyADZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWluQnlQcm9j
+                ZWR1cmUAAAAAAAAAAQIABFoAEnZpc2l0ZWRBdExlYXN0T25jZUwAEWNhY2hlZFJlc3VsdFZhbHVl
+                dAAWTGphdmEvbGFuZy9Db21wYXJhYmxlO0wACGZ1bmN0aW9udAAwTGNvbS9ncy9jb2xsZWN0aW9u
+                cy9hcGkvYmxvY2svZnVuY3Rpb24vRnVuY3Rpb247TAAGcmVzdWx0dAASTGphdmEvbGFuZy9PYmpl
+                Y3Q7eHAAcHBw\
+                """,
                 new MinByProcedure<Integer, Integer>(null));
     }
 }

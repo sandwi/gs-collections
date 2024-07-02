@@ -50,7 +50,7 @@ public final class SerializeTestHelper
         }
         catch (IOException e)
         {
-            Verify.fail("Failed to marshal an object", e);
+            Verify.fail(e, "Failed to marshal an object");
         }
         return baos;
     }
@@ -93,11 +93,11 @@ public final class SerializeTestHelper
         }
         catch (ClassNotFoundException e)
         {
-            Verify.fail("Failed to unmarshal an object", e);
+            Verify.fail(e, "Failed to unmarshal an object");
         }
         catch (IOException e)
         {
-            Verify.fail("Failed to unmarshal an object", e);
+            Verify.fail(e, "Failed to unmarshal an object");
         }
 
         return null;

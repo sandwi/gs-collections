@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.sorted.mutable;
 
 import com.gs.collections.impl.factory.SortedMaps;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableTreeMapSerializationTest
 {
@@ -27,12 +27,14 @@ public class UnmodifiableTreeMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc29ydGVkLm11dGFibGUuVW5tb2Rp\n"
-                        + "ZmlhYmxlVHJlZU1hcAAAAAAAAAABAgAAeHIAQGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLm1hcC5z\n"
-                        + "b3J0ZWQubXV0YWJsZS5Vbm1vZGlmaWFibGVTb3J0ZWRNYXAAAAAAAAAAAQIAAHhyACdjb20uZ3Mu\n"
-                        + "Y29sbGVjdGlvbnMuaW1wbC5Vbm1vZGlmaWFibGVNYXAAAAAAAAAAAQIAAUwACGRlbGVnYXRldAAP\n"
-                        + "TGphdmEvdXRpbC9NYXA7eHBzcgA4Y29tLmdzLmNvbGxlY3Rpb25zLmltcGwubWFwLnNvcnRlZC5t\n"
-                        + "dXRhYmxlLlRyZWVTb3J0ZWRNYXAAAAAAAAAAAQwAAHhwcHcEAAAAAHg=",
+                """
+                rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc29ydGVkLm11dGFibGUuVW5tb2Rp
+                ZmlhYmxlVHJlZU1hcAAAAAAAAAABAgAAeHIAQGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLm1hcC5z
+                b3J0ZWQubXV0YWJsZS5Vbm1vZGlmaWFibGVTb3J0ZWRNYXAAAAAAAAAAAQIAAHhyACdjb20uZ3Mu
+                Y29sbGVjdGlvbnMuaW1wbC5Vbm1vZGlmaWFibGVNYXAAAAAAAAAAAQIAAUwACGRlbGVnYXRldAAP
+                TGphdmEvdXRpbC9NYXA7eHBzcgA4Y29tLmdzLmNvbGxlY3Rpb25zLmltcGwubWFwLnNvcnRlZC5t
+                dXRhYmxlLlRyZWVTb3J0ZWRNYXAAAAAAAAAAAQwAAHhwcHcEAAAAAHg=\
+                """,
                 UnmodifiableTreeMap.of(SortedMaps.mutable.of()));
     }
 }

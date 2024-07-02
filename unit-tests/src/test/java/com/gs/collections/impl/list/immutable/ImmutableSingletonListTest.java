@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable;
 
 import com.gs.collections.api.list.ImmutableList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableSingletonListTest extends AbstractImmutableListTestCase
 {

@@ -24,7 +24,6 @@ import com.gs.collections.api.set.MutableSet;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.set.mutable.MultiReaderUnifiedSet;
 import org.junit.Assert;
-import org.junit.Test;
 
 public class ParallelArrayIterateAcceptanceTest
 {

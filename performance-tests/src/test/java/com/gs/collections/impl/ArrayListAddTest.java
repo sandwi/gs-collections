@@ -19,7 +19,6 @@ package com.gs.collections.impl;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

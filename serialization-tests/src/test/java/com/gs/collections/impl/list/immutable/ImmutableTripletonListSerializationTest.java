@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableTripletonListSerializationTest
 {
@@ -25,11 +25,13 @@ public class ImmutableTripletonListSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVU\n"
-                        + "cmlwbGV0b25MaXN0AAAAAAAAAAECAANMAAhlbGVtZW50MXQAEkxqYXZhL2xhbmcvT2JqZWN0O0wA\n"
-                        + "CGVsZW1lbnQycQB+AAFMAAhlbGVtZW50M3EAfgABeHBzcgARamF2YS5sYW5nLkludGVnZXIS4qCk\n"
-                        + "94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXNxAH4A\n"
-                        + "AwAAAAJzcQB+AAMAAAAD",
-                new ImmutableTripletonList<Integer>(1, 2, 3));
+                new ImmutableTripletonList<Integer>(1, 2, 3),
+                """
+                rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVU
+                cmlwbGV0b25MaXN0AAAAAAAAAAECAANMAAhlbGVtZW50MXQAEkxqYXZhL2xhbmcvT2JqZWN0O0wA
+                CGVsZW1lbnQycQB+AAFMAAhlbGVtZW50M3EAfgABeHBzcgARamF2YS5sYW5nLkludGVnZXIS4qCk
+                94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXNxAH4A
+                AwAAAAJzcQB+AAMAAAAD\
+                """);
     }
 }

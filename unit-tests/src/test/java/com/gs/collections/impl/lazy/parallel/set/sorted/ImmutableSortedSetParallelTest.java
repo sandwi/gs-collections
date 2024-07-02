@@ -19,7 +19,9 @@ package com.gs.collections.impl.lazy.parallel.set.sorted;
 import com.gs.collections.api.set.sorted.ParallelSortedSetIterable;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.factory.SortedSets;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ImmutableSortedSetParallelTest extends ParallelSortedSetIterableTestCase
 {
@@ -35,15 +37,19 @@ public class ImmutableSortedSetParallelTest extends ParallelSortedSetIterableTes
         return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements).asParallel(this.executorService, this.batchSize);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void asParallel_small_batch()
     {
-        SortedSets.immutable.with(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(this.executorService, 0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            SortedSets.immutable.with(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(this.executorService, 0);
+        });
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void asParallel_null_executorService()
     {
-        SortedSets.immutable.with(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(null, 2);
+        assertThrows(NullPointerException.class, () -> {
+            SortedSets.immutable.with(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(null, 2);
+        });
     }
 }

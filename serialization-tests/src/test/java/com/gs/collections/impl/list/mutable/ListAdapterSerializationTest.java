@@ -19,7 +19,7 @@ package com.gs.collections.impl.list.mutable;
 import java.util.LinkedList;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ListAdapterSerializationTest
 {
@@ -28,9 +28,11 @@ public class ListAdapterSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuTGlzdEFkYXB0ZXIA\n"
-                        + "AAAAAAAAAQIAAUwACGRlbGVnYXRldAAQTGphdmEvdXRpbC9MaXN0O3hwc3IAFGphdmEudXRpbC5M\n"
-                        + "aW5rZWRMaXN0DClTXUpgiCIDAAB4cHcEAAAAAHg=",
+                """
+                rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuTGlzdEFkYXB0ZXIA
+                AAAAAAAAAQIAAUwACGRlbGVnYXRldAAQTGphdmEvdXRpbC9MaXN0O3hwc3IAFGphdmEudXRpbC5M
+                aW5rZWRMaXN0DClTXUpgiCIDAAB4cHcEAAAAAHg=\
+                """,
                 new ListAdapter<Object>(new LinkedList<Object>()));
     }
 }

@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.IntShortHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableIntShortHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableIntShortHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVJbnRTaG9ydEhhc2hNYXAkSW1tdXRhYmxlSW50U2hvcnRNYXBTZXJpYWxpemF0aW9u\n"
-                        + "UHJveHkAAAAAAAAAAQwAAHhwdxAAAAACAAAAAQABAAAAAgACeA==",
+                """
+                rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVJbnRTaG9ydEhhc2hNYXAkSW1tdXRhYmxlSW50U2hvcnRNYXBTZXJpYWxpemF0aW9u
+                UHJveHkAAAAAAAAAAQwAAHhwdxAAAAACAAAAAQABAAAAAgACeA==\
+                """,
                 new ImmutableIntShortHashMap(IntShortHashMap.newWithKeysValues(1, (short) 1, 2, (short) 2)));
     }
 }

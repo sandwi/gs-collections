@@ -41,8 +41,8 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.test.domain.Person;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
 
@@ -58,7 +58,7 @@ public class ComparatorsTest
     public void naturalOrder()
     {
         MutableList<String> list = FastList.newListWith("1", "4", "2", "3");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith("1", "2", "3", "4"),
                 list.sortThis(Comparators.naturalOrder()));
         Verify.assertThrows(NullPointerException.class, () -> FastList.newListWith("1", "2", null, "4").sortThis(Comparators.naturalOrder()));
@@ -68,7 +68,7 @@ public class ComparatorsTest
     public void reverseNaturalOrder()
     {
         MutableList<String> list = FastList.newListWith("1", "4", "2", "3");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith("4", "3", "2", "1"),
                 list.sortThis(Comparators.<String>reverseNaturalOrder()));
     }
@@ -77,7 +77,7 @@ public class ComparatorsTest
     public void reverse()
     {
         MutableList<String> list = FastList.newListWith("1", "4", "2", "3");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith("4", "3", "2", "1"),
                 list.sortThis(Comparators.reverse(String::compareTo)));
         Verify.assertThrows(NullPointerException.class, () -> Comparators.reverse(null));
@@ -87,10 +87,10 @@ public class ComparatorsTest
     public void safeNullsLow()
     {
         SerializableComparator<Integer> comparator = Comparators.safeNullsLow(Comparators.byFunction(Functions.getIntegerPassThru()));
-        Assert.assertEquals(-1, comparator.compare(null, 1));
-        Assert.assertEquals(1, comparator.compare(1, null));
-        Assert.assertEquals(0, comparator.compare(null, null));
-        Assert.assertEquals(0, comparator.compare(1, 1));
+        Assertions.assertEquals(-1, comparator.compare(null, 1));
+        Assertions.assertEquals(1, comparator.compare(1, null));
+        Assertions.assertEquals(0, comparator.compare(null, null));
+        Assertions.assertEquals(0, comparator.compare(1, 1));
     }
 
     @Test
@@ -160,10 +160,10 @@ public class ComparatorsTest
     public void safeNullsHigh()
     {
         SerializableComparator<Integer> comparator = Comparators.safeNullsHigh(Comparators.byFunction(Functions.getIntegerPassThru()));
-        Assert.assertEquals(1, comparator.compare(null, 1));
-        Assert.assertEquals(-1, comparator.compare(1, null));
-        Assert.assertEquals(0, comparator.compare(null, null));
-        Assert.assertEquals(0, comparator.compare(1, 1));
+        Assertions.assertEquals(1, comparator.compare(null, 1));
+        Assertions.assertEquals(-1, comparator.compare(1, null));
+        Assertions.assertEquals(0, comparator.compare(null, null));
+        Assertions.assertEquals(0, comparator.compare(1, 1));
     }
 
     @Test
@@ -239,7 +239,7 @@ public class ComparatorsTest
                 Interval.oneTo(3),
                 Interval.oneTo(2));
         list.sortThis(Comparators.descendingCollectionSizeComparator());
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.<MutableList<Integer>>newListWith(
                         FastList.newListWith(1, 2, 3),
                         FastList.newListWith(1, 2),
@@ -255,7 +255,7 @@ public class ComparatorsTest
                 Interval.oneTo(3),
                 Interval.oneTo(2));
         list.sortThis(Comparators.ascendingCollectionSizeComparator());
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.<MutableList<Integer>>newListWith(
                         FastList.newListWith(1),
                         FastList.newListWith(1, 2),
@@ -266,25 +266,25 @@ public class ComparatorsTest
     @Test
     public void nullSafeEquals()
     {
-        Assert.assertTrue(Comparators.nullSafeEquals("Fred", "Fred"));
-        Assert.assertTrue(Comparators.nullSafeEquals(null, null));
+        Assertions.assertTrue(Comparators.nullSafeEquals("Fred", "Fred"));
+        Assertions.assertTrue(Comparators.nullSafeEquals(null, null));
 
-        Assert.assertFalse(Comparators.nullSafeEquals("Fred", "Jim"));
-        Assert.assertFalse(Comparators.nullSafeEquals("Fred", null));
-        Assert.assertFalse(Comparators.nullSafeEquals(null, "Jim"));
+        Assertions.assertFalse(Comparators.nullSafeEquals("Fred", "Jim"));
+        Assertions.assertFalse(Comparators.nullSafeEquals("Fred", null));
+        Assertions.assertFalse(Comparators.nullSafeEquals(null, "Jim"));
     }
 
     @Test
     public void nullSafeCompare()
     {
-        Assert.assertEquals(0, Comparators.nullSafeCompare(null, null));
-        Assert.assertEquals(0, Comparators.nullSafeCompare("Sheila", "Sheila"));
+        Assertions.assertEquals(0, Comparators.nullSafeCompare(null, null));
+        Assertions.assertEquals(0, Comparators.nullSafeCompare("Sheila", "Sheila"));
 
-        Assert.assertTrue(Comparators.nullSafeCompare("Fred", "Jim") < 0);
-        Assert.assertTrue(Comparators.nullSafeCompare("Sheila", "Jim") > 0);
+        Assertions.assertTrue(Comparators.nullSafeCompare("Fred", "Jim") < 0);
+        Assertions.assertTrue(Comparators.nullSafeCompare("Sheila", "Jim") > 0);
 
-        Assert.assertEquals(1, Comparators.nullSafeCompare("Fred", null));
-        Assert.assertEquals(-1, Comparators.nullSafeCompare(null, "Jim"));
+        Assertions.assertEquals(1, Comparators.nullSafeCompare("Fred", null));
+        Assertions.assertEquals(-1, Comparators.nullSafeCompare(null, "Jim"));
     }
 
     @Test
@@ -312,7 +312,7 @@ public class ComparatorsTest
 
         Comparator<OneOfEach> comparator = Comparators.byFunction(OneOfEach.TO_DATE_VALUE, new FancyDateComparator());
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 iList(april, december, february),
                 iList(february, april, december).toSortedList(comparator));
     }

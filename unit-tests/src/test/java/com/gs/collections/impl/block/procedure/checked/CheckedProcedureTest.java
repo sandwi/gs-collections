@@ -26,8 +26,8 @@ import com.gs.collections.api.block.procedure.primitive.ObjectIntProcedure;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.factory.Maps;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CheckedProcedureTest
 {
@@ -39,7 +39,7 @@ public class CheckedProcedureTest
             @Override
             public void safeValue(Date date)
             {
-                Assert.assertNotNull(date.toString());
+                Assertions.assertNotNull(date.toString());
             }
         };
         procedure.value(new Date());
@@ -67,7 +67,7 @@ public class CheckedProcedureTest
             @Override
             public void safeValue(Map<String, String> map)
             {
-                Verify.assertContainsKey("1", map);
+                Verify.assertContainsKey(map, "1");
             }
         };
         procedure.value(Maps.fixedSize.of("1", "1"));
@@ -93,7 +93,7 @@ public class CheckedProcedureTest
         {
             success = true;
         }
-        Assert.assertTrue(success);
+        Assertions.assertTrue(success);
     }
 
     @Test
@@ -104,7 +104,7 @@ public class CheckedProcedureTest
             @Override
             public void safeValue(Integer integer)
             {
-                Assert.assertEquals(Integer.valueOf(1), integer);
+                Assertions.assertEquals(Integer.valueOf(1), integer);
             }
         };
         procedure.value(1);
@@ -118,7 +118,7 @@ public class CheckedProcedureTest
             @Override
             public void safeValue(Timestamp timestamp)
             {
-                Assert.assertNotNull(timestamp.toString());
+                Assertions.assertNotNull(timestamp.toString());
             }
         };
         procedure.value(new Timestamp(0));

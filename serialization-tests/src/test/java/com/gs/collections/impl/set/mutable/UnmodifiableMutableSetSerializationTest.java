@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.mutable;
 
 import com.gs.collections.impl.factory.Sets;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableMutableSetSerializationTest
 {
@@ -26,10 +26,12 @@ public class UnmodifiableMutableSetSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp\n"
-                        + "ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgAuY29tLmdz\n"
-                        + "LmNvbGxlY3Rpb25zLmltcGwuc2V0Lm11dGFibGUuVW5pZmllZFNldAAAAAAAAAABDAAAeHB3CAAA\n"
-                        + "AAA/QAAAeHg=",
-                UnmodifiableMutableSet.of(Sets.mutable.of()));
+                UnmodifiableMutableSet.of(Sets.mutable.of()),
+                """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp
+                ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgAuY29tLmdz
+                LmNvbGxlY3Rpb25zLmltcGwuc2V0Lm11dGFibGUuVW5pZmllZFNldAAAAAAAAAABDAAAeHB3CAAA
+                AAA/QAAAeHg=\
+                """);
     }
 }

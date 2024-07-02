@@ -25,7 +25,7 @@ import com.gs.collections.impl.factory.primitive.IntSets;
 import com.gs.collections.impl.factory.primitive.LongSets;
 import com.gs.collections.impl.factory.primitive.ShortSets;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for empty() methods of primitive classes

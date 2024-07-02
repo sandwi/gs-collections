@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IfProcedureWithSerializationTest
 {
@@ -26,10 +26,12 @@ public class IfProcedureWithSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuSWZQcm9jZWR1\n"
-                        + "cmVXaXRoAAAAAAAAAAECAAJMAAlwcmVkaWNhdGV0ADJMY29tL2dzL2NvbGxlY3Rpb25zL2FwaS9i\n"
-                        + "bG9jay9wcmVkaWNhdGUvUHJlZGljYXRlO0wACXByb2NlZHVyZXQAM0xjb20vZ3MvY29sbGVjdGlv\n"
-                        + "bnMvYXBpL2Jsb2NrL3Byb2NlZHVyZS9Qcm9jZWR1cmUyO3hwcHA=",
+                """
+                rO0ABXNyADdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuSWZQcm9jZWR1
+                cmVXaXRoAAAAAAAAAAECAAJMAAlwcmVkaWNhdGV0ADJMY29tL2dzL2NvbGxlY3Rpb25zL2FwaS9i
+                bG9jay9wcmVkaWNhdGUvUHJlZGljYXRlO0wACXByb2NlZHVyZXQAM0xjb20vZ3MvY29sbGVjdGlv
+                bnMvYXBpL2Jsb2NrL3Byb2NlZHVyZS9Qcm9jZWR1cmUyO3hwcHA=\
+                """,
                 new IfProcedureWith<Object, Object>(null, null));
     }
 }

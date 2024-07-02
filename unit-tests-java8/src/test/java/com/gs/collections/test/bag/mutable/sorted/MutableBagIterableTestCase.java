@@ -19,7 +19,7 @@ package com.gs.collections.test.bag.mutable.sorted;
 import com.gs.collections.api.bag.MutableBagIterable;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.test.collection.mutable.MutableCollectionTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public interface MutableBagIterableTestCase extends MutableCollectionTestCase
 {

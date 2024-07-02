@@ -21,8 +21,10 @@ import java.util.NoSuchElementException;
 
 import com.gs.collections.api.set.sorted.MutableSortedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link SynchronizedSortedSet}.
@@ -42,27 +44,33 @@ public class SynchronizedSortedSet2Test extends AbstractSortedSetTestCase
     }
 
     @Override
+    @Test
     public void asSynchronized()
     {
         MutableSortedSet<Object> synchronizedSet = this.newWith();
-        Assert.assertSame(synchronizedSet, synchronizedSet.asSynchronized());
+        Assertions.assertSame(synchronizedSet, synchronizedSet.asSynchronized());
     }
 
     @Override
+    @Test
     public void asUnmodifiable()
     {
         Verify.assertInstanceOf(UnmodifiableSortedSet.class, this.newWith().asUnmodifiable());
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void min_empty_throws_without_comparator()
     {
-        this.newWith().min();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().min();
+        });
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void max_empty_throws_without_comparator()
     {
-        this.newWith().max();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().max();
+        });
     }
 }

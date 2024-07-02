@@ -25,7 +25,6 @@ import com.google.common.collect.ImmutableList;
 import com.gs.collections.api.block.function.Function0;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.memory.MemoryTestBench;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.collection.immutable.$colon$colon;

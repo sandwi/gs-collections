@@ -21,8 +21,8 @@ import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.test.domain.Key;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class HashBiMapTest extends AbstractMutableBiMapTestCase
 {
@@ -91,25 +91,25 @@ public class HashBiMapTest extends AbstractMutableBiMapTestCase
         HashBiMap<Integer, Character> map = this.getEmptyMap();
         HashBiMap<Integer, Character> map1 = map.withKeysValues(1, 'a');
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'a'), map1);
-        Assert.assertSame(map, map1);
+        Assertions.assertSame(map, map1);
         HashBiMap<Integer, Character> map2 = map1.withKeysValues(2, 'b');
         HashBiMap<Integer, Character> map22 = map.withKeysValues(1, 'a', 2, 'b');
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'a', 2, 'b'), map2);
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'a', 2, 'b'), map22);
-        Assert.assertSame(map, map22);
-        Assert.assertSame(map1, map2);
+        Assertions.assertSame(map, map22);
+        Assertions.assertSame(map1, map2);
         HashBiMap<Integer, Character> map3 = map2.withKeysValues(3, 'c');
         HashBiMap<Integer, Character> map33 = map.withKeysValues(1, 'a', 2, 'b', 3, 'c');
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'a', 2, 'b', 3, 'c'), map3);
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'a', 2, 'b', 3, 'c'), map33);
-        Assert.assertSame(map, map33);
-        Assert.assertSame(map2, map3);
+        Assertions.assertSame(map, map33);
+        Assertions.assertSame(map2, map3);
         HashBiMap<Integer, Character> map4 = map3.withKeysValues(4, 'd');
         HashBiMap<Integer, Character> map44 = map.withKeysValues(1, 'a', 2, 'b', 3, 'c', 4, 'd');
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'a', 2, 'b', 3, 'c', 4, 'd'), map4);
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'a', 2, 'b', 3, 'c', 4, 'd'), map44);
-        Assert.assertSame(map, map44);
-        Assert.assertSame(map3, map4);
+        Assertions.assertSame(map, map44);
+        Assertions.assertSame(map3, map4);
     }
 
     @Test
@@ -119,8 +119,8 @@ public class HashBiMapTest extends AbstractMutableBiMapTestCase
         Key duplicateKey = new Key("key");
 
         MutableBiMap<Key, Integer> biMap = this.newMapWithKeysValues(key, 1, duplicateKey, 2);
-        Assert.assertSame(key, Iterate.getFirst(biMap.entrySet()).getKey());
-        Assert.assertSame(key, Iterate.getFirst(biMap.inverse().entrySet()).getValue());
+        Assertions.assertSame(key, Iterate.getFirst(biMap.entrySet()).getKey());
+        Assertions.assertSame(key, Iterate.getFirst(biMap.inverse().entrySet()).getValue());
     }
 
     @Test
@@ -131,8 +131,8 @@ public class HashBiMapTest extends AbstractMutableBiMapTestCase
 
         MutableBiMap<Integer, Key> biMap = this.newMapWithKeyValue(1, value);
         biMap.forcePut(2, duplicateValue);
-        Assert.assertSame(value, Iterate.getFirst(biMap.entrySet()).getValue());
-        Assert.assertSame(value, Iterate.getFirst(biMap.inverse().entrySet()).getKey());
+        Assertions.assertSame(value, Iterate.getFirst(biMap.entrySet()).getValue());
+        Assertions.assertSame(value, Iterate.getFirst(biMap.inverse().entrySet()).getKey());
     }
 
     @Test
@@ -150,10 +150,10 @@ public class HashBiMapTest extends AbstractMutableBiMapTestCase
 
         Verify.assertSize(1, biMap);
 
-        Assert.assertSame(key1, Iterate.getFirst(biMap.entrySet()).getKey());
-        Assert.assertSame(key1, Iterate.getFirst(biMap.inverse().entrySet()).getValue());
+        Assertions.assertSame(key1, Iterate.getFirst(biMap.entrySet()).getKey());
+        Assertions.assertSame(key1, Iterate.getFirst(biMap.inverse().entrySet()).getValue());
 
-        Assert.assertSame(value2, Iterate.getFirst(biMap.entrySet()).getValue());
-        Assert.assertSame(value2, Iterate.getFirst(biMap.inverse().entrySet()).getKey());
+        Assertions.assertSame(value2, Iterate.getFirst(biMap.entrySet()).getValue());
+        Assertions.assertSame(value2, Iterate.getFirst(biMap.inverse().entrySet()).getKey());
     }
 }

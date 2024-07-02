@@ -36,8 +36,8 @@ import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractMutableSortedSetMultimapTestCase extends AbstractMutableMultimapTestCase
 {
@@ -80,8 +80,8 @@ public abstract class AbstractMutableSortedSetMultimapTestCase extends AbstractM
     {
         SortedSetMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("Less than 2", 1, "Less than 3", 1, "Less than 3", 2, "Less than 3", 2);
         SetMultimap<Integer, String> flipped = multimap.flip();
-        Assert.assertEquals(Sets.immutable.with("Less than 3"), flipped.get(2));
-        Assert.assertEquals(Sets.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
+        Assertions.assertEquals(Sets.immutable.with("Less than 3"), flipped.get(2));
+        Assertions.assertEquals(Sets.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
     }
 
     @Override
@@ -113,9 +113,9 @@ public abstract class AbstractMutableSortedSetMultimapTestCase extends AbstractM
         MutableSortedSetMultimap<String, Integer> selectedMultimap = multimap.selectKeysValues((key, value) -> ("Two".equals(key) && (value % 2 == 0)));
         MutableSortedSetMultimap<String, Integer> expectedMultimap = TreeSortedSetMultimap.newMultimap(Comparators.<Integer>reverseNaturalOrder());
         expectedMultimap.putAll("Two", FastList.newListWith(4, 2));
-        Assert.assertEquals(expectedMultimap, selectedMultimap);
+        Assertions.assertEquals(expectedMultimap, selectedMultimap);
         Verify.assertSortedSetsEqual(expectedMultimap.get("Two"), selectedMultimap.get("Two"));
-        Assert.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
+        Assertions.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
     }
 
     @Override
@@ -128,9 +128,9 @@ public abstract class AbstractMutableSortedSetMultimapTestCase extends AbstractM
         MutableSortedSetMultimap<String, Integer> rejectedMultimap = multimap.rejectKeysValues((key, value) -> ("Two".equals(key) || (value % 2 == 0)));
         MutableSortedSetMultimap<String, Integer> expectedMultimap = TreeSortedSetMultimap.newMultimap(Comparators.<Integer>reverseNaturalOrder());
         expectedMultimap.putAll("One", FastList.newListWith(3, 1));
-        Assert.assertEquals(expectedMultimap, rejectedMultimap);
+        Assertions.assertEquals(expectedMultimap, rejectedMultimap);
         Verify.assertSortedSetsEqual(expectedMultimap.get("One"), rejectedMultimap.get("One"));
-        Assert.assertEquals(expectedMultimap.comparator(), rejectedMultimap.comparator());
+        Assertions.assertEquals(expectedMultimap.comparator(), rejectedMultimap.comparator());
     }
 
     @Override
@@ -145,9 +145,9 @@ public abstract class AbstractMutableSortedSetMultimapTestCase extends AbstractM
         MutableSortedSetMultimap<Integer, Integer> selectedMultimap = multimap.selectKeysMultiValues((key, values) -> (key % 2 == 0 && Iterate.sizeOf(values) > 3));
         MutableSortedSetMultimap<Integer, Integer> expectedMultimap = TreeSortedSetMultimap.newMultimap(Comparators.<Integer>reverseNaturalOrder());
         expectedMultimap.putAll(2, FastList.newListWith(5, 4, 3, 2, 2));
-        Assert.assertEquals(expectedMultimap, selectedMultimap);
+        Assertions.assertEquals(expectedMultimap, selectedMultimap);
         Verify.assertSortedSetsEqual(expectedMultimap.get(2), selectedMultimap.get(2));
-        Assert.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
+        Assertions.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
     }
 
     @Override
@@ -162,9 +162,9 @@ public abstract class AbstractMutableSortedSetMultimapTestCase extends AbstractM
         MutableSortedSetMultimap<Integer, Integer> selectedMultimap = multimap.rejectKeysMultiValues((key, values) -> (key % 2 == 0 || Iterate.sizeOf(values) > 3));
         MutableSortedSetMultimap<Integer, Integer> expectedMultimap = TreeSortedSetMultimap.newMultimap(Comparators.<Integer>reverseNaturalOrder());
         expectedMultimap.putAll(3, FastList.newListWith(4, 3, 1, 1));
-        Assert.assertEquals(expectedMultimap, selectedMultimap);
+        Assertions.assertEquals(expectedMultimap, selectedMultimap);
         Verify.assertSortedSetsEqual(expectedMultimap.get(3), selectedMultimap.get(3));
-        Assert.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
+        Assertions.assertSame(expectedMultimap.comparator(), selectedMultimap.comparator());
     }
 
     @Override
@@ -178,13 +178,13 @@ public abstract class AbstractMutableSortedSetMultimapTestCase extends AbstractM
         MutableBagMultimap<Integer, String> expectedMultimap1 = HashBagMultimap.newMultimap();
         expectedMultimap1.putAll(1, FastList.newListWith("4Value", "3Value", "2Value", "1Value"));
         expectedMultimap1.putAll(2, FastList.newListWith("5Value", "4Value", "3Value", "2Value"));
-        Assert.assertEquals(expectedMultimap1, collectedMultimap1);
+        Assertions.assertEquals(expectedMultimap1, collectedMultimap1);
 
         MutableBagMultimap<Integer, String> collectedMultimap2 = multimap.collectKeysValues((key, value) -> Tuples.pair(1, value + "Value"));
         MutableBagMultimap<Integer, String> expectedMultimap2 = HashBagMultimap.newMultimap();
         expectedMultimap2.putAll(1, FastList.newListWith("4Value", "3Value", "2Value", "1Value"));
         expectedMultimap2.putAll(1, FastList.newListWith("5Value", "4Value", "3Value", "2Value"));
-        Assert.assertEquals(expectedMultimap2, collectedMultimap2);
+        Assertions.assertEquals(expectedMultimap2, collectedMultimap2);
     }
 
     @Override
@@ -198,7 +198,7 @@ public abstract class AbstractMutableSortedSetMultimapTestCase extends AbstractM
         MutableListMultimap<String, String> expectedMultimap = FastListMultimap.newMultimap();
         expectedMultimap.putAll("1", FastList.newListWith("4Value", "3Value", "2Value", "1Value"));
         expectedMultimap.putAll("2", FastList.newListWith("5Value", "4Value", "3Value", "2Value"));
-        Assert.assertEquals(expectedMultimap, collectedMultimap);
+        Assertions.assertEquals(expectedMultimap, collectedMultimap);
         Verify.assertListsEqual(expectedMultimap.get("1"), collectedMultimap.get("1"));
         Verify.assertListsEqual(expectedMultimap.get("2"), collectedMultimap.get("2"));
     }

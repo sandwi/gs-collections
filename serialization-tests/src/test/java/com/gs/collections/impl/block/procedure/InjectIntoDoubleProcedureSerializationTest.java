@@ -18,7 +18,7 @@ package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.block.procedure.primitive.InjectIntoDoubleProcedure;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class InjectIntoDoubleProcedureSerializationTest
 {
@@ -27,10 +27,12 @@ public class InjectIntoDoubleProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUucHJpbWl0aXZl\n"
-                        + "LkluamVjdEludG9Eb3VibGVQcm9jZWR1cmUAAAAAAAAAAQIAAkQABnJlc3VsdEwACGZ1bmN0aW9u\n"
-                        + "dABOTGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0RvdWJs\n"
-                        + "ZU9iamVjdFRvRG91YmxlRnVuY3Rpb247eHAAAAAAAAAAAHA=",
+                """
+                rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUucHJpbWl0aXZl
+                LkluamVjdEludG9Eb3VibGVQcm9jZWR1cmUAAAAAAAAAAQIAAkQABnJlc3VsdEwACGZ1bmN0aW9u
+                dABOTGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0RvdWJs
+                ZU9iamVjdFRvRG91YmxlRnVuY3Rpb247eHAAAAAAAAAAAHA=\
+                """,
                 new InjectIntoDoubleProcedure<Object>(0.0, null));
     }
 }

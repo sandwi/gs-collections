@@ -32,7 +32,6 @@ import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Test;
 
 public class ParallelMapIteratePutAcceptanceTest
 {

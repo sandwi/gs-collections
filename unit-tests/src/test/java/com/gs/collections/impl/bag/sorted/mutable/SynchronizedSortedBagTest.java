@@ -22,8 +22,8 @@ import com.gs.collections.api.bag.sorted.MutableSortedBag;
 import com.gs.collections.api.list.MutableList;
 import com.gs.collections.api.tuple.primitive.ObjectIntPair;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SynchronizedSortedBag}.
@@ -50,10 +50,11 @@ public class SynchronizedSortedBagTest extends AbstractMutableSortedBagTestCase
     }
 
     @Override
+    @Test
     public void asSynchronized()
     {
         MutableSortedBag<Object> synchronizedBag = this.newWith();
-        Assert.assertSame(synchronizedBag, synchronizedBag.asSynchronized());
+        Assertions.assertSame(synchronizedBag, synchronizedBag.asSynchronized());
     }
 
     @Override
@@ -76,10 +77,10 @@ public class SynchronizedSortedBagTest extends AbstractMutableSortedBagTestCase
         MutableSortedBag<String> strings = mutable.asSynchronized();
         MutableList<ObjectIntPair<String>> top5 = strings.topOccurrences(5);
         Verify.assertSize(5, top5);
-        Assert.assertEquals("ten", top5.getFirst().getOne());
-        Assert.assertEquals(10, top5.getFirst().getTwo());
-        Assert.assertEquals("six", top5.getLast().getOne());
-        Assert.assertEquals(6, top5.getLast().getTwo());
+        Assertions.assertEquals("ten", top5.getFirst().getOne());
+        Assertions.assertEquals(10, top5.getFirst().getTwo());
+        Assertions.assertEquals("six", top5.getLast().getOne());
+        Assertions.assertEquals(6, top5.getLast().getTwo());
     }
 
     @Override
@@ -102,9 +103,9 @@ public class SynchronizedSortedBagTest extends AbstractMutableSortedBagTestCase
         MutableSortedBag<String> strings = mutable.asSynchronized();
         MutableList<ObjectIntPair<String>> bottom5 = strings.bottomOccurrences(5);
         Verify.assertSize(5, bottom5);
-        Assert.assertEquals("one", bottom5.getFirst().getOne());
-        Assert.assertEquals(1, bottom5.getFirst().getTwo());
-        Assert.assertEquals("five", bottom5.getLast().getOne());
-        Assert.assertEquals(5, bottom5.getLast().getTwo());
+        Assertions.assertEquals("one", bottom5.getFirst().getOne());
+        Assertions.assertEquals(1, bottom5.getFirst().getTwo());
+        Assertions.assertEquals("five", bottom5.getLast().getOne());
+        Assertions.assertEquals(5, bottom5.getLast().getTwo());
     }
 }

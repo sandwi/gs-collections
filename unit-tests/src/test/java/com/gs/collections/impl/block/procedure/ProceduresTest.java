@@ -34,8 +34,8 @@ import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ProceduresTest
 {
@@ -72,8 +72,8 @@ public class ProceduresTest
         appender.value(1);
         appender.value(2);
         appender.value(3);
-        Assert.assertEquals("init123", appendable.toString());
-        Assert.assertEquals("init123", appender.toString());
+        Assertions.assertEquals("init123", appendable.toString());
+        Assertions.assertEquals("init123", appender.toString());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class ProceduresTest
         Procedure<String> procedure = Procedures.fromObjectIntProcedure(objectIntProcedure);
         numberStrings.forEach(procedure);
 
-        Assert.assertEquals(expectedResults, actualResults);
+        Assertions.assertEquals(expectedResults, actualResults);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class ProceduresTest
         integers.add(null);
         MutableList<Integer> result = Lists.mutable.of();
         integers.forEach(Procedures.synchronizedEach(CollectionAddProcedure.on(result)));
-        Assert.assertEquals(result, integers);
+        Assertions.assertEquals(result, integers);
     }
 
     @Test
@@ -109,10 +109,10 @@ public class ProceduresTest
         Procedure<Integer> elseBlock = each -> pathCalled.put("result", -1);
 
         Procedures.ifElse(ignored -> true, ifBlock, elseBlock).value(1);
-        Verify.assertContainsKeyValue("result", 1, pathCalled);
+        Verify.assertContainsKeyValue(1, pathCalled, "result");
 
         Procedures.ifElse(ignored -> false, ifBlock, elseBlock).value(1);
-        Verify.assertContainsKeyValue("result", -1, pathCalled);
+        Verify.assertContainsKeyValue(-1, pathCalled, "result");
     }
 
     @Test
@@ -150,7 +150,7 @@ public class ProceduresTest
             }
             catch (IOException ex)
             {
-                Assert.fail("Failed to marshal an object: " + ex.getMessage());
+                Assertions.fail("Failed to marshal an object: " + ex.getMessage());
             }
             return null;
         }
@@ -159,7 +159,7 @@ public class ProceduresTest
         public void println(Object x)
         {
             super.println(x);
-            Assert.assertEquals(this.assertValues.remove(0), x);
+            Assertions.assertEquals(this.assertValues.remove(0), x);
         }
 
         private void shutdown()

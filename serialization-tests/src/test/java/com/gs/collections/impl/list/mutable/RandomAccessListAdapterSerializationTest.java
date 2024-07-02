@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RandomAccessListAdapterSerializationTest
 {
@@ -26,10 +26,12 @@ public class RandomAccessListAdapterSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuUmFuZG9tQWNjZXNz\n"
-                        + "TGlzdEFkYXB0ZXIAAAAAAAAAAQIAAUwACGRlbGVnYXRldAAQTGphdmEvdXRpbC9MaXN0O3hwc3IA\n"
-                        + "LWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAAAAABDAAA\n"
-                        + "eHB3BAAAAAB4",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuUmFuZG9tQWNjZXNz
+                TGlzdEFkYXB0ZXIAAAAAAAAAAQIAAUwACGRlbGVnYXRldAAQTGphdmEvdXRpbC9MaXN0O3hwc3IA
+                LWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAAAAABDAAA
+                eHB3BAAAAAB4\
+                """,
                 new RandomAccessListAdapter<Object>(FastList.newList()));
     }
 }

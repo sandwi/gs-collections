@@ -367,7 +367,7 @@ public final class BooleanArrayList
     public boolean retainAll(BooleanIterable source)
     {
         int oldSize = this.size();
-        final BooleanSet sourceSet = source instanceof BooleanSet ? (BooleanSet) source : source.toSet();
+        final BooleanSet sourceSet = source instanceof BooleanSet bs ? bs : source.toSet();
         BooleanArrayList retained = this.select(new BooleanPredicate()
         {
             public boolean accept(boolean value)

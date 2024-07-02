@@ -42,7 +42,7 @@ import com.gs.collections.impl.parallel.ParallelIterate;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.tuple.Tuples;
 import org.apache.commons.lang.RandomStringUtils;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -106,7 +106,7 @@ public class AnagramSetTest extends AbstractJMHTestRunner
                 .toSortedList(Comparators.<RichIterable<String>>byIntFunction(RichIterable::size))
                 .asReversed()
                 .collect(iterable -> iterable.size() + ": " + iterable)
-                .forEach(Procedures.cast(e -> Assert.assertFalse(e.isEmpty())));
+                .forEach(Procedures.cast(e -> Assertions.assertFalse(e.isEmpty())));
     }
 
     @Benchmark
@@ -117,7 +117,7 @@ public class AnagramSetTest extends AbstractJMHTestRunner
         Collection<String> collect = ParallelIterate.collect(select
                 .toSortedList(Comparators.<RichIterable<String>>byIntFunction(RichIterable::size))
                 .asReversed(), iterable -> iterable.size() + ": " + iterable);
-        ParallelIterate.forEach(collect, Procedures.cast(e -> Assert.assertFalse(e.isEmpty())));
+        ParallelIterate.forEach(collect, Procedures.cast(e -> Assertions.assertFalse(e.isEmpty())));
     }
 
     @Benchmark
@@ -131,7 +131,7 @@ public class AnagramSetTest extends AbstractJMHTestRunner
                 .toSortedList((pair1, pair2) -> Integer.compare(pair2.getOne(), pair1.getOne()));
         pairs.asParallel(this.executorService, BATCH_SIZE)
                 .collect(Pair::getTwo)
-                .forEach(Procedures.cast(e -> Assert.assertFalse(e.isEmpty())));
+                .forEach(Procedures.cast(e -> Assertions.assertFalse(e.isEmpty())));
     }
 
     @Benchmark
@@ -142,7 +142,7 @@ public class AnagramSetTest extends AbstractJMHTestRunner
         Collection<String> collect = FJIterate.collect(select
                 .toSortedList(Comparators.<RichIterable<String>>byIntFunction(RichIterable::size))
                 .asReversed(), iterable -> iterable.size() + ": " + iterable);
-        FJIterate.forEach(collect, Procedures.cast(e -> Assert.assertFalse(e.isEmpty())));
+        FJIterate.forEach(collect, Procedures.cast(e -> Assertions.assertFalse(e.isEmpty())));
     }
 
     @Benchmark
@@ -155,7 +155,7 @@ public class AnagramSetTest extends AbstractJMHTestRunner
                 .filter(list -> list.size() >= SIZE_THRESHOLD)
                 .sorted(Comparator.<Set<String>>comparingInt(Set::size).reversed())
                 .map(list -> list.size() + ": " + list)
-                .forEach(e -> Assert.assertFalse(e.isEmpty()));
+                .forEach(e -> Assertions.assertFalse(e.isEmpty()));
     }
 
     @Benchmark
@@ -168,7 +168,7 @@ public class AnagramSetTest extends AbstractJMHTestRunner
                 .filter(list -> list.size() >= SIZE_THRESHOLD)
                 .sorted(Comparator.<Set<String>>comparingInt(Set::size).reversed())
                 .map(list -> list.size() + ": " + list)
-                .forEach(e -> Assert.assertFalse(e.isEmpty()));
+                .forEach(e -> Assertions.assertFalse(e.isEmpty()));
     }
 
     @Benchmark
@@ -182,7 +182,7 @@ public class AnagramSetTest extends AbstractJMHTestRunner
                 .sorted(Comparator.<Set<String>>comparingInt(Set::size).reversed())
                 .parallel()
                 .map(list -> list.size() + ": " + list)
-                .forEach(e -> Assert.assertFalse(e.isEmpty()));
+                .forEach(e -> Assertions.assertFalse(e.isEmpty()));
     }
 
     @Benchmark
@@ -196,7 +196,7 @@ public class AnagramSetTest extends AbstractJMHTestRunner
                 .sorted(Comparator.<Set<String>>comparingInt(Set::size).reversed())
                 .parallel()
                 .map(list -> list.size() + ": " + list)
-                .forEach(e -> Assert.assertFalse(e.isEmpty()));
+                .forEach(e -> Assertions.assertFalse(e.isEmpty()));
     }
 
     private static final class Alphagram

@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 import com.gs.collections.api.map.MutableMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link MapAdapter}.

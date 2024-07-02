@@ -594,13 +594,13 @@ public class CodePointAdapter extends AbstractIntIterable implements CharSequenc
                     appendable.append(separator);
                 }
                 int codePoint = this.adapted.codePointAt(i);
-                if (appendable instanceof StringBuilder)
+                if (appendable instanceof StringBuilder builder)
                 {
-                    ((StringBuilder) appendable).appendCodePoint(codePoint);
+                    builder.appendCodePoint(codePoint);
                 }
-                else if (appendable instanceof StringBuffer)
+                else if (appendable instanceof StringBuffer buffer)
                 {
-                    ((StringBuffer) appendable).appendCodePoint(codePoint);
+                    buffer.appendCodePoint(codePoint);
                 }
                 else
                 {
@@ -627,13 +627,13 @@ public class CodePointAdapter extends AbstractIntIterable implements CharSequenc
         {
             return true;
         }
-        if (otherList instanceof CodePointAdapter)
+        if (otherList instanceof CodePointAdapter adapter)
         {
-            return this.equalsCodePointAdapter((CodePointAdapter) otherList);
+            return this.equalsCodePointAdapter(adapter);
         }
-        if (otherList instanceof IntList)
+        if (otherList instanceof IntList list)
         {
-            return this.equalsIntList((IntList) otherList);
+            return this.equalsIntList(list);
         }
         return false;
     }

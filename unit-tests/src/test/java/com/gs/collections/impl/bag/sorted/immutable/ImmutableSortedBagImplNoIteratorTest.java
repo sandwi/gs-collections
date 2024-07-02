@@ -23,7 +23,7 @@ import com.gs.collections.api.bag.sorted.ImmutableSortedBag;
 import com.gs.collections.api.bag.sorted.SortedBag;
 import com.gs.collections.api.collection.MutableCollection;
 import com.gs.collections.impl.factory.SortedBags;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableSortedBagImplNoIteratorTest extends ImmutableSortedBagImplTest
 {
@@ -70,6 +70,7 @@ public class ImmutableSortedBagImplNoIteratorTest extends ImmutableSortedBagImpl
     }
 
     @Override
+    @Test
     public void iteratorRemove()
     {
         //not applicable

@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.sorted.mutable;
 
 import com.gs.collections.impl.factory.SortedSets;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableSortedSetSerializationTest
 {
@@ -26,10 +26,12 @@ public class UnmodifiableSortedSetSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp\n"
-                        + "ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgA4Y29tLmdz\n"
-                        + "LmNvbGxlY3Rpb25zLmltcGwuc2V0LnNvcnRlZC5tdXRhYmxlLlRyZWVTb3J0ZWRTZXQAAAAAAAAA\n"
-                        + "AQwAAHhwcHcEAAAAAHh4",
-                UnmodifiableSortedSet.of(SortedSets.mutable.of()));
+                UnmodifiableSortedSet.of(SortedSets.mutable.of()),
+                """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp
+                ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgA4Y29tLmdz
+                LmNvbGxlY3Rpb25zLmltcGwuc2V0LnNvcnRlZC5tdXRhYmxlLlRyZWVTb3J0ZWRTZXQAAAAAAAAA
+                AQwAAHhwcHcEAAAAAHh4\
+                """);
     }
 }

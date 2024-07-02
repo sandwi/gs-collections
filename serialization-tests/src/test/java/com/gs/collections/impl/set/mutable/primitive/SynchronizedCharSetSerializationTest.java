@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SynchronizedCharSetSerializationTest
 {
@@ -26,13 +26,15 @@ public class SynchronizedCharSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuU3lu\n"
-                        + "Y2hyb25pemVkQ2hhclNldAAAAAAAAAABAgAAeHIAV2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmNv\n"
-                        + "bGxlY3Rpb24ubXV0YWJsZS5wcmltaXRpdmUuQWJzdHJhY3RTeW5jaHJvbml6ZWRDaGFyQ29sbGVj\n"
-                        + "dGlvbgAAAAAAAAABAgACTAAKY29sbGVjdGlvbnQAQ0xjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Nv\n"
-                        + "bGxlY3Rpb24vcHJpbWl0aXZlL011dGFibGVDaGFyQ29sbGVjdGlvbjtMAARsb2NrdAASTGphdmEv\n"
-                        + "bGFuZy9PYmplY3Q7eHBzcgA5Y29tLmdzLmNvbGxlY3Rpb25zLmltcGwuc2V0Lm11dGFibGUucHJp\n"
-                        + "bWl0aXZlLkNoYXJIYXNoU2V0AAAAAAAAAAEMAAB4cHcEAAAAAHhxAH4ABA==",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuU3lu
+                Y2hyb25pemVkQ2hhclNldAAAAAAAAAABAgAAeHIAV2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmNv
+                bGxlY3Rpb24ubXV0YWJsZS5wcmltaXRpdmUuQWJzdHJhY3RTeW5jaHJvbml6ZWRDaGFyQ29sbGVj
+                dGlvbgAAAAAAAAABAgACTAAKY29sbGVjdGlvbnQAQ0xjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Nv
+                bGxlY3Rpb24vcHJpbWl0aXZlL011dGFibGVDaGFyQ29sbGVjdGlvbjtMAARsb2NrdAASTGphdmEv
+                bGFuZy9PYmplY3Q7eHBzcgA5Y29tLmdzLmNvbGxlY3Rpb25zLmltcGwuc2V0Lm11dGFibGUucHJp
+                bWl0aXZlLkNoYXJIYXNoU2V0AAAAAAAAAAEMAAB4cHcEAAAAAHhxAH4ABA==\
+                """,
                 new SynchronizedCharSet(new CharHashSet()));
     }
 }

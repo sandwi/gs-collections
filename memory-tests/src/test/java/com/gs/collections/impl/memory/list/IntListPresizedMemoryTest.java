@@ -22,7 +22,6 @@ import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.list.mutable.primitive.IntArrayList;
 import com.gs.collections.impl.memory.MemoryTestBench;
 import gnu.trove.list.array.TIntArrayList;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

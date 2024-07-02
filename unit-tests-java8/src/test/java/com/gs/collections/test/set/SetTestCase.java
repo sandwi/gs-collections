@@ -24,17 +24,15 @@ import com.gs.collections.api.set.MutableSet;
 import com.gs.collections.impl.factory.Sets;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.test.CollectionTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertPostSerializedEqualsAndHashCode;
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.isOneOf;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public interface SetTestCase extends CollectionTestCase
 {
@@ -47,7 +45,7 @@ public interface SetTestCase extends CollectionTestCase
     {
         Iterable<Integer> iterable = this.newWith(3, 2, 1);
         Object deserialized = SerializeTestHelper.serializeDeserialize(iterable);
-        Assert.assertNotSame(iterable, deserialized);
+        Assertions.assertNotSame(iterable, deserialized);
     }
 
     @Override

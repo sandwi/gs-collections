@@ -22,8 +22,8 @@ import java.util.NoSuchElementException;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link TakeIterator}.
@@ -55,10 +55,10 @@ public class TakeIteratorTest
     {
         for (int i = 0; i < count; i++)
         {
-            Assert.assertTrue(iterator.hasNext());
-            Assert.assertEquals(Integer.valueOf(i + 1), iterator.next());
+            Assertions.assertTrue(iterator.hasNext());
+            Assertions.assertEquals(Integer.valueOf(i + 1), iterator.next());
         }
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasNext());
     }
 
     @Test

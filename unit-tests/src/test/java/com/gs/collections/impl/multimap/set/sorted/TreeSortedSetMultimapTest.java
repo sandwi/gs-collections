@@ -29,8 +29,8 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.multimap.set.UnifiedSetMultimap;
 import com.gs.collections.impl.set.sorted.mutable.TreeSortedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test of {@link TreeSortedSetMultimap}.
@@ -176,7 +176,7 @@ public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapT
         setMultimap.putAll(1, collection);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(Collections.<Integer>reverseOrder(), 5, 4, 3, 2, 1), collection);
         setMultimap.put(1, 0);
-        Assert.assertEquals(Integer.valueOf(0), setMultimap.get(1).getLast());
+        Assertions.assertEquals(Integer.valueOf(0), setMultimap.get(1).getLast());
         setMultimap.putAll(2, FastList.newListWith(0, 1, 2, 4, 2, 1, 4, 5, 3, 4, 5));
         Verify.assertSortedSetsEqual(setMultimap.get(1), setMultimap.get(2));
     }

@@ -18,15 +18,19 @@ package com.gs.collections.impl.lazy.iterator;
 
 import com.gs.collections.api.list.ImmutableList;
 import com.gs.collections.impl.factory.Lists;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ZipIteratorTest
 {
     private static final ImmutableList<Integer> EMPTY = Lists.immutable.of();
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void testRemove()
     {
-        new ZipIterator<>(EMPTY, EMPTY).remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            new ZipIterator<>(EMPTY, EMPTY).remove();
+        });
     }
 }

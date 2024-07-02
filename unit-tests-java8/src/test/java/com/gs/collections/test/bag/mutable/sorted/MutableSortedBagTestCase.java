@@ -21,11 +21,10 @@ import com.gs.collections.impl.bag.sorted.mutable.TreeBag;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.test.MutableOrderedIterableTestCase;
 import com.gs.collections.test.collection.mutable.MutableCollectionTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public interface MutableSortedBagTestCase extends SortedBagTestCase, MutableCollectionTestCase, MutableOrderedIterableTestCase
 {
@@ -44,11 +43,13 @@ public interface MutableSortedBagTestCase extends SortedBagTestCase, MutableColl
         assertEquals(TreeBag.newBagWith(Comparators.reverseNaturalOrder(), 4, 4, 4, 4, 3, 3, 3, 2, 2, 1, 1, 1), mutableSortedBag);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     default void MutableBag_addOccurrences_throws()
     {
-        MutableSortedBag<Integer> mutableSortedBag = this.newWith(3, 3, 3, 2, 2, 1);
-        mutableSortedBag.addOccurrences(4, -1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            MutableSortedBag<Integer> mutableSortedBag = this.newWith(3, 3, 3, 2, 2, 1);
+            mutableSortedBag.addOccurrences(4, -1);
+        });
     }
 
     @Test
@@ -69,10 +70,12 @@ public interface MutableSortedBagTestCase extends SortedBagTestCase, MutableColl
         assertEquals(TreeBag.newBagWith(Comparators.reverseNaturalOrder(), 3), mutableBag);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     default void MutableBag_removeOccurrences_throws()
     {
-        MutableSortedBag<Integer> mutableBag = this.newWith(3, 3, 3, 2, 2, 1);
-        assertFalse(mutableBag.removeOccurrences(4, -1));
+        assertThrows(IllegalArgumentException.class, () -> {
+            MutableSortedBag<Integer> mutableBag = this.newWith(3, 3, 3, 2, 2, 1);
+            assertFalse(mutableBag.removeOccurrences(4, -1));
+        });
     }
 }

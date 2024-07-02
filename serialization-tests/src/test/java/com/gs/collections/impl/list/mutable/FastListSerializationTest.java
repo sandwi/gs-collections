@@ -17,16 +17,20 @@
 package com.gs.collections.impl.list.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FastListSerializationTest
 {
     public static final String FAST_LIST_WITH_ONE_NULL =
-            "rO0ABXNyAC1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuRmFzdExpc3QAAAAA\n"
-                    + "AAAAAQwAAHhwdwQAAAABcHg=";
+            """
+            rO0ABXNyAC1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuRmFzdExpc3QAAAAA
+            AAAAAQwAAHhwdwQAAAABcHg=\
+            """;
     public static final String FAST_LIST_EMPTY =
-            "rO0ABXNyAC1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuRmFzdExpc3QAAAAA\n"
-                    + "AAAAAQwAAHhwdwQAAAAAeA==";
+            """
+            rO0ABXNyAC1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuRmFzdExpc3QAAAAA
+            AAAAAQwAAHhwdwQAAAAAeA==\
+            """;
 
     @Test
     public void serializedForm()
@@ -51,7 +55,7 @@ public class FastListSerializationTest
     {
         // SerialVersionUID not important for objects with writeReplace()
         Verify.assertSerializedForm(
-                FAST_LIST_WITH_ONE_NULL,
-                FastList.newListWith(null, null).subList(0, 1));
+                FastList.newListWith(null, null).subList(0, 1),
+                FAST_LIST_WITH_ONE_NULL);
     }
 }

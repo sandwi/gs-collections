@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableTripletonSetSerializationTest
 {
@@ -26,10 +26,12 @@ public class ImmutableTripletonSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLkltbXV0YWJsZVNl\n"
-                        + "dFNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAANzcgARamF2YS5sYW5nLkludGVn\n"
-                        + "ZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAA\n"
-                        + "AXNxAH4AAgAAAAJzcQB+AAIAAAADeA==",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLkltbXV0YWJsZVNl
+                dFNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAANzcgARamF2YS5sYW5nLkludGVn
+                ZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAA
+                AXNxAH4AAgAAAAJzcQB+AAIAAAADeA==\
+                """,
                 new ImmutableTripletonSet<Integer>(1, 2, 3));
     }
 }

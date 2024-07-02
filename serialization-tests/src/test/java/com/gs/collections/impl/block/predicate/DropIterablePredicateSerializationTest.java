@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.predicate;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DropIterablePredicateSerializationTest
 {
@@ -26,8 +26,10 @@ public class DropIterablePredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuRHJvcEl0ZXJh\n"
-                        + "YmxlUHJlZGljYXRlAAAAAAAAAAECAAJJAAVjb3VudEkABWluZGV4eHAAAAABAAAAAA==",
+                """
+                rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuRHJvcEl0ZXJh
+                YmxlUHJlZGljYXRlAAAAAAAAAAECAAJJAAVjb3VudEkABWluZGV4eHAAAAABAAAAAA==\
+                """,
                 new DropIterablePredicate<Object>(1));
     }
 }

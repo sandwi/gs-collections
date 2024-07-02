@@ -19,8 +19,10 @@ package com.gs.collections.impl.bag.mutable;
 import com.gs.collections.api.bag.MutableBag;
 import com.gs.collections.impl.collection.mutable.UnmodifiableMutableCollectionTestCase;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MultiReaderHashBagAsReadUntouchableTest extends UnmodifiableMutableCollectionTestCase<Integer>
 {
@@ -30,47 +32,53 @@ public class MultiReaderHashBagAsReadUntouchableTest extends UnmodifiableMutable
         return MultiReaderHashBag.newBagWith(1, 1).asReadUntouchable();
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addOccurrences()
     {
-        this.getCollection().addOccurrences(1, 1);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.getCollection().addOccurrences(1, 1);
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeOccurrences()
     {
-        this.getCollection().removeOccurrences(1, 1);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.getCollection().removeOccurrences(1, 1);
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void setOccurrences()
     {
-        this.getCollection().setOccurrences(1, 1);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.getCollection().setOccurrences(1, 1);
+        });
     }
 
     @Test
     public void occurrencesOf()
     {
-        Assert.assertEquals(2, this.getCollection().occurrencesOf(1));
-        Assert.assertEquals(0, this.getCollection().occurrencesOf(0));
+        Assertions.assertEquals(2, this.getCollection().occurrencesOf(1));
+        Assertions.assertEquals(0, this.getCollection().occurrencesOf(0));
     }
 
     @Test
     public void sizeDistinct()
     {
-        Assert.assertEquals(1, this.getCollection().sizeDistinct());
+        Assertions.assertEquals(1, this.getCollection().sizeDistinct());
     }
 
     @Test
     public void toMapOfItemToCount()
     {
-        Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 2), this.getCollection().toMapOfItemToCount());
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues(1, 2), this.getCollection().toMapOfItemToCount());
     }
 
     @Test
     public void toStringOfItemToCount()
     {
-        Assert.assertEquals("{1=2}", this.getCollection().toStringOfItemToCount());
+        Assertions.assertEquals("{1=2}", this.getCollection().toStringOfItemToCount());
     }
 
     @Test
@@ -84,6 +92,6 @@ public class MultiReaderHashBagAsReadUntouchableTest extends UnmodifiableMutable
             }
         });
 
-        Assert.assertEquals(2, sum[0]);
+        Assertions.assertEquals(2, sum[0]);
     }
 }

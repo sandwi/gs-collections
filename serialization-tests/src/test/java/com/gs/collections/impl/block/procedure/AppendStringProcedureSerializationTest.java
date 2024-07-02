@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AppendStringProcedureSerializationTest
 {
@@ -26,9 +26,11 @@ public class AppendStringProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQXBwZW5kU3Ry\n"
-                        + "aW5nUHJvY2VkdXJlAAAAAAAAAAECAANaAAVmaXJzdEwACmFwcGVuZGFibGV0ABZMamF2YS9sYW5n\n"
-                        + "L0FwcGVuZGFibGU7TAAJc2VwYXJhdG9ydAASTGphdmEvbGFuZy9TdHJpbmc7eHABcHA=",
+                """
+                rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQXBwZW5kU3Ry
+                aW5nUHJvY2VkdXJlAAAAAAAAAAECAANaAAVmaXJzdEwACmFwcGVuZGFibGV0ABZMamF2YS9sYW5n
+                L0FwcGVuZGFibGU7TAAJc2VwYXJhdG9ydAASTGphdmEvbGFuZy9TdHJpbmc7eHABcHA=\
+                """,
                 new AppendStringProcedure<Object>(null, null));
     }
 }

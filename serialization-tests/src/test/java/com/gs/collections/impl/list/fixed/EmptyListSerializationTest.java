@@ -19,7 +19,7 @@ package com.gs.collections.impl.list.fixed;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastListSerializationTest;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class EmptyListSerializationTest
 {
@@ -28,8 +28,10 @@ public class EmptyListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyACxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmZpeGVkLkVtcHR5TGlzdAAAAAAA\n"
-                        + "AAABAgAAeHA=",
+                """
+                rO0ABXNyACxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmZpeGVkLkVtcHR5TGlzdAAAAAAA
+                AAABAgAAeHA=\
+                """,
                 Lists.fixedSize.of());
     }
 

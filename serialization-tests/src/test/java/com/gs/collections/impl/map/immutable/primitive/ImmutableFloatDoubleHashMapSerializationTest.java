@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.FloatDoubleHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableFloatDoubleHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableFloatDoubleHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVGbG9hdERvdWJsZUhhc2hNYXAkSW1tdXRhYmxlRmxvYXREb3VibGVNYXBTZXJpYWxp\n"
-                        + "emF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdxwAAAACP4AAAD/wAAAAAAAAQAAAAEAAAAAAAAAAeA==\n",
+                """
+                rO0ABXNyAHVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVGbG9hdERvdWJsZUhhc2hNYXAkSW1tdXRhYmxlRmxvYXREb3VibGVNYXBTZXJpYWxp
+                emF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdxwAAAACP4AAAD/wAAAAAAAAQAAAAEAAAAAAAAAAeA==
+                """,
                 new ImmutableFloatDoubleHashMap(FloatDoubleHashMap.newWithKeysValues(1.0f, 1.0, 2.0f, 2.0)));
     }
 }

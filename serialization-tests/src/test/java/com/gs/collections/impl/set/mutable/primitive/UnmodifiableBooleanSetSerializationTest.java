@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableBooleanSetSerializationTest
 {
@@ -26,13 +26,15 @@ public class UnmodifiableBooleanSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuVW5t\n"
-                        + "b2RpZmlhYmxlQm9vbGVhblNldAAAAAAAAAABAgAAeHIAWmNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs\n"
-                        + "LmNvbGxlY3Rpb24ubXV0YWJsZS5wcmltaXRpdmUuQWJzdHJhY3RVbm1vZGlmaWFibGVCb29sZWFu\n"
-                        + "Q29sbGVjdGlvbgAAAAAAAAABAgABTAAKY29sbGVjdGlvbnQARkxjb20vZ3MvY29sbGVjdGlvbnMv\n"
-                        + "YXBpL2NvbGxlY3Rpb24vcHJpbWl0aXZlL011dGFibGVCb29sZWFuQ29sbGVjdGlvbjt4cHNyADxj\n"
-                        + "b20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuQm9vbGVhbkhhc2hT\n"
-                        + "ZXQAAAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuVW5t
+                b2RpZmlhYmxlQm9vbGVhblNldAAAAAAAAAABAgAAeHIAWmNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs
+                LmNvbGxlY3Rpb24ubXV0YWJsZS5wcmltaXRpdmUuQWJzdHJhY3RVbm1vZGlmaWFibGVCb29sZWFu
+                Q29sbGVjdGlvbgAAAAAAAAABAgABTAAKY29sbGVjdGlvbnQARkxjb20vZ3MvY29sbGVjdGlvbnMv
+                YXBpL2NvbGxlY3Rpb24vcHJpbWl0aXZlL011dGFibGVCb29sZWFuQ29sbGVjdGlvbjt4cHNyADxj
+                b20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuQm9vbGVhbkhhc2hT
+                ZXQAAAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new UnmodifiableBooleanSet(new BooleanHashSet()));
     }
 }

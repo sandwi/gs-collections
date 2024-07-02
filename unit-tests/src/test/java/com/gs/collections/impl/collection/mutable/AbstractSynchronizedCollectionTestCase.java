@@ -17,8 +17,8 @@
 package com.gs.collections.impl.collection.mutable;
 
 import com.gs.collections.api.collection.MutableCollection;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractSynchronizedCollectionTestCase extends AbstractCollectionTestCase
 {
@@ -28,7 +28,7 @@ public abstract class AbstractSynchronizedCollectionTestCase extends AbstractCol
     {
         MutableCollection<Object> collection = this.newWith(1, 2);
         String string = collection.toString();
-        Assert.assertTrue("[1, 2]".equals(string) || "[2, 1]".equals(string));
+        Assertions.assertTrue("[1, 2]".equals(string) || "[2, 1]".equals(string));
     }
 
     @Override
@@ -36,7 +36,7 @@ public abstract class AbstractSynchronizedCollectionTestCase extends AbstractCol
     public void makeString()
     {
         MutableCollection<Object> collection = this.newWith(1, 2, 3);
-        Assert.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
+        Assertions.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
     }
 
     @Override
@@ -46,7 +46,7 @@ public abstract class AbstractSynchronizedCollectionTestCase extends AbstractCol
         MutableCollection<Object> collection = this.newWith(1, 2, 3);
         Appendable builder = new StringBuilder();
         collection.appendString(builder);
-        Assert.assertEquals(collection.toString(), '[' + builder.toString() + ']');
+        Assertions.assertEquals(collection.toString(), '[' + builder.toString() + ']');
     }
 
     @Override
@@ -54,6 +54,6 @@ public abstract class AbstractSynchronizedCollectionTestCase extends AbstractCol
     public void asSynchronized()
     {
         MutableCollection<Object> collection = this.newWith();
-        Assert.assertSame(collection, collection.asSynchronized());
+        Assertions.assertSame(collection, collection.asSynchronized());
     }
 }

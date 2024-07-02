@@ -37,8 +37,10 @@ import com.gs.collections.impl.block.factory.Predicates;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestCase
 {
@@ -79,16 +81,16 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
     @Test
     public void getFirst()
     {
-        Assert.assertNotNull(this.newWith(1, 2, 3).getFirst());
-        Assert.assertNull(this.newWith().getFirst());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getFirst());
+        Assertions.assertNull(this.newWith().getFirst());
     }
 
     @Override
     @Test
     public void getLast()
     {
-        Assert.assertNotNull(this.newWith(1, 2, 3).getLast());
-        Assert.assertNull(this.newWith().getLast());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getLast());
+        Assertions.assertNull(this.newWith().getLast());
     }
 
     @Override
@@ -103,7 +105,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
     {
         MutableSet<Integer> set = MultiReaderUnifiedSet.newSetWith(1, 2);
         String s = set.toString();
-        Assert.assertTrue("[1, 2]".equals(s) || "[2, 1]".equals(s));
+        Assertions.assertTrue("[1, 2]".equals(s) || "[2, 1]".equals(s));
     }
 
     @Override
@@ -130,8 +132,8 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
 
     private void assertIsEmpty(boolean isEmpty, MultiReaderUnifiedSet<?> set)
     {
-        Assert.assertEquals(isEmpty, set.isEmpty());
-        Assert.assertEquals(!isEmpty, set.notEmpty());
+        Assertions.assertEquals(isEmpty, set.isEmpty());
+        Assertions.assertEquals(!isEmpty, set.notEmpty());
     }
 
     @Override
@@ -139,7 +141,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
     public void testToString()
     {
         MutableCollection<Object> collection = this.newWith(1, 2);
-        Assert.assertTrue(
+        Assertions.assertTrue(
                 "[1, 2]".equals(collection.toString())
                         || "[2, 1]".equals(collection.toString()));
     }
@@ -149,7 +151,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
     public void makeString()
     {
         MutableCollection<Object> collection = this.newWith(1, 2, 3);
-        Assert.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
+        Assertions.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
     }
 
     @Override
@@ -159,7 +161,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         MutableCollection<Object> collection = this.newWith(1, 2, 3);
         Appendable builder = new StringBuilder();
         collection.appendString(builder);
-        Assert.assertEquals(collection.toString(), '[' + builder.toString() + ']');
+        Assertions.assertEquals(collection.toString(), '[' + builder.toString() + ']');
     }
 
     @Override
@@ -175,10 +177,10 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
         MutableSet<String> union = set.union(UnifiedSet.newSetWith("a", "b", "c", "1"));
         Verify.assertSize(set.size() + 3, union);
-        Assert.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
+        Assertions.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
         Verify.assertContainsAll(union, "a", "b", "c");
 
-        Assert.assertEquals(set, set.union(UnifiedSet.newSetWith("1")));
+        Assertions.assertEquals(set, set.union(UnifiedSet.newSetWith("1")));
     }
 
     @Test
@@ -187,10 +189,10 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
         MutableSet<String> union = set.unionInto(UnifiedSet.newSetWith("a", "b", "c", "1"), UnifiedSet.<String>newSet());
         Verify.assertSize(set.size() + 3, union);
-        Assert.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
+        Assertions.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
         Verify.assertContainsAll(union, "a", "b", "c");
 
-        Assert.assertEquals(set, set.unionInto(UnifiedSet.newSetWith("1"), UnifiedSet.<String>newSet()));
+        Assertions.assertEquals(set, set.unionInto(UnifiedSet.newSetWith("1"), UnifiedSet.<String>newSet()));
     }
 
     @Test
@@ -199,7 +201,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
         MutableSet<String> intersect = set.intersect(UnifiedSet.newSetWith("a", "b", "c", "1"));
         Verify.assertSize(1, intersect);
-        Assert.assertEquals(UnifiedSet.newSetWith("1"), intersect);
+        Assertions.assertEquals(UnifiedSet.newSetWith("1"), intersect);
 
         Verify.assertEmpty(set.intersect(UnifiedSet.newSetWith("not present")));
     }
@@ -210,7 +212,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
         MutableSet<String> intersect = set.intersectInto(UnifiedSet.newSetWith("a", "b", "c", "1"), UnifiedSet.<String>newSet());
         Verify.assertSize(1, intersect);
-        Assert.assertEquals(UnifiedSet.newSetWith("1"), intersect);
+        Assertions.assertEquals(UnifiedSet.newSetWith("1"), intersect);
 
         Verify.assertEmpty(set.intersectInto(UnifiedSet.newSetWith("not present"), UnifiedSet.<String>newSet()));
     }
@@ -220,8 +222,8 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
         MutableSet<String> difference = set.difference(UnifiedSet.newSetWith("2", "3", "4", "not present"));
-        Assert.assertEquals(UnifiedSet.newSetWith("1"), difference);
-        Assert.assertEquals(set, set.difference(UnifiedSet.newSetWith("not present")));
+        Assertions.assertEquals(UnifiedSet.newSetWith("1"), difference);
+        Assertions.assertEquals(set, set.difference(UnifiedSet.newSetWith("not present")));
     }
 
     @Test
@@ -229,8 +231,8 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
         MutableSet<String> difference = set.differenceInto(UnifiedSet.newSetWith("2", "3", "4", "not present"), UnifiedSet.<String>newSet());
-        Assert.assertEquals(UnifiedSet.newSetWith("1"), difference);
-        Assert.assertEquals(set, set.differenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.<String>newSet()));
+        Assertions.assertEquals(UnifiedSet.newSetWith("1"), difference);
+        Assertions.assertEquals(set, set.differenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.<String>newSet()));
     }
 
     @Test
@@ -238,11 +240,11 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
         MutableSet<String> difference = set.symmetricDifference(UnifiedSet.newSetWith("2", "3", "4", "5", "not present"));
-        Verify.assertContains("1", difference);
-        Assert.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
+        Verify.assertContains(difference, "1");
+        Assertions.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
         for (int i = 2; i <= set.size(); i++)
         {
-            Verify.assertNotContains(String.valueOf(i), difference);
+            Verify.assertNotContains(difference, String.valueOf(i));
         }
 
         Verify.assertSize(set.size() + 1, set.symmetricDifference(UnifiedSet.newSetWith("not present")));
@@ -255,11 +257,11 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         MutableSet<String> difference = set.symmetricDifferenceInto(
                 UnifiedSet.newSetWith("2", "3", "4", "5", "not present"),
                 UnifiedSet.<String>newSet());
-        Verify.assertContains("1", difference);
-        Assert.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
+        Verify.assertContains(difference, "1");
+        Assertions.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
         for (int i = 2; i <= set.size(); i++)
         {
-            Verify.assertNotContains(String.valueOf(i), difference);
+            Verify.assertNotContains(difference, String.valueOf(i));
         }
 
         Verify.assertSize(
@@ -271,15 +273,15 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
     public void isSubsetOf()
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
-        Assert.assertTrue(set.isSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
+        Assertions.assertTrue(set.isSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
     }
 
     @Test
     public void isProperSubsetOf()
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
-        Assert.assertTrue(set.isProperSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
-        Assert.assertFalse(set.isProperSubsetOf(set));
+        Assertions.assertTrue(set.isProperSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
+        Assertions.assertFalse(set.isProperSubsetOf(set));
     }
 
     @Test
@@ -298,7 +300,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4");
         LazyIterable<Pair<String, String>> cartesianProduct = set.cartesianProduct(UnifiedSet.newSetWith("One", "Two"));
         Verify.assertIterableSize(set.size() * 2, cartesianProduct);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 set,
                 cartesianProduct
                         .select(Predicates.attributeEqual((Function<Pair<?, String>, String>) Pair::getTwo, "One"))
@@ -312,9 +314,9 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         Function0<AtomicInteger> valueCreator = AtomicInteger::new;
         MutableCollection<Integer> collection = this.newWith(1, 1, 1, 2, 2, 3);
         MapIterable<String, AtomicInteger> aggregation = collection.aggregateInPlaceBy(String::valueOf, valueCreator, AtomicInteger::addAndGet);
-        Assert.assertEquals(1, aggregation.get("1").intValue());
-        Assert.assertEquals(2, aggregation.get("2").intValue());
-        Assert.assertEquals(3, aggregation.get("3").intValue());
+        Assertions.assertEquals(1, aggregation.get("1").intValue());
+        Assertions.assertEquals(2, aggregation.get("2").intValue());
+        Assertions.assertEquals(3, aggregation.get("3").intValue());
     }
 
     @Override
@@ -325,9 +327,9 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         Function2<Integer, Integer, Integer> sumAggregator = (integer1, integer2) -> integer1 + integer2;
         MutableCollection<Integer> collection = this.newWith(1, 1, 1, 2, 2, 3);
         MapIterable<String, Integer> aggregation = collection.aggregateBy(String::valueOf, valueCreator, sumAggregator);
-        Assert.assertEquals(1, aggregation.get("1").intValue());
-        Assert.assertEquals(2, aggregation.get("2").intValue());
-        Assert.assertEquals(3, aggregation.get("3").intValue());
+        Assertions.assertEquals(1, aggregation.get("1").intValue());
+        Assertions.assertEquals(2, aggregation.get("2").intValue());
+        Assertions.assertEquals(3, aggregation.get("3").intValue());
     }
 
     @Test
@@ -339,7 +341,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
             result[0] = delegate.getFirst();
             this.verifyDelegateIsUnmodifiable(delegate);
         });
-        Assert.assertNotNull(result[0]);
+        Assertions.assertNotNull(result[0]);
     }
 
     @Test
@@ -356,7 +358,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
             delegateList.set(delegate);
             iterator.set(delegate.iterator());
         });
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4), set);
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4), set);
 
         Verify.assertThrows(NullPointerException.class, () -> iterator.get().hasNext());
 
@@ -388,10 +390,12 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void toSortedBag_with_null()
     {
-        this.newWith(3, 4, null, 1, 2).toSortedBag();
+        assertThrows(NullPointerException.class, () -> {
+            this.newWith(3, 4, null, 1, 2).toSortedBag();
+        });
     }
 
     @Override

@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.ObjectDoubleHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableObjectDoubleHashMapSerializationTest
 {
@@ -27,10 +27,12 @@ public class ImmutableObjectDoubleHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5B\n"
-                        + "YnN0cmFjdEltbXV0YWJsZU9iamVjdERvdWJsZU1hcCRJbW11dGFibGVPYmplY3REb3VibGVNYXBT\n"
-                        + "ZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAACdAABMncIQAAAAAAAAAB0AAExdwg/\n"
-                        + "8AAAAAAAAHg=",
+                """
+                rO0ABXNyAHtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5B
+                YnN0cmFjdEltbXV0YWJsZU9iamVjdERvdWJsZU1hcCRJbW11dGFibGVPYmplY3REb3VibGVNYXBT
+                ZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAACdAABMncIQAAAAAAAAAB0AAExdwg/
+                8AAAAAAAAHg=\
+                """,
                 new ImmutableObjectDoubleHashMap<String>(ObjectDoubleHashMap.newWithKeysValues("1", 1.0, "2", 2.0)));
     }
 }

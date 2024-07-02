@@ -20,8 +20,8 @@ import java.io.Serializable;
 
 import com.gs.collections.api.collection.MutableCollection;
 import com.gs.collections.api.list.MutableList;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class MultiReaderFastListAsReadUntouchableTest extends UnmodifiableMutableListTestCase
 {
@@ -36,6 +36,6 @@ public class MultiReaderFastListAsReadUntouchableTest extends UnmodifiableMutabl
     public void serialization()
     {
         MutableCollection<Integer> collection = this.getCollection();
-        Assert.assertFalse(collection instanceof Serializable);
+        Assertions.assertFalse(collection instanceof Serializable);
     }
 }

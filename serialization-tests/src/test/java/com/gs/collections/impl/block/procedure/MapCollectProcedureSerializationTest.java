@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MapCollectProcedureSerializationTest
 {
@@ -26,10 +26,12 @@ public class MapCollectProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWFwQ29sbGVj\n"
-                        + "dFByb2NlZHVyZQAAAAAAAAABAgADTAALa2V5RnVuY3Rpb250ADBMY29tL2dzL2NvbGxlY3Rpb25z\n"
-                        + "L2FwaS9ibG9jay9mdW5jdGlvbi9GdW5jdGlvbjtMAANtYXB0AA9MamF2YS91dGlsL01hcDtMAA12\n"
-                        + "YWx1ZUZ1bmN0aW9ucQB+AAF4cHBwcA==",
+                """
+                rO0ABXNyADtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWFwQ29sbGVj
+                dFByb2NlZHVyZQAAAAAAAAABAgADTAALa2V5RnVuY3Rpb250ADBMY29tL2dzL2NvbGxlY3Rpb25z
+                L2FwaS9ibG9jay9mdW5jdGlvbi9GdW5jdGlvbjtMAANtYXB0AA9MamF2YS91dGlsL01hcDtMAA12
+                YWx1ZUZ1bmN0aW9ucQB+AAF4cHBwcA==\
+                """,
                 new MapCollectProcedure<Object, Object, Object>(null, null, null));
     }
 }

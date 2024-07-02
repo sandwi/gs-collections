@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.factory;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Procedures2SerializationTest
 {
@@ -26,11 +26,13 @@ public class Procedures2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlByb2NlZHVyZXMy\n"
-                        + "JFRocm93aW5nUHJvY2VkdXJlMkFkYXB0ZXIAAAAAAAAAAQIAAUwAEnRocm93aW5nUHJvY2VkdXJl\n"
-                        + "MnQARExjb20vZ3MvY29sbGVjdGlvbnMvaW1wbC9ibG9jay9wcm9jZWR1cmUvY2hlY2tlZC9UaHJv\n"
-                        + "d2luZ1Byb2NlZHVyZTI7eHIAQWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLnByb2NlZHVy\n"
-                        + "ZS5jaGVja2VkLkNoZWNrZWRQcm9jZWR1cmUyAAAAAAAAAAECAAB4cHA=",
+                """
+                rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlByb2NlZHVyZXMy
+                JFRocm93aW5nUHJvY2VkdXJlMkFkYXB0ZXIAAAAAAAAAAQIAAUwAEnRocm93aW5nUHJvY2VkdXJl
+                MnQARExjb20vZ3MvY29sbGVjdGlvbnMvaW1wbC9ibG9jay9wcm9jZWR1cmUvY2hlY2tlZC9UaHJv
+                d2luZ1Byb2NlZHVyZTI7eHIAQWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLnByb2NlZHVy
+                ZS5jaGVja2VkLkNoZWNrZWRQcm9jZWR1cmUyAAAAAAAAAAECAAB4cHA=\
+                """,
                 Procedures2.throwing(null));
     }
 
@@ -39,8 +41,10 @@ public class Procedures2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlByb2NlZHVyZXMy\n"
-                        + "JEFkZFRvQ29sbGVjdGlvbgAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlByb2NlZHVyZXMy
+                JEFkZFRvQ29sbGVjdGlvbgAAAAAAAAABAgAAeHA=\
+                """,
                 Procedures2.addToCollection());
     }
 
@@ -49,8 +53,10 @@ public class Procedures2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlByb2NlZHVyZXMy\n"
-                        + "JFJlbW92ZUZyb21Db2xsZWN0aW9uAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAEZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlByb2NlZHVyZXMy
+                JFJlbW92ZUZyb21Db2xsZWN0aW9uAAAAAAAAAAECAAB4cA==\
+                """,
                 Procedures2.removeFromCollection());
     }
 }

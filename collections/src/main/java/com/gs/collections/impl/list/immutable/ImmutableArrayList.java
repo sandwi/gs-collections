@@ -101,9 +101,9 @@ final class ImmutableArrayList<T>
         {
             return false;
         }
-        if (that instanceof ImmutableArrayList)
+        if (that instanceof ImmutableArrayList list)
         {
-            return this.immutableArrayListEquals((ImmutableArrayList<?>) that);
+            return this.immutableArrayListEquals(list);
         }
         return InternalArrayIterate.arrayEqualsList(this.items, this.items.length, (List<?>) that);
     }

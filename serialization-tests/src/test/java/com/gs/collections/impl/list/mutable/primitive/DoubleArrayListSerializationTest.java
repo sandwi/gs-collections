@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DoubleArrayListSerializationTest
 {
@@ -26,8 +26,10 @@ public class DoubleArrayListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUucHJpbWl0aXZlLkRv\n"
-                        + "dWJsZUFycmF5TGlzdAAAAAAAAAABDAAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUucHJpbWl0aXZlLkRv
+                dWJsZUFycmF5TGlzdAAAAAAAAAABDAAAeHB3BAAAAAB4\
+                """,
                 new DoubleArrayList());
     }
 }

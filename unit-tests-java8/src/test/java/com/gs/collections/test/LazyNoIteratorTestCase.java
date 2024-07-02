@@ -20,7 +20,7 @@ import com.gs.collections.api.list.ListIterable;
 import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.test.list.TransformsToListTrait;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public interface LazyNoIteratorTestCase extends NoIteratorTestCase, RichIterableWithDuplicatesTestCase, TransformsToListTrait
 {

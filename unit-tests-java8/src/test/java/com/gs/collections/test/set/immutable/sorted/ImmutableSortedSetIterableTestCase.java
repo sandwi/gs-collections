@@ -19,13 +19,13 @@ package com.gs.collections.test.set.immutable.sorted;
 import com.gs.collections.api.set.sorted.ImmutableSortedSet;
 import com.gs.collections.test.collection.immutable.ImmutableCollectionTestCase;
 import com.gs.collections.test.set.sorted.SortedSetIterableTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public interface ImmutableSortedSetIterableTestCase extends SortedSetIterableTestCase, ImmutableCollectionTestCase
 {

@@ -26,11 +26,13 @@ public class UnifiedSetWithHashingStrategyMultimapSerializationTest
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuc3RyYXRlZ3kuVW5p\n"
-                + "ZmllZFNldFdpdGhIYXNoaW5nU3RyYXRlZ3lNdWx0aW1hcAAAAAAAAAABDAAAeHBzcgBHY29tLmdz\n"
-                + "LmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5IYXNoaW5nU3RyYXRlZ2llcyREZWZhdWx0\n"
-                + "U3RyYXRlZ3kAAAAAAAAAAQIAAHhwdwQAAAACdAABQXcEAAAAAnEAfgAEdAABQnEAfgAFdwQAAAAB\n"
-                + "cQB+AAR4";
+        return """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuc3RyYXRlZ3kuVW5p
+                ZmllZFNldFdpdGhIYXNoaW5nU3RyYXRlZ3lNdWx0aW1hcAAAAAAAAAABDAAAeHBzcgBHY29tLmdz
+                LmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5IYXNoaW5nU3RyYXRlZ2llcyREZWZhdWx0
+                U3RyYXRlZ3kAAAAAAAAAAQIAAHhwdwQAAAACdAABQXcEAAAAAnEAfgAEdAABQnEAfgAFdwQAAAAB
+                cQB+AAR4\
+                """;
     }
 
     @Override

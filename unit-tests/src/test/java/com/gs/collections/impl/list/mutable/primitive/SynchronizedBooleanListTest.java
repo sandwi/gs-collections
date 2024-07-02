@@ -17,8 +17,8 @@
 package com.gs.collections.impl.list.mutable.primitive;
 
 import com.gs.collections.api.list.primitive.MutableBooleanList;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SynchronizedBooleanList}.
@@ -44,9 +44,9 @@ public class SynchronizedBooleanListTest extends AbstractBooleanListTestCase
         super.asSynchronized();
         SynchronizedBooleanList list = this.classUnderTest();
         MutableBooleanList listWithLockObject = new SynchronizedBooleanList(BooleanArrayList.newListWith(true, false, true), new Object()).asSynchronized();
-        Assert.assertEquals(list, listWithLockObject);
-        Assert.assertSame(listWithLockObject, listWithLockObject.asSynchronized());
-        Assert.assertSame(list, list.asSynchronized());
-        Assert.assertEquals(list, list.asSynchronized());
+        Assertions.assertEquals(list, listWithLockObject);
+        Assertions.assertSame(listWithLockObject, listWithLockObject.asSynchronized());
+        Assertions.assertSame(list, list.asSynchronized());
+        Assertions.assertEquals(list, list.asSynchronized());
     }
 }

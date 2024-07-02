@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IfFunctionSerializationTest
 {
@@ -26,10 +26,12 @@ public class IfFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5JZkZ1bmN0aW9u\n"
-                        + "AAAAAAAAAAECAANMAAxlbHNlRnVuY3Rpb250ADBMY29tL2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9j\n"
-                        + "ay9mdW5jdGlvbi9GdW5jdGlvbjtMAAhmdW5jdGlvbnEAfgABTAAJcHJlZGljYXRldAAyTGNvbS9n\n"
-                        + "cy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svcHJlZGljYXRlL1ByZWRpY2F0ZTt4cHBwcA==",
+                """
+                rO0ABXNyADFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5JZkZ1bmN0aW9u
+                AAAAAAAAAAECAANMAAxlbHNlRnVuY3Rpb250ADBMY29tL2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9j
+                ay9mdW5jdGlvbi9GdW5jdGlvbjtMAAhmdW5jdGlvbnEAfgABTAAJcHJlZGljYXRldAAyTGNvbS9n
+                cy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svcHJlZGljYXRlL1ByZWRpY2F0ZTt4cHBwcA==\
+                """,
                 new IfFunction<Object, Object>(null, null));
     }
 }

@@ -75,7 +75,7 @@ final class ImmutableEmptySortedSet<T>
         {
             return true;
         }
-        return other instanceof Set && ((Collection<?>) other).isEmpty();
+        return other instanceof Set s && s.isEmpty();
     }
 
     @Override

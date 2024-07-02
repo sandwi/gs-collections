@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MinFunctionSerializationTest
 {
@@ -26,8 +26,10 @@ public class MinFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NaW5GdW5jdGlv\n"
-                        + "biRNaW5Eb3VibGVGdW5jdGlvbgAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NaW5GdW5jdGlv
+                biRNaW5Eb3VibGVGdW5jdGlvbgAAAAAAAAABAgAAeHA=\
+                """,
                 MinFunction.DOUBLE);
     }
 
@@ -36,8 +38,10 @@ public class MinFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NaW5GdW5jdGlv\n"
-                        + "biRNaW5JbnRlZ2VyRnVuY3Rpb24AAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NaW5GdW5jdGlv
+                biRNaW5JbnRlZ2VyRnVuY3Rpb24AAAAAAAAAAQIAAHhw\
+                """,
                 MinFunction.INTEGER);
     }
 
@@ -46,8 +50,10 @@ public class MinFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NaW5GdW5jdGlv\n"
-                        + "biRNaW5Mb25nRnVuY3Rpb24AAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NaW5GdW5jdGlv
+                biRNaW5Mb25nRnVuY3Rpb24AAAAAAAAAAQIAAHhw\
+                """,
                 MinFunction.LONG);
     }
 }

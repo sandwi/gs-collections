@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableLongDoubleMapSerializationTest
 {
@@ -26,11 +26,13 @@ public class UnmodifiableLongDoubleMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t\n"
-                        + "b2RpZmlhYmxlTG9uZ0RvdWJsZU1hcAAAAAAAAAABAgABTAADbWFwdAA7TGNvbS9ncy9jb2xsZWN0\n"
-                        + "aW9ucy9hcGkvbWFwL3ByaW1pdGl2ZS9NdXRhYmxlTG9uZ0RvdWJsZU1hcDt4cHNyAD9jb20uZ3Mu\n"
-                        + "Y29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuTG9uZ0RvdWJsZUhhc2hNYXAA\n"
-                        + "AAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t
+                b2RpZmlhYmxlTG9uZ0RvdWJsZU1hcAAAAAAAAAABAgABTAADbWFwdAA7TGNvbS9ncy9jb2xsZWN0
+                aW9ucy9hcGkvbWFwL3ByaW1pdGl2ZS9NdXRhYmxlTG9uZ0RvdWJsZU1hcDt4cHNyAD9jb20uZ3Mu
+                Y29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuTG9uZ0RvdWJsZUhhc2hNYXAA
+                AAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new UnmodifiableLongDoubleMap(new LongDoubleHashMap()));
     }
 }

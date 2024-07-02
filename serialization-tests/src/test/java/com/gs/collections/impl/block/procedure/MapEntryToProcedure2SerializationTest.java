@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MapEntryToProcedure2SerializationTest
 {
@@ -26,9 +26,11 @@ public class MapEntryToProcedure2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWFwRW50cnlU\n"
-                        + "b1Byb2NlZHVyZTIAAAAAAAAAAQIAAUwACXByb2NlZHVyZXQAM0xjb20vZ3MvY29sbGVjdGlvbnMv\n"
-                        + "YXBpL2Jsb2NrL3Byb2NlZHVyZS9Qcm9jZWR1cmUyO3hwcA==",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWFwRW50cnlU
+                b1Byb2NlZHVyZTIAAAAAAAAAAQIAAUwACXByb2NlZHVyZXQAM0xjb20vZ3MvY29sbGVjdGlvbnMv
+                YXBpL2Jsb2NrL3Byb2NlZHVyZS9Qcm9jZWR1cmUyO3hwcA==\
+                """,
                 new MapEntryToProcedure2<Object, Object>(null));
     }
 }

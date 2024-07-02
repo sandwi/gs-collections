@@ -36,10 +36,10 @@ import com.gs.collections.impl.parallel.ParallelIterate;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
 import org.apache.commons.lang.RandomStringUtils;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Level;
@@ -68,7 +68,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
-    @Before
+    @BeforeEach
     @Setup(Level.Iteration)
     public void setUp()
     {
@@ -77,7 +77,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
         Collections.shuffle(this.jdkPositions);
     }
 
-    @After
+    @AfterEach
     @TearDown(Level.Iteration)
     public void tearDown() throws InterruptedException
     {
@@ -93,7 +93,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getProduct,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -105,7 +105,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getProduct,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -117,7 +117,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getAccount,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(accountDoubleMap);
+        Assertions.assertNotNull(accountDoubleMap);
         return accountDoubleMap;
     }
 
@@ -129,7 +129,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getAccount,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(accountDoubleMap);
+        Assertions.assertNotNull(accountDoubleMap);
         return accountDoubleMap;
     }
 
@@ -141,7 +141,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getCategory,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(categoryDoubleMap);
+        Assertions.assertNotNull(categoryDoubleMap);
         return categoryDoubleMap;
     }
 
@@ -153,7 +153,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getCategory,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(categoryDoubleMap);
+        Assertions.assertNotNull(categoryDoubleMap);
         return categoryDoubleMap;
     }
 
@@ -165,7 +165,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getProduct,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -177,7 +177,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getProduct,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -189,7 +189,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getAccount,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -201,7 +201,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Collectors.groupingBy(
                                 Position::getAccount,
                                 Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -211,7 +211,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
         Map<String, DoubleSummaryStatistics> result =
                 this.jdkPositions.parallelStream().collect(
                         Collectors.groupingBy(Position::getCategory, Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -221,7 +221,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
         Map<String, DoubleSummaryStatistics> result =
                 this.gscPositions.parallelStream().collect(
                         Collectors.groupingBy(Position::getCategory, Collectors.summarizingDouble(Position::getMarketValue)));
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -233,7 +233,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getProduct,
                         ImmutableMarketValueStatistics::new,
                         ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -245,7 +245,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getAccount,
                         ImmutableMarketValueStatistics::new,
                         ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -257,7 +257,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getCategory,
                         ImmutableMarketValueStatistics::new,
                         ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -270,7 +270,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getProduct,
                         ImmutableMarketValueStatistics::new,
                         ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -283,7 +283,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getAccount,
                         ImmutableMarketValueStatistics::new,
                         ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -296,7 +296,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getCategory,
                         ImmutableMarketValueStatistics::new,
                         ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -308,7 +308,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getProduct,
                         ImmutableMarketValueStatistics::new,
                         ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -320,7 +320,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getAccount,
                         ImmutableMarketValueStatistics::new,
                         ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -332,7 +332,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getCategory,
                         ImmutableMarketValueStatistics::new,
                         ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -345,7 +345,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                                 Position::getProduct,
                                 ImmutableMarketValueStatistics::getZero,
                                 ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -354,7 +354,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
     {
         MapIterable<Product, ImmutableMarketValueStatistics> actual = this.aggregateByProduct_parallel_lazy_gsc();
         MapIterable<Product, ImmutableMarketValueStatistics> expected = this.aggregateByProduct_serial_lazy_gsc();
-        Assert.assertEquals(expected, expected);
+        Assertions.assertEquals(expected, expected);
         Verify.assertMapsEqual((Map<Product, ImmutableMarketValueStatistics>) expected, (Map<Product, ImmutableMarketValueStatistics>) actual);
     }
 
@@ -367,7 +367,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                                 Position::getAccount,
                                 ImmutableMarketValueStatistics::new,
                                 ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -376,7 +376,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
     {
         MapIterable<Account, ImmutableMarketValueStatistics> actual = this.aggregateByAccount_parallel_lazy_gsc();
         MapIterable<Account, ImmutableMarketValueStatistics> expected = this.aggregateByAccount_serial_lazy_gsc();
-        Assert.assertEquals(expected, expected);
+        Assertions.assertEquals(expected, expected);
         Verify.assertMapsEqual((Map<Account, ImmutableMarketValueStatistics>) expected, (Map<Account, ImmutableMarketValueStatistics>) actual);
     }
 
@@ -389,7 +389,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                                 Position::getCategory,
                                 ImmutableMarketValueStatistics::new,
                                 ImmutableMarketValueStatistics::add);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -398,7 +398,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
     {
         MapIterable<String, ImmutableMarketValueStatistics> actual = this.aggregateByCategory_parallel_lazy_gsc();
         MapIterable<String, ImmutableMarketValueStatistics> expected = this.aggregateByCategory_serial_lazy_gsc();
-        Assert.assertEquals(expected, expected);
+        Assertions.assertEquals(expected, expected);
         Verify.assertMapsEqual((Map<String, ImmutableMarketValueStatistics>) expected, (Map<String, ImmutableMarketValueStatistics>) actual);
     }
 
@@ -410,7 +410,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getProduct,
                         MarketValueStatistics::new,
                         MarketValueStatistics::accept);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -422,7 +422,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getAccount,
                         MarketValueStatistics::new,
                         MarketValueStatistics::accept);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -434,7 +434,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getCategory,
                         MarketValueStatistics::new,
                         MarketValueStatistics::accept);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -447,7 +447,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getProduct,
                         MarketValueStatistics::new,
                         MarketValueStatistics::syncAccept);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -460,7 +460,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getAccount,
                         MarketValueStatistics::new,
                         MarketValueStatistics::syncAccept);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -473,7 +473,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                         Position::getCategory,
                         MarketValueStatistics::new,
                         MarketValueStatistics::syncAccept);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -486,7 +486,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                                 Position::getProduct,
                                 MarketValueStatistics::new,
                                 MarketValueStatistics::syncAccept);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -495,7 +495,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
     {
         MapIterable<Product, MarketValueStatistics> actual = this.aggregateInPlaceByProduct_parallel_lazy_gsc();
         MapIterable<Product, MarketValueStatistics> expected = this.aggregateInPlaceByProduct_serial_eager_gsc();
-        Assert.assertEquals(expected, expected);
+        Assertions.assertEquals(expected, expected);
         Verify.assertMapsEqual((Map<Product, MarketValueStatistics>) expected, (Map<Product, MarketValueStatistics>) actual);
     }
 
@@ -508,7 +508,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                                 Position::getAccount,
                                 MarketValueStatistics::new,
                                 MarketValueStatistics::syncAccept);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -517,7 +517,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
     {
         MapIterable<Account, MarketValueStatistics> actual = this.aggregateInPlaceByAccount_parallel_lazy_gsc();
         MapIterable<Account, MarketValueStatistics> expected = this.aggregateInPlaceByAccount_serial_eager_gsc();
-        Assert.assertEquals(expected, expected);
+        Assertions.assertEquals(expected, expected);
         Verify.assertMapsEqual((Map<Account, MarketValueStatistics>) expected, (Map<Account, MarketValueStatistics>) actual);
     }
 
@@ -530,7 +530,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
                                 Position::getCategory,
                                 MarketValueStatistics::new,
                                 MarketValueStatistics::syncAccept);
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
         return result;
     }
 
@@ -539,7 +539,7 @@ public class AggregateByTest extends AbstractJMHTestRunner
     {
         MapIterable<String, MarketValueStatistics> actual = this.aggregateInPlaceByCategory_parallel_lazy_gsc();
         MapIterable<String, MarketValueStatistics> expected = this.aggregateInPlaceByCategory_serial_eager_gsc();
-        Assert.assertEquals(expected, expected);
+        Assertions.assertEquals(expected, expected);
         Verify.assertMapsEqual((Map<String, MarketValueStatistics>) expected, (Map<String, MarketValueStatistics>) actual);
     }
 

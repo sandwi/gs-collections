@@ -29,8 +29,10 @@ import com.gs.collections.impl.block.factory.Predicates2;
 import com.gs.collections.impl.collection.mutable.AbstractSynchronizedCollectionTestCase;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link SynchronizedMutableSet}.
@@ -57,7 +59,7 @@ public class SynchronizedMutableSetTest extends AbstractSynchronizedCollectionTe
     public void removeIf()
     {
         MutableCollection<Integer> objects = this.newWith(1, 2, 3, 4);
-        Assert.assertTrue(objects.removeIf(Predicates.equal(2)));
+        Assertions.assertTrue(objects.removeIf(Predicates.equal(2)));
         Verify.assertSize(3, objects);
         Verify.assertContainsAll(objects, 1, 3, 4);
     }
@@ -67,7 +69,7 @@ public class SynchronizedMutableSetTest extends AbstractSynchronizedCollectionTe
     public void removeIfWith()
     {
         MutableCollection<Integer> objects = this.newWith(1, 2, 3, 4);
-        Assert.assertTrue(objects.removeIfWith(Predicates2.equal(), 2));
+        Assertions.assertTrue(objects.removeIfWith(Predicates2.equal(), 2));
         Verify.assertSize(3, objects);
         Verify.assertContainsAll(objects, 1, 3, 4);
     }
@@ -85,8 +87,8 @@ public class SynchronizedMutableSetTest extends AbstractSynchronizedCollectionTe
     {
         MutableSet<Number> numbers = new SynchronizedMutableSet<Number>(SetAdapter.adapt(new TreeSet<>((o1, o2) -> Double.compare(o1.doubleValue(), o2.doubleValue())))).withAll(FastList.newListWith(1, 2.0, 3, 4.0, 5));
         MutableSet<Integer> integers = numbers.selectInstancesOf(Integer.class);
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 3, 5), integers);
-        Assert.assertEquals(FastList.newListWith(1, 3, 5), integers.toList());
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 3, 5), integers);
+        Assertions.assertEquals(FastList.newListWith(1, 3, 5), integers.toList());
     }
 
     @Override
@@ -117,10 +119,12 @@ public class SynchronizedMutableSetTest extends AbstractSynchronizedCollectionTe
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void toSortedBag_with_null()
     {
-        this.newWith(3, 4, null, 1, 2).toSortedBag();
+        assertThrows(NullPointerException.class, () -> {
+            this.newWith(3, 4, null, 1, 2).toSortedBag();
+        });
     }
 
     @Override
@@ -133,16 +137,20 @@ public class SynchronizedMutableSetTest extends AbstractSynchronizedCollectionTe
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void min_null_safe()
     {
-        super.min_null_safe();
+        assertThrows(NullPointerException.class, () -> {
+            super.min_null_safe();
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void max_null_safe()
     {
-        super.max_null_safe();
+        assertThrows(NullPointerException.class, () -> {
+            super.max_null_safe();
+        });
     }
 }

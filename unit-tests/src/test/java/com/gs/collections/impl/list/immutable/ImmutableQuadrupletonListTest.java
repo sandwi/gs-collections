@@ -20,8 +20,8 @@ import com.gs.collections.api.list.ImmutableList;
 import com.gs.collections.impl.block.factory.HashingStrategies;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableQuadrupletonListTest extends AbstractImmutableListTestCase
 {
@@ -38,9 +38,9 @@ public class ImmutableQuadrupletonListTest extends AbstractImmutableListTestCase
         super.distinct();
         ImmutableList<Integer> list = new ImmutableQuadrupletonList<>(2, 1, 1, 2);
         ImmutableList<Integer> distinctList = list.distinct();
-        Assert.assertFalse(distinctList.isEmpty());
+        Assertions.assertFalse(distinctList.isEmpty());
         Verify.assertInstanceOf(ImmutableDoubletonList.class, distinctList);
-        Assert.assertEquals(FastList.newListWith(2, 1), distinctList);
+        Assertions.assertEquals(FastList.newListWith(2, 1), distinctList);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class ImmutableQuadrupletonListTest extends AbstractImmutableListTestCase
     {
         ImmutableList<String> list = new ImmutableQuadrupletonList<>("a", "a", "B", "c");
         ImmutableList<String> distinctList = list.distinct(HashingStrategies.fromFunction(String::toLowerCase));
-        Assert.assertFalse(distinctList.isEmpty());
-        Assert.assertEquals(FastList.newListWith("a", "B", "c"), distinctList);
+        Assertions.assertFalse(distinctList.isEmpty());
+        Assertions.assertEquals(FastList.newListWith("a", "B", "c"), distinctList);
     }
 }

@@ -26,7 +26,7 @@ import com.gs.collections.test.bag.mutable.sorted.OrderedIterableNoIteratorTest;
 import com.gs.junit.runners.Java8Runner;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @RunWith(Java8Runner.class)
 public class TreeSortedMapNoIteratorTest implements MutableSortedMapIterableTestCase, OrderedIterableNoIteratorTest

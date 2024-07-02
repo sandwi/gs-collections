@@ -1,0 +1,574 @@
+[INFO] Scanning for projects...
+[WARNING] The POM for org.apache.velocity:velocity:jar:1.5 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] The project com.goldmansachs:junit-trait-runner:jar:7.0.4-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[WARNING] The project com.goldmansachs:unit-tests-java8:jar:7.0.4-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Goldman Sachs Collections Code Generator                           [jar]
+[INFO] Goldman Sachs Collections Code Generator Ant Task                  [jar]
+[INFO] Goldman Sachs Collections Code Generator Maven Plugin     [maven-plugin]
+[INFO] Goldman Sachs Collections API                                   [bundle]
+[INFO] Goldman Sachs Collections Main Library                          [bundle]
+[INFO] Goldman Sachs Collections Test Utilities                        [bundle]
+[INFO] Goldman Sachs Collections Fork Join Utilities                   [bundle]
+[INFO] Goldman Sachs Collections Parent Project                           [pom]
+[INFO] Goldman Sachs Collections Unit Test Suite                          [jar]
+[INFO] Goldman Sachs Collections Scala Unit Test Suite                    [jar]
+[INFO] Goldman Sachs Collections Serialization Test Suite                 [jar]
+[INFO] Goldman Sachs Collections JMH Scala Test Suite                     [jar]
+[INFO] Goldman Sachs Collections JMH Test Suite                           [jar]
+[INFO] Goldman Sachs Test Trait JUnit Runner                              [jar]
+[INFO] Goldman Sachs Collections Java 8 Unit Test Suite                   [jar]
+[INFO] 
+[INFO] -----------< com.goldmansachs:gs-collections-code-generator >-----------
+[INFO] Building Goldman Sachs Collections Code Generator 7.0.4-SNAPSHOT  [1/15]
+[INFO]   from gs-collections-code-generator/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] Parameter 'forkMode' is unknown for plugin 'maven-surefire-plugin:3.2.5:test (default-test)'
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ gs-collections-code-generator ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce) @ gs-collections-code-generator ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gs-collections-code-generator ---
+[INFO] Copying 331 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.12.1:compile (default-compile) @ gs-collections-code-generator ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 7 source files with javac [forked debug verbose release 17] to target/classes
+[INFO] [parsing started SimpleFileObject[/ramdisk/code/gs-collections-code-generator/src/main/java/com/gs/collections/codegenerator/GsCollectionsCodeGenerator.java]]
+[INFO] [parsing completed 20ms]
+[INFO] [parsing started SimpleFileObject[/ramdisk/code/gs-collections-code-generator/src/main/java/com/gs/collections/codegenerator/model/Primitive.java]]
+[INFO] [parsing completed 2ms]
+[INFO] [parsing started SimpleFileObject[/ramdisk/code/gs-collections-code-generator/src/main/java/com/gs/collections/codegenerator/model/package-info.java]]
+[INFO] [parsing completed 0ms]
+[INFO] [parsing started SimpleFileObject[/ramdisk/code/gs-collections-code-generator/src/main/java/com/gs/collections/codegenerator/tools/IntegerOrStringRenderer.java]]
+[INFO] [parsing completed 1ms]
+[INFO] [parsing started SimpleFileObject[/ramdisk/code/gs-collections-code-generator/src/main/java/com/gs/collections/codegenerator/tools/FileUtils.java]]
+[INFO] [parsing completed 3ms]
+[INFO] [parsing started SimpleFileObject[/ramdisk/code/gs-collections-code-generator/src/main/java/com/gs/collections/codegenerator/tools/package-info.java]]
+[INFO] [parsing completed 0ms]
+[INFO] [parsing started SimpleFileObject[/ramdisk/code/gs-collections-code-generator/src/main/java/com/gs/collections/codegenerator/package-info.java]]
+[INFO] [parsing completed 1ms]
+[INFO] [loading modules/java.management/module-info.class]
+[INFO] [loading modules/jdk.crypto.ec/module-info.class]
+[INFO] [loading modules/jdk.unsupported/module-info.class]
+[INFO] [loading modules/jdk.security.jgss/module-info.class]
+[INFO] [loading modules/java.xml.crypto/module-info.class]
+[INFO] [loading modules/jdk.sctp/module-info.class]
+[INFO] [loading modules/jdk.charsets/module-info.class]
+[INFO] [loading modules/jdk.jdeps/module-info.class]
+[INFO] [loading modules/jdk.jstatd/module-info.class]
+[INFO] [loading modules/jdk.jfr/module-info.class]
+[INFO] [loading modules/jdk.jlink/module-info.class]
+[INFO] [loading modules/java.xml/module-info.class]
+[INFO] [loading modules/jdk.jconsole/module-info.class]
+[INFO] [loading modules/jdk.jdwp.agent/module-info.class]
+[INFO] [loading modules/jdk.naming.dns/module-info.class]
+[INFO] [loading modules/jdk.jsobject/module-info.class]
+[INFO] [loading modules/java.base/module-info.class]
+[INFO] [loading modules/jdk.zipfs/module-info.class]
+[INFO] [loading modules/jdk.management.jfr/module-info.class]
+[INFO] [loading modules/java.security.sasl/module-info.class]
+[INFO] [loading modules/jdk.jcmd/module-info.class]
+[INFO] [loading modules/java.naming/module-info.class]
+[INFO] [loading modules/jdk.jshell/module-info.class]
+[INFO] [loading modules/jdk.nio.mapmode/module-info.class]
+[INFO] [loading modules/java.instrument/module-info.class]
+[INFO] [loading modules/jdk.naming.rmi/module-info.class]
+[INFO] [loading modules/java.scripting/module-info.class]
+[INFO] [loading modules/jdk.compiler/module-info.class]
+[INFO] [loading modules/jdk.attach/module-info.class]
+[INFO] [loading modules/jdk.accessibility/module-info.class]
+[INFO] [loading modules/java.logging/module-info.class]
+[INFO] [loading modules/java.smartcardio/module-info.class]
+[INFO] [loading modules/jdk.localedata/module-info.class]
+[INFO] [loading modules/java.net.http/module-info.class]
+[INFO] [loading modules/jdk.security.auth/module-info.class]
+[INFO] [loading modules/jdk.xml.dom/module-info.class]
+[INFO] [loading modules/jdk.crypto.cryptoki/module-info.class]
+[INFO] [loading modules/jdk.incubator.vector/module-info.class]
+[INFO] [loading modules/java.transaction.xa/module-info.class]
+[INFO] [loading modules/jdk.jpackage/module-info.class]
+[INFO] [loading modules/jdk.dynalink/module-info.class]
+[INFO] [loading modules/java.compiler/module-info.class]
+[INFO] [loading modules/jdk.management.agent/module-info.class]
+[INFO] [loading modules/jdk.httpserver/module-info.class]
+[INFO] [loading modules/jdk.hotspot.agent/module-info.class]
+[INFO] [loading modules/jdk.net/module-info.class]
+[INFO] [loading modules/jdk.jartool/module-info.class]
+[INFO] [loading modules/java.management.rmi/module-info.class]
+[INFO] [loading modules/jdk.incubator.foreign/module-info.class]
+[INFO] [loading modules/jdk.editpad/module-info.class]
+[INFO] [loading modules/java.datatransfer/module-info.class]
+[INFO] [loading modules/java.sql.rowset/module-info.class]
+[INFO] [loading modules/java.prefs/module-info.class]
+[INFO] [loading modules/java.security.jgss/module-info.class]
+[INFO] [loading modules/java.rmi/module-info.class]
+[INFO] [loading modules/java.desktop/module-info.class]
+[INFO] [loading modules/jdk.management/module-info.class]
+[INFO] [loading modules/jdk.javadoc/module-info.class]
+[INFO] [loading modules/java.se/module-info.class]
+[INFO] [loading modules/jdk.jdi/module-info.class]
+[INFO] [loading modules/java.sql/module-info.class]
+[INFO] [search path for source files: /ramdisk/code/gs-collections-code-generator/src/main/java,/ramdisk/code/gs-collections-code-generator/target/generated-sources/annotations]
+[INFO] [search path for class files: /usr/lib/jvm/java-17-amazon-corretto.x86_64/lib/modules,/ramdisk/code/gs-collections-code-generator/target/classes,/ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar,/ramdisk/.m2/org/antlr/antlr-runtime/3.5.3/antlr-runtime-3.5.3.jar,.]
+[INFO] [loading modules/java.base/java/io/File.class]
+[INFO] [loading modules/java.base/java/net/URL.class]
+[INFO] [loading modules/java.base/java/nio/charset/StandardCharsets.class]
+[INFO] [loading modules/java.base/java/nio/file/Path.class]
+[INFO] [loading modules/java.base/java/nio/file/Paths.class]
+[INFO] [loading modules/java.base/java/util/List.class]
+[INFO] [loading modules/java.base/java/util/zip/CRC32.class]
+[INFO] [loading /ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar(/org/stringtemplate/v4/ST.class)]
+[INFO] [loading /ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar(/org/stringtemplate/v4/STErrorListener.class)]
+[INFO] [loading /ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar(/org/stringtemplate/v4/STGroupFile.class)]
+[INFO] [loading /ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar(/org/stringtemplate/v4/misc/STMessage.class)]
+[INFO] [loading modules/java.base/java/lang/Object.class]
+[INFO] [loading modules/java.base/java/lang/String.class]
+[INFO] [loading modules/java.base/java/lang/Enum.class]
+[INFO] [loading modules/java.base/java/lang/constant/Constable.class]
+[INFO] [loading modules/java.base/java/lang/Comparable.class]
+[INFO] [loading modules/java.base/java/io/Serializable.class]
+[INFO] [loading modules/java.base/java/util/Locale.class]
+[INFO] [loading /ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar(/org/stringtemplate/v4/AttributeRenderer.class)]
+[INFO] [loading /ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar(/org/stringtemplate/v4/NumberRenderer.class)]
+[INFO] [loading /ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar(/org/stringtemplate/v4/StringRenderer.class)]
+[INFO] [loading modules/java.base/java/io/BufferedWriter.class]
+[INFO] [loading modules/java.base/java/io/FileInputStream.class]
+[INFO] [loading modules/java.base/java/io/FileWriter.class]
+[INFO] [loading modules/java.base/java/io/IOException.class]
+[INFO] [loading modules/java.base/java/net/URISyntaxException.class]
+[INFO] [loading modules/java.base/java/nio/file/Files.class]
+[INFO] [loading modules/java.base/java/util/ArrayList.class]
+[INFO] [loading modules/java.base/java/util/jar/JarEntry.class]
+[INFO] [loading modules/java.base/java/util/jar/JarInputStream.class]
+[INFO] [loading modules/java.base/java/lang/Deprecated.class]
+[INFO] [loading modules/java.base/java/lang/annotation/Retention.class]
+[INFO] [loading modules/java.base/java/lang/annotation/RetentionPolicy.class]
+[INFO] [loading modules/java.base/java/lang/annotation/Target.class]
+[INFO] [loading modules/java.base/java/lang/annotation/ElementType.class]
+[INFO] [checking com.gs.collections.codegenerator.GsCollectionsCodeGenerator]
+[INFO] [loading modules/java.base/java/lang/AutoCloseable.class]
+[INFO] [loading modules/java.base/java/lang/Iterable.class]
+[INFO] [loading modules/java.base/java/util/Collection.class]
+[INFO] [loading modules/java.base/java/util/Iterator.class]
+[INFO] [loading /ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar(/org/stringtemplate/v4/STGroup.class)]
+[INFO] [loading modules/java.base/java/lang/Class.class]
+[INFO] [loading modules/java.base/java/lang/Boolean.class]
+[INFO] [loading modules/java.base/java/lang/Byte.class]
+[INFO] [loading modules/java.base/java/lang/Character.class]
+[INFO] [loading modules/java.base/java/lang/Short.class]
+[INFO] [loading modules/java.base/java/lang/Long.class]
+[INFO] [loading modules/java.base/java/lang/Float.class]
+[INFO] [loading modules/java.base/java/lang/Integer.class]
+[INFO] [loading modules/java.base/java/lang/Double.class]
+[INFO] [loading modules/java.base/java/lang/Void.class]
+[INFO] [loading modules/java.base/java/nio/file/Watchable.class]
+[INFO] [loading modules/java.base/java/lang/CharSequence.class]
+[INFO] [loading modules/java.base/java/lang/constant/ConstantDesc.class]
+[INFO] [loading modules/java.base/java/nio/charset/Charset.class]
+[INFO] [loading modules/java.base/java/util/zip/Checksum.class]
+[INFO] [loading modules/java.base/java/nio/ByteBuffer.class]
+[INFO] [loading modules/java.base/java/lang/RuntimeException.class]
+[INFO] [loading modules/java.base/java/lang/Throwable.class]
+[INFO] [loading modules/java.base/java/lang/Exception.class]
+[INFO] [loading modules/java.base/java/net/URI.class]
+[INFO] [loading modules/java.base/java/lang/Error.class]
+[INFO] [wrote /ramdisk/code/gs-collections-code-generator/target/classes/com/gs/collections/codegenerator/GsCollectionsCodeGenerator$ErrorListener.class]
+[INFO] [wrote /ramdisk/code/gs-collections-code-generator/target/classes/com/gs/collections/codegenerator/GsCollectionsCodeGenerator$LoggingErrorListener.class]
+[INFO] [loading modules/java.base/java/lang/invoke/StringConcatFactory.class]
+[INFO] [loading modules/java.base/java/lang/invoke/MethodHandles.class]
+[INFO] [loading modules/java.base/java/lang/invoke/MethodHandles$Lookup.class]
+[INFO] [loading modules/java.base/java/lang/invoke/MethodType.class]
+[INFO] [loading modules/java.base/java/lang/invoke/CallSite.class]
+[INFO] [wrote /ramdisk/code/gs-collections-code-generator/target/classes/com/gs/collections/codegenerator/GsCollectionsCodeGenerator.class]
+[INFO] [checking com.gs.collections.codegenerator.model.Primitive]
+[INFO] [loading modules/java.base/java/util/Optional.class]
+[INFO] [loading modules/java.base/java/lang/Enum$EnumDesc.class]
+[INFO] [loading modules/java.base/java/lang/constant/DynamicConstantDesc.class]
+[INFO] [loading modules/java.base/java/lang/CloneNotSupportedException.class]
+[INFO] [wrote /ramdisk/code/gs-collections-code-generator/target/classes/com/gs/collections/codegenerator/model/Primitive.class]
+[INFO] [checking com.gs.collections.codegenerator.tools.IntegerOrStringRenderer]
+[INFO] [loading modules/java.base/java/lang/Number.class]
+[INFO] [loading modules/java.base/java/lang/NumberFormatException.class]
+[INFO] [loading modules/java.base/java/lang/IllegalArgumentException.class]
+[INFO] [wrote /ramdisk/code/gs-collections-code-generator/target/classes/com/gs/collections/codegenerator/tools/IntegerOrStringRenderer.class]
+[INFO] [checking com.gs.collections.codegenerator.tools.FileUtils]
+[INFO] [loading modules/java.base/java/lang/AssertionError.class]
+[INFO] [loading modules/java.base/java/lang/IllegalStateException.class]
+[INFO] [loading modules/java.base/java/io/FileDescriptor.class]
+[INFO] [loading modules/java.base/java/io/OutputStreamWriter.class]
+[INFO] [loading modules/java.base/java/io/Writer.class]
+[INFO] [loading modules/java.base/java/lang/Appendable.class]
+[INFO] [loading modules/java.base/java/io/Closeable.class]
+[INFO] [loading modules/java.base/java/io/Flushable.class]
+[INFO] [loading modules/java.base/java/util/AbstractList.class]
+[INFO] [loading modules/java.base/java/util/AbstractCollection.class]
+[INFO] [loading modules/java.base/java/io/InputStream.class]
+[INFO] [loading modules/java.base/java/util/zip/ZipInputStream.class]
+[INFO] [loading modules/java.base/java/util/zip/ZipConstants.class]
+[INFO] [loading modules/java.base/java/util/zip/InflaterInputStream.class]
+[INFO] [loading modules/java.base/java/io/FilterInputStream.class]
+[INFO] [loading modules/java.base/java/util/zip/ZipEntry.class]
+[INFO] [loading modules/java.base/java/lang/Cloneable.class]
+[INFO] [loading modules/java.base/java/lang/reflect/GenericDeclaration.class]
+[INFO] [loading modules/java.base/java/lang/reflect/AnnotatedElement.class]
+[INFO] [loading modules/java.base/java/lang/reflect/Type.class]
+[INFO] [loading modules/java.base/java/lang/invoke/TypeDescriptor.class]
+[INFO] [loading modules/java.base/java/lang/invoke/TypeDescriptor$OfField.class]
+[INFO] [loading modules/java.base/java/lang/ClassLoader.class]
+[INFO] [loading modules/java.base/java/lang/StringBuilder.class]
+[INFO] [loading modules/java.base/java/lang/StringBuffer.class]
+[INFO] [loading modules/java.base/java/io/FileNotFoundException.class]
+[INFO] [loading modules/java.base/java/net/MalformedURLException.class]
+[INFO] [wrote /ramdisk/code/gs-collections-code-generator/target/classes/com/gs/collections/codegenerator/tools/FileUtils.class]
+[INFO] [total 329ms]
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gs-collections-code-generator ---
+[INFO] skip non existing resourceDirectory /ramdisk/code/gs-collections-code-generator/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.12.1:testCompile (default-testCompile) @ gs-collections-code-generator ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ gs-collections-code-generator ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.3.0:jar (default-jar) @ gs-collections-code-generator ---
+[INFO] Building jar: /ramdisk/code/gs-collections-code-generator/target/gs-collections-code-generator-7.0.4-SNAPSHOT.jar
+[INFO] 
+[INFO] --- source:2.1.2:jar-no-fork (default) @ gs-collections-code-generator ---
+[INFO] Building jar: /ramdisk/code/gs-collections-code-generator/target/gs-collections-code-generator-7.0.4-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] ---------< com.goldmansachs:gs-collections-code-generator-ant >---------
+[INFO] Building Goldman Sachs Collections Code Generator Ant Task 7.0.4-SNAPSHOT [2/15]
+[INFO]   from gs-collections-code-generator-ant/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] Parameter 'forkMode' is unknown for plugin 'maven-surefire-plugin:3.2.5:test (default-test)'
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ gs-collections-code-generator-ant ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce) @ gs-collections-code-generator-ant ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gs-collections-code-generator-ant ---
+[INFO] skip non existing resourceDirectory /ramdisk/code/gs-collections-code-generator-ant/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.12.1:compile (default-compile) @ gs-collections-code-generator-ant ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [forked debug verbose release 17] to target/classes
+[INFO] [parsing started SimpleFileObject[/ramdisk/code/gs-collections-code-generator-ant/src/main/java/com/gs/collections/codegenerator/ant/package-info.java]]
+[INFO] [parsing completed 9ms]
+[INFO] [parsing started SimpleFileObject[/ramdisk/code/gs-collections-code-generator-ant/src/main/java/com/gs/collections/codegenerator/ant/GsCollectionsCodeGeneratorTask.java]]
+[INFO] [parsing completed 5ms]
+[INFO] [loading modules/java.rmi/module-info.class]
+[INFO] [loading modules/java.management/module-info.class]
+[INFO] [loading modules/java.instrument/module-info.class]
+[INFO] [loading modules/jdk.compiler/module-info.class]
+[INFO] [loading modules/java.net.http/module-info.class]
+[INFO] [loading modules/jdk.javadoc/module-info.class]
+[INFO] [loading modules/jdk.jstatd/module-info.class]
+[INFO] [loading modules/jdk.security.jgss/module-info.class]
+[INFO] [loading modules/jdk.net/module-info.class]
+[INFO] [loading modules/jdk.zipfs/module-info.class]
+[INFO] [loading modules/jdk.nio.mapmode/module-info.class]
+[INFO] [loading modules/java.security.jgss/module-info.class]
+[INFO] [loading modules/java.smartcardio/module-info.class]
+[INFO] [loading modules/jdk.localedata/module-info.class]
+[INFO] [loading modules/jdk.editpad/module-info.class]
+[INFO] [loading modules/jdk.jfr/module-info.class]
+[INFO] [loading modules/java.scripting/module-info.class]
+[INFO] [loading modules/jdk.xml.dom/module-info.class]
+[INFO] [loading modules/jdk.security.auth/module-info.class]
+[INFO] [loading modules/java.base/module-info.class]
+[INFO] [loading modules/java.sql.rowset/module-info.class]
+[INFO] [loading modules/jdk.management.jfr/module-info.class]
+[INFO] [loading modules/java.xml/module-info.class]
+[INFO] [loading modules/jdk.jpackage/module-info.class]
+[INFO] [loading modules/jdk.jlink/module-info.class]
+[INFO] [loading modules/jdk.accessibility/module-info.class]
+[INFO] [loading modules/jdk.naming.dns/module-info.class]
+[INFO] [loading modules/java.transaction.xa/module-info.class]
+[INFO] [loading modules/jdk.jconsole/module-info.class]
+[INFO] [loading modules/java.logging/module-info.class]
+[INFO] [loading modules/java.sql/module-info.class]
+[INFO] [loading modules/java.security.sasl/module-info.class]
+[INFO] [loading modules/jdk.naming.rmi/module-info.class]
+[INFO] [loading modules/jdk.jcmd/module-info.class]
+[INFO] [loading modules/java.datatransfer/module-info.class]
+[INFO] [loading modules/jdk.crypto.ec/module-info.class]
+[INFO] [loading modules/jdk.jartool/module-info.class]
+[INFO] [loading modules/jdk.crypto.cryptoki/module-info.class]
+[INFO] [loading modules/jdk.incubator.vector/module-info.class]
+[INFO] [loading modules/java.naming/module-info.class]
+[INFO] [loading modules/jdk.jdi/module-info.class]
+[INFO] [loading modules/jdk.httpserver/module-info.class]
+[INFO] [loading modules/java.compiler/module-info.class]
+[INFO] [loading modules/jdk.incubator.foreign/module-info.class]
+[INFO] [loading modules/java.desktop/module-info.class]
+[INFO] [loading modules/java.management.rmi/module-info.class]
+[INFO] [loading modules/jdk.jdeps/module-info.class]
+[INFO] [loading modules/jdk.hotspot.agent/module-info.class]
+[INFO] [loading modules/java.se/module-info.class]
+[INFO] [loading modules/jdk.sctp/module-info.class]
+[INFO] [loading modules/jdk.jdwp.agent/module-info.class]
+[INFO] [loading modules/jdk.attach/module-info.class]
+[INFO] [loading modules/jdk.management.agent/module-info.class]
+[INFO] [loading modules/jdk.unsupported/module-info.class]
+[INFO] [loading modules/jdk.management/module-info.class]
+[INFO] [loading modules/jdk.jshell/module-info.class]
+[INFO] [loading modules/jdk.charsets/module-info.class]
+[INFO] [loading modules/java.prefs/module-info.class]
+[INFO] [loading modules/jdk.jsobject/module-info.class]
+[INFO] [loading modules/jdk.dynalink/module-info.class]
+[INFO] [loading modules/java.xml.crypto/module-info.class]
+[INFO] [search path for source files: /ramdisk/code/gs-collections-code-generator-ant/src/main/java,/ramdisk/code/gs-collections-code-generator-ant/target/generated-sources/annotations]
+[INFO] [search path for class files: /usr/lib/jvm/java-17-amazon-corretto.x86_64/lib/modules,/ramdisk/code/gs-collections-code-generator-ant/target/classes,/ramdisk/code/gs-collections-code-generator/target/gs-collections-code-generator-7.0.4-SNAPSHOT.jar,/ramdisk/.m2/org/antlr/ST4/4.3.4/ST4-4.3.4.jar,/ramdisk/.m2/org/antlr/antlr-runtime/3.5.3/antlr-runtime-3.5.3.jar,/ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar,/ramdisk/.m2/org/apache/ant/ant-launcher/1.10.14/ant-launcher-1.10.14.jar,.]
+[INFO] [loading modules/java.base/java/io/File.class]
+[INFO] [loading modules/java.base/java/net/MalformedURLException.class]
+[INFO] [loading modules/java.base/java/net/URL.class]
+[INFO] [loading modules/java.base/java/util/ArrayList.class]
+[INFO] [loading modules/java.base/java/util/List.class]
+[INFO] [loading /ramdisk/code/gs-collections-code-generator/target/gs-collections-code-generator-7.0.4-SNAPSHOT.jar(/com/gs/collections/codegenerator/GsCollectionsCodeGenerator.class)]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/AntClassLoader.class)]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/BuildException.class)]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/Task.class)]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/types/LogLevel.class)]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/ProjectComponent.class)]
+[INFO] [loading modules/java.base/java/lang/Cloneable.class]
+[INFO] [loading modules/java.base/java/lang/Object.class]
+[INFO] [loading modules/java.base/java/lang/String.class]
+[INFO] [loading modules/java.base/java/lang/Deprecated.class]
+[INFO] [loading modules/java.base/java/lang/Override.class]
+[INFO] [loading modules/java.base/java/lang/annotation/Annotation.class]
+[INFO] [loading modules/java.base/java/lang/annotation/Retention.class]
+[INFO] [loading modules/java.base/java/lang/annotation/RetentionPolicy.class]
+[INFO] [loading modules/java.base/java/lang/annotation/Target.class]
+[INFO] [loading modules/java.base/java/lang/annotation/ElementType.class]
+[INFO] [checking com.gs.collections.codegenerator.ant.GsCollectionsCodeGeneratorTask]
+[INFO] [loading modules/java.base/java/io/Serializable.class]
+[INFO] [loading modules/java.base/java/lang/AutoCloseable.class]
+[INFO] [loading modules/java.base/java/lang/System.class]
+[INFO] [loading modules/java.base/java/lang/Byte.class]
+[INFO] [loading modules/java.base/java/lang/Character.class]
+[INFO] [loading modules/java.base/java/lang/Short.class]
+[INFO] [loading modules/java.base/java/lang/Long.class]
+[INFO] [loading modules/java.base/java/lang/Float.class]
+[INFO] [loading modules/java.base/java/lang/Integer.class]
+[INFO] [loading modules/java.base/java/lang/Double.class]
+[INFO] [loading modules/java.base/java/lang/Boolean.class]
+[INFO] [loading modules/java.base/java/lang/Void.class]
+[INFO] [loading /ramdisk/code/gs-collections-code-generator/target/gs-collections-code-generator-7.0.4-SNAPSHOT.jar(/com/gs/collections/codegenerator/GsCollectionsCodeGenerator$ErrorListener.class)]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/types/EnumeratedAttribute.class)]
+[INFO] [loading modules/java.base/java/lang/Throwable.class]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/Project.class)]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/types/ResourceFactory.class)]
+[INFO] [loading modules/java.base/java/lang/RuntimeException.class]
+[INFO] [loading modules/java.base/java/lang/Exception.class]
+[INFO] [loading modules/java.base/java/util/Collection.class]
+[INFO] [loading modules/java.base/java/util/AbstractList.class]
+[INFO] [loading modules/java.base/java/util/AbstractCollection.class]
+[INFO] [loading modules/java.base/java/lang/Iterable.class]
+[INFO] [loading modules/java.base/java/lang/Class.class]
+[INFO] [loading modules/java.base/java/lang/reflect/GenericDeclaration.class]
+[INFO] [loading modules/java.base/java/lang/reflect/AnnotatedElement.class]
+[INFO] [loading modules/java.base/java/lang/reflect/Type.class]
+[INFO] [loading modules/java.base/java/lang/invoke/TypeDescriptor.class]
+[INFO] [loading modules/java.base/java/lang/invoke/TypeDescriptor$OfField.class]
+[INFO] [loading modules/java.base/java/lang/constant/Constable.class]
+[INFO] [loading modules/java.base/java/lang/ClassLoader.class]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/SubBuildListener.class)]
+[INFO] [loading /ramdisk/.m2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar(/org/apache/tools/ant/BuildListener.class)]
+[INFO] [loading modules/java.base/java/util/EventListener.class]
+[INFO] [loading modules/java.base/java/io/Closeable.class]
+[INFO] [loading modules/java.base/java/lang/Comparable.class]
+[INFO] [loading modules/java.base/java/lang/CharSequence.class]
+[INFO] [loading modules/java.base/java/lang/constant/ConstantDesc.class]
+[INFO] [loading modules/java.base/java/net/URI.class]
+[INFO] [loading modules/java.base/java/io/IOException.class]
+[INFO] [loading modules/java.base/java/lang/Error.class]
+[INFO] [wrote /ramdisk/code/gs-collections-code-generator-ant/target/classes/com/gs/collections/codegenerator/ant/GsCollectionsCodeGeneratorTask$1.class]
+[INFO] [loading modules/java.base/java/lang/invoke/StringConcatFactory.class]
+[INFO] [loading modules/java.base/java/lang/invoke/MethodHandles.class]
+[INFO] [loading modules/java.base/java/lang/invoke/MethodHandles$Lookup.class]
+[INFO] [loading modules/java.base/java/lang/invoke/MethodType.class]
+[INFO] [loading modules/java.base/java/lang/invoke/CallSite.class]
+[INFO] [wrote /ramdisk/code/gs-collections-code-generator-ant/target/classes/com/gs/collections/codegenerator/ant/GsCollectionsCodeGeneratorTask.class]
+[INFO] [total 235ms]
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gs-collections-code-generator-ant ---
+[INFO] skip non existing resourceDirectory /ramdisk/code/gs-collections-code-generator-ant/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.12.1:testCompile (default-testCompile) @ gs-collections-code-generator-ant ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ gs-collections-code-generator-ant ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.3.0:jar (default-jar) @ gs-collections-code-generator-ant ---
+[INFO] Building jar: /ramdisk/code/gs-collections-code-generator-ant/target/gs-collections-code-generator-ant-7.0.4-SNAPSHOT.jar
+[INFO] 
+[INFO] --- source:2.1.2:jar-no-fork (default) @ gs-collections-code-generator-ant ---
+[INFO] Building jar: /ramdisk/code/gs-collections-code-generator-ant/target/gs-collections-code-generator-ant-7.0.4-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] ----< com.goldmansachs:gs-collections-code-generator-maven-plugin >-----
+[INFO] Building Goldman Sachs Collections Code Generator Maven Plugin 7.0.4-SNAPSHOT [3/15]
+[INFO]   from gs-collections-code-generator-maven-plugin/pom.xml
+[INFO] ----------------------------[ maven-plugin ]----------------------------
+[WARNING] Parameter 'forkMode' is unknown for plugin 'maven-surefire-plugin:3.2.5:test (default-test)'
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ gs-collections-code-generator-maven-plugin ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (enforce) @ gs-collections-code-generator-maven-plugin ---
+[INFO] Rule 1: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Goldman Sachs Collections Parent Project 7.0.4-SNAPSHOT:
+[INFO] 
+[INFO] Goldman Sachs Collections Code Generator ........... SUCCESS [  2.548 s]
+[INFO] Goldman Sachs Collections Code Generator Ant Task .. SUCCESS [  0.639 s]
+[INFO] Goldman Sachs Collections Code Generator Maven Plugin FAILURE [  0.066 s]
+[INFO] Goldman Sachs Collections API ...................... SKIPPED
+[INFO] Goldman Sachs Collections Main Library ............. SKIPPED
+[INFO] Goldman Sachs Collections Test Utilities ........... SKIPPED
+[INFO] Goldman Sachs Collections Fork Join Utilities ...... SKIPPED
+[INFO] Goldman Sachs Collections Parent Project ........... SKIPPED
+[INFO] Goldman Sachs Collections Unit Test Suite .......... SKIPPED
+[INFO] Goldman Sachs Collections Scala Unit Test Suite .... SKIPPED
+[INFO] Goldman Sachs Collections Serialization Test Suite . SKIPPED
+[INFO] Goldman Sachs Collections JMH Scala Test Suite ..... SKIPPED
+[INFO] Goldman Sachs Collections JMH Test Suite ........... SKIPPED
+[INFO] Goldman Sachs Test Trait JUnit Runner .............. SKIPPED
+[INFO] Goldman Sachs Collections Java 8 Unit Test Suite ... SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.753 s
+[INFO] Finished at: 2024-07-02T04:00:05Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.4.1:enforce (enforce) on project gs-collections-code-generator-maven-plugin: 
+[ERROR] Rule 0: org.apache.maven.enforcer.rules.dependency.DependencyConvergence failed with message:
+[ERROR] Failed while enforcing releasability.
+[ERROR] 
+[ERROR] Dependency convergence error for org.codehaus.plexus:plexus-classworlds:jar:2.6.0 paths to dependency are:
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-plugin-api:jar:3.9.6:compile
+[ERROR]     +-org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.9.0.M2:compile
+[ERROR]       +-org.codehaus.plexus:plexus-classworlds:jar:2.6.0:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-plugin-api:jar:3.9.6:compile
+[ERROR]     +-org.codehaus.plexus:plexus-classworlds:jar:2.7.0:compile
+[ERROR] 
+[ERROR] 
+[ERROR] Dependency convergence error for org.apache.maven:maven-model:jar:3.9.6 paths to dependency are:
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-plugin-api:jar:3.9.6:compile
+[ERROR]     +-org.apache.maven:maven-model:jar:3.9.6:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-settings:jar:2.2.1:compile
+[ERROR]       +-org.apache.maven:maven-model:jar:2.2.1:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-profile:jar:2.2.1:compile
+[ERROR]       +-org.apache.maven:maven-model:jar:2.2.1:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-model:jar:2.2.1:compile
+[ERROR] 
+[ERROR] 
+[ERROR] Dependency convergence error for org.codehaus.plexus:plexus-utils:jar:3.5.1 paths to dependency are:
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-plugin-api:jar:3.9.6:compile
+[ERROR]     +-org.apache.maven:maven-model:jar:3.9.6:compile
+[ERROR]       +-org.codehaus.plexus:plexus-utils:jar:3.5.1:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-plugin-api:jar:3.9.6:compile
+[ERROR]     +-org.apache.maven:maven-artifact:jar:3.9.6:compile
+[ERROR]       +-org.codehaus.plexus:plexus-utils:jar:3.5.1:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-plugin-api:jar:3.9.6:compile
+[ERROR]     +-org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.9.0.M2:compile
+[ERROR]       +-org.codehaus.plexus:plexus-utils:jar:3.3.0:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-plugin-api:jar:3.9.6:compile
+[ERROR]     +-org.codehaus.plexus:plexus-utils:jar:3.5.1:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-settings:jar:2.2.1:compile
+[ERROR]       +-org.codehaus.plexus:plexus-utils:jar:1.5.15:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-profile:jar:2.2.1:compile
+[ERROR]       +-org.codehaus.plexus:plexus-utils:jar:1.5.15:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-artifact-manager:jar:2.2.1:compile
+[ERROR]       +-org.apache.maven:maven-repository-metadata:jar:2.2.1:compile
+[ERROR]         +-org.codehaus.plexus:plexus-utils:jar:1.5.15:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-artifact-manager:jar:2.2.1:compile
+[ERROR]       +-org.codehaus.plexus:plexus-utils:jar:1.5.15:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-artifact-manager:jar:2.2.1:compile
+[ERROR]       +-org.apache.maven.wagon:wagon-provider-api:jar:1.0-beta-6:compile
+[ERROR]         +-org.codehaus.plexus:plexus-utils:jar:1.4.2:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-plugin-registry:jar:2.2.1:compile
+[ERROR]       +-org.codehaus.plexus:plexus-utils:jar:1.5.15:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.codehaus.plexus:plexus-utils:jar:1.5.15:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1:compile
+[ERROR]       +-org.codehaus.plexus:plexus-utils:jar:1.0.4:compile
+[ERROR] 
+[ERROR] 
+[ERROR] Dependency convergence error for org.apache.maven:maven-artifact:jar:3.9.6 paths to dependency are:
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-plugin-api:jar:3.9.6:compile
+[ERROR]     +-org.apache.maven:maven-artifact:jar:3.9.6:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-artifact-manager:jar:2.2.1:compile
+[ERROR]       +-org.apache.maven:maven-artifact:jar:2.2.1:compile
+[ERROR] and
+[ERROR] +-com.goldmansachs:gs-collections-code-generator-maven-plugin:maven-plugin:7.0.4-SNAPSHOT
+[ERROR]   +-org.apache.maven:maven-project:jar:2.2.1:compile
+[ERROR]     +-org.apache.maven:maven-artifact:jar:2.2.1:compile
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :gs-collections-code-generator-maven-plugin

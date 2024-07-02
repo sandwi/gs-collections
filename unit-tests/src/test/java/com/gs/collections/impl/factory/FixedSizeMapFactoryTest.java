@@ -19,8 +19,8 @@ package com.gs.collections.impl.factory;
 import com.gs.collections.api.map.MutableMap;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.test.domain.Key;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class FixedSizeMapFactoryTest
 {
@@ -36,7 +36,7 @@ public class FixedSizeMapFactoryTest
     {
         MutableMap<String, String> map1 = Maps.fixedSize.of("key1", "value1");
         Verify.assertSize(1, map1);
-        Verify.assertContainsKeyValue("key1", "value1", map1);
+        Verify.assertContainsKeyValue("value1", map1, "key1");
 
         MutableMap<String, String> map2 = Maps.fixedSize.of((String) null, (String) null);
         Verify.assertSize(1, map2);
@@ -57,7 +57,7 @@ public class FixedSizeMapFactoryTest
         MutableMap<String, String> map2 = Maps.fixedSize.of(null, "value1", "key2", "value2");
         Verify.assertSize(2, map2);
         Verify.assertContainsKeyValue(null, "value1", map2);
-        Verify.assertContainsKeyValue("key2", "value2", map2);
+        Verify.assertContainsKeyValue("value2", map2, "key2");
     }
 
     @Test
@@ -68,7 +68,7 @@ public class FixedSizeMapFactoryTest
         Verify.assertContainsAllKeyValues(map1, "key1", "value1", "key2", "value2", "key3", "value3");
 
         MutableMap<String, String> map2 = Maps.fixedSize.of("key1", "value1", "key2", null, null, "value3");
-        Verify.assertContainsKeyValue("key2", null, map2);
+        Verify.assertContainsKeyValue(null, map2, "key2");
         Verify.assertContainsKeyValue(null, "value3", map2);
     }
 
@@ -77,25 +77,25 @@ public class FixedSizeMapFactoryTest
     {
         MutableMap<String, String> map1 = Maps.fixedSize.of("k1", "v1", "k1", "v2");
         Verify.assertSize(1, map1);
-        Verify.assertContainsKey("k1", map1);
-        Verify.assertContainsKeyValue("k1", "v2", map1);
+        Verify.assertContainsKey(map1, "k1");
+        Verify.assertContainsKeyValue("v2", map1, "k1");
 
         MutableMap<String, String> map2 = Maps.fixedSize.of("k1", "v1", "k1", "v2", "k1", "v3");
         Verify.assertSize(1, map2);
-        Verify.assertContainsKey("k1", map2);
-        Verify.assertContainsKeyValue("k1", "v3", map2);
+        Verify.assertContainsKey(map2, "k1");
+        Verify.assertContainsKeyValue("v3", map2, "k1");
 
         MutableMap<String, String> map3 = Maps.fixedSize.of("k2", "v1", "k3", "v2", "k2", "v3");
         Verify.assertSize(2, map3);
-        Verify.assertContainsKey("k2", map3);
-        Verify.assertContainsKey("k3", map3);
-        Verify.assertContainsKeyValue("k2", "v3", map3);
+        Verify.assertContainsKey(map3, "k2");
+        Verify.assertContainsKey(map3, "k3");
+        Verify.assertContainsKeyValue("v3", map3, "k2");
 
         MutableMap<String, String> map4 = Maps.fixedSize.of("k3", "v1", "k4", "v2", "k4", "v3");
         Verify.assertSize(2, map4);
-        Verify.assertContainsKey("k3", map4);
-        Verify.assertContainsKey("k4", map4);
-        Verify.assertContainsKeyValue("k4", "v3", map4);
+        Verify.assertContainsKey(map4, "k3");
+        Verify.assertContainsKey(map4, "k4");
+        Verify.assertContainsKeyValue("v3", map4, "k4");
     }
 
     @Test
@@ -107,18 +107,18 @@ public class FixedSizeMapFactoryTest
         MutableMap<Key, Integer> map1 = Maps.fixedSize.of(key, 1, duplicateKey1, 2);
         Verify.assertSize(1, map1);
         Verify.assertContainsKeyValue(key, 2, map1);
-        Assert.assertSame(key, map1.keysView().getFirst());
+        Assertions.assertSame(key, map1.keysView().getFirst());
 
         Key duplicateKey2 = new Key("key");
         MutableMap<Key, Integer> map2 = Maps.fixedSize.of(key, 1, duplicateKey1, 2, duplicateKey2, 3);
         Verify.assertSize(1, map2);
         Verify.assertContainsKeyValue(key, 3, map2);
-        Assert.assertSame(key, map1.keysView().getFirst());
+        Assertions.assertSame(key, map1.keysView().getFirst());
 
         Key duplicateKey3 = new Key("key");
         MutableMap<Key, Integer> map3 = Maps.fixedSize.of(key, 1, new Key("not a dupe"), 2, duplicateKey3, 3);
         Verify.assertSize(2, map3);
         Verify.assertContainsAllKeyValues(map3, key, 3, new Key("not a dupe"), 2);
-        Assert.assertSame(key, map3.keysView().detect(key::equals));
+        Assertions.assertSame(key, map3.keysView().detect(key::equals));
     }
 }

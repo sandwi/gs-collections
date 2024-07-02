@@ -17,7 +17,7 @@
 package com.gs.collections.impl.bag.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class BooleanHashBagSerializationTest
 {
@@ -26,8 +26,10 @@ public class BooleanHashBagSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcubXV0YWJsZS5wcmltaXRpdmUuQm9v\n"
-                        + "bGVhbkhhc2hCYWcAAAAAAAAAAQwAAHhwdwgAAAAAAAAAAHg=",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcubXV0YWJsZS5wcmltaXRpdmUuQm9v
+                bGVhbkhhc2hCYWcAAAAAAAAAAQwAAHhwdwgAAAAAAAAAAHg=\
+                """,
                 new BooleanHashBag());
     }
 }

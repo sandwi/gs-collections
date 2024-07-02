@@ -18,7 +18,7 @@ package com.gs.collections.impl;
 
 import com.gs.collections.impl.block.function.primitive.IntegerFunctionImpl;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IntegerFunctionImplSerializationTest
 {
@@ -37,9 +37,11 @@ public class IntegerFunctionImplSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5JbnRlZ2VyRnVuY3Rpb25JbXBsU2VyaWFs\n"
-                        + "aXphdGlvblRlc3QkMQAAAAAAAAABAgAAeHIARGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2Nr\n"
-                        + "LmZ1bmN0aW9uLnByaW1pdGl2ZS5JbnRlZ2VyRnVuY3Rpb25JbXBsAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5JbnRlZ2VyRnVuY3Rpb25JbXBsU2VyaWFs
+                aXphdGlvblRlc3QkMQAAAAAAAAABAgAAeHIARGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2Nr
+                LmZ1bmN0aW9uLnByaW1pdGl2ZS5JbnRlZ2VyRnVuY3Rpb25JbXBsAAAAAAAAAAECAAB4cA==\
+                """,
                 FUNCTION);
     }
 }

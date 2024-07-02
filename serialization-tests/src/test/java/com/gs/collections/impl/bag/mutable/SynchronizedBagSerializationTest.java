@@ -18,7 +18,7 @@ package com.gs.collections.impl.bag.mutable;
 
 import com.gs.collections.impl.factory.Bags;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @since 4.2
@@ -29,10 +29,12 @@ public class SynchronizedBagSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuU3luY2hy\n"
-                        + "b25pemVkQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgArY29tLmdz\n"
-                        + "LmNvbGxlY3Rpb25zLmltcGwuYmFnLm11dGFibGUuSGFzaEJhZwAAAAAAAAABDAAAeHB3BAAAAAB4\n"
-                        + "eA==",
-                SynchronizedBag.of(Bags.mutable.of()));
+                SynchronizedBag.of(Bags.mutable.of()),
+                """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuU3luY2hy
+                b25pemVkQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgArY29tLmdz
+                LmNvbGxlY3Rpb25zLmltcGwuYmFnLm11dGFibGUuSGFzaEJhZwAAAAAAAAABDAAAeHB3BAAAAAB4
+                eA==\
+                """);
     }
 }

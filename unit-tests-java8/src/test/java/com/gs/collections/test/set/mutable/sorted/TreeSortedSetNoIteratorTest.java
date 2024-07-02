@@ -25,10 +25,11 @@ import com.gs.collections.impl.set.sorted.mutable.TreeSortedSet;
 import com.gs.collections.test.IterableTestCase;
 import com.gs.collections.test.NoIteratorTestCase;
 import com.gs.junit.runners.Java8Runner;
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
-@Ignore("Requires scapegoat tree implementation")
+@Disabled("Requires scapegoat tree implementation")
 @RunWith(Java8Runner.class)
 public class TreeSortedSetNoIteratorTest implements MutableSortedSetTestCase, NoIteratorTestCase
 {
@@ -42,6 +43,7 @@ public class TreeSortedSetNoIteratorTest implements MutableSortedSetTestCase, No
     }
 
     @Override
+    @Test
     public void Iterable_next()
     {
         NoIteratorTestCase.super.Iterable_next();
@@ -54,12 +56,14 @@ public class TreeSortedSetNoIteratorTest implements MutableSortedSetTestCase, No
     }
 
     @Override
+    @Test
     public void RichIterable_getFirst()
     {
         NoIteratorTestCase.super.RichIterable_getFirst();
     }
 
     @Override
+    @Test
     public void RichIterable_getLast()
     {
         NoIteratorTestCase.super.RichIterable_getLast();

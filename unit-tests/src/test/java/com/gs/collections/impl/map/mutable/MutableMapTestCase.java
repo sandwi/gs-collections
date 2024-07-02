@@ -21,8 +21,8 @@ import com.gs.collections.api.map.MutableMap;
 import com.gs.collections.impl.block.factory.Functions;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Abstract JUnit TestCase for {@link MutableMap}s.
@@ -59,7 +59,7 @@ public abstract class MutableMapTestCase extends MutableMapIterableTestCase
     {
         MutableMap<Integer, String> map = this.newMapWithKeysValues(1, "One", 2, "Two");
         MutableMap<Integer, String> clone = map.clone();
-        Assert.assertNotSame(map, clone);
+        Assertions.assertNotSame(map, clone);
         Verify.assertEqualsAndHashCode(map, clone);
     }
 }

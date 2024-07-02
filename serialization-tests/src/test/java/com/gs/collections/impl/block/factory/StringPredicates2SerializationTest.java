@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.factory;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class StringPredicates2SerializationTest
 {
@@ -26,9 +26,11 @@ public class StringPredicates2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp\n"
-                        + "Y2F0ZXMyJENvbnRhaW5zU3RyaW5nAAAAAAAAAAECAAB4cgAxY29tLmdzLmNvbGxlY3Rpb25zLmlt\n"
-                        + "cGwuYmxvY2suZmFjdG9yeS5QcmVkaWNhdGVzMgAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp
+                Y2F0ZXMyJENvbnRhaW5zU3RyaW5nAAAAAAAAAAECAAB4cgAxY29tLmdzLmNvbGxlY3Rpb25zLmlt
+                cGwuYmxvY2suZmFjdG9yeS5QcmVkaWNhdGVzMgAAAAAAAAABAgAAeHA=\
+                """,
                 StringPredicates2.contains());
     }
 
@@ -37,9 +39,11 @@ public class StringPredicates2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp\n"
-                        + "Y2F0ZXMyJFN0YXJ0c1dpdGgAAAAAAAAAAQIAAHhyADFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5i\n"
-                        + "bG9jay5mYWN0b3J5LlByZWRpY2F0ZXMyAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp
+                Y2F0ZXMyJFN0YXJ0c1dpdGgAAAAAAAAAAQIAAHhyADFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5i
+                bG9jay5mYWN0b3J5LlByZWRpY2F0ZXMyAAAAAAAAAAECAAB4cA==\
+                """,
                 StringPredicates2.startsWith());
     }
 
@@ -48,9 +52,11 @@ public class StringPredicates2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp\n"
-                        + "Y2F0ZXMyJE5vdFN0YXJ0c1dpdGgAAAAAAAAAAQIAAHhyADFjb20uZ3MuY29sbGVjdGlvbnMuaW1w\n"
-                        + "bC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMyAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp
+                Y2F0ZXMyJE5vdFN0YXJ0c1dpdGgAAAAAAAAAAQIAAHhyADFjb20uZ3MuY29sbGVjdGlvbnMuaW1w
+                bC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMyAAAAAAAAAAECAAB4cA==\
+                """,
                 StringPredicates2.notStartsWith());
     }
 
@@ -59,9 +65,11 @@ public class StringPredicates2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp\n"
-                        + "Y2F0ZXMyJEVuZHNXaXRoAAAAAAAAAAECAAB4cgAxY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxv\n"
-                        + "Y2suZmFjdG9yeS5QcmVkaWNhdGVzMgAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp
+                Y2F0ZXMyJEVuZHNXaXRoAAAAAAAAAAECAAB4cgAxY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxv
+                Y2suZmFjdG9yeS5QcmVkaWNhdGVzMgAAAAAAAAABAgAAeHA=\
+                """,
                 StringPredicates2.endsWith());
     }
 
@@ -70,9 +78,11 @@ public class StringPredicates2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp\n"
-                        + "Y2F0ZXMyJE5vdEVuZHNXaXRoAAAAAAAAAAECAAB4cgAxY29tLmdzLmNvbGxlY3Rpb25zLmltcGwu\n"
-                        + "YmxvY2suZmFjdG9yeS5QcmVkaWNhdGVzMgAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp
+                Y2F0ZXMyJE5vdEVuZHNXaXRoAAAAAAAAAAECAAB4cgAxY29tLmdzLmNvbGxlY3Rpb25zLmltcGwu
+                YmxvY2suZmFjdG9yeS5QcmVkaWNhdGVzMgAAAAAAAAABAgAAeHA=\
+                """,
                 StringPredicates2.notEndsWith());
     }
 
@@ -81,9 +91,11 @@ public class StringPredicates2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp\n"
-                        + "Y2F0ZXMyJEVxdWFsc0lnbm9yZUNhc2UAAAAAAAAAAQIAAHhyADFjb20uZ3MuY29sbGVjdGlvbnMu\n"
-                        + "aW1wbC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMyAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp
+                Y2F0ZXMyJEVxdWFsc0lnbm9yZUNhc2UAAAAAAAAAAQIAAHhyADFjb20uZ3MuY29sbGVjdGlvbnMu
+                aW1wbC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMyAAAAAAAAAAECAAB4cA==\
+                """,
                 StringPredicates2.equalsIgnoreCase());
     }
 
@@ -92,9 +104,11 @@ public class StringPredicates2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp\n"
-                        + "Y2F0ZXMyJE5vdEVxdWFsc0lnbm9yZUNhc2UAAAAAAAAAAQIAAHhyADFjb20uZ3MuY29sbGVjdGlv\n"
-                        + "bnMuaW1wbC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMyAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp
+                Y2F0ZXMyJE5vdEVxdWFsc0lnbm9yZUNhc2UAAAAAAAAAAQIAAHhyADFjb20uZ3MuY29sbGVjdGlv
+                bnMuaW1wbC5ibG9jay5mYWN0b3J5LlByZWRpY2F0ZXMyAAAAAAAAAAECAAB4cA==\
+                """,
                 StringPredicates2.notEqualsIgnoreCase());
     }
 
@@ -103,9 +117,11 @@ public class StringPredicates2SerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp\n"
-                        + "Y2F0ZXMyJE1hdGNoZXNSZWdleAAAAAAAAAABAgAAeHIAMWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs\n"
-                        + "LmJsb2NrLmZhY3RvcnkuUHJlZGljYXRlczIAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LlN0cmluZ1ByZWRp
+                Y2F0ZXMyJE1hdGNoZXNSZWdleAAAAAAAAAABAgAAeHIAMWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs
+                LmJsb2NrLmZhY3RvcnkuUHJlZGljYXRlczIAAAAAAAAAAQIAAHhw\
+                """,
                 StringPredicates2.matches());
     }
 }

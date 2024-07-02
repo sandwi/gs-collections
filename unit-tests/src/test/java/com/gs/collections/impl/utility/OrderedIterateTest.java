@@ -17,7 +17,7 @@
 package com.gs.collections.impl.utility;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link OrderedIterate}.

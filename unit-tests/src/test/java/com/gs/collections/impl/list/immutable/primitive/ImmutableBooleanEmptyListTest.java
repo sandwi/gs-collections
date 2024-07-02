@@ -20,8 +20,10 @@ import com.gs.collections.api.BooleanIterable;
 import com.gs.collections.api.list.primitive.ImmutableBooleanList;
 import com.gs.collections.impl.block.factory.primitive.BooleanPredicates;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ImmutableBooleanEmptyListTest extends AbstractImmutableBooleanListTestCase
 {
@@ -37,46 +39,52 @@ public class ImmutableBooleanEmptyListTest extends AbstractImmutableBooleanListT
     {
         ImmutableBooleanList emptyList = this.newWith();
         ImmutableBooleanList newList = emptyList.newWithout(true);
-        Assert.assertEquals(this.newWith(), newList);
-        Assert.assertSame(emptyList, newList);
-        Assert.assertEquals(this.newMutableCollectionWith(), emptyList);
+        Assertions.assertEquals(this.newWith(), newList);
+        Assertions.assertSame(emptyList, newList);
+        Assertions.assertEquals(this.newMutableCollectionWith(), emptyList);
     }
 
     @Override
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void get()
     {
-        this.classUnderTest().get(0);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.classUnderTest().get(0);
+        });
     }
 
     @Override
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void getFirst()
     {
-        this.classUnderTest().getFirst();
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.classUnderTest().getFirst();
+        });
     }
 
     @Override
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void getLast()
     {
-        this.classUnderTest().getLast();
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.classUnderTest().getLast();
+        });
     }
 
     @Override
     @Test
     public void indexOf()
     {
-        Assert.assertEquals(-1L, this.classUnderTest().indexOf(true));
-        Assert.assertEquals(-1L, this.classUnderTest().indexOf(false));
+        Assertions.assertEquals(-1L, this.classUnderTest().indexOf(true));
+        Assertions.assertEquals(-1L, this.classUnderTest().indexOf(false));
     }
 
     @Override
     @Test
     public void lastIndexOf()
     {
-        Assert.assertEquals(-1L, this.classUnderTest().lastIndexOf(true));
-        Assert.assertEquals(-1L, this.classUnderTest().lastIndexOf(false));
+        Assertions.assertEquals(-1L, this.classUnderTest().lastIndexOf(true));
+        Assertions.assertEquals(-1L, this.classUnderTest().lastIndexOf(false));
     }
 
     @Override
@@ -86,14 +94,14 @@ public class ImmutableBooleanEmptyListTest extends AbstractImmutableBooleanListT
         String[] sum = new String[2];
         sum[0] = "";
         this.classUnderTest().forEachWithIndex((each, index) -> sum[0] += index + ":" + each);
-        Assert.assertEquals("", sum[0]);
+        Assertions.assertEquals("", sum[0]);
     }
 
     @Override
     @Test
     public void toReversed()
     {
-        Assert.assertEquals(this.classUnderTest(), this.classUnderTest().toReversed());
+        Assertions.assertEquals(this.classUnderTest(), this.classUnderTest().toReversed());
     }
 
     @Override
@@ -107,7 +115,7 @@ public class ImmutableBooleanEmptyListTest extends AbstractImmutableBooleanListT
     @Test
     public void notEmpty()
     {
-        Assert.assertFalse(this.classUnderTest().notEmpty());
+        Assertions.assertFalse(this.classUnderTest().notEmpty());
     }
 
     @Override
@@ -119,7 +127,7 @@ public class ImmutableBooleanEmptyListTest extends AbstractImmutableBooleanListT
         Verify.assertEmpty(iterable.select(BooleanPredicates.isTrue()));
         BooleanIterable booleanIterable = iterable.select(BooleanPredicates.isFalse());
         Verify.assertEmpty(booleanIterable);
-        Assert.assertSame(iterable, booleanIterable);
+        Assertions.assertSame(iterable, booleanIterable);
     }
 
     @Override
@@ -131,7 +139,7 @@ public class ImmutableBooleanEmptyListTest extends AbstractImmutableBooleanListT
         Verify.assertEmpty(iterable.reject(BooleanPredicates.isTrue()));
         BooleanIterable booleanIterable = iterable.reject(BooleanPredicates.isFalse());
         Verify.assertEmpty(booleanIterable);
-        Assert.assertSame(iterable, booleanIterable);
+        Assertions.assertSame(iterable, booleanIterable);
     }
 
     @Override
@@ -140,7 +148,7 @@ public class ImmutableBooleanEmptyListTest extends AbstractImmutableBooleanListT
     {
         Verify.assertEqualsAndHashCode(this.newMutableCollectionWith(), this.classUnderTest());
         Verify.assertPostSerializedIdentity(this.newWith());
-        Assert.assertNotEquals(this.classUnderTest(), this.newWith(false, false, false, true));
-        Assert.assertNotEquals(this.classUnderTest(), this.newWith(true));
+        Assertions.assertNotEquals(this.classUnderTest(), this.newWith(false, false, false, true));
+        Assertions.assertNotEquals(this.classUnderTest(), this.newWith(true));
     }
 }

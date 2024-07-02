@@ -28,9 +28,11 @@ import com.gs.collections.impl.collection.mutable.AbstractCollectionTestCase;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link UnmodifiableMutableSet}.
@@ -43,7 +45,7 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
     private MutableSet<String> mutableSet;
     private MutableSet<String> unmodifiableSet;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.mutableSet = UnifiedSet.newSetWith(METALLICA, "Bon Jovi", "Europe", "Scorpions");
@@ -57,73 +59,93 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeObject()
     {
-        super.removeObject();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeObject();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeIfWith()
     {
-        super.removeIfWith();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeIfWith();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void clear()
     {
-        super.clear();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.clear();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addAll()
     {
-        super.addAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.addAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addAllIterable()
     {
-        super.addAllIterable();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.addAllIterable();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeIf()
     {
-        super.removeIf();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeIf();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeAll()
     {
-        super.removeAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeAllIterable()
     {
-        super.removeAllIterable();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeAllIterable();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void retainAll()
     {
-        super.retainAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.retainAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void retainAllIterable()
     {
-        super.retainAllIterable();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.retainAllIterable();
+        });
     }
 
     @Override
@@ -132,7 +154,7 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
     {
         MutableCollection<Object> collection = this.newWith(1, 2);
         String string = collection.toString();
-        Assert.assertTrue("[1, 2]".equals(string) || "[2, 1]".equals(string));
+        Assertions.assertTrue("[1, 2]".equals(string) || "[2, 1]".equals(string));
     }
 
     @Override
@@ -140,7 +162,7 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
     public void makeString()
     {
         MutableCollection<Object> collection = this.newWith(1, 2, 3);
-        Assert.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
+        Assertions.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
     }
 
     @Override
@@ -150,23 +172,23 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
         MutableCollection<Object> collection = this.newWith(1, 2, 3);
         Appendable builder = new StringBuilder();
         collection.appendString(builder);
-        Assert.assertEquals(collection.toString(), '[' + builder.toString() + ']');
+        Assertions.assertEquals(collection.toString(), '[' + builder.toString() + ']');
     }
 
     @Override
     @Test
     public void getFirst()
     {
-        Assert.assertNotNull(this.newWith(1, 2, 3).getFirst());
-        Assert.assertNull(this.newWith().getFirst());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getFirst());
+        Assertions.assertNull(this.newWith().getFirst());
     }
 
     @Override
     @Test
     public void getLast()
     {
-        Assert.assertNotNull(this.newWith(1, 2, 3).getLast());
-        Assert.assertNull(this.newWith().getLast());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getLast());
+        Assertions.assertNull(this.newWith().getLast());
     }
 
     @Override
@@ -196,7 +218,7 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
     {
         MutableSet<String> set = this.unmodifiableSet.newEmpty();
         set.add(LED_ZEPPELIN);
-        Verify.assertContains(LED_ZEPPELIN, set);
+        Verify.assertContains(set, LED_ZEPPELIN);
     }
 
     @Test
@@ -204,47 +226,59 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
     {
         MutableSet<String> set = this.newWith();
         MutableSet<String> clone = set.clone();
-        Assert.assertSame(clone, set);
+        Assertions.assertSame(clone, set);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void min_empty_throws_without_comparator()
     {
-        this.newWith().min();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().min();
+        });
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void max_empty_throws_without_comparator()
     {
-        this.newWith().max();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().max();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void with()
     {
-        this.newWith(1, 2, 3).with(4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3).with(4);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withAll()
     {
-        this.newWith(1, 2, 3).withAll(FastList.newListWith(4, 5));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3).withAll(FastList.newListWith(4, 5));
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void without()
     {
-        this.newWith(1, 2, 3).without(2);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3).without(2);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withoutAll()
     {
-        this.newWith(1, 2, 3, 4, 5).withoutAll(FastList.newListWith(2, 4));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3, 4, 5).withoutAll(FastList.newListWith(2, 4));
+        });
     }
 
     @Override
@@ -266,10 +300,12 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void toSortedBag_with_null()
     {
-        this.newWith(3, 4, null, 1, 2).toSortedBag();
+        assertThrows(NullPointerException.class, () -> {
+            this.newWith(3, 4, null, 1, 2).toSortedBag();
+        });
     }
 
     @Override

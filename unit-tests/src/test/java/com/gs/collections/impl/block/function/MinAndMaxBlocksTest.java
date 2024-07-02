@@ -16,8 +16,8 @@
 
 package com.gs.collections.impl.block.function;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class MinAndMaxBlocksTest
 {
@@ -28,64 +28,64 @@ public class MinAndMaxBlocksTest
     @Test
     public void minBlocks()
     {
-        Assert.assertEquals(new Double(1.0), MinFunction.DOUBLE.value(1.0, 2.0));
-        Assert.assertEquals(new Double(0.0), MinFunction.DOUBLE.value(0.0, 1.0));
-        Assert.assertEquals(new Double(-1.0), MinFunction.DOUBLE.value(1.0, -1.0));
+        Assertions.assertEquals(Double.valueOf(1.0), MinFunction.DOUBLE.value(1.0, 2.0));
+        Assertions.assertEquals(Double.valueOf(0.0), MinFunction.DOUBLE.value(0.0, 1.0));
+        Assertions.assertEquals(Double.valueOf(-1.0), MinFunction.DOUBLE.value(1.0, -1.0));
 
-        Assert.assertEquals(Integer.valueOf(1), MinFunction.INTEGER.value(1, 2));
-        Assert.assertEquals(Integer.valueOf(0), MinFunction.INTEGER.value(0, 1));
-        Assert.assertEquals(Integer.valueOf(-1), MinFunction.INTEGER.value(1, -1));
+        Assertions.assertEquals(Integer.valueOf(1), MinFunction.INTEGER.value(1, 2));
+        Assertions.assertEquals(Integer.valueOf(0), MinFunction.INTEGER.value(0, 1));
+        Assertions.assertEquals(Integer.valueOf(-1), MinFunction.INTEGER.value(1, -1));
 
-        Assert.assertEquals(Long.valueOf(1L), MinFunction.LONG.value(1L, 2L));
-        Assert.assertEquals(Long.valueOf(0L), MinFunction.LONG.value(0L, 1L));
-        Assert.assertEquals(Long.valueOf(-1L), MinFunction.LONG.value(1L, -1L));
+        Assertions.assertEquals(Long.valueOf(1L), MinFunction.LONG.value(1L, 2L));
+        Assertions.assertEquals(Long.valueOf(0L), MinFunction.LONG.value(0L, 1L));
+        Assertions.assertEquals(Long.valueOf(-1L), MinFunction.LONG.value(1L, -1L));
     }
 
     @Test
     public void minBlocksNull()
     {
-        Assert.assertSame(FORTY_TWO_DOUBLE, MinFunction.DOUBLE.value(null, FORTY_TWO_DOUBLE));
-        Assert.assertSame(FORTY_TWO_DOUBLE, MinFunction.DOUBLE.value(FORTY_TWO_DOUBLE, null));
-        Assert.assertSame(null, MinFunction.DOUBLE.value(null, null));
+        Assertions.assertSame(FORTY_TWO_DOUBLE, MinFunction.DOUBLE.value(null, FORTY_TWO_DOUBLE));
+        Assertions.assertSame(FORTY_TWO_DOUBLE, MinFunction.DOUBLE.value(FORTY_TWO_DOUBLE, null));
+        Assertions.assertSame(null, MinFunction.DOUBLE.value(null, null));
 
-        Assert.assertSame(FORTY_TWO_INTEGER, MinFunction.INTEGER.value(null, FORTY_TWO_INTEGER));
-        Assert.assertSame(FORTY_TWO_INTEGER, MinFunction.INTEGER.value(FORTY_TWO_INTEGER, null));
-        Assert.assertSame(null, MinFunction.INTEGER.value(null, null));
+        Assertions.assertSame(FORTY_TWO_INTEGER, MinFunction.INTEGER.value(null, FORTY_TWO_INTEGER));
+        Assertions.assertSame(FORTY_TWO_INTEGER, MinFunction.INTEGER.value(FORTY_TWO_INTEGER, null));
+        Assertions.assertSame(null, MinFunction.INTEGER.value(null, null));
 
-        Assert.assertSame(FORTY_TWO_LONG, MinFunction.LONG.value(null, FORTY_TWO_LONG));
-        Assert.assertSame(FORTY_TWO_LONG, MinFunction.LONG.value(FORTY_TWO_LONG, null));
-        Assert.assertSame(null, MinFunction.LONG.value(null, null));
+        Assertions.assertSame(FORTY_TWO_LONG, MinFunction.LONG.value(null, FORTY_TWO_LONG));
+        Assertions.assertSame(FORTY_TWO_LONG, MinFunction.LONG.value(FORTY_TWO_LONG, null));
+        Assertions.assertSame(null, MinFunction.LONG.value(null, null));
     }
 
     @Test
     public void maxBlocks()
     {
-        Assert.assertEquals(new Double(2.0), MaxFunction.DOUBLE.value(1.0, 2.0));
-        Assert.assertEquals(new Double(1.0), MaxFunction.DOUBLE.value(0.0, 1.0));
-        Assert.assertEquals(new Double(1.0), MaxFunction.DOUBLE.value(1.0, -1.0));
+        Assertions.assertEquals(Double.valueOf(2.0), MaxFunction.DOUBLE.value(1.0, 2.0));
+        Assertions.assertEquals(Double.valueOf(1.0), MaxFunction.DOUBLE.value(0.0, 1.0));
+        Assertions.assertEquals(Double.valueOf(1.0), MaxFunction.DOUBLE.value(1.0, -1.0));
 
-        Assert.assertEquals(Integer.valueOf(2), MaxFunction.INTEGER.value(1, 2));
-        Assert.assertEquals(Integer.valueOf(1), MaxFunction.INTEGER.value(0, 1));
-        Assert.assertEquals(Integer.valueOf(1), MaxFunction.INTEGER.value(1, -1));
+        Assertions.assertEquals(Integer.valueOf(2), MaxFunction.INTEGER.value(1, 2));
+        Assertions.assertEquals(Integer.valueOf(1), MaxFunction.INTEGER.value(0, 1));
+        Assertions.assertEquals(Integer.valueOf(1), MaxFunction.INTEGER.value(1, -1));
 
-        Assert.assertEquals(Long.valueOf(2L), MaxFunction.LONG.value(1L, 2L));
-        Assert.assertEquals(Long.valueOf(1L), MaxFunction.LONG.value(0L, 1L));
-        Assert.assertEquals(Long.valueOf(1L), MaxFunction.LONG.value(1L, -1L));
+        Assertions.assertEquals(Long.valueOf(2L), MaxFunction.LONG.value(1L, 2L));
+        Assertions.assertEquals(Long.valueOf(1L), MaxFunction.LONG.value(0L, 1L));
+        Assertions.assertEquals(Long.valueOf(1L), MaxFunction.LONG.value(1L, -1L));
     }
 
     @Test
     public void maxBlocksNull()
     {
-        Assert.assertSame(FORTY_TWO_DOUBLE, MaxFunction.DOUBLE.value(null, FORTY_TWO_DOUBLE));
-        Assert.assertSame(FORTY_TWO_DOUBLE, MaxFunction.DOUBLE.value(FORTY_TWO_DOUBLE, null));
-        Assert.assertSame(null, MaxFunction.DOUBLE.value(null, null));
+        Assertions.assertSame(FORTY_TWO_DOUBLE, MaxFunction.DOUBLE.value(null, FORTY_TWO_DOUBLE));
+        Assertions.assertSame(FORTY_TWO_DOUBLE, MaxFunction.DOUBLE.value(FORTY_TWO_DOUBLE, null));
+        Assertions.assertSame(null, MaxFunction.DOUBLE.value(null, null));
 
-        Assert.assertSame(FORTY_TWO_INTEGER, MaxFunction.INTEGER.value(null, FORTY_TWO_INTEGER));
-        Assert.assertSame(FORTY_TWO_INTEGER, MaxFunction.INTEGER.value(FORTY_TWO_INTEGER, null));
-        Assert.assertSame(null, MaxFunction.INTEGER.value(null, null));
+        Assertions.assertSame(FORTY_TWO_INTEGER, MaxFunction.INTEGER.value(null, FORTY_TWO_INTEGER));
+        Assertions.assertSame(FORTY_TWO_INTEGER, MaxFunction.INTEGER.value(FORTY_TWO_INTEGER, null));
+        Assertions.assertSame(null, MaxFunction.INTEGER.value(null, null));
 
-        Assert.assertSame(FORTY_TWO_LONG, MaxFunction.LONG.value(null, FORTY_TWO_LONG));
-        Assert.assertSame(FORTY_TWO_LONG, MaxFunction.LONG.value(FORTY_TWO_LONG, null));
-        Assert.assertSame(null, MaxFunction.LONG.value(null, null));
+        Assertions.assertSame(FORTY_TWO_LONG, MaxFunction.LONG.value(null, FORTY_TWO_LONG));
+        Assertions.assertSame(FORTY_TWO_LONG, MaxFunction.LONG.value(FORTY_TWO_LONG, null));
+        Assertions.assertSame(null, MaxFunction.LONG.value(null, null));
     }
 }

@@ -439,9 +439,8 @@ public class HashBag<T>
     public boolean removeAllIterable(Iterable<?> iterable)
     {
         int oldSize = this.size;
-        if (iterable instanceof Bag)
+        if (iterable instanceof Bag source)
         {
-            Bag<?> source = (Bag<?>) iterable;
             source.forEachWithOccurrences(new ObjectIntProcedure<Object>()
             {
                 public void value(Object each, int parameter)

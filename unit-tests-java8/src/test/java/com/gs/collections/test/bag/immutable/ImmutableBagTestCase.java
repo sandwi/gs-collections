@@ -19,7 +19,7 @@ package com.gs.collections.test.bag.immutable;
 import com.gs.collections.api.bag.ImmutableBag;
 import com.gs.collections.test.bag.UnsortedBagTestCase;
 import com.gs.collections.test.collection.immutable.ImmutableCollectionTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public interface ImmutableBagTestCase extends ImmutableCollectionTestCase, UnsortedBagTestCase
 {

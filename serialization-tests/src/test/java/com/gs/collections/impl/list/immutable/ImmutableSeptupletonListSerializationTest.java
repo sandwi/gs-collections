@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableSeptupletonListSerializationTest
 {
@@ -25,13 +25,15 @@ public class ImmutableSeptupletonListSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVT\n"
-                        + "ZXB0dXBsZXRvbkxpc3QAAAAAAAAAAQIAB0wACGVsZW1lbnQxdAASTGphdmEvbGFuZy9PYmplY3Q7\n"
-                        + "TAAIZWxlbWVudDJxAH4AAUwACGVsZW1lbnQzcQB+AAFMAAhlbGVtZW50NHEAfgABTAAIZWxlbWVu\n"
-                        + "dDVxAH4AAUwACGVsZW1lbnQ2cQB+AAFMAAhlbGVtZW50N3EAfgABeHBzcgARamF2YS5sYW5nLklu\n"
-                        + "dGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhw\n"
-                        + "AAAAAXNxAH4AAwAAAAJzcQB+AAMAAAADc3EAfgADAAAABHNxAH4AAwAAAAVzcQB+AAMAAAAGc3EA\n"
-                        + "fgADAAAABw==",
-                new ImmutableSeptupletonList<Integer>(1, 2, 3, 4, 5, 6, 7));
+                new ImmutableSeptupletonList<Integer>(1, 2, 3, 4, 5, 6, 7),
+                """
+                rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVT
+                ZXB0dXBsZXRvbkxpc3QAAAAAAAAAAQIAB0wACGVsZW1lbnQxdAASTGphdmEvbGFuZy9PYmplY3Q7
+                TAAIZWxlbWVudDJxAH4AAUwACGVsZW1lbnQzcQB+AAFMAAhlbGVtZW50NHEAfgABTAAIZWxlbWVu
+                dDVxAH4AAUwACGVsZW1lbnQ2cQB+AAFMAAhlbGVtZW50N3EAfgABeHBzcgARamF2YS5sYW5nLklu
+                dGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhw
+                AAAAAXNxAH4AAwAAAAJzcQB+AAMAAAADc3EAfgADAAAABHNxAH4AAwAAAAVzcQB+AAMAAAAGc3EA
+                fgADAAAABw==\
+                """);
     }
 }

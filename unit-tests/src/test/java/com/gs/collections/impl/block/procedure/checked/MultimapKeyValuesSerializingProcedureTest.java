@@ -22,8 +22,8 @@ import java.util.Iterator;
 
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.multimap.list.FastListMultimap;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class MultimapKeyValuesSerializingProcedureTest
 {
@@ -51,13 +51,13 @@ public class MultimapKeyValuesSerializingProcedureTest
         @Override
         public void writeObject(Object obj)
         {
-            Assert.assertEquals(this.iterator.next(), obj);
+            Assertions.assertEquals(this.iterator.next(), obj);
         }
 
         @Override
         public void writeInt(int v)
         {
-            Assert.assertEquals(this.iterator.next(), v);
+            Assertions.assertEquals(this.iterator.next(), v);
         }
 
         @Override

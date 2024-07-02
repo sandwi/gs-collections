@@ -82,8 +82,10 @@ import com.gs.collections.impl.stack.mutable.primitive.LongArrayStack;
 import com.gs.collections.impl.stack.mutable.primitive.ShortArrayStack;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class StackIterableTestCase
 {
@@ -98,33 +100,41 @@ public abstract class StackIterableTestCase
     @Test
     public void testNewStackFromTopToBottom()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.newStackWith(3, 2, 1),
                 this.newStackFromTopToBottom(1, 2, 3));
     }
 
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void peek_empty_throws()
     {
-        this.newStackWith().peek();
+        assertThrows(EmptyStackException.class, () -> {
+            this.newStackWith().peek();
+        });
     }
 
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void peek_int_empty_throws()
     {
-        this.newStackWith().peek(1);
+        assertThrows(EmptyStackException.class, () -> {
+            this.newStackWith().peek(1);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void peek_int_count_throws()
     {
-        this.newStackWith(1, 2, 3).peek(4);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newStackWith(1, 2, 3).peek(4);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void peek_int_neg_throws()
     {
-        this.newStackWith(1, 2, 3).peek(-1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newStackWith(1, 2, 3).peek(-1);
+        });
     }
 
     @Test
@@ -135,23 +145,23 @@ public abstract class StackIterableTestCase
 
         Verify.assertThrows(IllegalArgumentException.class, () -> stack.peek(4));
 
-        Assert.assertEquals(FastList.newListWith(1, 2, 3), stack.peek(3));
+        Assertions.assertEquals(FastList.newListWith(1, 2, 3), stack.peek(3));
     }
 
     @Test
     public void peek()
     {
-        Assert.assertEquals("3", this.newStackWith("1", "2", "3").peek());
-        Assert.assertEquals(FastList.newListWith(), this.newStackWith("1", "2", "3").peek(0));
-        Assert.assertEquals(FastList.newListWith("3", "2"), this.newStackWith("1", "2", "3").peek(2));
+        Assertions.assertEquals("3", this.newStackWith("1", "2", "3").peek());
+        Assertions.assertEquals(FastList.newListWith(), this.newStackWith("1", "2", "3").peek(0));
+        Assertions.assertEquals(FastList.newListWith("3", "2"), this.newStackWith("1", "2", "3").peek(2));
     }
 
     @Test
     public void peekAt()
     {
-        Assert.assertEquals("3", this.newStackWith("1", "2", "3").peekAt(0));
-        Assert.assertEquals("2", this.newStackWith("1", "2", "3").peekAt(1));
-        Assert.assertEquals("1", this.newStackWith("1", "2", "3").peekAt(2));
+        Assertions.assertEquals("3", this.newStackWith("1", "2", "3").peekAt(0));
+        Assertions.assertEquals("2", this.newStackWith("1", "2", "3").peekAt(1));
+        Assertions.assertEquals("1", this.newStackWith("1", "2", "3").peekAt(2));
     }
 
     @Test
@@ -165,77 +175,79 @@ public abstract class StackIterableTestCase
     public void size()
     {
         StackIterable<Integer> stack1 = this.newStackWith();
-        Assert.assertEquals(0, stack1.size());
+        Assertions.assertEquals(0, stack1.size());
 
         StackIterable<Integer> stack2 = this.newStackWith(1, 2);
-        Assert.assertEquals(2, stack2.size());
+        Assertions.assertEquals(2, stack2.size());
     }
 
     @Test
     public void isEmpty()
     {
         StackIterable<Integer> stack = this.newStackWith();
-        Assert.assertTrue(stack.isEmpty());
-        Assert.assertFalse(stack.notEmpty());
+        Assertions.assertTrue(stack.isEmpty());
+        Assertions.assertFalse(stack.notEmpty());
     }
 
     @Test
     public void notEmpty()
     {
         StackIterable<Integer> stack = this.newStackWith(1);
-        Assert.assertTrue(stack.notEmpty());
-        Assert.assertFalse(stack.isEmpty());
+        Assertions.assertTrue(stack.notEmpty());
+        Assertions.assertFalse(stack.isEmpty());
     }
 
     @Test
     public void getFirst()
     {
         StackIterable<Integer> stack = this.newStackWith(1, 2, 3);
-        Assert.assertEquals(Integer.valueOf(3), stack.getFirst());
-        Assert.assertEquals(stack.peek(), stack.getFirst());
+        Assertions.assertEquals(Integer.valueOf(3), stack.getFirst());
+        Assertions.assertEquals(stack.peek(), stack.getFirst());
         Verify.assertThrows(EmptyStackException.class, () -> this.newStackWith().getFirst());
         StackIterable<Integer> stack2 = this.newStackFromTopToBottom(1, 2, 3);
-        Assert.assertEquals(Integer.valueOf(1), stack2.getFirst());
+        Assertions.assertEquals(Integer.valueOf(1), stack2.getFirst());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void getLast()
     {
-        StackIterable<Integer> stack = this.newStackWith(1, 2, 3);
-        Assert.assertEquals(Integer.valueOf(1), stack.getLast());
+        assertThrows(UnsupportedOperationException.class, () -> {
+            StackIterable<Integer> stack = this.newStackWith(1, 2, 3);
+            Assertions.assertEquals(Integer.valueOf(1), stack.getLast());
+        });
     }
 
     @Test
     public void contains()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
-        Assert.assertTrue(stack.contains(2));
-        Assert.assertTrue(stack.contains(3));
-        Assert.assertFalse(stack.contains(4));
+        Assertions.assertTrue(stack.contains(2));
+        Assertions.assertTrue(stack.contains(3));
+        Assertions.assertFalse(stack.contains(4));
     }
 
     @Test
     public void containsAllIterable()
     {
         StackIterable<Integer> stack = this.newStackWith(1, 2, 3);
-        Assert.assertTrue(stack.containsAllIterable(Interval.fromTo(2, 3)));
-        Assert.assertFalse(stack.containsAllIterable(Interval.fromTo(2, 4)));
+        Assertions.assertTrue(stack.containsAllIterable(Interval.fromTo(2, 3)));
+        Assertions.assertFalse(stack.containsAllIterable(Interval.fromTo(2, 4)));
     }
 
     @Test
     public void containsAll()
     {
         StackIterable<Integer> stack = this.newStackWith(1, 2, 3, 4);
-        Assert.assertTrue(stack.containsAll(Interval.oneTo(2)));
-        Assert.assertFalse(stack.containsAll(FastList.newListWith(1, 2, 5)));
+        Assertions.assertTrue(stack.containsAll(Interval.oneTo(2)));
+        Assertions.assertFalse(stack.containsAll(FastList.newListWith(1, 2, 5)));
     }
 
     @Test
     public void containsAllArguments()
     {
         StackIterable<Integer> stack = this.newStackWith(1, 2, 3, 4);
-        Assert.assertTrue(stack.containsAllArguments(2, 1, 3));
-        Assert.assertFalse(stack.containsAllArguments(2, 1, 3, 5));
+        Assertions.assertTrue(stack.containsAllArguments(2, 1, 3));
+        Assertions.assertFalse(stack.containsAllArguments(2, 1, 3, 5));
     }
 
     @Test
@@ -243,19 +255,19 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Boolean> stack = this.newStackFromTopToBottom(Boolean.TRUE, Boolean.FALSE, null);
         CountingFunction<Object, String> function = CountingFunction.of(String::valueOf);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.newStackFromTopToBottom("true", "false", "null"),
                 stack.collect(function));
-        Assert.assertEquals(3, function.count);
+        Assertions.assertEquals(3, function.count);
 
-        Assert.assertEquals(FastList.newListWith("true", "false", "null"), stack.collect(String::valueOf, FastList.<String>newList()));
+        Assertions.assertEquals(FastList.newListWith("true", "false", "null"), stack.collect(String::valueOf, FastList.<String>newList()));
     }
 
     @Test
     public void collectBoolean()
     {
         StackIterable<String> stack = this.newStackFromTopToBottom("true", "nah", "TrUe", "false");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 BooleanArrayStack.newStackFromTopToBottom(true, false, true, false),
                 stack.collectBoolean(Boolean::parseBoolean));
     }
@@ -266,15 +278,15 @@ public abstract class StackIterableTestCase
         BooleanHashSet target = new BooleanHashSet();
         StackIterable<String> stack = this.newStackFromTopToBottom("true", "nah", "TrUe", "false");
         BooleanHashSet result = stack.collectBoolean(Boolean::parseBoolean, target);
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false, true, false), result);
-        Assert.assertSame("Target sent as parameter not returned", target, result);
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false, true, false), result);
+        Assertions.assertSame(target, result, "Target sent as parameter not returned");
     }
 
     @Test
     public void collectByte()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
-        Assert.assertEquals(ByteArrayStack.newStackFromTopToBottom((byte) 1, (byte) 2, (byte) 3), stack.collectByte(PrimitiveFunctions.unboxIntegerToByte()));
+        Assertions.assertEquals(ByteArrayStack.newStackFromTopToBottom((byte) 1, (byte) 2, (byte) 3), stack.collectByte(PrimitiveFunctions.unboxIntegerToByte()));
     }
 
     @Test
@@ -283,15 +295,15 @@ public abstract class StackIterableTestCase
         ByteHashSet target = new ByteHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         ByteHashSet result = stack.collectByte(PrimitiveFunctions.unboxIntegerToByte(), target);
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 2, (byte) 3), result);
-        Assert.assertSame("Target sent as parameter not returned", target, result);
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 2, (byte) 3), result);
+        Assertions.assertSame(target, result, "Target sent as parameter not returned");
     }
 
     @Test
     public void collectChar()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
-        Assert.assertEquals(CharArrayStack.newStackFromTopToBottom((char) 1, (char) 2, (char) 3), stack.collectChar(PrimitiveFunctions.unboxIntegerToChar()));
+        Assertions.assertEquals(CharArrayStack.newStackFromTopToBottom((char) 1, (char) 2, (char) 3), stack.collectChar(PrimitiveFunctions.unboxIntegerToChar()));
     }
 
     @Test
@@ -300,15 +312,15 @@ public abstract class StackIterableTestCase
         CharHashSet target = new CharHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CharHashSet result = stack.collectChar(PrimitiveFunctions.unboxIntegerToChar(), target);
-        Assert.assertEquals(CharHashSet.newSetWith((char) 1, (char) 2, (char) 3), result);
-        Assert.assertSame("Target sent as parameter not returned", target, result);
+        Assertions.assertEquals(CharHashSet.newSetWith((char) 1, (char) 2, (char) 3), result);
+        Assertions.assertSame(target, result, "Target sent as parameter not returned");
     }
 
     @Test
     public void collectDouble()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
-        Assert.assertEquals(DoubleArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectDouble(PrimitiveFunctions.unboxIntegerToDouble()));
+        Assertions.assertEquals(DoubleArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectDouble(PrimitiveFunctions.unboxIntegerToDouble()));
     }
 
     @Test
@@ -317,15 +329,15 @@ public abstract class StackIterableTestCase
         DoubleHashSet target = new DoubleHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         DoubleHashSet result = stack.collectDouble(PrimitiveFunctions.unboxIntegerToDouble(), target);
-        Assert.assertEquals(DoubleHashSet.newSetWith(1, 2, 3), result);
-        Assert.assertSame("Target sent as parameter not returned", target, result);
+        Assertions.assertEquals(DoubleHashSet.newSetWith(1, 2, 3), result);
+        Assertions.assertSame(target, result, "Target sent as parameter not returned");
     }
 
     @Test
     public void collectFloat()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
-        Assert.assertEquals(FloatArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectFloat(PrimitiveFunctions.unboxIntegerToFloat()));
+        Assertions.assertEquals(FloatArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectFloat(PrimitiveFunctions.unboxIntegerToFloat()));
     }
 
     @Test
@@ -334,15 +346,15 @@ public abstract class StackIterableTestCase
         FloatHashSet target = new FloatHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         FloatHashSet result = stack.collectFloat(PrimitiveFunctions.unboxIntegerToFloat(), target);
-        Assert.assertEquals(FloatHashSet.newSetWith(1, 2, 3), result);
-        Assert.assertSame("Target sent as parameter not returned", target, result);
+        Assertions.assertEquals(FloatHashSet.newSetWith(1, 2, 3), result);
+        Assertions.assertSame(target, result, "Target sent as parameter not returned");
     }
 
     @Test
     public void collectInt()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
-        Assert.assertEquals(IntArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectInt(PrimitiveFunctions.unboxIntegerToInt()));
+        Assertions.assertEquals(IntArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectInt(PrimitiveFunctions.unboxIntegerToInt()));
     }
 
     @Test
@@ -351,15 +363,15 @@ public abstract class StackIterableTestCase
         IntHashSet target = new IntHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         IntHashSet result = stack.collectInt(PrimitiveFunctions.unboxIntegerToInt(), target);
-        Assert.assertEquals(IntHashSet.newSetWith(1, 2, 3), result);
-        Assert.assertSame("Target sent as parameter not returned", target, result);
+        Assertions.assertEquals(IntHashSet.newSetWith(1, 2, 3), result);
+        Assertions.assertSame(target, result, "Target sent as parameter not returned");
     }
 
     @Test
     public void collectLong()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
-        Assert.assertEquals(LongArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectLong(PrimitiveFunctions.unboxIntegerToLong()));
+        Assertions.assertEquals(LongArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectLong(PrimitiveFunctions.unboxIntegerToLong()));
     }
 
     @Test
@@ -368,15 +380,15 @@ public abstract class StackIterableTestCase
         LongHashSet target = new LongHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         LongHashSet result = stack.collectLong(PrimitiveFunctions.unboxIntegerToLong(), target);
-        Assert.assertEquals(LongHashSet.newSetWith(1, 2, 3), result);
-        Assert.assertSame("Target sent as parameter not returned", target, result);
+        Assertions.assertEquals(LongHashSet.newSetWith(1, 2, 3), result);
+        Assertions.assertSame(target, result, "Target sent as parameter not returned");
     }
 
     @Test
     public void collectShort()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
-        Assert.assertEquals(ShortArrayStack.newStackFromTopToBottom((short) 1, (short) 2, (short) 3), stack.collectShort(PrimitiveFunctions.unboxIntegerToShort()));
+        Assertions.assertEquals(ShortArrayStack.newStackFromTopToBottom((short) 1, (short) 2, (short) 3), stack.collectShort(PrimitiveFunctions.unboxIntegerToShort()));
     }
 
     @Test
@@ -385,8 +397,8 @@ public abstract class StackIterableTestCase
         ShortHashSet target = new ShortHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         ShortHashSet result = stack.collectShort(PrimitiveFunctions.unboxIntegerToShort(), target);
-        Assert.assertEquals(ShortHashSet.newSetWith((short) 1, (short) 2, (short) 3), result);
-        Assert.assertSame("Target sent as parameter not returned", target, result);
+        Assertions.assertEquals(ShortHashSet.newSetWith((short) 1, (short) 2, (short) 3), result);
+        Assertions.assertSame(target, result, "Target sent as parameter not returned");
     }
 
     @Test
@@ -396,26 +408,26 @@ public abstract class StackIterableTestCase
 
         CountingPredicate<Integer> predicate1 = CountingPredicate.of(Predicates.lessThan(3));
         CountingFunction<Object, String> function1 = CountingFunction.of(String::valueOf);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.newStackFromTopToBottom("1", "2"),
                 stack.collectIf(predicate1, function1));
-        Assert.assertEquals(5, predicate1.count);
-        Assert.assertEquals(2, function1.count);
+        Assertions.assertEquals(5, predicate1.count);
+        Assertions.assertEquals(2, function1.count);
 
         CountingPredicate<Integer> predicate2 = CountingPredicate.of(Predicates.lessThan(3));
         CountingFunction<Object, String> function2 = CountingFunction.of(String::valueOf);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith("1", "2"),
                 stack.collectIf(predicate2, function2, FastList.<String>newList()));
-        Assert.assertEquals(5, predicate2.count);
-        Assert.assertEquals(2, function2.count);
+        Assertions.assertEquals(5, predicate2.count);
+        Assertions.assertEquals(2, function2.count);
     }
 
     @Test
     public void collectWith()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(3, 2, 1);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 ArrayStack.newStackFromTopToBottom(4, 3, 2),
                 stack.collectWith(AddFunction.INTEGER, 1));
     }
@@ -424,7 +436,7 @@ public abstract class StackIterableTestCase
     public void collectWithTarget()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(3, 2, 1);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(4, 3, 2),
                 stack.collectWith(AddFunction.INTEGER, 1, FastList.<Integer>newList()));
     }
@@ -444,12 +456,12 @@ public abstract class StackIterableTestCase
             return result;
         });
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.newStackFromTopToBottom('1', 'O', 'n', 'e', '2', 'T', 'w', 'o'),
                 stack.flatCollect(function));
-        Assert.assertEquals(4, function.count);
+        Assertions.assertEquals(4, function.count);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith('1', 'O', 'n', 'e', '2', 'T', 'w', 'o'),
                 stack.flatCollect(function, FastList.<Character>newList()));
     }
@@ -460,12 +472,12 @@ public abstract class StackIterableTestCase
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate<Object> predicate = new CountingPredicate<>(Integer.valueOf(1)::equals);
         StackIterable<Integer> actual = stack.select(predicate);
-        Assert.assertEquals(this.newStackFromTopToBottom(1), actual);
-        Assert.assertEquals(3, predicate.count);
-        Assert.assertEquals(
+        Assertions.assertEquals(this.newStackFromTopToBottom(1), actual);
+        Assertions.assertEquals(3, predicate.count);
+        Assertions.assertEquals(
                 this.newStackFromTopToBottom(2, 3),
                 stack.select(Predicates.greaterThan(1)));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(2, 3),
                 stack.select(Predicates.greaterThan(1), FastList.<Integer>newList()));
     }
@@ -474,14 +486,14 @@ public abstract class StackIterableTestCase
     public void selectInstancesOf()
     {
         StackIterable<Number> numbers = this.<Number>newStackFromTopToBottom(1, 2.0, 3, 4.0, 5);
-        Assert.assertEquals(this.newStackFromTopToBottom(1, 3, 5), numbers.selectInstancesOf(Integer.class));
-        Assert.assertEquals(this.<Number>newStackFromTopToBottom(1, 2.0, 3, 4.0, 5), numbers.selectInstancesOf(Number.class));
+        Assertions.assertEquals(this.newStackFromTopToBottom(1, 3, 5), numbers.selectInstancesOf(Integer.class));
+        Assertions.assertEquals(this.<Number>newStackFromTopToBottom(1, 2.0, 3, 4.0, 5), numbers.selectInstancesOf(Number.class));
     }
 
     @Test
     public void selectWith()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 ArrayStack.newStackFromTopToBottom(2, 1),
                 this.newStackFromTopToBottom(5, 4, 3, 2, 1).selectWith(Predicates2.<Integer>lessThan(), 3));
     }
@@ -489,7 +501,7 @@ public abstract class StackIterableTestCase
     @Test
     public void selectWithTarget()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.newSetWith(2, 1),
                 this.newStackFromTopToBottom(5, 4, 3, 2, 1).selectWith(Predicates2.<Integer>lessThan(), 3, UnifiedSet.<Integer>newSet()));
     }
@@ -499,11 +511,11 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(3, 2, 1);
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.greaterThan(2));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.newStackFromTopToBottom(2, 1),
                 stack.reject(predicate));
-        Assert.assertEquals(3, predicate.count);
-        Assert.assertEquals(
+        Assertions.assertEquals(3, predicate.count);
+        Assertions.assertEquals(
                 FastList.newListWith(2, 1),
                 stack.reject(Predicates.greaterThan(2), FastList.<Integer>newList()));
     }
@@ -512,7 +524,7 @@ public abstract class StackIterableTestCase
     public void rejectWith()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(3, 2, 1);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.newStackFromTopToBottom(2, 1),
                 stack.rejectWith(Predicates2.<Integer>greaterThan(), 2));
     }
@@ -520,7 +532,7 @@ public abstract class StackIterableTestCase
     @Test
     public void rejectWithTarget()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.newSetWith(5, 4, 3),
                 this.newStackFromTopToBottom(5, 4, 3, 2, 1).rejectWith(Predicates2.<Integer>lessThan(), 3, UnifiedSet.<Integer>newSet()));
     }
@@ -530,9 +542,9 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.lessThan(3));
-        Assert.assertEquals(Integer.valueOf(1), stack.detect(predicate));
-        Assert.assertEquals(1, predicate.count);
-        Assert.assertNull(stack.detect(Integer.valueOf(4)::equals));
+        Assertions.assertEquals(Integer.valueOf(1), stack.detect(predicate));
+        Assertions.assertEquals(1, predicate.count);
+        Assertions.assertNull(stack.detect(Integer.valueOf(4)::equals));
     }
 
     @Test
@@ -540,9 +552,9 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate2<Integer, Integer> predicate = new CountingPredicate2<>(Predicates2.<Integer>lessThan());
-        Assert.assertEquals(Integer.valueOf(1), stack.detectWith(predicate, 3));
-        Assert.assertEquals(1, predicate.count);
-        Assert.assertNull(stack.detectWith(Object::equals, Integer.valueOf(4)));
+        Assertions.assertEquals(Integer.valueOf(1), stack.detectWith(predicate, 3));
+        Assertions.assertEquals(1, predicate.count);
+        Assertions.assertNull(stack.detectWith(Object::equals, Integer.valueOf(4)));
     }
 
     @Test
@@ -550,11 +562,11 @@ public abstract class StackIterableTestCase
     {
         Function0<Integer> defaultResultFunction = new PassThruFunction0<>(-1);
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.lessThan(3));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(1),
                 this.newStackFromTopToBottom(1, 2, 3, 4, 5).detectIfNone(predicate, defaultResultFunction));
-        Assert.assertEquals(1, predicate.count);
-        Assert.assertEquals(
+        Assertions.assertEquals(1, predicate.count);
+        Assertions.assertEquals(
                 Integer.valueOf(-1),
                 this.newStackWith(1, 2, 3, 4, 5).detectIfNone(Predicates.lessThan(-1), defaultResultFunction));
     }
@@ -564,11 +576,11 @@ public abstract class StackIterableTestCase
     {
         Function0<Integer> defaultResultFunction = new PassThruFunction0<>(-1);
         CountingPredicate2<Integer, Integer> predicate = new CountingPredicate2<>(Predicates2.<Integer>lessThan());
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(1),
                 this.newStackFromTopToBottom(1, 2, 3, 4, 5).detectWithIfNone(predicate, Integer.valueOf(3), defaultResultFunction));
-        Assert.assertEquals(1, predicate.count);
-        Assert.assertEquals(
+        Assertions.assertEquals(1, predicate.count);
+        Assertions.assertEquals(
                 Integer.valueOf(-1),
                 this.newStackWith(1, 2, 3, 4, 5).detectIfNone(Predicates.lessThan(-1), defaultResultFunction));
     }
@@ -578,17 +590,17 @@ public abstract class StackIterableTestCase
     {
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.lessThan(3));
         PartitionStack<Integer> partition = this.newStackFromTopToBottom(1, 2, 3, 4, 5).partition(predicate);
-        Assert.assertEquals(5, predicate.count);
-        Assert.assertEquals(this.newStackFromTopToBottom(1, 2), partition.getSelected());
-        Assert.assertEquals(this.newStackFromTopToBottom(3, 4, 5), partition.getRejected());
+        Assertions.assertEquals(5, predicate.count);
+        Assertions.assertEquals(this.newStackFromTopToBottom(1, 2), partition.getSelected());
+        Assertions.assertEquals(this.newStackFromTopToBottom(3, 4, 5), partition.getRejected());
     }
 
     @Test
     public void partitionWith()
     {
         PartitionStack<Integer> partition = this.newStackFromTopToBottom(1, 2, 3, 4, 5).partitionWith(Predicates2.<Integer>lessThan(), 3);
-        Assert.assertEquals(this.newStackFromTopToBottom(1, 2), partition.getSelected());
-        Assert.assertEquals(this.newStackFromTopToBottom(3, 4, 5), partition.getRejected());
+        Assertions.assertEquals(this.newStackFromTopToBottom(1, 2), partition.getSelected());
+        Assertions.assertEquals(this.newStackFromTopToBottom(3, 4, 5), partition.getRejected());
     }
 
     @Test
@@ -606,9 +618,9 @@ public abstract class StackIterableTestCase
                 Tuples.pair("2", 6),
                 Tuples.pair("1", 7));
 
-        Assert.assertEquals(expected, stack.zip(interval));
+        Assertions.assertEquals(expected, stack.zip(interval));
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 expected.toSet(),
                 stack.zip(interval, UnifiedSet.<Pair<String, Integer>>newSet()));
     }
@@ -623,8 +635,8 @@ public abstract class StackIterableTestCase
                 Tuples.pair("3", 1),
                 Tuples.pair("2", 2),
                 Tuples.pair("1", 3));
-        Assert.assertEquals(expected, stack.zipWithIndex());
-        Assert.assertEquals(expected.toSet(), stack.zipWithIndex(UnifiedSet.<Pair<String, Integer>>newSet()));
+        Assertions.assertEquals(expected, stack.zipWithIndex());
+        Assertions.assertEquals(expected.toSet(), stack.zipWithIndex(UnifiedSet.<Pair<String, Integer>>newSet()));
     }
 
     @Test
@@ -632,9 +644,9 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3, 4, 5);
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.greaterThan(2));
-        Assert.assertEquals(3, stack.count(predicate));
-        Assert.assertEquals(5, predicate.count);
-        Assert.assertEquals(0, stack.count(Predicates.greaterThan(6)));
+        Assertions.assertEquals(3, stack.count(predicate));
+        Assertions.assertEquals(5, predicate.count);
+        Assertions.assertEquals(0, stack.count(Predicates.greaterThan(6)));
     }
 
     @Test
@@ -642,9 +654,9 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3, 4, 5);
         CountingPredicate2<Object, Object> predicate = new CountingPredicate2<>(Object::equals);
-        Assert.assertEquals(1, stack.countWith(predicate, 1));
-        Assert.assertEquals(5, predicate.count);
-        Assert.assertNotEquals(2, stack.countWith(predicate, 4));
+        Assertions.assertEquals(1, stack.countWith(predicate, 1));
+        Assertions.assertEquals(5, predicate.count);
+        Assertions.assertNotEquals(2, stack.countWith(predicate, 4));
     }
 
     @Test
@@ -652,9 +664,9 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate<Object> predicate = new CountingPredicate<>(Integer.valueOf(1)::equals);
-        Assert.assertTrue(stack.anySatisfy(predicate));
-        Assert.assertEquals(1, predicate.count);
-        Assert.assertFalse(stack.anySatisfy(Integer.valueOf(4)::equals));
+        Assertions.assertTrue(stack.anySatisfy(predicate));
+        Assertions.assertEquals(1, predicate.count);
+        Assertions.assertFalse(stack.anySatisfy(Integer.valueOf(4)::equals));
     }
 
     @Test
@@ -662,9 +674,9 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackWith(3, 3, 3);
         CountingPredicate<Object> predicate = new CountingPredicate<>(Integer.valueOf(3)::equals);
-        Assert.assertTrue(stack.allSatisfy(predicate));
-        Assert.assertEquals(3, predicate.count);
-        Assert.assertFalse(stack.allSatisfy(Integer.valueOf(2)::equals));
+        Assertions.assertTrue(stack.allSatisfy(predicate));
+        Assertions.assertEquals(3, predicate.count);
+        Assertions.assertFalse(stack.allSatisfy(Integer.valueOf(2)::equals));
     }
 
     @Test
@@ -672,9 +684,9 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackWith(3, 3, 3);
         CountingPredicate<Object> predicate = new CountingPredicate<>(Integer.valueOf(4)::equals);
-        Assert.assertTrue(stack.noneSatisfy(predicate));
-        Assert.assertEquals(3, predicate.count);
-        Assert.assertTrue(stack.noneSatisfy(Integer.valueOf(2)::equals));
+        Assertions.assertTrue(stack.noneSatisfy(predicate));
+        Assertions.assertEquals(3, predicate.count);
+        Assertions.assertTrue(stack.noneSatisfy(Integer.valueOf(2)::equals));
     }
 
     @Test
@@ -682,9 +694,9 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate2<Object, Object> predicate = new CountingPredicate2<>(Object::equals);
-        Assert.assertTrue(stack.anySatisfyWith(predicate, 1));
-        Assert.assertEquals(1, predicate.count);
-        Assert.assertFalse(stack.anySatisfyWith(Object::equals, 4));
+        Assertions.assertTrue(stack.anySatisfyWith(predicate, 1));
+        Assertions.assertEquals(1, predicate.count);
+        Assertions.assertFalse(stack.anySatisfyWith(Object::equals, 4));
     }
 
     @Test
@@ -692,9 +704,9 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackWith(3, 3, 3);
         CountingPredicate2<Object, Object> predicate = new CountingPredicate2<>(Object::equals);
-        Assert.assertTrue(stack.allSatisfyWith(predicate, 3));
-        Assert.assertEquals(3, predicate.count);
-        Assert.assertFalse(stack.allSatisfyWith(Object::equals, 2));
+        Assertions.assertTrue(stack.allSatisfyWith(predicate, 3));
+        Assertions.assertEquals(3, predicate.count);
+        Assertions.assertFalse(stack.allSatisfyWith(Object::equals, 2));
     }
 
     @Test
@@ -702,27 +714,27 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack = this.newStackWith(3, 3, 3);
         CountingPredicate2<Object, Object> predicate = new CountingPredicate2<>(Object::equals);
-        Assert.assertTrue(stack.noneSatisfyWith(predicate, 4));
-        Assert.assertEquals(3, predicate.count);
-        Assert.assertTrue(stack.noneSatisfyWith(Object::equals, 2));
+        Assertions.assertTrue(stack.noneSatisfyWith(predicate, 4));
+        Assertions.assertEquals(3, predicate.count);
+        Assertions.assertTrue(stack.noneSatisfyWith(Object::equals, 2));
     }
 
     @Test
     public void injectInto()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(10),
                 this.newStackWith(1, 2, 3, 4).injectInto(Integer.valueOf(0), AddFunction.INTEGER));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 10,
                 this.newStackWith(1, 2, 3, 4).injectInto(0, AddFunction.INTEGER_TO_INT));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 7.0,
                 this.newStackWith(1.0, 2.0, 3.0).injectInto(1.0d, AddFunction.DOUBLE_TO_DOUBLE), 0.001);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 7,
                 this.newStackWith(1, 2, 3).injectInto(1L, AddFunction.INTEGER_TO_LONG));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 7.0,
                 this.newStackWith(1, 2, 3).injectInto(1.0f, AddFunction.INTEGER_TO_FLOAT), 0.001);
     }
@@ -731,10 +743,10 @@ public abstract class StackIterableTestCase
     public void sumOf()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3, 4);
-        Assert.assertEquals(10, stack.sumOfInt(integer -> integer));
-        Assert.assertEquals(10, stack.sumOfLong(Integer::longValue));
-        Assert.assertEquals(10.0d, stack.sumOfDouble(Integer::doubleValue), 0.001);
-        Assert.assertEquals(10.0f, stack.sumOfFloat(Integer::floatValue), 0.001);
+        Assertions.assertEquals(10, stack.sumOfInt(integer -> integer));
+        Assertions.assertEquals(10, stack.sumOfLong(Integer::longValue));
+        Assertions.assertEquals(10.0d, stack.sumOfDouble(Integer::doubleValue), 0.001);
+        Assertions.assertEquals(10.0f, stack.sumOfFloat(Integer::floatValue), 0.001);
     }
 
     @Test
@@ -745,7 +757,7 @@ public abstract class StackIterableTestCase
 
         // The test only ensures the consistency/stability of rounding. This is not meant to test the "correctness" of the float calculation result.
         // Indeed the lower bits of this calculation result are always incorrect due to the information loss of original float values.
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 1.082323233761663,
                 stack.sumOfFloat(i -> 1.0f / (i.floatValue() * i.floatValue() * i.floatValue() * i.floatValue())),
                 1.0e-15);
@@ -757,7 +769,7 @@ public abstract class StackIterableTestCase
         MutableList<Integer> list = Interval.oneTo(100_000).toList().shuffleThis();
         StackIterable<Integer> stack = this.newStackWith(list.toArray(new Integer[]{}));
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 1.082323233711138,
                 stack.sumOfDouble(i -> 1.0d / (i.doubleValue() * i.doubleValue() * i.doubleValue() * i.doubleValue())),
                 1.0e-15);
@@ -768,8 +780,8 @@ public abstract class StackIterableTestCase
     {
         RichIterable<Integer> values = this.newStackFromTopToBottom(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         ObjectLongMap<Integer> result = values.sumByInt(i -> i % 2, e -> e);
-        Assert.assertEquals(25, result.get(1));
-        Assert.assertEquals(30, result.get(0));
+        Assertions.assertEquals(25, result.get(1));
+        Assertions.assertEquals(30, result.get(0));
     }
 
     @Test
@@ -777,8 +789,8 @@ public abstract class StackIterableTestCase
     {
         RichIterable<Integer> values = this.newStackFromTopToBottom(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         ObjectDoubleMap<Integer> result = values.sumByFloat(f -> f % 2, e -> e);
-        Assert.assertEquals(25.0f, result.get(1), 0.0);
-        Assert.assertEquals(30.0f, result.get(0), 0.0);
+        Assertions.assertEquals(25.0f, result.get(1), 0.0);
+        Assertions.assertEquals(30.0f, result.get(0), 0.0);
     }
 
     @Test
@@ -798,12 +810,12 @@ public abstract class StackIterableTestCase
 
         // The test only ensures the consistency/stability of rounding. This is not meant to test the "correctness" of the float calculation result.
         // Indeed the lower bits of this calculation result are always incorrect due to the information loss of original float values.
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 1.082323233761663,
                 result.get(1),
                 1.0e-15);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 1.082323233761663,
                 result.get(2),
                 1.0e-15);
@@ -814,8 +826,8 @@ public abstract class StackIterableTestCase
     {
         RichIterable<Integer> values = this.newStackFromTopToBottom(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         ObjectLongMap<Integer> result = values.sumByLong(l -> l % 2, e -> e);
-        Assert.assertEquals(25, result.get(1));
-        Assert.assertEquals(30, result.get(0));
+        Assertions.assertEquals(25, result.get(1));
+        Assertions.assertEquals(30, result.get(0));
     }
 
     @Test
@@ -823,8 +835,8 @@ public abstract class StackIterableTestCase
     {
         RichIterable<Integer> values = this.newStackFromTopToBottom(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         ObjectDoubleMap<Integer> result = values.sumByDouble(d -> d % 2, e -> e);
-        Assert.assertEquals(25.0d, result.get(1), 0.0);
-        Assert.assertEquals(30.0d, result.get(0), 0.0);
+        Assertions.assertEquals(25.0d, result.get(1), 0.0);
+        Assertions.assertEquals(30.0d, result.get(0), 0.0);
     }
 
     @Test
@@ -842,12 +854,12 @@ public abstract class StackIterableTestCase
                     return 1.0d / (i.doubleValue() * i.doubleValue() * i.doubleValue() * i.doubleValue());
                 });
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 1.082323233711138,
                 result.get(1),
                 1.0e-15);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 1.082323233711138,
                 result.get(2),
                 1.0e-15);
@@ -856,10 +868,10 @@ public abstract class StackIterableTestCase
     @Test
     public void max()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(4),
                 this.newStackFromTopToBottom(4, 3, 2, 1).max());
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(1),
                 this.newStackFromTopToBottom(4, 3, 2, 1).max(Comparators.<Integer>reverseNaturalOrder()));
     }
@@ -867,7 +879,7 @@ public abstract class StackIterableTestCase
     @Test
     public void maxBy()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(3),
                 this.newStackWith(1, 2, 3).maxBy(String::valueOf));
     }
@@ -875,10 +887,10 @@ public abstract class StackIterableTestCase
     @Test
     public void min()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(1),
                 this.newStackWith(1, 2, 3, 4).min());
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(4),
                 this.newStackWith(1, 2, 3, 4).min(Comparators.<Integer>reverseNaturalOrder()));
     }
@@ -887,25 +899,25 @@ public abstract class StackIterableTestCase
     public void minBy()
     {
         CountingFunction<Object, String> function = CountingFunction.of(String::valueOf);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(1),
                 this.newStackWith(1, 2, 3).minBy(function));
-        Assert.assertEquals(3, function.count);
+        Assertions.assertEquals(3, function.count);
     }
 
     @Test
     public void testToString()
     {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(4, 3, 2, 1);
-        Assert.assertEquals("[4, 3, 2, 1]", stack.toString());
+        Assertions.assertEquals("[4, 3, 2, 1]", stack.toString());
     }
 
     @Test
     public void makeString()
     {
-        Assert.assertEquals("3, 2, 1", this.newStackFromTopToBottom(3, 2, 1).makeString());
-        Assert.assertEquals("3~2~1", this.newStackFromTopToBottom(3, 2, 1).makeString("~"));
-        Assert.assertEquals("[3/2/1]", this.newStackFromTopToBottom(3, 2, 1).makeString("[", "/", "]"));
+        Assertions.assertEquals("3, 2, 1", this.newStackFromTopToBottom(3, 2, 1).makeString());
+        Assertions.assertEquals("3~2~1", this.newStackFromTopToBottom(3, 2, 1).makeString("~"));
+        Assertions.assertEquals("[3/2/1]", this.newStackFromTopToBottom(3, 2, 1).makeString("[", "/", "]"));
     }
 
     @Test
@@ -915,15 +927,15 @@ public abstract class StackIterableTestCase
         Appendable appendable = new StringBuilder();
 
         stack.appendString(appendable);
-        Assert.assertEquals("3, 2, 1", appendable.toString());
+        Assertions.assertEquals("3, 2, 1", appendable.toString());
 
         Appendable appendable2 = new StringBuilder();
         stack.appendString(appendable2, "/");
-        Assert.assertEquals("3/2/1", appendable2.toString());
+        Assertions.assertEquals("3/2/1", appendable2.toString());
 
         Appendable appendable3 = new StringBuilder();
         stack.appendString(appendable3, "[", "/", "]");
-        Assert.assertEquals("[3/2/1]", appendable3.toString());
+        Assertions.assertEquals("[3/2/1]", appendable3.toString());
     }
 
     @Test
@@ -934,8 +946,8 @@ public abstract class StackIterableTestCase
                 Tuples.pair(Boolean.TRUE, "3"),
                 Tuples.pair(Boolean.FALSE, "2"),
                 Tuples.pair(Boolean.TRUE, "1"));
-        Assert.assertEquals(expected, stack.groupBy(object -> IntegerPredicates.isOdd().accept(Integer.parseInt(object))));
-        Assert.assertEquals(expected, stack.groupBy(object -> IntegerPredicates.isOdd().accept(Integer.parseInt(object)), FastListMultimap.<Boolean, String>newMultimap()));
+        Assertions.assertEquals(expected, stack.groupBy(object -> IntegerPredicates.isOdd().accept(Integer.parseInt(object))));
+        Assertions.assertEquals(expected, stack.groupBy(object -> IntegerPredicates.isOdd().accept(Integer.parseInt(object)), FastListMultimap.<Boolean, String>newMultimap()));
     }
 
     @Test
@@ -948,36 +960,40 @@ public abstract class StackIterableTestCase
 
         Multimap<Integer, Integer> actual =
                 stack.groupByEach(new NegativeIntervalFunction());
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
         Multimap<Integer, Integer> actualWithTarget =
                 stack.groupByEach(new NegativeIntervalFunction(), FastListMultimap.<Integer, Integer>newMultimap());
-        Assert.assertEquals(expected, actualWithTarget);
+        Assertions.assertEquals(expected, actualWithTarget);
     }
 
     @Test
     public void groupByUniqueKey()
     {
-        Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), this.newStackWith(1, 2, 3).groupByUniqueKey(id -> id));
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), this.newStackWith(1, 2, 3).groupByUniqueKey(id -> id));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void groupByUniqueKey_throws()
     {
-        this.newStackWith(1, 2, 3).groupByUniqueKey(Functions.getFixedValue(1));
+        assertThrows(IllegalStateException.class, () -> {
+            this.newStackWith(1, 2, 3).groupByUniqueKey(Functions.getFixedValue(1));
+        });
     }
 
     @Test
     public void groupByUniqueKey_target()
     {
         MutableMap<Integer, Integer> integers = this.newStackWith(1, 2, 3).groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues(0, 0, 1, 1, 2, 2, 3, 3), integers);
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues(0, 0, 1, 1, 2, 2, 3, 3), integers);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void groupByUniqueKey_target_throws()
     {
-        this.newStackWith(1, 2, 3).groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(2, 2));
+        assertThrows(IllegalStateException.class, () -> {
+            this.newStackWith(1, 2, 3).groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(2, 2));
+        });
     }
 
     @Test
@@ -997,8 +1013,8 @@ public abstract class StackIterableTestCase
     {
         MutableList<String> tapResult = Lists.mutable.of();
         StackIterable<String> stack = this.newStackWith("1", "2", "3", "4", "5");
-        Assert.assertSame(stack, stack.tap(tapResult::add));
-        Assert.assertEquals(stack.toList(), tapResult);
+        Assertions.assertSame(stack, stack.tap(tapResult::add));
+        Assertions.assertEquals(stack.toList(), tapResult);
     }
 
     @Test
@@ -1008,7 +1024,7 @@ public abstract class StackIterableTestCase
         Appendable builder = new StringBuilder();
         Procedure<String> appendProcedure = Procedures.append(builder);
         stack.forEach(appendProcedure);
-        Assert.assertEquals("54321", builder.toString());
+        Assertions.assertEquals("54321", builder.toString());
     }
 
     @Test
@@ -1017,7 +1033,7 @@ public abstract class StackIterableTestCase
         StackIterable<String> stack = this.newStackWith("1", "2", "3", "4");
         StringBuilder builder = new StringBuilder();
         stack.forEachWith((argument1, argument2) -> builder.append(argument1).append(argument2), 0);
-        Assert.assertEquals("40302010", builder.toString());
+        Assertions.assertEquals("40302010", builder.toString());
     }
 
     @Test
@@ -1026,13 +1042,13 @@ public abstract class StackIterableTestCase
         StackIterable<String> stack = this.newStackFromTopToBottom("5", "4", "3", "2", "1");
         StringBuilder builder = new StringBuilder();
         stack.forEachWithIndex((each, index) -> builder.append(each).append(index));
-        Assert.assertEquals("5041322314", builder.toString());
+        Assertions.assertEquals("5041322314", builder.toString());
     }
 
     @Test
     public void toList()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(4, 3, 2, 1),
                 this.newStackFromTopToBottom(4, 3, 2, 1).toList());
     }
@@ -1040,16 +1056,16 @@ public abstract class StackIterableTestCase
     @Test
     public void toStack()
     {
-        Assert.assertEquals(this.newStackFromTopToBottom(3, 2, 1), this.newStackFromTopToBottom(3, 2, 1).toStack());
+        Assertions.assertEquals(this.newStackFromTopToBottom(3, 2, 1), this.newStackFromTopToBottom(3, 2, 1).toStack());
     }
 
     @Test
     public void toSortedList()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Interval.oneTo(4),
                 this.newStackFromTopToBottom(4, 3, 1, 2).toSortedList());
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Interval.fromTo(4, 1),
                 this.newStackFromTopToBottom(4, 3, 1, 2).toSortedList(Collections.<Integer>reverseOrder()));
     }
@@ -1058,7 +1074,7 @@ public abstract class StackIterableTestCase
     public void toSortedListBy()
     {
         MutableList<Integer> list = FastList.newList(Interval.oneTo(10)).shuffleThis();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Interval.oneTo(10),
                 this.newStack(list).toSortedListBy(Functions.getIntegerPassThru()));
     }
@@ -1066,7 +1082,7 @@ public abstract class StackIterableTestCase
     @Test
     public void toSet()
     {
-        Assert.assertEquals(UnifiedSet.newSetWith(4, 3, 2, 1),
+        Assertions.assertEquals(UnifiedSet.newSetWith(4, 3, 2, 1),
                 this.newStackWith(1, 2, 3, 4).toSet());
     }
 
@@ -1076,12 +1092,12 @@ public abstract class StackIterableTestCase
         MutableSortedSet<Integer> expected = TreeSortedSet.newSetWith(1, 2, 4, 5);
         StackIterable<Integer> stack = this.newStackWith(2, 1, 5, 4);
 
-        Assert.assertEquals(expected, stack.toSortedSet());
-        Assert.assertEquals(FastList.newListWith(1, 2, 4, 5), stack.toSortedSet().toList());
+        Assertions.assertEquals(expected, stack.toSortedSet());
+        Assertions.assertEquals(FastList.newListWith(1, 2, 4, 5), stack.toSortedSet().toList());
 
         MutableSortedSet<Integer> reversed = stack.toSortedSet(Comparators.reverseNaturalOrder());
         Verify.assertSortedSetsEqual(reversed, stack.toSortedSet(Comparators.reverseNaturalOrder()));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(5, 4, 2, 1),
                 stack.toSortedSet(Comparators.reverseNaturalOrder()).toList());
     }
@@ -1092,10 +1108,10 @@ public abstract class StackIterableTestCase
         SetIterable<Integer> expected = UnifiedSet.newSetWith(10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
 
         StackIterable<Integer> stack = this.newStackWith(5, 2, 4, 3, 1, 6, 7, 8, 9, 10);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 expected,
                 stack.toSortedSetBy(String::valueOf));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(1, 10, 2, 3, 4, 5, 6, 7, 8, 9),
                 stack.toSortedSetBy(String::valueOf).toList());
     }
@@ -1103,7 +1119,7 @@ public abstract class StackIterableTestCase
     @Test
     public void toBag()
     {
-        Assert.assertEquals(Bags.mutable.of("C", "B", "A"),
+        Assertions.assertEquals(Bags.mutable.of("C", "B", "A"),
                 this.newStackFromTopToBottom("C", "B", "A").toBag());
     }
 
@@ -1114,11 +1130,11 @@ public abstract class StackIterableTestCase
         StackIterable<Integer> stack = this.newStackWith(2, 2, 1, 5, 4);
 
         Verify.assertSortedBagsEqual(expected, stack.toSortedBag());
-        Assert.assertEquals(FastList.newListWith(1, 2, 2, 4, 5), stack.toSortedBag().toList());
+        Assertions.assertEquals(FastList.newListWith(1, 2, 2, 4, 5), stack.toSortedBag().toList());
 
         SortedBag<Integer> expected2 = TreeBag.newBagWith(Comparators.reverseNaturalOrder(), 1, 2, 2, 4, 5);
         Verify.assertSortedBagsEqual(expected2, stack.toSortedBag(Comparators.reverseNaturalOrder()));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(5, 4, 2, 2, 1),
                 stack.toSortedBag(Comparators.reverseNaturalOrder()).toList());
     }
@@ -1137,17 +1153,17 @@ public abstract class StackIterableTestCase
     @Test
     public void toMap()
     {
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("4", "4", "3", "3", "2", "2", "1", "1"),
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("4", "4", "3", "3", "2", "2", "1", "1"),
                 this.newStackFromTopToBottom(4, 3, 2, 1).toMap(String::valueOf, String::valueOf));
     }
 
     @Test
     public void toSortedMap()
     {
-        Assert.assertEquals(UnifiedMap.newWithKeysValues(3, "3", 2, "2", 1, "1"),
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues(3, "3", 2, "2", 1, "1"),
                 this.newStackFromTopToBottom(3, 2, 1).toSortedMap(Functions.getIntegerPassThru(), String::valueOf));
 
-        Assert.assertEquals(TreeSortedMap.newMapWith(Comparators.<Integer>reverseNaturalOrder(), 3, "3", 2, "2", 1, "1"),
+        Assertions.assertEquals(TreeSortedMap.newMapWith(Comparators.<Integer>reverseNaturalOrder(), 3, "3", 2, "2", 1, "1"),
                 this.newStackFromTopToBottom(3, 2, 1).toSortedMap(Comparators.<Integer>reverseNaturalOrder(),
                         Functions.getIntegerPassThru(), String::valueOf));
     }
@@ -1155,15 +1171,15 @@ public abstract class StackIterableTestCase
     @Test
     public void asLazy()
     {
-        Assert.assertEquals(FastList.newListWith("3", "2", "1"),
+        Assertions.assertEquals(FastList.newListWith("3", "2", "1"),
                 this.newStackFromTopToBottom("3", "2", "1").asLazy().toList());
     }
 
     @Test
     public void toArray()
     {
-        Assert.assertArrayEquals(new Object[]{4, 3, 2, 1}, this.newStackFromTopToBottom(4, 3, 2, 1).toArray());
-        Assert.assertArrayEquals(new Integer[]{4, 3, 2, 1}, this.newStackFromTopToBottom(4, 3, 2, 1).toArray(new Integer[0]));
+        Assertions.assertArrayEquals(new Object[]{4, 3, 2, 1}, this.newStackFromTopToBottom(4, 3, 2, 1).toArray());
+        Assertions.assertArrayEquals(new Integer[]{4, 3, 2, 1}, this.newStackFromTopToBottom(4, 3, 2, 1).toArray(new Integer[0]));
     }
 
     @Test
@@ -1175,7 +1191,7 @@ public abstract class StackIterableTestCase
         {
             builder.append(string);
         }
-        Assert.assertEquals("54321", builder.toString());
+        Assertions.assertEquals("54321", builder.toString());
     }
 
     @Test
@@ -1190,14 +1206,14 @@ public abstract class StackIterableTestCase
 
         Verify.assertEqualsAndHashCode(stack1, stack2);
         Verify.assertPostSerializedEqualsAndHashCode(this.newStackWith(1, 2, 3, 4));
-        Assert.assertNotEquals(stack1, stack3);
-        Assert.assertNotEquals(stack1, stack4);
-        Assert.assertNotEquals(stack1, stack5);
-        Assert.assertNotEquals(stack1, stack6);
+        Assertions.assertNotEquals(stack1, stack3);
+        Assertions.assertNotEquals(stack1, stack4);
+        Assertions.assertNotEquals(stack1, stack5);
+        Assertions.assertNotEquals(stack1, stack6);
 
         Verify.assertPostSerializedEqualsAndHashCode(this.newStackWith(null, null, null));
 
-        Assert.assertEquals(Stacks.mutable.of(), this.newStackWith());
+        Assertions.assertEquals(Stacks.mutable.of(), this.newStackWith());
     }
 
     @Test
@@ -1205,14 +1221,14 @@ public abstract class StackIterableTestCase
     {
         StackIterable<Integer> stack1 = this.newStackWith(1, 2, 3, 5);
         StackIterable<Integer> stack2 = this.newStackWith(1, 2, 3, 4);
-        Assert.assertNotEquals(stack1.hashCode(), stack2.hashCode());
+        Assertions.assertNotEquals(stack1.hashCode(), stack2.hashCode());
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 31 * 31 * 31 * 31 + 1 * 31 * 31 * 31 + 2 * 31 * 31 + 3 * 31 + 4,
                 this.newStackFromTopToBottom(1, 2, 3, 4).hashCode());
-        Assert.assertEquals(31 * 31 * 31, this.newStackFromTopToBottom(null, null, null).hashCode());
+        Assertions.assertEquals(31 * 31 * 31, this.newStackFromTopToBottom(null, null, null).hashCode());
 
-        Assert.assertNotEquals(this.newStackFromTopToBottom(1, 2, 3, 4).hashCode(), this.newStackFromTopToBottom(4, 3, 2, 1).hashCode());
+        Assertions.assertNotEquals(this.newStackFromTopToBottom(1, 2, 3, 4).hashCode(), this.newStackFromTopToBottom(4, 3, 2, 1).hashCode());
     }
 
     @Test
@@ -1221,9 +1237,9 @@ public abstract class StackIterableTestCase
         Function0<AtomicInteger> valueCreator = AtomicInteger::new;
         StackIterable<Integer> collection = this.newStackWith(1, 1, 1, 2, 2, 3);
         MapIterable<String, AtomicInteger> aggregation = collection.aggregateInPlaceBy(String::valueOf, valueCreator, AtomicInteger::addAndGet);
-        Assert.assertEquals(3, aggregation.get("1").intValue());
-        Assert.assertEquals(4, aggregation.get("2").intValue());
-        Assert.assertEquals(3, aggregation.get("3").intValue());
+        Assertions.assertEquals(3, aggregation.get("1").intValue());
+        Assertions.assertEquals(4, aggregation.get("2").intValue());
+        Assertions.assertEquals(3, aggregation.get("3").intValue());
     }
 
     @Test
@@ -1233,9 +1249,9 @@ public abstract class StackIterableTestCase
         Function2<Integer, Integer, Integer> sumAggregator = (integer1, integer2) -> integer1 + integer2;
         StackIterable<Integer> collection = this.newStackWith(1, 1, 1, 2, 2, 3);
         MapIterable<String, Integer> aggregation = collection.aggregateBy(String::valueOf, valueCreator, sumAggregator);
-        Assert.assertEquals(3, aggregation.get("1").intValue());
-        Assert.assertEquals(4, aggregation.get("2").intValue());
-        Assert.assertEquals(3, aggregation.get("3").intValue());
+        Assertions.assertEquals(3, aggregation.get("1").intValue());
+        Assertions.assertEquals(4, aggregation.get("2").intValue());
+        Assertions.assertEquals(3, aggregation.get("3").intValue());
     }
 
     private static final class CountingPredicate<T>

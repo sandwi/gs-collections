@@ -19,7 +19,7 @@ package com.gs.collections.impl.map.sorted.mutable;
 import java.util.TreeMap;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SortedMapAdapterSerializationTest
 {
@@ -28,10 +28,12 @@ public class SortedMapAdapterSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc29ydGVkLm11dGFibGUuU29ydGVk\n"
-                        + "TWFwQWRhcHRlcgAAAAAAAAABAgABTAAIZGVsZWdhdGV0ABVMamF2YS91dGlsL1NvcnRlZE1hcDt4\n"
-                        + "cHNyABFqYXZhLnV0aWwuVHJlZU1hcAzB9j4tJWrmAwABTAAKY29tcGFyYXRvcnQAFkxqYXZhL3V0\n"
-                        + "aWwvQ29tcGFyYXRvcjt4cHB3BAAAAAB4",
+                """
+                rO0ABXNyADtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc29ydGVkLm11dGFibGUuU29ydGVk
+                TWFwQWRhcHRlcgAAAAAAAAABAgABTAAIZGVsZWdhdGV0ABVMamF2YS91dGlsL1NvcnRlZE1hcDt4
+                cHNyABFqYXZhLnV0aWwuVHJlZU1hcAzB9j4tJWrmAwABTAAKY29tcGFyYXRvcnQAFkxqYXZhL3V0
+                aWwvQ29tcGFyYXRvcjt4cHB3BAAAAAB4\
+                """,
                 new SortedMapAdapter<Object, Object>(new TreeMap<Object, Object>()));
     }
 }

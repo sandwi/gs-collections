@@ -23,8 +23,8 @@ import com.gs.collections.api.map.primitive.MutableObjectBooleanMap;
 import com.gs.collections.impl.block.factory.HashingStrategies;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.test.domain.Person;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ObjectBooleanHashMapWithHashingStrategy#keySet()}.
@@ -106,6 +106,6 @@ public class ObjectBooleanHashMapWithHashingStrategyKeySetTest extends ObjectBoo
         ObjectBooleanHashMapWithHashingStrategy<Person> map = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false);
         Set<Person> people = map.keySet();
         people.remove(JOHNDOE);
-        Assert.assertEquals(map, ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNSMITH, false));
+        Assertions.assertEquals(map, ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNSMITH, false));
     }
 }

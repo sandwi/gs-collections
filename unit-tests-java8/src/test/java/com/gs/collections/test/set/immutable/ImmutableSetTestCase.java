@@ -22,13 +22,13 @@ import com.gs.collections.api.collection.ImmutableCollection;
 import com.gs.collections.api.set.ImmutableSet;
 import com.gs.collections.test.collection.immutable.ImmutableCollectionUniqueTestCase;
 import com.gs.collections.test.set.UnsortedSetIterableTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public interface ImmutableSetTestCase extends ImmutableCollectionUniqueTestCase, UnsortedSetIterableTestCase
 {

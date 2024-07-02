@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.predicate;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CodePointPredicateSerializationTest
 {
@@ -26,8 +26,10 @@ public class CodePointPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50\n"
-                        + "UHJlZGljYXRlJDEAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50
+                UHJlZGljYXRlJDEAAAAAAAAAAQIAAHhw\
+                """,
                 CodePointPredicate.IS_UPPERCASE);
     }
 
@@ -36,8 +38,10 @@ public class CodePointPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50\n"
-                        + "UHJlZGljYXRlJDIAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50
+                UHJlZGljYXRlJDIAAAAAAAAAAQIAAHhw\
+                """,
                 CodePointPredicate.IS_LOWERCASE);
     }
 
@@ -46,8 +50,10 @@ public class CodePointPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50\n"
-                        + "UHJlZGljYXRlJDMAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50
+                UHJlZGljYXRlJDMAAAAAAAAAAQIAAHhw\
+                """,
                 CodePointPredicate.IS_DIGIT);
     }
 
@@ -56,8 +62,10 @@ public class CodePointPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50\n"
-                        + "UHJlZGljYXRlJDQAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50
+                UHJlZGljYXRlJDQAAAAAAAAAAQIAAHhw\
+                """,
                 CodePointPredicate.IS_LETTER);
     }
 
@@ -66,8 +74,10 @@ public class CodePointPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50\n"
-                        + "UHJlZGljYXRlJDUAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50
+                UHJlZGljYXRlJDUAAAAAAAAAAQIAAHhw\
+                """,
                 CodePointPredicate.IS_LETTER_OR_DIGIT);
     }
 
@@ -76,8 +86,10 @@ public class CodePointPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50\n"
-                        + "UHJlZGljYXRlJDYAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50
+                UHJlZGljYXRlJDYAAAAAAAAAAQIAAHhw\
+                """,
                 CodePointPredicate.IS_WHITESPACE);
     }
 
@@ -86,8 +98,10 @@ public class CodePointPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50\n"
-                        + "UHJlZGljYXRlJDcAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuQ29kZVBvaW50
+                UHJlZGljYXRlJDcAAAAAAAAAAQIAAHhw\
+                """,
                 CodePointPredicate.IS_UNDEFINED);
     }
 }

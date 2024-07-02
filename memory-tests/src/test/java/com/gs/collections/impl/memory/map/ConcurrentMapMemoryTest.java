@@ -25,7 +25,6 @@ import com.gs.collections.api.list.ImmutableList;
 import com.gs.collections.impl.map.mutable.ConcurrentHashMapUnsafe;
 import com.gs.collections.impl.memory.MemoryTestBench;
 import com.gs.collections.impl.memory.TestDataFactory;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.collection.concurrent.TrieMap;

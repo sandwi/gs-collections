@@ -23,15 +23,15 @@ import com.gs.collections.api.RichIterable;
 import com.gs.collections.api.collection.MutableCollection;
 import com.gs.collections.impl.block.factory.Predicates;
 import com.gs.collections.impl.block.factory.Predicates2;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isOneOf;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public interface UnorderedIterableTestCase extends RichIterableTestCase
 {

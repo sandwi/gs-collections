@@ -19,8 +19,8 @@ package com.gs.collections.impl;
 import com.gs.collections.impl.block.factory.Procedures;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CounterTest
 {
@@ -29,32 +29,32 @@ public class CounterTest
     {
         Counter counter = new Counter();
 
-        Assert.assertEquals(0, counter.getCount());
+        Assertions.assertEquals(0, counter.getCount());
         counter.increment();
-        Assert.assertEquals(1, counter.getCount());
+        Assertions.assertEquals(1, counter.getCount());
         counter.increment();
-        Assert.assertEquals(2, counter.getCount());
+        Assertions.assertEquals(2, counter.getCount());
         counter.add(16);
-        Assert.assertEquals(18, counter.getCount());
+        Assertions.assertEquals(18, counter.getCount());
         Interval.oneTo(1000).forEach(Procedures.cast(each -> counter.increment()));
-        Assert.assertEquals(1018, counter.getCount());
-        Assert.assertEquals("1018", counter.toString());
+        Assertions.assertEquals(1018, counter.getCount());
+        Assertions.assertEquals("1018", counter.toString());
 
         counter.reset();
-        Assert.assertEquals(0, counter.getCount());
+        Assertions.assertEquals(0, counter.getCount());
         counter.add(4);
-        Assert.assertEquals(4, counter.getCount());
+        Assertions.assertEquals(4, counter.getCount());
         counter.increment();
-        Assert.assertEquals(5, counter.getCount());
+        Assertions.assertEquals(5, counter.getCount());
 
-        Assert.assertEquals("5", counter.toString());
+        Assertions.assertEquals("5", counter.toString());
     }
 
     @Test
     public void equalsAndHashCode()
     {
         Verify.assertEqualsAndHashCode(new Counter(1), new Counter(1));
-        Assert.assertNotEquals(new Counter(1), new Counter(2));
+        Assertions.assertNotEquals(new Counter(1), new Counter(2));
     }
 
     @Test

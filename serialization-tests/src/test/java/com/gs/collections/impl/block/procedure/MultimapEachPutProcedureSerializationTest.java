@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MultimapEachPutProcedureSerializationTest
 {
@@ -26,14 +26,16 @@ public class MultimapEachPutProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTXVsdGltYXBF\n"
-                        + "YWNoUHV0UHJvY2VkdXJlAAAAAAAAAAECAANMAA1lYWNoUHJvY2VkdXJldAAzTGNvbS9ncy9jb2xs\n"
-                        + "ZWN0aW9ucy9hcGkvYmxvY2svcHJvY2VkdXJlL1Byb2NlZHVyZTI7TAALa2V5RnVuY3Rpb250ADBM\n"
-                        + "Y29tL2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9jay9mdW5jdGlvbi9GdW5jdGlvbjtMAAhtdWx0aW1h\n"
-                        + "cHQAMUxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL211bHRpbWFwL011dGFibGVNdWx0aW1hcDt4cHNy\n"
-                        + "AEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTXVsdGltYXBFYWNoUHV0\n"
-                        + "UHJvY2VkdXJlJDE7vei5hMKQJQIAAUwABnRoaXMkMHQAQkxjb20vZ3MvY29sbGVjdGlvbnMvaW1w\n"
-                        + "bC9ibG9jay9wcm9jZWR1cmUvTXVsdGltYXBFYWNoUHV0UHJvY2VkdXJlO3hwcQB+AARwcA==",
+                """
+                rO0ABXNyAEBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTXVsdGltYXBF
+                YWNoUHV0UHJvY2VkdXJlAAAAAAAAAAECAANMAA1lYWNoUHJvY2VkdXJldAAzTGNvbS9ncy9jb2xs
+                ZWN0aW9ucy9hcGkvYmxvY2svcHJvY2VkdXJlL1Byb2NlZHVyZTI7TAALa2V5RnVuY3Rpb250ADBM
+                Y29tL2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9jay9mdW5jdGlvbi9GdW5jdGlvbjtMAAhtdWx0aW1h
+                cHQAMUxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL211bHRpbWFwL011dGFibGVNdWx0aW1hcDt4cHNy
+                AEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTXVsdGltYXBFYWNoUHV0
+                UHJvY2VkdXJlJDE7vei5hMKQJQIAAUwABnRoaXMkMHQAQkxjb20vZ3MvY29sbGVjdGlvbnMvaW1w
+                bC9ibG9jay9wcm9jZWR1cmUvTXVsdGltYXBFYWNoUHV0UHJvY2VkdXJlO3hwcQB+AARwcA==\
+                """,
                 new MultimapEachPutProcedure<Object, Object>(null, null));
     }
 }

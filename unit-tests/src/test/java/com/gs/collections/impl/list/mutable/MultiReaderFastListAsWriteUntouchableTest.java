@@ -21,8 +21,8 @@ import java.util.Arrays;
 
 import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestCase
 {
@@ -37,7 +37,7 @@ public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestC
     public void serialization()
     {
         MutableList<Integer> collection = this.newWith(1, 2, 3, 4, 5);
-        Assert.assertFalse(collection instanceof Serializable);
+        Assertions.assertFalse(collection instanceof Serializable);
     }
 
     @Override
@@ -58,10 +58,11 @@ public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestC
     @Test
     public void testToString()
     {
-        Assert.assertEquals("[1, 2, 3]", this.newWith(1, 2, 3).toString());
+        Assertions.assertEquals("[1, 2, 3]", this.newWith(1, 2, 3).toString());
     }
 
     @Override
+    @Test
     public void subList()
     {
         MutableList<String> list = this.newWith("A", "B", "C", "D");
@@ -76,7 +77,7 @@ public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestC
         sublist.remove("X");
         Verify.assertContainsAll(sublist, "B", "C");
         Verify.assertContainsAll(list, "A", "B", "C", "D");
-        Assert.assertEquals("C", sublist.set(1, "R"));
+        Assertions.assertEquals("C", sublist.set(1, "R"));
         Verify.assertContainsAll(sublist, "B", "R");
         Verify.assertContainsAll(list, "A", "B", "R", "D");
         sublist.addAll(Arrays.asList("W", "G"));
@@ -91,7 +92,7 @@ public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestC
     @Test
     public void makeString()
     {
-        Assert.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());
+        Assertions.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());
     }
 
     @Override
@@ -100,6 +101,6 @@ public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestC
     {
         Appendable builder = new StringBuilder();
         this.newWith(1, 2, 3).appendString(builder);
-        Assert.assertEquals("1, 2, 3", builder.toString());
+        Assertions.assertEquals("1, 2, 3", builder.toString());
     }
 }

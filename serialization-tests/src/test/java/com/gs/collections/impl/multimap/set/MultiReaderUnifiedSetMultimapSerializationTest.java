@@ -31,8 +31,10 @@ public class MultiReaderUnifiedSetMultimapSerializationTest
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuTXVsdGlSZWFkZXJV\n"
-                + "bmlmaWVkU2V0TXVsdGltYXAAAAAAAAAAAQwAAHhwdwQAAAACdAABQXcEAAAAAnEAfgACdAABQnEA\n"
-                + "fgADdwQAAAABcQB+AAJ4";
+        return """
+                rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuTXVsdGlSZWFkZXJV
+                bmlmaWVkU2V0TXVsdGltYXAAAAAAAAAAAQwAAHhwdwQAAAACdAABQXcEAAAAAnEAfgACdAABQnEA
+                fgADdwQAAAABcQB+AAJ4\
+                """;
     }
 }

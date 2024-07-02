@@ -22,8 +22,10 @@ import com.gs.collections.api.iterator.BooleanIterator;
 import com.gs.collections.api.stack.primitive.ImmutableBooleanStack;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link ImmutableBooleanEmptyStack}.
@@ -37,17 +39,21 @@ public class ImmutableBooleanEmptyStackTest extends AbstractImmutableBooleanStac
     }
 
     @Override
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void pop()
     {
-        this.classUnderTest().pop();
+        assertThrows(EmptyStackException.class, () -> {
+            this.classUnderTest().pop();
+        });
     }
 
     @Override
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void pop_with_count_greater_than_stack_size_throws_exception()
     {
-        this.classUnderTest().pop(1);
+        assertThrows(EmptyStackException.class, () -> {
+            this.classUnderTest().pop(1);
+        });
     }
 
     @Override
@@ -56,8 +62,8 @@ public class ImmutableBooleanEmptyStackTest extends AbstractImmutableBooleanStac
     {
         ImmutableBooleanStack stack = this.classUnderTest();
         ImmutableBooleanStack stack1 = stack.pop(0);
-        Assert.assertSame(stack1, stack);
-        Assert.assertEquals(this.classUnderTest(), stack);
+        Assertions.assertSame(stack1, stack);
+        Assertions.assertEquals(this.classUnderTest(), stack);
     }
 
     @Override
@@ -65,42 +71,48 @@ public class ImmutableBooleanEmptyStackTest extends AbstractImmutableBooleanStac
     public void booleanIterator()
     {
         BooleanIterator iterator = this.classUnderTest().booleanIterator();
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasNext());
     }
 
     @Override
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void peek()
     {
-        this.classUnderTest().peek();
+        assertThrows(EmptyStackException.class, () -> {
+            this.classUnderTest().peek();
+        });
     }
 
     @Test
     public void peekWithCount()
     {
-        Assert.assertEquals(BooleanArrayList.newListWith(), this.classUnderTest().peek(0));
+        Assertions.assertEquals(BooleanArrayList.newListWith(), this.classUnderTest().peek(0));
         Verify.assertThrows(EmptyStackException.class, () -> this.classUnderTest().peek(1));
     }
 
     @Override
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void peek_at_index_equal_to_size_throws_exception()
     {
-        this.classUnderTest().peekAt(0);
+        assertThrows(EmptyStackException.class, () -> {
+            this.classUnderTest().peekAt(0);
+        });
     }
 
     @Override
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void peek_at_index_greater_than_size_throws_exception()
     {
-        this.classUnderTest().peekAt(1);
+        assertThrows(EmptyStackException.class, () -> {
+            this.classUnderTest().peekAt(1);
+        });
     }
 
     @Override
     @Test
     public void notEmpty()
     {
-        Assert.assertFalse(this.newWith().notEmpty());
+        Assertions.assertFalse(this.newWith().notEmpty());
     }
 
     @Override
@@ -111,6 +123,7 @@ public class ImmutableBooleanEmptyStackTest extends AbstractImmutableBooleanStac
     }
 
     @Override
+    @Test
     public void testEquals()
     {
         super.testEquals();

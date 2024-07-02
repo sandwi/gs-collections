@@ -22,11 +22,11 @@ import com.gs.collections.api.map.ImmutableMap;
 import com.gs.collections.api.map.MutableMap;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.junit.runners.Java8Runner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @RunWith(Java8Runner.class)
 public class ImmutableUnifiedMapTest implements ImmutableMapTestCase

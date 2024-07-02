@@ -37,8 +37,10 @@ public class MultiReaderHashBagMultimapSerializationTest
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuTXVsdGlSZWFkZXJI\n"
-                + "YXNoQmFnTXVsdGltYXAAAAAAAAAAAgwAAHhwdwQAAAACdAABQXcEAAAAAnEAfgACdwQAAAABdAAB\n"
-                + "QncEAAAAAnEAfgADdwQAAAABcQB+AAJ3BAAAAAF4";
+        return """
+                rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuTXVsdGlSZWFkZXJI
+                YXNoQmFnTXVsdGltYXAAAAAAAAAAAgwAAHhwdwQAAAACdAABQXcEAAAAAnEAfgACdwQAAAABdAAB
+                QncEAAAAAnEAfgADdwQAAAABcQB+AAJ3BAAAAAF4\
+                """;
     }
 }

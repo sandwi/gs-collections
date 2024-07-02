@@ -19,7 +19,7 @@ package com.gs.collections.impl.list.fixed;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastListSerializationTest;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SextupletonListSerializationTest
 {
@@ -28,8 +28,10 @@ public class SextupletonListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmZpeGVkLlNleHR1cGxldG9uTGlz\n"
-                        + "dAAAAAAAAAABDAAAeHBwcHBwcHB4",
+                """
+                rO0ABXNyADJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmZpeGVkLlNleHR1cGxldG9uTGlz
+                dAAAAAAAAAABDAAAeHBwcHBwcHB4\
+                """,
                 Lists.fixedSize.of(null, null, null, null, null, null));
     }
 

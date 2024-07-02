@@ -23,8 +23,8 @@ import com.gs.collections.api.collection.MutableCollection;
 import com.gs.collections.api.partition.PartitionMutableCollection;
 import com.gs.collections.impl.block.factory.Functions;
 import com.gs.collections.impl.block.factory.Functions2;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CollectionAdapterAsUnmodifiableTest extends UnmodifiableMutableCollectionTestCase<Integer>
 {
@@ -40,32 +40,32 @@ public class CollectionAdapterAsUnmodifiableTest extends UnmodifiableMutableColl
     @Test
     public void select()
     {
-        Assert.assertEquals(this.getCollection().toList(), this.getCollection().select(ignored -> true));
-        Assert.assertNotEquals(this.getCollection().toList(), this.getCollection().select(ignored -> false));
+        Assertions.assertEquals(this.getCollection().toList(), this.getCollection().select(ignored -> true));
+        Assertions.assertNotEquals(this.getCollection().toList(), this.getCollection().select(ignored -> false));
     }
 
     @Override
     @Test
     public void selectWith()
     {
-        Assert.assertEquals(this.getCollection().toList(), this.getCollection().selectWith((ignored1, ignored2) -> true, null));
-        Assert.assertNotEquals(this.getCollection().toList(), this.getCollection().selectWith((ignored1, ignored2) -> false, null));
+        Assertions.assertEquals(this.getCollection().toList(), this.getCollection().selectWith((ignored1, ignored2) -> true, null));
+        Assertions.assertNotEquals(this.getCollection().toList(), this.getCollection().selectWith((ignored1, ignored2) -> false, null));
     }
 
     @Override
     @Test
     public void reject()
     {
-        Assert.assertEquals(this.getCollection().toList(), this.getCollection().reject(ignored1 -> false));
-        Assert.assertNotEquals(this.getCollection().toList(), this.getCollection().reject(ignored -> true));
+        Assertions.assertEquals(this.getCollection().toList(), this.getCollection().reject(ignored1 -> false));
+        Assertions.assertNotEquals(this.getCollection().toList(), this.getCollection().reject(ignored -> true));
     }
 
     @Override
     @Test
     public void rejectWith()
     {
-        Assert.assertEquals(this.getCollection().toList(), this.getCollection().rejectWith((ignored11, ignored21) -> false, null));
-        Assert.assertNotEquals(this.getCollection().toList(), this.getCollection().rejectWith((ignored1, ignored2) -> true, null));
+        Assertions.assertEquals(this.getCollection().toList(), this.getCollection().rejectWith((ignored11, ignored21) -> false, null));
+        Assertions.assertNotEquals(this.getCollection().toList(), this.getCollection().rejectWith((ignored1, ignored2) -> true, null));
     }
 
     @Override
@@ -73,8 +73,8 @@ public class CollectionAdapterAsUnmodifiableTest extends UnmodifiableMutableColl
     public void partition()
     {
         PartitionMutableCollection<?> partition = this.getCollection().partition(ignored -> true);
-        Assert.assertEquals(this.getCollection().toList(), partition.getSelected());
-        Assert.assertNotEquals(this.getCollection().toList(), partition.getRejected());
+        Assertions.assertEquals(this.getCollection().toList(), partition.getSelected());
+        Assertions.assertNotEquals(this.getCollection().toList(), partition.getRejected());
     }
 
     @Override
@@ -82,31 +82,31 @@ public class CollectionAdapterAsUnmodifiableTest extends UnmodifiableMutableColl
     public void partitionWith()
     {
         PartitionMutableCollection<?> partition = this.getCollection().partitionWith((ignored1, ignored2) -> true, null);
-        Assert.assertEquals(this.getCollection().toList(), partition.getSelected());
-        Assert.assertNotEquals(this.getCollection().toList(), partition.getRejected());
+        Assertions.assertEquals(this.getCollection().toList(), partition.getSelected());
+        Assertions.assertNotEquals(this.getCollection().toList(), partition.getRejected());
     }
 
     @Override
     @Test
     public void collect()
     {
-        Assert.assertEquals(this.getCollection().toList(), this.getCollection().collect(Functions.getPassThru()));
-        Assert.assertNotEquals(this.getCollection().toList(), this.getCollection().collect(Object::getClass));
+        Assertions.assertEquals(this.getCollection().toList(), this.getCollection().collect(Functions.getPassThru()));
+        Assertions.assertNotEquals(this.getCollection().toList(), this.getCollection().collect(Object::getClass));
     }
 
     @Override
     @Test
     public void collectWith()
     {
-        Assert.assertEquals(this.getCollection().toList(), this.getCollection().collectWith(Functions2.fromFunction(Functions.getPassThru()), null));
-        Assert.assertNotEquals(this.getCollection().toList(), this.getCollection().collectWith(Functions2.fromFunction(Object::getClass), null));
+        Assertions.assertEquals(this.getCollection().toList(), this.getCollection().collectWith(Functions2.fromFunction(Functions.getPassThru()), null));
+        Assertions.assertNotEquals(this.getCollection().toList(), this.getCollection().collectWith(Functions2.fromFunction(Object::getClass), null));
     }
 
     @Override
     @Test
     public void collectIf()
     {
-        Assert.assertEquals(this.getCollection().toList(), this.getCollection().collectIf(ignored -> true, Functions.getPassThru()));
-        Assert.assertNotEquals(this.getCollection().toList(), this.getCollection().collectIf(ignored -> false, Object::getClass));
+        Assertions.assertEquals(this.getCollection().toList(), this.getCollection().collectIf(ignored -> true, Functions.getPassThru()));
+        Assertions.assertNotEquals(this.getCollection().toList(), this.getCollection().collectIf(ignored -> false, Object::getClass));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ComparatorProcedureSerializationTest
 {
@@ -35,11 +35,13 @@ public class ComparatorProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAE5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ29tcGFyYXRv\n"
-                        + "clByb2NlZHVyZVNlcmlhbGl6YXRpb25UZXN0JDEAAAAAAAAAAQIAAHhyADtjb20uZ3MuY29sbGVj\n"
-                        + "dGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ29tcGFyYXRvclByb2NlZHVyZQAAAAAAAAABAgAD\n"
-                        + "WgASdmlzaXRlZEF0TGVhc3RPbmNlTAAKY29tcGFyYXRvcnQAFkxqYXZhL3V0aWwvQ29tcGFyYXRv\n"
-                        + "cjtMAAZyZXN1bHR0ABJMamF2YS9sYW5nL09iamVjdDt4cABwcA==",
+                """
+                rO0ABXNyAE5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ29tcGFyYXRv
+                clByb2NlZHVyZVNlcmlhbGl6YXRpb25UZXN0JDEAAAAAAAAAAQIAAHhyADtjb20uZ3MuY29sbGVj
+                dGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ29tcGFyYXRvclByb2NlZHVyZQAAAAAAAAABAgAD
+                WgASdmlzaXRlZEF0TGVhc3RPbmNlTAAKY29tcGFyYXRvcnQAFkxqYXZhL3V0aWwvQ29tcGFyYXRv
+                cjtMAAZyZXN1bHR0ABJMamF2YS9sYW5nL09iamVjdDt4cABwcA==\
+                """,
                 COMPARATOR_PROCEDURE);
     }
 }

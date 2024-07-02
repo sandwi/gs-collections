@@ -22,11 +22,11 @@ import com.gs.collections.api.RichIterable;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public interface OrderedIterableTestCase extends RichIterableTestCase
 {
@@ -87,7 +87,7 @@ public interface OrderedIterableTestCase extends RichIterableTestCase
     default void OrderedIterable_zipWithIndex()
     {
         RichIterable<Integer> iterable = this.newWith(4, 4, 4, 4, 3, 3, 3, 2, 2, 1);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Lists.immutable.with(
                         Tuples.pair(4, 0),
                         Tuples.pair(4, 1),
@@ -106,7 +106,7 @@ public interface OrderedIterableTestCase extends RichIterableTestCase
     default void OrderedIterable_zipWithIndex_target()
     {
         RichIterable<Integer> iterable = this.newWith(4, 4, 4, 4, 3, 3, 3, 2, 2, 1);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Lists.immutable.with(
                         Tuples.pair(4, 0),
                         Tuples.pair(4, 1),

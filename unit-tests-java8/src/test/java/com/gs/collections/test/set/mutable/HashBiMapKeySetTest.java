@@ -22,8 +22,10 @@ import com.gs.collections.api.bimap.MutableBiMap;
 import com.gs.collections.impl.bimap.mutable.HashBiMap;
 import com.gs.collections.test.set.SetTestCase;
 import com.gs.junit.runners.Java8Runner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @RunWith(Java8Runner.class)
 public class HashBiMapKeySetTest implements SetTestCase
@@ -45,11 +47,13 @@ public class HashBiMapKeySetTest implements SetTestCase
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void Collection_add()
     {
-        // TODO Move up to a keySet view abstraction
-        SetTestCase.super.Collection_add();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            // TODO Move up to a keySet view abstraction
+            SetTestCase.super.Collection_add();
+        });
     }
 
     @Override

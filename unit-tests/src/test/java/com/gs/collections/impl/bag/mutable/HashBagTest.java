@@ -24,8 +24,8 @@ import com.gs.collections.impl.factory.Bags;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class HashBagTest extends MutableBagTestCase
 {
@@ -57,7 +57,7 @@ public class HashBagTest extends MutableBagTestCase
         assertBagsEqual(HashBag.newBagWith("apple", "apple", "hope", "hope", "hope"), bag);
 
         bag.withAll(Collections.nCopies(5, "ubermench"));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedMap.newWithKeysValues(
                         "apple", 2,
                         "hope", 3,
@@ -71,12 +71,12 @@ public class HashBagTest extends MutableBagTestCase
     {
         super.addAll();
         MutableBag<Integer> bag1 = this.newWith();
-        Assert.assertTrue(bag1.addAll(this.newWith(1, 1, 2, 3)));
+        Assertions.assertTrue(bag1.addAll(this.newWith(1, 1, 2, 3)));
         Verify.assertContainsAll(bag1, 1, 2, 3);
 
-        Assert.assertTrue(bag1.addAll(this.newWith(1, 2, 3)));
+        Assertions.assertTrue(bag1.addAll(this.newWith(1, 2, 3)));
         Verify.assertSize(7, bag1);
-        Assert.assertFalse(bag1.addAll(this.newWith()));
+        Assertions.assertFalse(bag1.addAll(this.newWith()));
         Verify.assertContainsAll(bag1, 1, 2, 3);
 
         MutableBag<Integer> bag2 = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
@@ -96,18 +96,18 @@ public class HashBagTest extends MutableBagTestCase
     {
         super.removeAll();
         MutableBag<Integer> bag1 = this.newWith(1, 2, 3);
-        Assert.assertTrue(bag1.removeAll(this.newWith(1, 2, 4)));
-        Assert.assertEquals(Bags.mutable.of(3), bag1);
+        Assertions.assertTrue(bag1.removeAll(this.newWith(1, 2, 4)));
+        Assertions.assertEquals(Bags.mutable.of(3), bag1);
 
         MutableBag<Integer> bag2 = this.newWith(1, 1, 1, 2, 2, 3, 4);
         Verify.assertSize(7, bag2);
-        Assert.assertTrue(bag2.removeAll(this.newWith(1, 2, 2, 4)));
+        Assertions.assertTrue(bag2.removeAll(this.newWith(1, 2, 2, 4)));
         Verify.assertSize(1, bag2);
-        Assert.assertEquals(Bags.mutable.of(3), bag2);
+        Assertions.assertEquals(Bags.mutable.of(3), bag2);
 
         MutableBag<Integer> bag3 = this.newWith(1, 2, 3);
-        Assert.assertFalse(bag3.removeAll(this.newWith(4, 5)));
-        Assert.assertEquals(Bags.mutable.of(1, 2, 3), bag3);
+        Assertions.assertFalse(bag3.removeAll(this.newWith(4, 5)));
+        Assertions.assertEquals(Bags.mutable.of(1, 2, 3), bag3);
     }
 
     @Test
@@ -121,7 +121,7 @@ public class HashBagTest extends MutableBagTestCase
     @Test
     public void newBagFromBag()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4),
                 HashBag.newBag(HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)));
     }

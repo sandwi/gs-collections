@@ -16,8 +16,8 @@
 
 package com.gs.collections.impl.block.function.primitive;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Junit test for {@link LongFunctionImpl}.
@@ -35,7 +35,7 @@ public class LongFunctionImplTest
             }
         };
 
-        Assert.assertEquals(1L, longFunction.longValueOf(1L));
-        Assert.assertEquals(1L, longFunction.valueOf(1L).longValue());
+        Assertions.assertEquals(1L, longFunction.longValueOf(1L));
+        Assertions.assertEquals(1L, longFunction.valueOf(1L).longValue());
     }
 }

@@ -44,14 +44,14 @@ import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.map.sorted.mutable.TreeSortedMap;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertPostSerializedEqualsAndHashCode;
 import static com.gs.collections.impl.test.Verify.assertThrows;
 import static com.gs.collections.test.IterableTestCase.assertEquals;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public interface RichIterableUniqueTestCase extends RichIterableTestCase
 {
@@ -67,7 +67,7 @@ public interface RichIterableUniqueTestCase extends RichIterableTestCase
     {
         Iterable<Integer> iterable = this.newWith(3, 2, 1);
         Object deserialized = SerializeTestHelper.serializeDeserialize(iterable);
-        Assert.assertNotSame(iterable, deserialized);
+        Assertions.assertNotSame(iterable, deserialized);
     }
 
     @Override
@@ -399,10 +399,10 @@ public interface RichIterableUniqueTestCase extends RichIterableTestCase
     {
         RichIterable<Integer> iterable = this.newWith(4, 3, 2, 1);
 
-        Assert.assertEquals(10.0f, iterable.sumOfFloat(Integer::floatValue), 0.001);
-        Assert.assertEquals(10.0, iterable.sumOfDouble(Integer::doubleValue), 0.001);
-        Assert.assertEquals(10, iterable.sumOfInt(integer -> integer));
-        Assert.assertEquals(10L, iterable.sumOfLong(Integer::longValue));
+        Assertions.assertEquals(10.0f, iterable.sumOfFloat(Integer::floatValue), 0.001);
+        Assertions.assertEquals(10.0, iterable.sumOfDouble(Integer::doubleValue), 0.001);
+        Assertions.assertEquals(10, iterable.sumOfInt(integer -> integer));
+        Assertions.assertEquals(10L, iterable.sumOfLong(Integer::longValue));
     }
 
     @Override
@@ -437,17 +437,17 @@ public interface RichIterableUniqueTestCase extends RichIterableTestCase
     {
         RichIterable<Integer> iterable = this.newWith(4, 3, 2, 1);
 
-        Assert.assertEquals(11, iterable.injectInto(1, AddFunction.INTEGER_TO_INT));
-        Assert.assertEquals(10, iterable.injectInto(0, AddFunction.INTEGER_TO_INT));
+        Assertions.assertEquals(11, iterable.injectInto(1, AddFunction.INTEGER_TO_INT));
+        Assertions.assertEquals(10, iterable.injectInto(0, AddFunction.INTEGER_TO_INT));
 
-        Assert.assertEquals(11L, iterable.injectInto(1, AddFunction.INTEGER_TO_LONG));
-        Assert.assertEquals(10L, iterable.injectInto(0, AddFunction.INTEGER_TO_LONG));
+        Assertions.assertEquals(11L, iterable.injectInto(1, AddFunction.INTEGER_TO_LONG));
+        Assertions.assertEquals(10L, iterable.injectInto(0, AddFunction.INTEGER_TO_LONG));
 
-        Assert.assertEquals(11.0d, iterable.injectInto(1, AddFunction.INTEGER_TO_DOUBLE), 0.001);
-        Assert.assertEquals(10.0d, iterable.injectInto(0, AddFunction.INTEGER_TO_DOUBLE), 0.001);
+        Assertions.assertEquals(11.0d, iterable.injectInto(1, AddFunction.INTEGER_TO_DOUBLE), 0.001);
+        Assertions.assertEquals(10.0d, iterable.injectInto(0, AddFunction.INTEGER_TO_DOUBLE), 0.001);
 
-        Assert.assertEquals(11.0f, iterable.injectInto(1, AddFunction.INTEGER_TO_FLOAT), 0.001f);
-        Assert.assertEquals(10.0f, iterable.injectInto(0, AddFunction.INTEGER_TO_FLOAT), 0.001f);
+        Assertions.assertEquals(11.0f, iterable.injectInto(1, AddFunction.INTEGER_TO_FLOAT), 0.001f);
+        Assertions.assertEquals(10.0f, iterable.injectInto(0, AddFunction.INTEGER_TO_FLOAT), 0.001f);
     }
 
     @Override

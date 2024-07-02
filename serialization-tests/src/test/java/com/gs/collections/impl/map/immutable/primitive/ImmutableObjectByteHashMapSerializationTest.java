@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.ObjectByteHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableObjectByteHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableObjectByteHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5B\n"
-                        + "YnN0cmFjdEltbXV0YWJsZU9iamVjdEJ5dGVNYXAkSW1tdXRhYmxlT2JqZWN0Qnl0ZU1hcFNlcmlh\n"
-                        + "bGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAAJ0AAEydwECdAABMXcBAXg=",
+                """
+                rO0ABXNyAHdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5B
+                YnN0cmFjdEltbXV0YWJsZU9iamVjdEJ5dGVNYXAkSW1tdXRhYmxlT2JqZWN0Qnl0ZU1hcFNlcmlh
+                bGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAAJ0AAEydwECdAABMXcBAXg=\
+                """,
                 new ImmutableObjectByteHashMap<String>(ObjectByteHashMap.newWithKeysValues("1", (byte) 1, "2", (byte) 2)));
     }
 }

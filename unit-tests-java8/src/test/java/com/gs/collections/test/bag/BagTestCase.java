@@ -21,11 +21,11 @@ import java.util.Iterator;
 import com.gs.collections.api.bag.Bag;
 import com.gs.collections.api.collection.MutableCollection;
 import com.gs.collections.test.RichIterableWithDuplicatesTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isOneOf;
-import static org.junit.Assert.assertThat;
 
 public interface BagTestCase extends RichIterableWithDuplicatesTestCase
 {

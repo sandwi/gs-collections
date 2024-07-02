@@ -22,8 +22,8 @@ import com.gs.collections.api.multimap.list.MutableListMultimap;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.multimap.list.FastListMultimap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class MultimapFunctionsTest
 {
@@ -37,7 +37,7 @@ public class MultimapFunctionsTest
 
         Function<String, RichIterable<String>> getFunction = MultimapFunctions.get(multimap);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(
                         FastList.newListWith("O", "N", "E"),
                         FastList.newListWith("T", "W", "O"),

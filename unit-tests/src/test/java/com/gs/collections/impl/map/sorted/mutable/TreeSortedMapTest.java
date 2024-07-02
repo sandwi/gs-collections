@@ -24,8 +24,8 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TreeSortedMapTest extends MutableSortedMapTestCase
 {
@@ -111,7 +111,7 @@ public class TreeSortedMapTest extends MutableSortedMapTestCase
         Verify.assertListsEqual(FastList.newListWith(3, 2, 1), revSortedMap.keySet().toList());
 
         TreeSortedMap<Integer, String> sortedMap2 = TreeSortedMap.newMap(revSortedMap);
-        Assert.assertEquals(revSortedMap.comparator(), sortedMap2.comparator());
+        Assertions.assertEquals(revSortedMap.comparator(), sortedMap2.comparator());
         Verify.assertMapsEqual(revSortedMap, sortedMap2);
     }
 
@@ -136,9 +136,9 @@ public class TreeSortedMapTest extends MutableSortedMapTestCase
         super.testClone();
         TreeSortedMap<Integer, Integer> sortedMap = TreeSortedMap.<Integer, Integer>newMapWith(Tuples.pair(1, 4), Tuples.pair(2, 3), Tuples.pair(3, 2), Tuples.pair(4, 1));
         MutableSortedMap<Integer, Integer> clone = sortedMap.clone();
-        Assert.assertNotSame(sortedMap, clone);
-        Assert.assertEquals(sortedMap, clone);
+        Assertions.assertNotSame(sortedMap, clone);
+        Assertions.assertEquals(sortedMap, clone);
         sortedMap.removeKey(1);
-        Assert.assertTrue(clone.containsKey(1));
+        Assertions.assertTrue(clone.containsKey(1));
     }
 }

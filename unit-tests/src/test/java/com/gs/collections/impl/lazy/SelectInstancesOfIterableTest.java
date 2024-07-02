@@ -23,8 +23,8 @@ import com.gs.collections.impl.math.IntegerSum;
 import com.gs.collections.impl.math.Sum;
 import com.gs.collections.impl.math.SumProcedure;
 import com.gs.collections.impl.utility.LazyIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +44,7 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
         InternalIterable<Integer> select = new SelectInstancesOfIterable<>(FastList.newListWith(1, 2.0, 3, 4.0, 5), Integer.class);
         Sum sum = new IntegerSum(0);
         select.forEach(new SumProcedure<>(sum));
-        Assert.assertEquals(9, sum.getValue().intValue());
+        Assertions.assertEquals(9, sum.getValue().intValue());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
 
             LOGGER.info("value={} index={}", object, index);
         });
-        Assert.assertEquals(12, sum.getValue().intValue());
+        Assertions.assertEquals(12, sum.getValue().intValue());
     }
 
     @Override
@@ -71,7 +71,7 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
         {
             sum.add(each);
         }
-        Assert.assertEquals(9, sum.getValue().intValue());
+        Assertions.assertEquals(9, sum.getValue().intValue());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
         InternalIterable<Integer> select = new SelectInstancesOfIterable<>(FastList.newListWith(1, 2.0, 3, 4.0, 5), Integer.class);
         Sum sum = new IntegerSum(0);
         select.forEachWith((each, aSum) -> aSum.add(each), sum);
-        Assert.assertEquals(9, sum.getValue().intValue());
+        Assertions.assertEquals(9, sum.getValue().intValue());
     }
 
     @Override
@@ -121,7 +121,7 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
     {
         super.distinct();
         SelectInstancesOfIterable<Double> iterable = new SelectInstancesOfIterable<>(FastList.newListWith(3.0, 2.0, 3, 2.0, 4.0, 5, 1.0, 3.0, 1.0, 5.0), Double.class);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(3.0, 2.0, 4.0, 1.0, 5.0),
                 iterable.distinct().toList());
     }

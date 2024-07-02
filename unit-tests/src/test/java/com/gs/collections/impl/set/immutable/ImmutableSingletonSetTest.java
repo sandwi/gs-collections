@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.immutable;
 
 import com.gs.collections.api.set.ImmutableSet;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableSingletonSetTest
         extends AbstractImmutableSetTestCase

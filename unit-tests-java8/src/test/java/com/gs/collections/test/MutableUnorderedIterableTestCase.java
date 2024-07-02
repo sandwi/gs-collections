@@ -19,11 +19,11 @@ package com.gs.collections.test;
 import java.util.Iterator;
 
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isOneOf;
-import static org.junit.Assert.assertThat;
 
 public interface MutableUnorderedIterableTestCase extends UnorderedIterableTestCase
 {

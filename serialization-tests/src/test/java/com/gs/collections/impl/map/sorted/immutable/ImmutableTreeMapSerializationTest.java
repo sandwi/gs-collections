@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.sorted.immutable;
 
 import com.gs.collections.impl.map.sorted.mutable.TreeSortedMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableTreeMapSerializationTest
 {
@@ -36,8 +36,10 @@ public class ImmutableTreeMapSerializationTest
     {
         Verify.assertSerializedForm(
                 2L,
-                "rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11\n"
-                        + "dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAAAHg=",
+                """
+                rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLmltbXV0YWJsZS5JbW11
+                dGFibGVTb3J0ZWRTZXRTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAAAHg=\
+                """,
                 new ImmutableTreeMap<Object, Object>(new TreeSortedMap<Object, Object>()).keySet());
     }
 }

@@ -33,11 +33,12 @@ import com.gs.collections.test.domain.B;
 import com.gs.collections.test.domain.C;
 import com.gs.collections.test.list.TransformsToListTrait;
 import com.gs.collections.test.set.SetIterableTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface SortedSetIterableTestCase extends SetIterableTestCase, SortedIterableTestCase, TransformsToListTrait
 {
@@ -64,17 +65,21 @@ public interface SortedSetIterableTestCase extends SetIterableTestCase, SortedIt
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     default void RichIterable_getFirst_empty_null()
     {
-        this.newWith().getFirst();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().getFirst();
+        });
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     default void RichIterable_getLast_empty_null()
     {
-        this.newWith().getLast();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().getLast();
+        });
     }
 
     @Override
@@ -140,7 +145,7 @@ public interface SortedSetIterableTestCase extends SetIterableTestCase, SortedIt
     default void OrderedIterable_zipWithIndex()
     {
         RichIterable<Integer> iterable = this.newWith(4, 3, 2, 1);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Lists.immutable.with(
                         Tuples.pair(4, 0),
                         Tuples.pair(3, 1),
@@ -153,7 +158,7 @@ public interface SortedSetIterableTestCase extends SetIterableTestCase, SortedIt
     default void OrderedIterable_zipWithIndex_target()
     {
         RichIterable<Integer> iterable = this.newWith(4, 3, 2, 1);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Lists.immutable.with(
                         Tuples.pair(4, 0),
                         Tuples.pair(3, 1),

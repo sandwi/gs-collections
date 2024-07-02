@@ -19,13 +19,13 @@ package com.gs.collections.impl.multimap;
 import com.gs.collections.api.multimap.ImmutableMultimap;
 import com.gs.collections.api.multimap.Multimap;
 import com.gs.collections.api.multimap.MutableMultimap;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 public abstract class ImmutableMultimapSerializationTestCase extends MultimapSerializationTestCase
 {
     private ImmutableMultimap<String, String> undertest;
 
-    @Before
+    @BeforeEach
     public void buildUnderTest()
     {
         MutableMultimap<String, String> map = this.createEmpty();

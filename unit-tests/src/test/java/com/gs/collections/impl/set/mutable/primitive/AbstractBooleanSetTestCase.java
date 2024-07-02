@@ -33,9 +33,9 @@ import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.math.MutableInteger;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanCollectionTestCase
 {
@@ -62,7 +62,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         return UnifiedSet.newSetWith(elements);
     }
 
-    @Before
+    @BeforeEach
     public void setup()
     {
         this.emptySet = this.newWith();
@@ -77,7 +77,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     {
         MutableBooleanSet set = this.classUnderTest();
         Verify.assertSize(2, set);
-        Assert.assertTrue(set.containsAll(true, false, true));
+        Assertions.assertTrue(set.containsAll(true, false, true));
     }
 
     @Override
@@ -96,10 +96,10 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void notEmpty()
     {
         super.notEmpty();
-        Assert.assertFalse(this.emptySet.notEmpty());
-        Assert.assertTrue(this.setWithFalse.notEmpty());
-        Assert.assertTrue(this.setWithTrue.notEmpty());
-        Assert.assertTrue(this.setWithTrueFalse.notEmpty());
+        Assertions.assertFalse(this.emptySet.notEmpty());
+        Assertions.assertTrue(this.setWithFalse.notEmpty());
+        Assertions.assertTrue(this.setWithTrue.notEmpty());
+        Assertions.assertTrue(this.setWithTrueFalse.notEmpty());
     }
 
     @Override
@@ -115,10 +115,10 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         Verify.assertEmpty(this.setWithFalse);
         Verify.assertEmpty(this.setWithTrue);
         Verify.assertEmpty(this.setWithTrueFalse);
-        Assert.assertFalse(this.setWithFalse.contains(false));
-        Assert.assertFalse(this.setWithTrue.contains(true));
-        Assert.assertFalse(this.setWithTrueFalse.contains(true));
-        Assert.assertFalse(this.setWithTrueFalse.contains(false));
+        Assertions.assertFalse(this.setWithFalse.contains(false));
+        Assertions.assertFalse(this.setWithTrue.contains(true));
+        Assertions.assertFalse(this.setWithTrueFalse.contains(true));
+        Assertions.assertFalse(this.setWithTrueFalse.contains(false));
     }
 
     @Override
@@ -126,14 +126,14 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void contains()
     {
         super.contains();
-        Assert.assertFalse(this.emptySet.contains(true));
-        Assert.assertFalse(this.emptySet.contains(false));
-        Assert.assertTrue(this.setWithFalse.contains(false));
-        Assert.assertFalse(this.setWithFalse.contains(true));
-        Assert.assertTrue(this.setWithTrue.contains(true));
-        Assert.assertFalse(this.setWithTrue.contains(false));
-        Assert.assertTrue(this.setWithTrueFalse.contains(true));
-        Assert.assertTrue(this.setWithTrueFalse.contains(false));
+        Assertions.assertFalse(this.emptySet.contains(true));
+        Assertions.assertFalse(this.emptySet.contains(false));
+        Assertions.assertTrue(this.setWithFalse.contains(false));
+        Assertions.assertFalse(this.setWithFalse.contains(true));
+        Assertions.assertTrue(this.setWithTrue.contains(true));
+        Assertions.assertFalse(this.setWithTrue.contains(false));
+        Assertions.assertTrue(this.setWithTrueFalse.contains(true));
+        Assertions.assertTrue(this.setWithTrueFalse.contains(false));
     }
 
     @Override
@@ -141,17 +141,17 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void containsAllArray()
     {
         super.containsAllArray();
-        Assert.assertFalse(this.emptySet.containsAll(true));
-        Assert.assertFalse(this.emptySet.containsAll(true, false));
-        Assert.assertTrue(this.setWithFalse.containsAll(false, false));
-        Assert.assertFalse(this.setWithFalse.containsAll(true, true));
-        Assert.assertFalse(this.setWithFalse.containsAll(true, false, true));
-        Assert.assertTrue(this.setWithTrue.containsAll(true, true));
-        Assert.assertFalse(this.setWithTrue.containsAll(false, false));
-        Assert.assertFalse(this.setWithTrue.containsAll(true, false, false));
-        Assert.assertTrue(this.setWithTrueFalse.containsAll(true, true));
-        Assert.assertTrue(this.setWithTrueFalse.containsAll(false, false));
-        Assert.assertTrue(this.setWithTrueFalse.containsAll(false, true, true));
+        Assertions.assertFalse(this.emptySet.containsAll(true));
+        Assertions.assertFalse(this.emptySet.containsAll(true, false));
+        Assertions.assertTrue(this.setWithFalse.containsAll(false, false));
+        Assertions.assertFalse(this.setWithFalse.containsAll(true, true));
+        Assertions.assertFalse(this.setWithFalse.containsAll(true, false, true));
+        Assertions.assertTrue(this.setWithTrue.containsAll(true, true));
+        Assertions.assertFalse(this.setWithTrue.containsAll(false, false));
+        Assertions.assertFalse(this.setWithTrue.containsAll(true, false, false));
+        Assertions.assertTrue(this.setWithTrueFalse.containsAll(true, true));
+        Assertions.assertTrue(this.setWithTrueFalse.containsAll(false, false));
+        Assertions.assertTrue(this.setWithTrueFalse.containsAll(false, true, true));
     }
 
     @Override
@@ -159,89 +159,89 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void containsAllIterable()
     {
         super.containsAllIterable();
-        Assert.assertFalse(this.emptySet.containsAll(BooleanArrayList.newListWith(true)));
-        Assert.assertFalse(this.emptySet.containsAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertTrue(this.setWithFalse.containsAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertFalse(this.setWithFalse.containsAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertFalse(this.setWithFalse.containsAll(BooleanArrayList.newListWith(true, false, true)));
-        Assert.assertTrue(this.setWithTrue.containsAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertFalse(this.setWithTrue.containsAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertFalse(this.setWithTrue.containsAll(BooleanArrayList.newListWith(true, false, false)));
-        Assert.assertTrue(this.setWithTrueFalse.containsAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertTrue(this.setWithTrueFalse.containsAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertTrue(this.setWithTrueFalse.containsAll(BooleanArrayList.newListWith(false, true, true)));
+        Assertions.assertFalse(this.emptySet.containsAll(BooleanArrayList.newListWith(true)));
+        Assertions.assertFalse(this.emptySet.containsAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertTrue(this.setWithFalse.containsAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertFalse(this.setWithFalse.containsAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertFalse(this.setWithFalse.containsAll(BooleanArrayList.newListWith(true, false, true)));
+        Assertions.assertTrue(this.setWithTrue.containsAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertFalse(this.setWithTrue.containsAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertFalse(this.setWithTrue.containsAll(BooleanArrayList.newListWith(true, false, false)));
+        Assertions.assertTrue(this.setWithTrueFalse.containsAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertTrue(this.setWithTrueFalse.containsAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertTrue(this.setWithTrueFalse.containsAll(BooleanArrayList.newListWith(false, true, true)));
     }
 
     @Override
     @Test
     public void add()
     {
-        Assert.assertTrue(this.emptySet.add(true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), this.emptySet);
+        Assertions.assertTrue(this.emptySet.add(true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), this.emptySet);
         MutableBooleanSet set = this.newWith();
-        Assert.assertTrue(set.add(false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), set);
-        Assert.assertFalse(this.setWithFalse.add(false));
-        Assert.assertTrue(this.setWithFalse.add(true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithFalse);
-        Assert.assertFalse(this.setWithTrue.add(true));
-        Assert.assertTrue(this.setWithTrue.add(false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrue);
-        Assert.assertFalse(this.setWithTrueFalse.add(true));
-        Assert.assertFalse(this.setWithTrueFalse.add(false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse);
+        Assertions.assertTrue(set.add(false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), set);
+        Assertions.assertFalse(this.setWithFalse.add(false));
+        Assertions.assertTrue(this.setWithFalse.add(true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithFalse);
+        Assertions.assertFalse(this.setWithTrue.add(true));
+        Assertions.assertTrue(this.setWithTrue.add(false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrue);
+        Assertions.assertFalse(this.setWithTrueFalse.add(true));
+        Assertions.assertFalse(this.setWithTrueFalse.add(false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse);
     }
 
     @Override
     @Test
     public void addAllArray()
     {
-        Assert.assertTrue(this.emptySet.addAll(true, false, true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.emptySet);
-        Assert.assertFalse(this.setWithFalse.addAll(false, false));
-        Assert.assertTrue(this.setWithFalse.addAll(true, false, true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithFalse);
-        Assert.assertFalse(this.setWithTrue.addAll(true, true));
-        Assert.assertTrue(this.setWithTrue.addAll(true, false, true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrue);
-        Assert.assertFalse(this.setWithTrueFalse.addAll(true, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse);
+        Assertions.assertTrue(this.emptySet.addAll(true, false, true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.emptySet);
+        Assertions.assertFalse(this.setWithFalse.addAll(false, false));
+        Assertions.assertTrue(this.setWithFalse.addAll(true, false, true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithFalse);
+        Assertions.assertFalse(this.setWithTrue.addAll(true, true));
+        Assertions.assertTrue(this.setWithTrue.addAll(true, false, true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrue);
+        Assertions.assertFalse(this.setWithTrueFalse.addAll(true, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse);
     }
 
     @Override
     @Test
     public void addAllIterable()
     {
-        Assert.assertTrue(this.emptySet.addAll(BooleanHashSet.newSetWith(true, false, true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.emptySet);
-        Assert.assertFalse(this.setWithFalse.addAll(BooleanHashSet.newSetWith(false, false)));
-        Assert.assertTrue(this.setWithFalse.addAll(BooleanHashSet.newSetWith(true, false, true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithFalse);
-        Assert.assertFalse(this.setWithTrue.addAll(BooleanHashSet.newSetWith(true, true)));
-        Assert.assertTrue(this.setWithTrue.addAll(BooleanHashSet.newSetWith(true, false, true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrue);
-        Assert.assertFalse(this.setWithTrueFalse.addAll(BooleanHashSet.newSetWith(true, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse);
+        Assertions.assertTrue(this.emptySet.addAll(BooleanHashSet.newSetWith(true, false, true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.emptySet);
+        Assertions.assertFalse(this.setWithFalse.addAll(BooleanHashSet.newSetWith(false, false)));
+        Assertions.assertTrue(this.setWithFalse.addAll(BooleanHashSet.newSetWith(true, false, true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithFalse);
+        Assertions.assertFalse(this.setWithTrue.addAll(BooleanHashSet.newSetWith(true, true)));
+        Assertions.assertTrue(this.setWithTrue.addAll(BooleanHashSet.newSetWith(true, false, true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrue);
+        Assertions.assertFalse(this.setWithTrueFalse.addAll(BooleanHashSet.newSetWith(true, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse);
     }
 
     @Override
     @Test
     public void remove()
     {
-        Assert.assertTrue(this.setWithTrueFalse.remove(true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithTrueFalse);
+        Assertions.assertTrue(this.setWithTrueFalse.remove(true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), this.setWithTrueFalse);
         MutableBooleanSet set = this.newWith(true, false);
-        Assert.assertTrue(set.remove(false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), set);
-        Assert.assertFalse(this.setWithTrue.remove(false));
-        Assert.assertTrue(this.setWithTrue.remove(true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
-        Assert.assertFalse(this.setWithFalse.remove(true));
-        Assert.assertTrue(this.setWithFalse.remove(false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
-        Assert.assertFalse(this.emptySet.remove(true));
-        Assert.assertFalse(this.emptySet.remove(false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
+        Assertions.assertTrue(set.remove(false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), set);
+        Assertions.assertFalse(this.setWithTrue.remove(false));
+        Assertions.assertTrue(this.setWithTrue.remove(true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
+        Assertions.assertFalse(this.setWithFalse.remove(true));
+        Assertions.assertTrue(this.setWithFalse.remove(false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
+        Assertions.assertFalse(this.emptySet.remove(true));
+        Assertions.assertFalse(this.emptySet.remove(false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
     }
 
     @Override
@@ -249,38 +249,38 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void removeAll()
     {
         super.removeAll();
-        Assert.assertFalse(this.emptySet.removeAll());
-        Assert.assertFalse(this.setWithFalse.removeAll());
-        Assert.assertFalse(this.setWithTrue.removeAll());
-        Assert.assertFalse(this.setWithTrueFalse.removeAll());
+        Assertions.assertFalse(this.emptySet.removeAll());
+        Assertions.assertFalse(this.setWithFalse.removeAll());
+        Assertions.assertFalse(this.setWithTrue.removeAll());
+        Assertions.assertFalse(this.setWithTrueFalse.removeAll());
 
-        Assert.assertTrue(this.setWithTrueFalse.removeAll(true, true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithTrueFalse);
+        Assertions.assertTrue(this.setWithTrueFalse.removeAll(true, true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), this.setWithTrueFalse);
         MutableBooleanSet set = this.newWith(true, false);
-        Assert.assertTrue(set.removeAll(true, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), set);
+        Assertions.assertTrue(set.removeAll(true, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), set);
         MutableBooleanSet sett = this.newWith(true, false);
-        Assert.assertTrue(sett.removeAll(false, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), sett);
+        Assertions.assertTrue(sett.removeAll(false, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), sett);
 
-        Assert.assertFalse(this.setWithTrue.removeAll(false, false));
+        Assertions.assertFalse(this.setWithTrue.removeAll(false, false));
         MutableBooleanSet sett2 = this.newWith(true);
-        Assert.assertTrue(sett2.removeAll(true, true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), sett2);
-        Assert.assertTrue(this.setWithTrue.removeAll(true, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
+        Assertions.assertTrue(sett2.removeAll(true, true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), sett2);
+        Assertions.assertTrue(this.setWithTrue.removeAll(true, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
 
-        Assert.assertFalse(this.setWithFalse.removeAll(true, true));
+        Assertions.assertFalse(this.setWithFalse.removeAll(true, true));
         MutableBooleanSet sett3 = this.newWith(false);
-        Assert.assertTrue(sett3.removeAll(false, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), sett3);
-        Assert.assertTrue(this.setWithFalse.removeAll(true, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
+        Assertions.assertTrue(sett3.removeAll(false, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), sett3);
+        Assertions.assertTrue(this.setWithFalse.removeAll(true, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
 
-        Assert.assertFalse(this.emptySet.removeAll(true, true));
-        Assert.assertFalse(this.emptySet.removeAll(true, false));
-        Assert.assertFalse(this.emptySet.removeAll(false, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
+        Assertions.assertFalse(this.emptySet.removeAll(true, true));
+        Assertions.assertFalse(this.emptySet.removeAll(true, false));
+        Assertions.assertFalse(this.emptySet.removeAll(false, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
     }
 
     @Override
@@ -288,38 +288,38 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void removeAll_iterable()
     {
         super.removeAll_iterable();
-        Assert.assertFalse(this.emptySet.removeAll(new BooleanArrayList()));
-        Assert.assertFalse(this.setWithFalse.removeAll(new BooleanArrayList()));
-        Assert.assertFalse(this.setWithTrue.removeAll(new BooleanArrayList()));
-        Assert.assertFalse(this.setWithTrueFalse.removeAll(new BooleanArrayList()));
+        Assertions.assertFalse(this.emptySet.removeAll(new BooleanArrayList()));
+        Assertions.assertFalse(this.setWithFalse.removeAll(new BooleanArrayList()));
+        Assertions.assertFalse(this.setWithTrue.removeAll(new BooleanArrayList()));
+        Assertions.assertFalse(this.setWithTrueFalse.removeAll(new BooleanArrayList()));
 
-        Assert.assertTrue(this.setWithTrueFalse.removeAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithTrueFalse);
+        Assertions.assertTrue(this.setWithTrueFalse.removeAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), this.setWithTrueFalse);
         MutableBooleanSet set = this.newWith(true, false);
-        Assert.assertTrue(set.removeAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), set);
+        Assertions.assertTrue(set.removeAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), set);
         MutableBooleanSet sett = this.newWith(true, false);
-        Assert.assertTrue(sett.removeAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), sett);
+        Assertions.assertTrue(sett.removeAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), sett);
 
-        Assert.assertFalse(this.setWithTrue.removeAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertFalse(this.setWithTrue.removeAll(BooleanArrayList.newListWith(false, false)));
         MutableBooleanSet sett2 = this.newWith(true);
-        Assert.assertTrue(sett2.removeAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), sett2);
-        Assert.assertTrue(this.setWithTrue.removeAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
+        Assertions.assertTrue(sett2.removeAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), sett2);
+        Assertions.assertTrue(this.setWithTrue.removeAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
 
-        Assert.assertFalse(this.setWithFalse.removeAll(true, true));
+        Assertions.assertFalse(this.setWithFalse.removeAll(true, true));
         MutableBooleanSet sett3 = this.newWith(false);
-        Assert.assertTrue(sett3.removeAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), sett3);
-        Assert.assertTrue(this.setWithFalse.removeAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
+        Assertions.assertTrue(sett3.removeAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), sett3);
+        Assertions.assertTrue(this.setWithFalse.removeAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
 
-        Assert.assertFalse(this.emptySet.removeAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertFalse(this.emptySet.removeAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertFalse(this.emptySet.removeAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
+        Assertions.assertFalse(this.emptySet.removeAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertFalse(this.emptySet.removeAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertFalse(this.emptySet.removeAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
     }
 
     @Override
@@ -327,34 +327,34 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void retainAll()
     {
         super.retainAll();
-        Assert.assertFalse(this.emptySet.retainAll());
-        Assert.assertTrue(this.setWithTrueFalse.retainAll(true, true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse);
+        Assertions.assertFalse(this.emptySet.retainAll());
+        Assertions.assertTrue(this.setWithTrueFalse.retainAll(true, true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse);
         MutableBooleanSet set = this.newWith(true, false);
-        Assert.assertTrue(set.retainAll());
-        Assert.assertEquals(BooleanHashSet.newSetWith(), set);
+        Assertions.assertTrue(set.retainAll());
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), set);
         MutableBooleanSet sett = this.newWith(true, false);
-        Assert.assertTrue(sett.retainAll(false, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), sett);
+        Assertions.assertTrue(sett.retainAll(false, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), sett);
 
         MutableBooleanSet sett2 = this.newWith(true);
-        Assert.assertTrue(sett2.retainAll(false, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), sett2);
-        Assert.assertTrue(this.setWithTrue.retainAll(false, false));
-        Assert.assertFalse(this.setWithTrue.retainAll(true, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
+        Assertions.assertTrue(sett2.retainAll(false, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), sett2);
+        Assertions.assertTrue(this.setWithTrue.retainAll(false, false));
+        Assertions.assertFalse(this.setWithTrue.retainAll(true, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
 
         MutableBooleanSet sett3 = this.newWith(false);
-        Assert.assertFalse(sett3.retainAll(false, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), sett3);
-        Assert.assertTrue(this.setWithFalse.retainAll(true, true));
-        Assert.assertFalse(this.setWithFalse.retainAll(true, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
+        Assertions.assertFalse(sett3.retainAll(false, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), sett3);
+        Assertions.assertTrue(this.setWithFalse.retainAll(true, true));
+        Assertions.assertFalse(this.setWithFalse.retainAll(true, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
 
-        Assert.assertFalse(this.emptySet.retainAll(true, true));
-        Assert.assertFalse(this.emptySet.retainAll(true, false));
-        Assert.assertFalse(this.emptySet.retainAll(false, false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
+        Assertions.assertFalse(this.emptySet.retainAll(true, true));
+        Assertions.assertFalse(this.emptySet.retainAll(true, false));
+        Assertions.assertFalse(this.emptySet.retainAll(false, false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
     }
 
     @Override
@@ -362,34 +362,34 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void retainAll_iterable()
     {
         super.retainAll_iterable();
-        Assert.assertFalse(this.emptySet.retainAll(new BooleanArrayList()));
-        Assert.assertTrue(this.setWithTrueFalse.retainAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse);
+        Assertions.assertFalse(this.emptySet.retainAll(new BooleanArrayList()));
+        Assertions.assertTrue(this.setWithTrueFalse.retainAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse);
         MutableBooleanSet set = this.newWith(true, false);
-        Assert.assertTrue(set.retainAll(BooleanArrayList.newListWith()));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), set);
+        Assertions.assertTrue(set.retainAll(BooleanArrayList.newListWith()));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), set);
         MutableBooleanSet sett = this.newWith(true, false);
-        Assert.assertTrue(sett.retainAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), sett);
+        Assertions.assertTrue(sett.retainAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), sett);
 
         MutableBooleanSet sett2 = this.newWith(true);
-        Assert.assertTrue(sett2.retainAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), sett2);
-        Assert.assertTrue(this.setWithTrue.retainAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertFalse(this.setWithTrue.retainAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
+        Assertions.assertTrue(sett2.retainAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), sett2);
+        Assertions.assertTrue(this.setWithTrue.retainAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertFalse(this.setWithTrue.retainAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
 
         MutableBooleanSet sett3 = this.newWith(false);
-        Assert.assertFalse(sett3.retainAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), sett3);
-        Assert.assertTrue(this.setWithFalse.retainAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertFalse(this.setWithFalse.retainAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
+        Assertions.assertFalse(sett3.retainAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), sett3);
+        Assertions.assertTrue(this.setWithFalse.retainAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertFalse(this.setWithFalse.retainAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
 
-        Assert.assertFalse(this.emptySet.retainAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertFalse(this.emptySet.retainAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertFalse(this.emptySet.retainAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
+        Assertions.assertFalse(this.emptySet.retainAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertFalse(this.emptySet.retainAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertFalse(this.emptySet.retainAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.emptySet);
     }
 
     @Override
@@ -402,12 +402,12 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         MutableBooleanSet set1 = this.newWith().with(true);
         MutableBooleanSet set2 = this.newWith().with(true).with(false);
         MutableBooleanSet set3 = this.newWith().with(false).with(true);
-        Assert.assertSame(emptySet, set);
-        Assert.assertEquals(this.setWithFalse, set);
-        Assert.assertEquals(this.setWithTrue, set1);
-        Assert.assertEquals(this.setWithTrueFalse, set2);
-        Assert.assertEquals(this.setWithTrueFalse, set3);
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse.with(true));
+        Assertions.assertSame(emptySet, set);
+        Assertions.assertEquals(this.setWithFalse, set);
+        Assertions.assertEquals(this.setWithTrue, set1);
+        Assertions.assertEquals(this.setWithTrueFalse, set2);
+        Assertions.assertEquals(this.setWithTrueFalse, set3);
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse.with(true));
     }
 
     @Override
@@ -420,28 +420,28 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         MutableBooleanSet set1 = this.newWith().withAll(BooleanArrayList.newListWith(true));
         MutableBooleanSet set2 = this.newWith().withAll(BooleanArrayList.newListWith(true, false));
         MutableBooleanSet set3 = this.newWith().withAll(BooleanArrayList.newListWith(true, false));
-        Assert.assertSame(emptySet, set);
-        Assert.assertEquals(this.setWithFalse, set);
-        Assert.assertEquals(this.setWithTrue, set1);
-        Assert.assertEquals(this.setWithTrueFalse, set2);
-        Assert.assertEquals(this.setWithTrueFalse, set3);
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse.withAll(BooleanHashSet.newSetWith(true, false)));
+        Assertions.assertSame(emptySet, set);
+        Assertions.assertEquals(this.setWithFalse, set);
+        Assertions.assertEquals(this.setWithTrue, set1);
+        Assertions.assertEquals(this.setWithTrueFalse, set2);
+        Assertions.assertEquals(this.setWithTrueFalse, set3);
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), this.setWithTrueFalse.withAll(BooleanHashSet.newSetWith(true, false)));
     }
 
     @Override
     @Test
     public void without()
     {
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse.without(false));
-        Assert.assertSame(this.setWithTrueFalse, this.setWithTrueFalse.without(false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), this.newWith(true, false).without(true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrueFalse.without(true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrue.without(false));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue.without(true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithFalse.without(true));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse.without(false));
-        Assert.assertEquals(new BooleanHashSet(), this.emptySet.without(true));
-        Assert.assertEquals(new BooleanHashSet(), this.emptySet.without(false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse.without(false));
+        Assertions.assertSame(this.setWithTrueFalse, this.setWithTrueFalse.without(false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), this.newWith(true, false).without(true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrueFalse.without(true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrue.without(false));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue.without(true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), this.setWithFalse.without(true));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse.without(false));
+        Assertions.assertEquals(new BooleanHashSet(), this.emptySet.without(true));
+        Assertions.assertEquals(new BooleanHashSet(), this.emptySet.without(false));
     }
 
     @Override
@@ -449,20 +449,20 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void withoutAll()
     {
         super.withoutAll();
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse.withoutAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertSame(this.setWithTrueFalse, this.setWithTrueFalse.withoutAll(BooleanArrayList.newListWith(false, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), this.newWith(true, false).withoutAll(BooleanArrayList.newListWith(true, true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.newWith(true, false).withoutAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrueFalse.withoutAll(BooleanArrayList.newListWith(true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrue.withoutAll(BooleanArrayList.newListWith(false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue.withoutAll(BooleanArrayList.newListWith(true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.newWith(true).withoutAll(BooleanArrayList.newListWith(false, true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithFalse.withoutAll(BooleanArrayList.newListWith(true)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse.withoutAll(BooleanArrayList.newListWith(false)));
-        Assert.assertEquals(BooleanHashSet.newSetWith(), this.newWith(false).withoutAll(BooleanArrayList.newListWith(true, false)));
-        Assert.assertEquals(new BooleanHashSet(), this.emptySet.withoutAll(BooleanArrayList.newListWith(true)));
-        Assert.assertEquals(new BooleanHashSet(), this.emptySet.withoutAll(BooleanArrayList.newListWith(false)));
-        Assert.assertEquals(new BooleanHashSet(), this.emptySet.withoutAll(BooleanArrayList.newListWith(false, true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse.withoutAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertSame(this.setWithTrueFalse, this.setWithTrueFalse.withoutAll(BooleanArrayList.newListWith(false, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), this.newWith(true, false).withoutAll(BooleanArrayList.newListWith(true, true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.newWith(true, false).withoutAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrueFalse.withoutAll(BooleanArrayList.newListWith(true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrue.withoutAll(BooleanArrayList.newListWith(false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue.withoutAll(BooleanArrayList.newListWith(true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.newWith(true).withoutAll(BooleanArrayList.newListWith(false, true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), this.setWithFalse.withoutAll(BooleanArrayList.newListWith(true)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse.withoutAll(BooleanArrayList.newListWith(false)));
+        Assertions.assertEquals(BooleanHashSet.newSetWith(), this.newWith(false).withoutAll(BooleanArrayList.newListWith(true, false)));
+        Assertions.assertEquals(new BooleanHashSet(), this.emptySet.withoutAll(BooleanArrayList.newListWith(true)));
+        Assertions.assertEquals(new BooleanHashSet(), this.emptySet.withoutAll(BooleanArrayList.newListWith(false)));
+        Assertions.assertEquals(new BooleanHashSet(), this.emptySet.withoutAll(BooleanArrayList.newListWith(false, true)));
     }
 
     @Override
@@ -470,16 +470,16 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void toArray()
     {
         super.toArray();
-        Assert.assertEquals(0L, this.emptySet.toArray().length);
+        Assertions.assertEquals(0L, this.emptySet.toArray().length);
 
-        Assert.assertEquals(1L, this.setWithFalse.toArray().length);
-        Assert.assertFalse(this.setWithFalse.toArray()[0]);
+        Assertions.assertEquals(1L, this.setWithFalse.toArray().length);
+        Assertions.assertFalse(this.setWithFalse.toArray()[0]);
 
-        Assert.assertEquals(1L, this.setWithTrue.toArray().length);
-        Assert.assertTrue(this.setWithTrue.toArray()[0]);
+        Assertions.assertEquals(1L, this.setWithTrue.toArray().length);
+        Assertions.assertTrue(this.setWithTrue.toArray()[0]);
 
-        Assert.assertEquals(2L, this.setWithTrueFalse.toArray().length);
-        Assert.assertTrue(Arrays.equals(new boolean[]{false, true}, this.setWithTrueFalse.toArray())
+        Assertions.assertEquals(2L, this.setWithTrueFalse.toArray().length);
+        Assertions.assertTrue(Arrays.equals(new boolean[]{false, true}, this.setWithTrueFalse.toArray())
                 || Arrays.equals(new boolean[]{true, false}, this.setWithTrueFalse.toArray()));
     }
 
@@ -488,10 +488,10 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void toList()
     {
         super.toList();
-        Assert.assertEquals(new BooleanArrayList(), this.emptySet.toList());
-        Assert.assertEquals(BooleanArrayList.newListWith(false), this.setWithFalse.toList());
-        Assert.assertEquals(BooleanArrayList.newListWith(true), this.setWithTrue.toList());
-        Assert.assertTrue(BooleanArrayList.newListWith(false, true).equals(this.setWithTrueFalse.toList())
+        Assertions.assertEquals(new BooleanArrayList(), this.emptySet.toList());
+        Assertions.assertEquals(BooleanArrayList.newListWith(false), this.setWithFalse.toList());
+        Assertions.assertEquals(BooleanArrayList.newListWith(true), this.setWithTrue.toList());
+        Assertions.assertTrue(BooleanArrayList.newListWith(false, true).equals(this.setWithTrueFalse.toList())
                 || BooleanArrayList.newListWith(true, false).equals(this.setWithTrueFalse.toList()));
     }
 
@@ -500,32 +500,32 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void toSet()
     {
         super.toSet();
-        Assert.assertEquals(new BooleanHashSet(), this.emptySet.toSet());
-        Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithFalse.toSet());
-        Assert.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrue.toSet());
-        Assert.assertEquals(BooleanHashSet.newSetWith(false, true), this.setWithTrueFalse.toSet());
+        Assertions.assertEquals(new BooleanHashSet(), this.emptySet.toSet());
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false), this.setWithFalse.toSet());
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrue.toSet());
+        Assertions.assertEquals(BooleanHashSet.newSetWith(false, true), this.setWithTrueFalse.toSet());
     }
 
     @Override
     @Test
     public void toBag()
     {
-        Assert.assertEquals(new BooleanHashBag(), this.emptySet.toBag());
-        Assert.assertEquals(BooleanHashBag.newBagWith(false), this.setWithFalse.toBag());
-        Assert.assertEquals(BooleanHashBag.newBagWith(true), this.setWithTrue.toBag());
-        Assert.assertEquals(BooleanHashBag.newBagWith(false, true), this.setWithTrueFalse.toBag());
+        Assertions.assertEquals(new BooleanHashBag(), this.emptySet.toBag());
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false), this.setWithFalse.toBag());
+        Assertions.assertEquals(BooleanHashBag.newBagWith(true), this.setWithTrue.toBag());
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false, true), this.setWithTrueFalse.toBag());
     }
 
     @Override
     @Test
     public void testEquals()
     {
-        Assert.assertNotEquals(this.setWithFalse, this.emptySet);
-        Assert.assertNotEquals(this.setWithFalse, this.setWithTrue);
-        Assert.assertNotEquals(this.setWithFalse, this.setWithTrueFalse);
-        Assert.assertNotEquals(this.setWithTrue, this.emptySet);
-        Assert.assertNotEquals(this.setWithTrue, this.setWithTrueFalse);
-        Assert.assertNotEquals(this.setWithTrueFalse, this.emptySet);
+        Assertions.assertNotEquals(this.setWithFalse, this.emptySet);
+        Assertions.assertNotEquals(this.setWithFalse, this.setWithTrue);
+        Assertions.assertNotEquals(this.setWithFalse, this.setWithTrueFalse);
+        Assertions.assertNotEquals(this.setWithTrue, this.emptySet);
+        Assertions.assertNotEquals(this.setWithTrue, this.setWithTrueFalse);
+        Assertions.assertNotEquals(this.setWithTrueFalse, this.emptySet);
         Verify.assertEqualsAndHashCode(this.newWith(false, true), this.setWithTrueFalse);
         Verify.assertEqualsAndHashCode(this.newWith(true, false), this.setWithTrueFalse);
 
@@ -540,12 +540,12 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void testHashCode()
     {
         super.testHashCode();
-        Assert.assertEquals(UnifiedSet.newSet().hashCode(), this.emptySet.hashCode());
-        Assert.assertEquals(UnifiedSet.newSetWith(false).hashCode(), this.setWithFalse.hashCode());
-        Assert.assertEquals(UnifiedSet.newSetWith(true).hashCode(), this.setWithTrue.hashCode());
-        Assert.assertEquals(UnifiedSet.newSetWith(true, false).hashCode(), this.setWithTrueFalse.hashCode());
-        Assert.assertEquals(UnifiedSet.newSetWith(false, true).hashCode(), this.setWithTrueFalse.hashCode());
-        Assert.assertNotEquals(UnifiedSet.newSetWith(false).hashCode(), this.setWithTrueFalse.hashCode());
+        Assertions.assertEquals(UnifiedSet.newSet().hashCode(), this.emptySet.hashCode());
+        Assertions.assertEquals(UnifiedSet.newSetWith(false).hashCode(), this.setWithFalse.hashCode());
+        Assertions.assertEquals(UnifiedSet.newSetWith(true).hashCode(), this.setWithTrue.hashCode());
+        Assertions.assertEquals(UnifiedSet.newSetWith(true, false).hashCode(), this.setWithTrueFalse.hashCode());
+        Assertions.assertEquals(UnifiedSet.newSetWith(false, true).hashCode(), this.setWithTrueFalse.hashCode());
+        Assertions.assertNotEquals(UnifiedSet.newSetWith(false).hashCode(), this.setWithTrueFalse.hashCode());
     }
 
     @Override
@@ -553,29 +553,29 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void booleanIterator()
     {
         BooleanIterator booleanIterator0 = this.emptySet.booleanIterator();
-        Assert.assertFalse(booleanIterator0.hasNext());
+        Assertions.assertFalse(booleanIterator0.hasNext());
         Verify.assertThrows(NoSuchElementException.class, (Runnable) booleanIterator0::next);
 
         BooleanIterator booleanIterator1 = this.setWithFalse.booleanIterator();
-        Assert.assertTrue(booleanIterator1.hasNext());
-        Assert.assertFalse(booleanIterator1.next());
-        Assert.assertFalse(booleanIterator1.hasNext());
+        Assertions.assertTrue(booleanIterator1.hasNext());
+        Assertions.assertFalse(booleanIterator1.next());
+        Assertions.assertFalse(booleanIterator1.hasNext());
         Verify.assertThrows(NoSuchElementException.class, (Runnable) booleanIterator1::next);
 
         BooleanIterator booleanIterator2 = this.setWithTrue.booleanIterator();
-        Assert.assertTrue(booleanIterator2.hasNext());
-        Assert.assertTrue(booleanIterator2.next());
-        Assert.assertFalse(booleanIterator2.hasNext());
+        Assertions.assertTrue(booleanIterator2.hasNext());
+        Assertions.assertTrue(booleanIterator2.next());
+        Assertions.assertFalse(booleanIterator2.hasNext());
         Verify.assertThrows(NoSuchElementException.class, (Runnable) booleanIterator2::next);
 
         BooleanIterator booleanIterator3 = this.setWithTrueFalse.booleanIterator();
         BooleanHashSet actual = new BooleanHashSet();
-        Assert.assertTrue(booleanIterator3.hasNext());
+        Assertions.assertTrue(booleanIterator3.hasNext());
         actual.add(booleanIterator3.next());
-        Assert.assertTrue(booleanIterator3.hasNext());
+        Assertions.assertTrue(booleanIterator3.hasNext());
         actual.add(booleanIterator3.next());
-        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), actual);
-        Assert.assertFalse(booleanIterator3.hasNext());
+        Assertions.assertEquals(BooleanHashSet.newSetWith(true, false), actual);
+        Assertions.assertFalse(booleanIterator3.hasNext());
         Verify.assertThrows(NoSuchElementException.class, (Runnable) booleanIterator3::next);
     }
 
@@ -593,10 +593,10 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         this.setWithTrue.forEach(each -> sum[2] += each);
         this.setWithTrueFalse.forEach(each -> sum[3] += each);
 
-        Assert.assertEquals("", sum[0]);
-        Assert.assertEquals("false", sum[1]);
-        Assert.assertEquals("true", sum[2]);
-        Assert.assertTrue("truefalse".equals(sum[3]) || "falsetrue".equals(sum[3]));
+        Assertions.assertEquals("", sum[0]);
+        Assertions.assertEquals("false", sum[1]);
+        Assertions.assertEquals("true", sum[2]);
+        Assertions.assertTrue("truefalse".equals(sum[3]) || "falsetrue".equals(sum[3]));
     }
 
     @Override
@@ -604,10 +604,10 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void injectInto()
     {
         ObjectBooleanToObjectFunction<MutableInteger, MutableInteger> function = (object, value) -> object.add(value ? 1 : 0);
-        Assert.assertEquals(new MutableInteger(1), BooleanHashSet.newSetWith(true, false, true).injectInto(new MutableInteger(0), function));
-        Assert.assertEquals(new MutableInteger(1), BooleanHashSet.newSetWith(true).injectInto(new MutableInteger(0), function));
-        Assert.assertEquals(new MutableInteger(0), BooleanHashSet.newSetWith(false).injectInto(new MutableInteger(0), function));
-        Assert.assertEquals(new MutableInteger(0), new BooleanHashSet().injectInto(new MutableInteger(0), function));
+        Assertions.assertEquals(new MutableInteger(1), BooleanHashSet.newSetWith(true, false, true).injectInto(new MutableInteger(0), function));
+        Assertions.assertEquals(new MutableInteger(1), BooleanHashSet.newSetWith(true).injectInto(new MutableInteger(0), function));
+        Assertions.assertEquals(new MutableInteger(0), BooleanHashSet.newSetWith(false).injectInto(new MutableInteger(0), function));
+        Assertions.assertEquals(new MutableInteger(0), new BooleanHashSet().injectInto(new MutableInteger(0), function));
     }
 
     @Override
@@ -622,15 +622,15 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     @Test
     public void count()
     {
-        Assert.assertEquals(0L, this.emptySet.count(BooleanPredicates.isTrue()));
-        Assert.assertEquals(0L, this.setWithFalse.count(BooleanPredicates.isTrue()));
-        Assert.assertEquals(1L, this.setWithFalse.count(BooleanPredicates.isFalse()));
-        Assert.assertEquals(0L, this.setWithTrue.count(BooleanPredicates.isFalse()));
-        Assert.assertEquals(1L, this.setWithTrueFalse.count(BooleanPredicates.isTrue()));
-        Assert.assertEquals(0L, this.setWithTrueFalse.count(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
-        Assert.assertEquals(1L, this.setWithTrueFalse.count(BooleanPredicates.isFalse()));
-        Assert.assertEquals(1L, this.setWithTrueFalse.count(BooleanPredicates.isTrue()));
-        Assert.assertEquals(2L, this.setWithTrueFalse.count(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assertions.assertEquals(0L, this.emptySet.count(BooleanPredicates.isTrue()));
+        Assertions.assertEquals(0L, this.setWithFalse.count(BooleanPredicates.isTrue()));
+        Assertions.assertEquals(1L, this.setWithFalse.count(BooleanPredicates.isFalse()));
+        Assertions.assertEquals(0L, this.setWithTrue.count(BooleanPredicates.isFalse()));
+        Assertions.assertEquals(1L, this.setWithTrueFalse.count(BooleanPredicates.isTrue()));
+        Assertions.assertEquals(0L, this.setWithTrueFalse.count(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assertions.assertEquals(1L, this.setWithTrueFalse.count(BooleanPredicates.isFalse()));
+        Assertions.assertEquals(1L, this.setWithTrueFalse.count(BooleanPredicates.isTrue()));
+        Assertions.assertEquals(2L, this.setWithTrueFalse.count(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
     }
 
     @Override
@@ -638,14 +638,14 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void anySatisfy()
     {
         super.anySatisfy();
-        Assert.assertFalse(this.emptySet.anySatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
-        Assert.assertFalse(this.setWithFalse.anySatisfy(BooleanPredicates.isTrue()));
-        Assert.assertTrue(this.setWithFalse.anySatisfy(BooleanPredicates.isFalse()));
-        Assert.assertFalse(this.setWithTrue.anySatisfy(BooleanPredicates.isFalse()));
-        Assert.assertTrue(this.setWithTrue.anySatisfy(BooleanPredicates.isTrue()));
-        Assert.assertTrue(this.setWithTrueFalse.anySatisfy(BooleanPredicates.isTrue()));
-        Assert.assertTrue(this.setWithTrueFalse.anySatisfy(BooleanPredicates.isFalse()));
-        Assert.assertFalse(this.setWithTrueFalse.anySatisfy(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assertions.assertFalse(this.emptySet.anySatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
+        Assertions.assertFalse(this.setWithFalse.anySatisfy(BooleanPredicates.isTrue()));
+        Assertions.assertTrue(this.setWithFalse.anySatisfy(BooleanPredicates.isFalse()));
+        Assertions.assertFalse(this.setWithTrue.anySatisfy(BooleanPredicates.isFalse()));
+        Assertions.assertTrue(this.setWithTrue.anySatisfy(BooleanPredicates.isTrue()));
+        Assertions.assertTrue(this.setWithTrueFalse.anySatisfy(BooleanPredicates.isTrue()));
+        Assertions.assertTrue(this.setWithTrueFalse.anySatisfy(BooleanPredicates.isFalse()));
+        Assertions.assertFalse(this.setWithTrueFalse.anySatisfy(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
     }
 
     @Override
@@ -653,30 +653,30 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void allSatisfy()
     {
         super.allSatisfy();
-        Assert.assertTrue(this.emptySet.allSatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
-        Assert.assertFalse(this.setWithFalse.allSatisfy(BooleanPredicates.isTrue()));
-        Assert.assertTrue(this.setWithFalse.allSatisfy(BooleanPredicates.isFalse()));
-        Assert.assertFalse(this.setWithTrue.allSatisfy(BooleanPredicates.isFalse()));
-        Assert.assertTrue(this.setWithTrue.allSatisfy(BooleanPredicates.isTrue()));
-        Assert.assertFalse(this.setWithTrueFalse.allSatisfy(BooleanPredicates.isTrue()));
-        Assert.assertFalse(this.setWithTrueFalse.allSatisfy(BooleanPredicates.isFalse()));
-        Assert.assertFalse(this.setWithTrueFalse.allSatisfy(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
-        Assert.assertTrue(this.setWithTrueFalse.allSatisfy(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assertions.assertTrue(this.emptySet.allSatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
+        Assertions.assertFalse(this.setWithFalse.allSatisfy(BooleanPredicates.isTrue()));
+        Assertions.assertTrue(this.setWithFalse.allSatisfy(BooleanPredicates.isFalse()));
+        Assertions.assertFalse(this.setWithTrue.allSatisfy(BooleanPredicates.isFalse()));
+        Assertions.assertTrue(this.setWithTrue.allSatisfy(BooleanPredicates.isTrue()));
+        Assertions.assertFalse(this.setWithTrueFalse.allSatisfy(BooleanPredicates.isTrue()));
+        Assertions.assertFalse(this.setWithTrueFalse.allSatisfy(BooleanPredicates.isFalse()));
+        Assertions.assertFalse(this.setWithTrueFalse.allSatisfy(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assertions.assertTrue(this.setWithTrueFalse.allSatisfy(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
     }
 
     @Override
     @Test
     public void noneSatisfy()
     {
-        Assert.assertTrue(this.emptySet.noneSatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
-        Assert.assertFalse(this.setWithFalse.noneSatisfy(BooleanPredicates.isFalse()));
-        Assert.assertTrue(this.setWithFalse.noneSatisfy(BooleanPredicates.isTrue()));
-        Assert.assertFalse(this.setWithTrue.noneSatisfy(BooleanPredicates.isTrue()));
-        Assert.assertTrue(this.setWithTrue.noneSatisfy(BooleanPredicates.isFalse()));
-        Assert.assertFalse(this.setWithTrueFalse.noneSatisfy(BooleanPredicates.isTrue()));
-        Assert.assertFalse(this.setWithTrueFalse.noneSatisfy(BooleanPredicates.isFalse()));
-        Assert.assertTrue(this.setWithTrueFalse.noneSatisfy(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
-        Assert.assertFalse(this.setWithTrueFalse.noneSatisfy(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assertions.assertTrue(this.emptySet.noneSatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
+        Assertions.assertFalse(this.setWithFalse.noneSatisfy(BooleanPredicates.isFalse()));
+        Assertions.assertTrue(this.setWithFalse.noneSatisfy(BooleanPredicates.isTrue()));
+        Assertions.assertFalse(this.setWithTrue.noneSatisfy(BooleanPredicates.isTrue()));
+        Assertions.assertTrue(this.setWithTrue.noneSatisfy(BooleanPredicates.isFalse()));
+        Assertions.assertFalse(this.setWithTrueFalse.noneSatisfy(BooleanPredicates.isTrue()));
+        Assertions.assertFalse(this.setWithTrueFalse.noneSatisfy(BooleanPredicates.isFalse()));
+        Assertions.assertTrue(this.setWithTrueFalse.noneSatisfy(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assertions.assertFalse(this.setWithTrueFalse.noneSatisfy(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
     }
 
     @Override
@@ -714,20 +714,20 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void detectIfNone()
     {
         super.detectIfNone();
-        Assert.assertTrue(this.emptySet.detectIfNone(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse()), true));
-        Assert.assertFalse(this.emptySet.detectIfNone(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse()), false));
-        Assert.assertTrue(this.setWithFalse.detectIfNone(BooleanPredicates.isTrue(), true));
-        Assert.assertFalse(this.setWithFalse.detectIfNone(BooleanPredicates.isTrue(), false));
-        Assert.assertFalse(this.setWithFalse.detectIfNone(BooleanPredicates.isFalse(), true));
-        Assert.assertFalse(this.setWithFalse.detectIfNone(BooleanPredicates.isFalse(), false));
-        Assert.assertTrue(this.setWithTrue.detectIfNone(BooleanPredicates.isFalse(), true));
-        Assert.assertFalse(this.setWithTrue.detectIfNone(BooleanPredicates.isFalse(), false));
-        Assert.assertTrue(this.setWithTrue.detectIfNone(BooleanPredicates.isTrue(), true));
-        Assert.assertTrue(this.setWithTrue.detectIfNone(BooleanPredicates.isTrue(), false));
-        Assert.assertTrue(this.setWithTrueFalse.detectIfNone(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue()), true));
-        Assert.assertFalse(this.setWithTrueFalse.detectIfNone(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue()), false));
-        Assert.assertFalse(this.setWithTrueFalse.detectIfNone(BooleanPredicates.isFalse(), true));
-        Assert.assertTrue(this.setWithTrueFalse.detectIfNone(BooleanPredicates.isTrue(), false));
+        Assertions.assertTrue(this.emptySet.detectIfNone(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse()), true));
+        Assertions.assertFalse(this.emptySet.detectIfNone(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse()), false));
+        Assertions.assertTrue(this.setWithFalse.detectIfNone(BooleanPredicates.isTrue(), true));
+        Assertions.assertFalse(this.setWithFalse.detectIfNone(BooleanPredicates.isTrue(), false));
+        Assertions.assertFalse(this.setWithFalse.detectIfNone(BooleanPredicates.isFalse(), true));
+        Assertions.assertFalse(this.setWithFalse.detectIfNone(BooleanPredicates.isFalse(), false));
+        Assertions.assertTrue(this.setWithTrue.detectIfNone(BooleanPredicates.isFalse(), true));
+        Assertions.assertFalse(this.setWithTrue.detectIfNone(BooleanPredicates.isFalse(), false));
+        Assertions.assertTrue(this.setWithTrue.detectIfNone(BooleanPredicates.isTrue(), true));
+        Assertions.assertTrue(this.setWithTrue.detectIfNone(BooleanPredicates.isTrue(), false));
+        Assertions.assertTrue(this.setWithTrueFalse.detectIfNone(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue()), true));
+        Assertions.assertFalse(this.setWithTrueFalse.detectIfNone(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue()), false));
+        Assertions.assertFalse(this.setWithTrueFalse.detectIfNone(BooleanPredicates.isFalse(), true));
+        Assertions.assertTrue(this.setWithTrueFalse.detectIfNone(BooleanPredicates.isTrue(), false));
     }
 
     @Override
@@ -736,10 +736,10 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     {
         super.collect();
         BooleanToObjectFunction<Boolean> function = parameter -> !parameter;
-        Assert.assertEquals(UnifiedSet.newSetWith(true, false), this.setWithTrueFalse.collect(function));
-        Assert.assertEquals(UnifiedSet.newSetWith(false), this.setWithTrue.collect(function));
-        Assert.assertEquals(UnifiedSet.newSetWith(true), this.setWithFalse.collect(function));
-        Assert.assertEquals(UnifiedSet.newSetWith(), this.emptySet.collect(function));
+        Assertions.assertEquals(UnifiedSet.newSetWith(true, false), this.setWithTrueFalse.collect(function));
+        Assertions.assertEquals(UnifiedSet.newSetWith(false), this.setWithTrue.collect(function));
+        Assertions.assertEquals(UnifiedSet.newSetWith(true), this.setWithFalse.collect(function));
+        Assertions.assertEquals(UnifiedSet.newSetWith(), this.emptySet.collect(function));
     }
 
     @Override
@@ -747,10 +747,10 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void testToString()
     {
         super.testToString();
-        Assert.assertEquals("[]", this.emptySet.toString());
-        Assert.assertEquals("[false]", this.setWithFalse.toString());
-        Assert.assertEquals("[true]", this.setWithTrue.toString());
-        Assert.assertTrue("[true, false]".equals(this.setWithTrueFalse.toString())
+        Assertions.assertEquals("[]", this.emptySet.toString());
+        Assertions.assertEquals("[false]", this.setWithFalse.toString());
+        Assertions.assertEquals("[true]", this.setWithTrue.toString());
+        Assertions.assertTrue("[true, false]".equals(this.setWithTrueFalse.toString())
                 || "[false, true]".equals(this.setWithTrueFalse.toString()));
     }
 
@@ -759,23 +759,23 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     public void makeString()
     {
         super.makeString();
-        Assert.assertEquals("", this.emptySet.makeString());
-        Assert.assertEquals("false", this.setWithFalse.makeString());
-        Assert.assertEquals("true", this.setWithTrue.makeString());
-        Assert.assertTrue("true, false".equals(this.setWithTrueFalse.makeString())
+        Assertions.assertEquals("", this.emptySet.makeString());
+        Assertions.assertEquals("false", this.setWithFalse.makeString());
+        Assertions.assertEquals("true", this.setWithTrue.makeString());
+        Assertions.assertTrue("true, false".equals(this.setWithTrueFalse.makeString())
                 || "false, true".equals(this.setWithTrueFalse.makeString()));
 
-        Assert.assertEquals("", this.emptySet.makeString("/"));
-        Assert.assertEquals("false", this.setWithFalse.makeString("/"));
-        Assert.assertEquals("true", this.setWithTrue.makeString("/"));
-        Assert.assertTrue(this.setWithTrueFalse.makeString("/"), "true/false".equals(this.setWithTrueFalse.makeString("/"))
-                || "false/true".equals(this.setWithTrueFalse.makeString("/")));
+        Assertions.assertEquals("", this.emptySet.makeString("/"));
+        Assertions.assertEquals("false", this.setWithFalse.makeString("/"));
+        Assertions.assertEquals("true", this.setWithTrue.makeString("/"));
+        Assertions.assertTrue("true/false".equals(this.setWithTrueFalse.makeString("/"))
+                || "false/true".equals(this.setWithTrueFalse.makeString("/")), this.setWithTrueFalse.makeString("/"));
 
-        Assert.assertEquals("[]", this.emptySet.makeString("[", "/", "]"));
-        Assert.assertEquals("[false]", this.setWithFalse.makeString("[", "/", "]"));
-        Assert.assertEquals("[true]", this.setWithTrue.makeString("[", "/", "]"));
-        Assert.assertTrue(this.setWithTrueFalse.makeString("[", "/", "]"), "[true/false]".equals(this.setWithTrueFalse.makeString("[", "/", "]"))
-                || "[false/true]".equals(this.setWithTrueFalse.makeString("[", "/", "]")));
+        Assertions.assertEquals("[]", this.emptySet.makeString("[", "/", "]"));
+        Assertions.assertEquals("[false]", this.setWithFalse.makeString("[", "/", "]"));
+        Assertions.assertEquals("[true]", this.setWithTrue.makeString("[", "/", "]"));
+        Assertions.assertTrue("[true/false]".equals(this.setWithTrueFalse.makeString("[", "/", "]"))
+                || "[false/true]".equals(this.setWithTrueFalse.makeString("[", "/", "]")), this.setWithTrueFalse.makeString("[", "/", "]"));
     }
 
     @Override
@@ -785,24 +785,24 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         super.appendString();
         StringBuilder appendable = new StringBuilder();
         this.emptySet.appendString(appendable);
-        Assert.assertEquals("", appendable.toString());
+        Assertions.assertEquals("", appendable.toString());
 
         StringBuilder appendable1 = new StringBuilder();
         this.setWithFalse.appendString(appendable1);
-        Assert.assertEquals("false", appendable1.toString());
+        Assertions.assertEquals("false", appendable1.toString());
 
         StringBuilder appendable2 = new StringBuilder();
         this.setWithTrue.appendString(appendable2);
-        Assert.assertEquals("true", appendable2.toString());
+        Assertions.assertEquals("true", appendable2.toString());
 
         StringBuilder appendable3 = new StringBuilder();
         this.setWithTrueFalse.appendString(appendable3);
-        Assert.assertTrue("true, false".equals(appendable3.toString())
+        Assertions.assertTrue("true, false".equals(appendable3.toString())
                 || "false, true".equals(appendable3.toString()));
 
         StringBuilder appendable4 = new StringBuilder();
         this.setWithTrueFalse.appendString(appendable4, "[", ", ", "]");
-        Assert.assertTrue("[true, false]".equals(appendable4.toString())
+        Assertions.assertTrue("[true, false]".equals(appendable4.toString())
                 || "[false, true]".equals(appendable4.toString()));
     }
 
@@ -812,10 +812,10 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     {
         super.asLazy();
         Verify.assertInstanceOf(LazyBooleanIterable.class, this.emptySet.asLazy());
-        Assert.assertEquals(this.emptySet, this.emptySet.asLazy().toSet());
-        Assert.assertEquals(this.setWithFalse, this.setWithFalse.asLazy().toSet());
-        Assert.assertEquals(this.setWithTrue, this.setWithTrue.asLazy().toSet());
-        Assert.assertEquals(this.setWithTrueFalse, this.setWithTrueFalse.asLazy().toSet());
+        Assertions.assertEquals(this.emptySet, this.emptySet.asLazy().toSet());
+        Assertions.assertEquals(this.setWithFalse, this.setWithFalse.asLazy().toSet());
+        Assertions.assertEquals(this.setWithTrue, this.setWithTrue.asLazy().toSet());
+        Assertions.assertEquals(this.setWithTrueFalse, this.setWithTrueFalse.asLazy().toSet());
     }
 
     @Override
@@ -824,10 +824,10 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     {
         super.asSynchronized();
         Verify.assertInstanceOf(SynchronizedBooleanSet.class, this.emptySet.asSynchronized());
-        Assert.assertEquals(new SynchronizedBooleanSet(this.emptySet), this.emptySet.asSynchronized());
-        Assert.assertEquals(new SynchronizedBooleanSet(this.setWithFalse), this.setWithFalse.asSynchronized());
-        Assert.assertEquals(new SynchronizedBooleanSet(this.setWithTrue), this.setWithTrue.asSynchronized());
-        Assert.assertEquals(new SynchronizedBooleanSet(this.setWithTrueFalse), this.setWithTrueFalse.asSynchronized());
+        Assertions.assertEquals(new SynchronizedBooleanSet(this.emptySet), this.emptySet.asSynchronized());
+        Assertions.assertEquals(new SynchronizedBooleanSet(this.setWithFalse), this.setWithFalse.asSynchronized());
+        Assertions.assertEquals(new SynchronizedBooleanSet(this.setWithTrue), this.setWithTrue.asSynchronized());
+        Assertions.assertEquals(new SynchronizedBooleanSet(this.setWithTrueFalse), this.setWithTrueFalse.asSynchronized());
     }
 
     @Override
@@ -836,9 +836,9 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     {
         super.asUnmodifiable();
         Verify.assertInstanceOf(UnmodifiableBooleanSet.class, this.emptySet.asUnmodifiable());
-        Assert.assertEquals(new UnmodifiableBooleanSet(this.emptySet), this.emptySet.asUnmodifiable());
-        Assert.assertEquals(new UnmodifiableBooleanSet(this.setWithFalse), this.setWithFalse.asUnmodifiable());
-        Assert.assertEquals(new UnmodifiableBooleanSet(this.setWithTrue), this.setWithTrue.asUnmodifiable());
-        Assert.assertEquals(new UnmodifiableBooleanSet(this.setWithTrueFalse), this.setWithTrueFalse.asUnmodifiable());
+        Assertions.assertEquals(new UnmodifiableBooleanSet(this.emptySet), this.emptySet.asUnmodifiable());
+        Assertions.assertEquals(new UnmodifiableBooleanSet(this.setWithFalse), this.setWithFalse.asUnmodifiable());
+        Assertions.assertEquals(new UnmodifiableBooleanSet(this.setWithTrue), this.setWithTrue.asUnmodifiable());
+        Assertions.assertEquals(new UnmodifiableBooleanSet(this.setWithTrueFalse), this.setWithTrueFalse.asUnmodifiable());
     }
 }

@@ -27,8 +27,8 @@ import com.gs.collections.impl.factory.Maps;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.iBag;
 
@@ -85,26 +85,27 @@ public class ImmutableArrayBagTest extends ImmutableBagTestCase
         super.newWithout();
         ImmutableBag<String> bag = this.newBag();
         ImmutableBag<String> newBag2 = bag.newWithout("2").newWithout("2");
-        Assert.assertNotEquals(bag, newBag2);
-        Assert.assertEquals(newBag2.size(), bag.size() - 2);
-        Assert.assertEquals(3, newBag2.sizeDistinct());
+        Assertions.assertNotEquals(bag, newBag2);
+        Assertions.assertEquals(newBag2.size(), bag.size() - 2);
+        Assertions.assertEquals(3, newBag2.sizeDistinct());
         ImmutableBag<String> newBag3 = bag.newWithout("3").newWithout("3").newWithout("3");
-        Assert.assertNotEquals(bag, newBag3);
-        Assert.assertEquals(newBag3.size(), bag.size() - 3);
-        Assert.assertEquals(3, newBag3.sizeDistinct());
+        Assertions.assertNotEquals(bag, newBag3);
+        Assertions.assertEquals(newBag3.size(), bag.size() - 3);
+        Assertions.assertEquals(3, newBag3.sizeDistinct());
         ImmutableBag<String> newBag4 = bag.newWithout("4").newWithout("4").newWithout("4").newWithout("4");
-        Assert.assertNotEquals(bag, newBag4);
-        Assert.assertEquals(newBag4.size(), bag.size() - 4);
-        Assert.assertEquals(3, newBag4.sizeDistinct());
+        Assertions.assertNotEquals(bag, newBag4);
+        Assertions.assertEquals(newBag4.size(), bag.size() - 4);
+        Assertions.assertEquals(3, newBag4.sizeDistinct());
         ImmutableBag<String> newBag5 = bag.newWithout("5");
-        Assert.assertEquals(bag, newBag5);
+        Assertions.assertEquals(bag, newBag5);
     }
 
     @Override
+    @Test
     public void toStringOfItemToCount()
     {
         String actual = ImmutableArrayBag.newBagWith("1", "2", "2").toStringOfItemToCount();
-        Assert.assertTrue("{1=1, 2=2}".equals(actual) || "{2=2, 1=1}".equals(actual));
+        Assertions.assertTrue("{1=1, 2=2}".equals(actual) || "{2=2, 1=1}".equals(actual));
     }
 
     @Override
@@ -115,7 +116,7 @@ public class ImmutableArrayBagTest extends ImmutableBagTestCase
         ImmutableBag<String> integers = this.newBag();
         MutableMap<String, String> map =
                 integers.toMap(String::valueOf, String::valueOf);
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("1", "1", "2", "2", "3", "3", "4", "4"), map);
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("1", "1", "2", "2", "3", "3", "4", "4"), map);
     }
 
     @Test
@@ -137,8 +138,8 @@ public class ImmutableArrayBagTest extends ImmutableBagTestCase
         super.selectInstancesOf();
 
         ImmutableBag<Number> numbers = ImmutableArrayBag.<Number>newBagWith(1, 2.0, 2.0, 3, 3, 3, 4.0, 4.0, 4.0, 4.0);
-        Assert.assertEquals(iBag(1, 3, 3, 3), numbers.selectInstancesOf(Integer.class));
-        Assert.assertEquals(iBag(2.0, 2.0, 4.0, 4.0, 4.0, 4.0), numbers.selectInstancesOf(Double.class));
+        Assertions.assertEquals(iBag(1, 3, 3, 3), numbers.selectInstancesOf(Integer.class));
+        Assertions.assertEquals(iBag(2.0, 2.0, 4.0, 4.0, 4.0, 4.0), numbers.selectInstancesOf(Double.class));
     }
 
     @Override
@@ -147,7 +148,7 @@ public class ImmutableArrayBagTest extends ImmutableBagTestCase
     {
         // Only works on bags without duplicates
         ImmutableBag<Integer> immutableBag = ImmutableArrayBag.newBagWith(1, 2, 3);
-        Assert.assertEquals(Maps.immutable.of(1, 1, 2, 2, 3, 3), immutableBag.groupByUniqueKey(id -> id));
+        Assertions.assertEquals(Maps.immutable.of(1, 1, 2, 2, 3, 3), immutableBag.groupByUniqueKey(id -> id));
     }
 
     @Override
@@ -156,7 +157,7 @@ public class ImmutableArrayBagTest extends ImmutableBagTestCase
     {
         // Only works on bags without duplicates
         ImmutableBag<Integer> immutableBag = ImmutableArrayBag.newBagWith(1, 2, 3);
-        Assert.assertEquals(Maps.immutable.of(0, 0, 1, 1, 2, 2, 3, 3), immutableBag.groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0)));
+        Assertions.assertEquals(Maps.immutable.of(0, 0, 1, 1, 2, 2, 3, 3), immutableBag.groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0)));
     }
 
     @Test
@@ -176,10 +177,10 @@ public class ImmutableArrayBagTest extends ImmutableBagTestCase
         ImmutableBag<String> strings = ImmutableArrayBag.copyFrom(mutable);
         ImmutableList<ObjectIntPair<String>> top5 = strings.topOccurrences(5);
         Verify.assertIterableSize(5, top5);
-        Assert.assertEquals("ten", top5.getFirst().getOne());
-        Assert.assertEquals(10, top5.getFirst().getTwo());
-        Assert.assertEquals("six", top5.getLast().getOne());
-        Assert.assertEquals(6, top5.getLast().getTwo());
+        Assertions.assertEquals("ten", top5.getFirst().getOne());
+        Assertions.assertEquals(10, top5.getFirst().getTwo());
+        Assertions.assertEquals("six", top5.getLast().getOne());
+        Assertions.assertEquals(6, top5.getLast().getTwo());
         Verify.assertIterableSize(0, ImmutableArrayBag.newBagWith().topOccurrences(5));
         Verify.assertIterableSize(3, this.newWith("one", "two", "three").topOccurrences(5));
         Verify.assertIterableSize(3, this.newWith("one", "two", "three").topOccurrences(1));
@@ -211,10 +212,10 @@ public class ImmutableArrayBagTest extends ImmutableBagTestCase
         ImmutableBag<String> strings = ImmutableArrayBag.copyFrom(mutable);
         ImmutableList<ObjectIntPair<String>> bottom5 = strings.bottomOccurrences(5);
         Verify.assertIterableSize(5, bottom5);
-        Assert.assertEquals("one", bottom5.getFirst().getOne());
-        Assert.assertEquals(1, bottom5.getFirst().getTwo());
-        Assert.assertEquals("five", bottom5.getLast().getOne());
-        Assert.assertEquals(5, bottom5.getLast().getTwo());
+        Assertions.assertEquals("one", bottom5.getFirst().getOne());
+        Assertions.assertEquals(1, bottom5.getFirst().getTwo());
+        Assertions.assertEquals("five", bottom5.getLast().getOne());
+        Assertions.assertEquals(5, bottom5.getLast().getTwo());
         Verify.assertIterableSize(0, ImmutableArrayBag.newBagWith().bottomOccurrences(5));
         Verify.assertIterableSize(3, this.newWith("one", "two", "three").bottomOccurrences(5));
         Verify.assertIterableSize(3, this.newWith("one", "two", "three").bottomOccurrences(1));

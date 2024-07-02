@@ -17,15 +17,15 @@
 package com.gs.collections.impl.lazy;
 
 import com.gs.collections.impl.factory.Lists;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ZipIterableTest
 {
     private ZipIterable<Character, Integer> zipIterable;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.zipIterable = new ZipIterable<>(
@@ -44,7 +44,7 @@ public class ZipIterableTest
             sb.append(index);
         });
 
-        Assert.assertEquals("|a00|b11|c22", sb.toString());
+        Assertions.assertEquals("|a00|b11|c22", sb.toString());
     }
 
     @Test
@@ -57,6 +57,6 @@ public class ZipIterableTest
             sb.append(each.getTwo());
         }, "|");
 
-        Assert.assertEquals("|a0|b1|c2", sb.toString());
+        Assertions.assertEquals("|a0|b1|c2", sb.toString());
     }
 }

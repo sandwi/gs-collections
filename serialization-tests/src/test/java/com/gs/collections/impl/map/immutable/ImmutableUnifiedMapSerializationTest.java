@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable;
 
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableUnifiedMapSerializationTest
 {
@@ -27,10 +27,12 @@ public class ImmutableUnifiedMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLkltbXV0YWJsZU1h\n"
-                        + "cFNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAARzcgARamF2YS5sYW5nLkludGVn\n"
-                        + "ZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAA\n"
-                        + "AXEAfgAEc3EAfgACAAAAAnEAfgAFc3EAfgACAAAAA3EAfgAGc3EAfgACAAAABHEAfgAHeA==",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLkltbXV0YWJsZU1h
+                cFNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAARzcgARamF2YS5sYW5nLkludGVn
+                ZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAA
+                AXEAfgAEc3EAfgACAAAAAnEAfgAFc3EAfgACAAAAA3EAfgAGc3EAfgACAAAABHEAfgAHeA==\
+                """,
                 new ImmutableUnifiedMap<Integer, Integer>(
                         Tuples.pair(1, 1),
                         Tuples.pair(2, 2),

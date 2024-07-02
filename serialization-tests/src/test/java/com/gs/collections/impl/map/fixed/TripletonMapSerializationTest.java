@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.fixed;
 
 import com.gs.collections.impl.factory.Maps;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TripletonMapSerializationTest
 {
@@ -27,8 +27,10 @@ public class TripletonMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuZml4ZWQuU2luZ2xldG9uTWFwAAAA\n"
-                        + "AAAAAAEMAAB4cHBweA==",
+                """
+                rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuZml4ZWQuU2luZ2xldG9uTWFwAAAA
+                AAAAAAEMAAB4cHBweA==\
+                """,
                 Maps.fixedSize.of(null, null, null, null, null, null));
     }
 }

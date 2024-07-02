@@ -18,7 +18,7 @@ package com.gs.collections.impl.stack.mutable;
 
 import com.gs.collections.api.stack.MutableStack;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SynchronizedStack}.

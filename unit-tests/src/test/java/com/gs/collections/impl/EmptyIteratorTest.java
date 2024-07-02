@@ -19,15 +19,15 @@ package com.gs.collections.impl;
 import java.util.NoSuchElementException;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class EmptyIteratorTest
 {
     private EmptyIterator<Object> emptyIterator;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.emptyIterator = EmptyIterator.getInstance();
@@ -36,7 +36,7 @@ public class EmptyIteratorTest
     @Test
     public void hasPrevious()
     {
-        Assert.assertFalse(this.emptyIterator.hasPrevious());
+        Assertions.assertFalse(this.emptyIterator.hasPrevious());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class EmptyIteratorTest
     @Test
     public void previousIndex()
     {
-        Assert.assertEquals(-1, this.emptyIterator.previousIndex());
+        Assertions.assertEquals(-1, this.emptyIterator.previousIndex());
     }
 
     @Test

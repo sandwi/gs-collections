@@ -25,8 +25,8 @@ import com.gs.collections.impl.math.SumCombiner;
 import com.gs.collections.impl.math.SumProcedure;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.utility.ArrayIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ParallelArrayIterateTest
 {
@@ -36,27 +36,27 @@ public class ParallelArrayIterateTest
         Sum sum1 = new IntegerSum(0);
         Integer[] array1 = this.createIntegerArray(16);
         ParallelArrayIterate.forEach(array1, new SumProcedure<>(sum1), new SumCombiner<>(sum1), 1, array1.length / 2);
-        Assert.assertEquals(16, sum1.getValue());
+        Assertions.assertEquals(16, sum1.getValue());
 
         Sum sum2 = new IntegerSum(0);
         Integer[] array2 = this.createIntegerArray(7);
         ParallelArrayIterate.forEach(array2, new SumProcedure<>(sum2), new SumCombiner<>(sum2));
-        Assert.assertEquals(7, sum2.getValue());
+        Assertions.assertEquals(7, sum2.getValue());
 
         Sum sum3 = new IntegerSum(0);
         Integer[] array3 = this.createIntegerArray(15);
         ParallelArrayIterate.forEach(array3, new SumProcedure<>(sum3), new SumCombiner<>(sum3), 1, array3.length / 2);
-        Assert.assertEquals(15, sum3.getValue());
+        Assertions.assertEquals(15, sum3.getValue());
 
         Sum sum4 = new IntegerSum(0);
         Integer[] array4 = this.createIntegerArray(35);
         ParallelArrayIterate.forEach(array4, new SumProcedure<>(sum4), new SumCombiner<>(sum4));
-        Assert.assertEquals(35, sum4.getValue());
+        Assertions.assertEquals(35, sum4.getValue());
 
         Sum sum5 = new IntegerSum(0);
         Integer[] array5 = this.createIntegerArray(40);
         ParallelArrayIterate.forEach(array5, new SumProcedure<>(sum5), new SumCombiner<>(sum5), 1, array5.length / 2);
-        Assert.assertEquals(40, sum5.getValue());
+        Assertions.assertEquals(40, sum5.getValue());
     }
 
     private Integer[] createIntegerArray(int size)
@@ -109,7 +109,7 @@ public class ParallelArrayIterateTest
         this.parallelSum(array, parallelSum);
         Sum linearSum = new LongSum(0);
         this.linearSum(array, linearSum);
-        Assert.assertEquals(parallelSum, linearSum);
+        Assertions.assertEquals(parallelSum, linearSum);
     }
 
     @Test
@@ -122,8 +122,8 @@ public class ParallelArrayIterateTest
         Sum linearSum1 = new LongSum(0);
         Sum linearSum2 = new LongSum(0);
         this.basicTestLinearSums(array, linearSum1, linearSum2);
-        Assert.assertEquals(parallelSum1, linearSum1);
-        Assert.assertEquals(parallelSum2, linearSum2);
+        Assertions.assertEquals(parallelSum1, linearSum1);
+        Assertions.assertEquals(parallelSum2, linearSum2);
     }
 
     private void basicTestLinearSums(

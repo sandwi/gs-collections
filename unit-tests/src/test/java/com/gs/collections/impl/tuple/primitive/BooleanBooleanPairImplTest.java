@@ -18,8 +18,8 @@ package com.gs.collections.impl.tuple.primitive;
 
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link BooleanBooleanPairImpl}.
@@ -30,36 +30,36 @@ public class BooleanBooleanPairImplTest
     public void testEqualsAndHashCode()
     {
         Verify.assertEqualsAndHashCode(PrimitiveTuples.pair(true, false), PrimitiveTuples.pair(true, false));
-        Assert.assertNotEquals(PrimitiveTuples.pair(false, true), PrimitiveTuples.pair(true, false));
-        Assert.assertEquals(Tuples.pair(true, false).hashCode(), PrimitiveTuples.pair(true, false).hashCode());
+        Assertions.assertNotEquals(PrimitiveTuples.pair(false, true), PrimitiveTuples.pair(true, false));
+        Assertions.assertEquals(Tuples.pair(true, false).hashCode(), PrimitiveTuples.pair(true, false).hashCode());
     }
 
     @Test
     public void getOne()
     {
-        Assert.assertTrue(PrimitiveTuples.pair(true, false).getOne());
-        Assert.assertFalse(PrimitiveTuples.pair(false, true).getOne());
+        Assertions.assertTrue(PrimitiveTuples.pair(true, false).getOne());
+        Assertions.assertFalse(PrimitiveTuples.pair(false, true).getOne());
     }
 
     @Test
     public void getTwo()
     {
-        Assert.assertTrue(PrimitiveTuples.pair(false, true).getTwo());
-        Assert.assertFalse(PrimitiveTuples.pair(true, false).getTwo());
+        Assertions.assertTrue(PrimitiveTuples.pair(false, true).getTwo());
+        Assertions.assertFalse(PrimitiveTuples.pair(true, false).getTwo());
     }
 
     @Test
     public void testToString()
     {
-        Assert.assertEquals("true:false", PrimitiveTuples.pair(true, false).toString());
-        Assert.assertEquals("true:true", PrimitiveTuples.pair(true, true).toString());
+        Assertions.assertEquals("true:false", PrimitiveTuples.pair(true, false).toString());
+        Assertions.assertEquals("true:true", PrimitiveTuples.pair(true, true).toString());
     }
 
     @Test
     public void compareTo()
     {
-        Assert.assertEquals(1, PrimitiveTuples.pair(true, false).compareTo(PrimitiveTuples.pair(false, false)));
-        Assert.assertEquals(0, PrimitiveTuples.pair(true, false).compareTo(PrimitiveTuples.pair(true, false)));
-        Assert.assertEquals(-1, PrimitiveTuples.pair(true, false).compareTo(PrimitiveTuples.pair(true, true)));
+        Assertions.assertEquals(1, PrimitiveTuples.pair(true, false).compareTo(PrimitiveTuples.pair(false, false)));
+        Assertions.assertEquals(0, PrimitiveTuples.pair(true, false).compareTo(PrimitiveTuples.pair(true, false)));
+        Assertions.assertEquals(-1, PrimitiveTuples.pair(true, false).compareTo(PrimitiveTuples.pair(true, true)));
     }
 }

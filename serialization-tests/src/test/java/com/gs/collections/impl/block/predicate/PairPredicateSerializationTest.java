@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.predicate;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PairPredicateSerializationTest
 {
@@ -36,9 +36,11 @@ public class PairPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuUGFpclByZWRp\n"
-                        + "Y2F0ZVNlcmlhbGl6YXRpb25UZXN0JDEAAAAAAAAAAQIAAHhyADVjb20uZ3MuY29sbGVjdGlvbnMu\n"
-                        + "aW1wbC5ibG9jay5wcmVkaWNhdGUuUGFpclByZWRpY2F0ZQAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuUGFpclByZWRp
+                Y2F0ZVNlcmlhbGl6YXRpb25UZXN0JDEAAAAAAAAAAQIAAHhyADVjb20uZ3MuY29sbGVjdGlvbnMu
+                aW1wbC5ibG9jay5wcmVkaWNhdGUuUGFpclByZWRpY2F0ZQAAAAAAAAABAgAAeHA=\
+                """,
                 PAIR_PREDICATE);
     }
 }

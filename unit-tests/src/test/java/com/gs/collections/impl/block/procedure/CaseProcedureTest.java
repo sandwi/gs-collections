@@ -20,8 +20,8 @@ import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CaseProcedureTest
 {
@@ -32,7 +32,7 @@ public class CaseProcedureTest
         MutableList<String> defaultList = Lists.mutable.of();
         MutableList<String> list = FastList.newListWith("1", "2");
         Iterate.forEach(list, new CaseProcedure<String>(defaultList::add).addCase("1"::equals, ifOneList::add));
-        Assert.assertEquals(FastList.newListWith("1"), ifOneList);
-        Assert.assertEquals(FastList.newListWith("2"), defaultList);
+        Assertions.assertEquals(FastList.newListWith("1"), ifOneList);
+        Assertions.assertEquals(FastList.newListWith("2"), defaultList);
     }
 }

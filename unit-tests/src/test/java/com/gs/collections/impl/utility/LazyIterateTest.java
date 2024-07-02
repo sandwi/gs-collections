@@ -28,8 +28,8 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.math.IntegerSum;
 import com.gs.collections.impl.math.Sum;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class LazyIterateTest
 {
@@ -38,7 +38,7 @@ public class LazyIterateTest
     {
         LazyIterable<Integer> select = LazyIterate.select(Interval.oneTo(5), Predicates.lessThan(5));
         int sum = select.injectInto(0, AddFunction.INTEGER_TO_INT);
-        Assert.assertEquals(10, sum);
+        Assertions.assertEquals(10, sum);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class LazyIterateTest
             sum.add(object);
             sum.add(index);
         });
-        Assert.assertEquals(16, sum.getValue().intValue());
+        Assertions.assertEquals(16, sum.getValue().intValue());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class LazyIterateTest
         {
             sum.add(each);
         }
-        Assert.assertEquals(10, sum.getValue().intValue());
+        Assertions.assertEquals(10, sum.getValue().intValue());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class LazyIterateTest
         LazyIterable<Integer> select = LazyIterate.select(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEachWith((each, aSum) -> aSum.add(each), sum);
-        Assert.assertEquals(10, sum.getValue().intValue());
+        Assertions.assertEquals(10, sum.getValue().intValue());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class LazyIterateTest
     {
         LazyIterable<Integer> select = LazyIterate.reject(Interval.oneTo(5), Predicates.lessThan(5));
         int sum = select.injectInto(0, AddFunction.INTEGER_TO_INT);
-        Assert.assertEquals(5, sum);
+        Assertions.assertEquals(5, sum);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class LazyIterateTest
             sum.add(object);
             sum.add(index);
         });
-        Assert.assertEquals(5, sum.getValue().intValue());
+        Assertions.assertEquals(5, sum.getValue().intValue());
     }
 
     @Test
@@ -103,7 +103,7 @@ public class LazyIterateTest
         {
             sum.add(each);
         }
-        Assert.assertEquals(5, sum.getValue().intValue());
+        Assertions.assertEquals(5, sum.getValue().intValue());
     }
 
     @Test
@@ -112,7 +112,7 @@ public class LazyIterateTest
         LazyIterable<Integer> select = LazyIterate.reject(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEachWith((each, aSum) -> aSum.add(each), sum);
-        Assert.assertEquals(5, sum.getValue().intValue());
+        Assertions.assertEquals(5, sum.getValue().intValue());
     }
 
     @Test
@@ -122,7 +122,7 @@ public class LazyIterateTest
         Appendable builder = new StringBuilder();
         Procedure<String> appendProcedure = Procedures.append(builder);
         select.forEach(appendProcedure);
-        Assert.assertEquals("12345", builder.toString());
+        Assertions.assertEquals("12345", builder.toString());
     }
 
     @Test
@@ -134,7 +134,7 @@ public class LazyIterateTest
             builder.append(object);
             builder.append(index);
         });
-        Assert.assertEquals("1021324354", builder.toString());
+        Assertions.assertEquals("1021324354", builder.toString());
     }
 
     @Test
@@ -146,7 +146,7 @@ public class LazyIterateTest
         {
             builder.append(each);
         }
-        Assert.assertEquals("12345", builder.toString());
+        Assertions.assertEquals("12345", builder.toString());
     }
 
     @Test
@@ -155,7 +155,7 @@ public class LazyIterateTest
         LazyIterable<String> select = LazyIterate.collect(Interval.oneTo(5), String::valueOf);
         StringBuilder builder = new StringBuilder("");
         select.forEachWith((each, aBuilder) -> aBuilder.append(each), builder);
-        Assert.assertEquals("12345", builder.toString());
+        Assertions.assertEquals("12345", builder.toString());
     }
 
     @Test
@@ -170,14 +170,14 @@ public class LazyIterateTest
         MutableList<Integer> actual5 = actual2.asLazy().select(ignored -> true).toList();
         MutableList<Integer> actual6 = actual2.toImmutable().asLazy().toList();
         ImmutableList<Integer> actual7 = actual2.asLazy().toList().toImmutable();
-        Assert.assertEquals(expected, actual0);
-        Assert.assertEquals(expected, actual1);
-        Assert.assertEquals(expected, actual2);
-        Assert.assertEquals(expected, actual3);
-        Assert.assertEquals(expected, actual4);
-        Assert.assertEquals(expected, actual5);
-        Assert.assertEquals(expected, actual6);
-        Assert.assertEquals(expected, actual7);
+        Assertions.assertEquals(expected, actual0);
+        Assertions.assertEquals(expected, actual1);
+        Assertions.assertEquals(expected, actual2);
+        Assertions.assertEquals(expected, actual3);
+        Assertions.assertEquals(expected, actual4);
+        Assertions.assertEquals(expected, actual5);
+        Assertions.assertEquals(expected, actual6);
+        Assertions.assertEquals(expected, actual7);
     }
 
     @Test

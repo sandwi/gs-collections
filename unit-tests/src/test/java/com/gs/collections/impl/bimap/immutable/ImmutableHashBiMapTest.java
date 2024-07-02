@@ -23,8 +23,8 @@ import com.gs.collections.impl.factory.Maps;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableHashBiMapTest extends AbstractImmutableBiMapTestCase
 {
@@ -62,7 +62,7 @@ public class ImmutableHashBiMapTest extends AbstractImmutableBiMapTestCase
     @Test
     public void testToString()
     {
-        Assert.assertEquals("{1=1, 2=2, 3=3, 4=4}", this.classUnderTest().toString());
+        Assertions.assertEquals("{1=1, 2=2, 3=3, 4=4}", this.classUnderTest().toString());
     }
 
     @Test

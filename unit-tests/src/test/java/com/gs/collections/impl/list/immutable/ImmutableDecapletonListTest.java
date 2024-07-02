@@ -20,8 +20,8 @@ import com.gs.collections.api.list.ImmutableList;
 import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.set.sorted.mutable.TreeSortedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
 
@@ -46,7 +46,7 @@ public class ImmutableDecapletonListTest extends AbstractImmutableListTestCase
     public void selectInstanceOf()
     {
         ImmutableList<Number> numbers = new ImmutableDecapletonList<>(1, 2.0, 3, 4.0, 5, 6.0, 7, 8.0, 9, 10.0);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 iList(1, 3, 5, 7, 9),
                 numbers.selectInstancesOf(Integer.class));
     }

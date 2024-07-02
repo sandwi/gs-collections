@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.sorted.mutable;
 
 import com.gs.collections.impl.factory.SortedMaps;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SynchronizedSortedMapSerializationTest
 {
@@ -27,10 +27,12 @@ public class SynchronizedSortedMapSerializationTest
     {
         Verify.assertSerializedForm(
                 2L,
-                "rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5TeW5jaHJvbml6ZWRN\n"
-                        + "YXBTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwc3IAOGNvbS5ncy5jb2xsZWN0aW9ucy5p\n"
-                        + "bXBsLm1hcC5zb3J0ZWQubXV0YWJsZS5UcmVlU29ydGVkTWFwAAAAAAAAAAEMAAB4cHB3BAAAAAB4\n"
-                        + "eA==",
+                """
+                rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5TeW5jaHJvbml6ZWRN
+                YXBTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwc3IAOGNvbS5ncy5jb2xsZWN0aW9ucy5p
+                bXBsLm1hcC5zb3J0ZWQubXV0YWJsZS5UcmVlU29ydGVkTWFwAAAAAAAAAAEMAAB4cHB3BAAAAAB4
+                eA==\
+                """,
                 SynchronizedSortedMap.of(SortedMaps.mutable.of()));
     }
 }

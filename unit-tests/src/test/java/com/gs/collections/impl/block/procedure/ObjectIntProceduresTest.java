@@ -21,8 +21,8 @@ import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.block.factory.ObjectIntProcedures;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ObjectIntProceduresTest
 {
@@ -32,7 +32,7 @@ public class ObjectIntProceduresTest
         MutableList<Integer> result = FastList.<Integer>newList();
         ObjectIntProcedure<Integer> objectIntProcedure = ObjectIntProcedures.fromProcedure(result::add);
         objectIntProcedure.value(1, 0);
-        Assert.assertEquals(FastList.newListWith(1), result);
+        Assertions.assertEquals(FastList.newListWith(1), result);
     }
 
     @Test

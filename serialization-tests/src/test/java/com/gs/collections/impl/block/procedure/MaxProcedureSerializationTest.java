@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MaxProcedureSerializationTest
 {
@@ -26,9 +26,11 @@ public class MaxProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWF4UHJvY2Vk\n"
-                        + "dXJlAAAAAAAAAAECAAJaABJ2aXNpdGVkQXRMZWFzdE9uY2VMAAZyZXN1bHR0ABJMamF2YS9sYW5n\n"
-                        + "L09iamVjdDt4cABw",
+                """
+                rO0ABXNyADRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWF4UHJvY2Vk
+                dXJlAAAAAAAAAAECAAJaABJ2aXNpdGVkQXRMZWFzdE9uY2VMAAZyZXN1bHR0ABJMamF2YS9sYW5n
+                L09iamVjdDt4cABw\
+                """,
                 new MaxProcedure<Integer>());
     }
 }

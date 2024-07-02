@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnifiedSetSerializationTest
 {
@@ -26,8 +26,10 @@ public class UnifiedSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5VbmlmaWVkU2V0AAAA\n"
-                        + "AAAAAAEMAAB4cHcIAAAAAD9AAAB4",
+                """
+                rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5VbmlmaWVkU2V0AAAA
+                AAAAAAEMAAB4cHcIAAAAAD9AAAB4\
+                """,
                 UnifiedSet.newSet());
     }
 }

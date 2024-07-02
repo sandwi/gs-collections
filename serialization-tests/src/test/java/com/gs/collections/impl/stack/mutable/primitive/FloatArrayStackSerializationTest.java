@@ -17,7 +17,7 @@
 package com.gs.collections.impl.stack.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FloatArrayStackSerializationTest
 {
@@ -26,8 +26,10 @@ public class FloatArrayStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLnByaW1pdGl2ZS5G\n"
-                        + "bG9hdEFycmF5U3RhY2sAAAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLnByaW1pdGl2ZS5G
+                bG9hdEFycmF5U3RhY2sAAAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new FloatArrayStack());
     }
 }

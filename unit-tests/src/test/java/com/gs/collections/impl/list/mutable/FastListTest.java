@@ -56,12 +56,13 @@ import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
 import com.gs.collections.impl.utility.LazyIterate;
 import com.gs.collections.impl.utility.ListIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.iList;
 import static com.gs.collections.impl.factory.Iterables.mList;
 import static com.gs.collections.impl.factory.Iterables.mSet;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link FastList}.
@@ -84,9 +85,9 @@ public class FastListTest extends AbstractListTestCase
     @Test
     public void withNValues()
     {
-        Assert.assertEquals(FastList.newListWith(1, 1, 1, 1, 1), FastList.newWithNValues(5, () -> 1));
-        Assert.assertEquals(FastList.newListWith(null, null, null, null, null), FastList.newWithNValues(5, () -> null));
-        Assert.assertEquals(
+        Assertions.assertEquals(FastList.newListWith(1, 1, 1, 1, 1), FastList.newWithNValues(5, () -> 1));
+        Assertions.assertEquals(FastList.newListWith(null, null, null, null, null), FastList.newWithNValues(5, () -> null));
+        Assertions.assertEquals(
                 FastList.newListWith(
                         Lists.mutable.with(),
                         Lists.mutable.with(),
@@ -101,13 +102,13 @@ public class FastListTest extends AbstractListTestCase
     {
         List<Integer> expected = new ArrayList<>(Interval.oneTo(20));
         FastList<Integer> actual = new FastList<>(expected);
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void testFastListNewWithContainsAllItems()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Bags.mutable.of("Alice", "Bob", "Cooper", "Dio"),
                 this.newWith("Alice", "Bob", "Cooper", "Dio").toBag());
     }
@@ -116,15 +117,15 @@ public class FastListTest extends AbstractListTestCase
     public void testAddWithZeroBasedConstructor()
     {
         MutableList<String> strings = FastList.newList(0);
-        Assert.assertEquals(new ArrayList<String>(0), strings);
+        Assertions.assertEquals(new ArrayList<String>(0), strings);
         strings.add("1");
-        Assert.assertEquals(this.newWith("1"), strings);
+        Assertions.assertEquals(this.newWith("1"), strings);
     }
 
     @Test
     public void testWrapCopy()
     {
-        Assert.assertEquals(this.newWith(1, 2, 3, 4), FastList.wrapCopy(1, 2, 3, 4));
+        Assertions.assertEquals(this.newWith(1, 2, 3, 4), FastList.wrapCopy(1, 2, 3, 4));
     }
 
     @Override
@@ -134,7 +135,7 @@ public class FastListTest extends AbstractListTestCase
         MutableList<Integer> result = FastList.newList();
         MutableList<Integer> collection = FastList.newListWith(1, 2, 3, 4);
         collection.forEach(CollectionAddProcedure.on(result));
-        Assert.assertEquals(this.newWith(1, 2, 3, 4), result);
+        Assertions.assertEquals(this.newWith(1, 2, 3, 4), result);
     }
 
     @Override
@@ -142,42 +143,42 @@ public class FastListTest extends AbstractListTestCase
     public void injectInto()
     {
         FastList<Integer> list = this.newWith(1, 2, 3);
-        Assert.assertEquals(Integer.valueOf(1 + 1 + 2 + 3), list.injectInto(1, AddFunction.INTEGER));
+        Assertions.assertEquals(Integer.valueOf(1 + 1 + 2 + 3), list.injectInto(1, AddFunction.INTEGER));
     }
 
     @Test
     public void testInjectIntoDouble()
     {
         FastList<Double> list = this.newWith(1.0, 2.0, 3.0);
-        Assert.assertEquals(new Double(1.0 + 1.0 + 2.0 + 3.0), list.injectInto(new Double(1.0d), AddFunction.DOUBLE));
+        Assertions.assertEquals(Double.valueOf(1.0 + 1.0 + 2.0 + 3.0), list.injectInto(Double.valueOf(1.0d), AddFunction.DOUBLE));
     }
 
     @Test
     public void testInjectIntoFloat()
     {
         FastList<Float> list = this.newWith(1.0f, 2.0f, 3.0f);
-        Assert.assertEquals(new Float(7.0f), list.injectInto(new Float(1.0f), AddFunction.FLOAT));
+        Assertions.assertEquals(Float.valueOf(7.0f), list.injectInto(Float.valueOf(1.0f), AddFunction.FLOAT));
     }
 
     @Test
     public void testInjectIntoString()
     {
         FastList<String> list = FastList.<String>newList().with("1", "2", "3");
-        Assert.assertEquals("0123", list.injectInto("0", AddFunction.STRING));
+        Assertions.assertEquals("0123", list.injectInto("0", AddFunction.STRING));
     }
 
     @Test
     public void testInjectIntoMaxString()
     {
         FastList<String> list = FastList.<String>newList().with("1", "12", "123");
-        Assert.assertEquals(Integer.valueOf(3), list.injectInto(Integer.MIN_VALUE, MaxSizeFunction.STRING));
+        Assertions.assertEquals(Integer.valueOf(3), list.injectInto(Integer.MIN_VALUE, MaxSizeFunction.STRING));
     }
 
     @Test
     public void testInjectIntoMinString()
     {
         FastList<String> list = FastList.<String>newList().with("1", "12", "123");
-        Assert.assertEquals(Integer.valueOf(1), list.injectInto(Integer.MAX_VALUE, MinSizeFunction.STRING));
+        Assertions.assertEquals(Integer.valueOf(1), list.injectInto(Integer.MAX_VALUE, MinSizeFunction.STRING));
     }
 
     @Override
@@ -186,7 +187,7 @@ public class FastListTest extends AbstractListTestCase
     {
         FastList<Boolean> list = this.newWith(Boolean.TRUE, Boolean.FALSE, null);
         MutableList<String> newCollection = list.collect(String::valueOf);
-        Assert.assertEquals(this.newWith("true", "false", "null"), newCollection);
+        Assertions.assertEquals(this.newWith("true", "false", "null"), newCollection);
     }
 
     @Override
@@ -196,7 +197,7 @@ public class FastListTest extends AbstractListTestCase
         super.forEachWithIndex();
 
         MutableList<Integer> list = FastList.newList(Interval.oneTo(5));
-        list.forEachWithIndex((object, index) -> Assert.assertEquals(index, object - 1));
+        list.forEachWithIndex((object, index) -> Assertions.assertEquals(index, object - 1));
     }
 
     @Test
@@ -206,7 +207,7 @@ public class FastListTest extends AbstractListTestCase
         MutableList<String> list1 = this.newWith("1", "2");
         MutableList<String> list2 = this.newWith("a", "b");
         ListIterate.forEachInBoth(list1, list2, (argument1, argument2) -> list.add(Tuples.twin(argument1, argument2)));
-        Assert.assertEquals(this.newWith(Tuples.twin("1", "a"), Tuples.twin("2", "b")), list);
+        Assertions.assertEquals(this.newWith(Tuples.twin("1", "a"), Tuples.twin("2", "b")), list);
     }
 
     @Override
@@ -214,9 +215,9 @@ public class FastListTest extends AbstractListTestCase
     public void detect()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertEquals(Integer.valueOf(1), list.detect(Integer.valueOf(1)::equals));
+        Assertions.assertEquals(Integer.valueOf(1), list.detect(Integer.valueOf(1)::equals));
         FastList<Integer> list2 = FastList.newListWith(1, 2, 2);
-        Assert.assertSame(list2.get(1), list2.detect(Integer.valueOf(2)::equals));
+        Assertions.assertSame(list2.get(1), list2.detect(Integer.valueOf(2)::equals));
     }
 
     @Override
@@ -224,16 +225,16 @@ public class FastListTest extends AbstractListTestCase
     public void detectWith()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertEquals(Integer.valueOf(1), list.detectWith(Object::equals, 1));
+        Assertions.assertEquals(Integer.valueOf(1), list.detectWith(Object::equals, 1));
         FastList<Integer> list2 = FastList.newListWith(1, 2, 2);
-        Assert.assertSame(list2.get(1), list2.detectWith(Object::equals, 2));
+        Assertions.assertSame(list2.get(1), list2.detectWith(Object::equals, 2));
     }
 
     @Test
     public void testDetectWithIfNone()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertNull(list.detectWithIfNone(Object::equals, 6, new PassThruFunction0<>(null)));
+        Assertions.assertNull(list.detectWithIfNone(Object::equals, 6, new PassThruFunction0<>(null)));
     }
 
     @Override
@@ -279,8 +280,8 @@ public class FastListTest extends AbstractListTestCase
     public void anySatisfyWith()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertTrue(list.anySatisfyWith(Predicates2.instanceOf(), Integer.class));
-        Assert.assertFalse(list.anySatisfyWith(Predicates2.instanceOf(), Double.class));
+        Assertions.assertTrue(list.anySatisfyWith(Predicates2.instanceOf(), Integer.class));
+        Assertions.assertFalse(list.anySatisfyWith(Predicates2.instanceOf(), Double.class));
     }
 
     @Override
@@ -288,8 +289,8 @@ public class FastListTest extends AbstractListTestCase
     public void anySatisfy()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertTrue(Predicates.<Integer>anySatisfy(Integer.class::isInstance).accept(list));
-        Assert.assertFalse(Predicates.<Integer>anySatisfy(Double.class::isInstance).accept(list));
+        Assertions.assertTrue(Predicates.<Integer>anySatisfy(Integer.class::isInstance).accept(list));
+        Assertions.assertFalse(Predicates.<Integer>anySatisfy(Double.class::isInstance).accept(list));
     }
 
     @Override
@@ -297,9 +298,9 @@ public class FastListTest extends AbstractListTestCase
     public void allSatisfyWith()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertTrue(list.allSatisfyWith(Predicates2.instanceOf(), Integer.class));
+        Assertions.assertTrue(list.allSatisfyWith(Predicates2.instanceOf(), Integer.class));
         Predicate2<Integer, Integer> greaterThanPredicate = Predicates2.greaterThan();
-        Assert.assertFalse(list.allSatisfyWith(greaterThanPredicate, 2));
+        Assertions.assertFalse(list.allSatisfyWith(greaterThanPredicate, 2));
     }
 
     @Override
@@ -307,8 +308,8 @@ public class FastListTest extends AbstractListTestCase
     public void allSatisfy()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertTrue(Predicates.<Integer>allSatisfy(Integer.class::isInstance).accept(list));
-        Assert.assertFalse(Predicates.allSatisfy(Predicates.greaterThan(2)).accept(list));
+        Assertions.assertTrue(Predicates.<Integer>allSatisfy(Integer.class::isInstance).accept(list));
+        Assertions.assertFalse(Predicates.allSatisfy(Predicates.greaterThan(2)).accept(list));
     }
 
     @Override
@@ -316,8 +317,8 @@ public class FastListTest extends AbstractListTestCase
     public void noneSatisfy()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertTrue(Predicates.<Integer>noneSatisfy(String.class::isInstance).accept(list));
-        Assert.assertFalse(Predicates.noneSatisfy(Predicates.greaterThan(0)).accept(list));
+        Assertions.assertTrue(Predicates.<Integer>noneSatisfy(String.class::isInstance).accept(list));
+        Assertions.assertFalse(Predicates.noneSatisfy(Predicates.greaterThan(0)).accept(list));
     }
 
     @Override
@@ -325,9 +326,9 @@ public class FastListTest extends AbstractListTestCase
     public void noneSatisfyWith()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertTrue(list.noneSatisfyWith(Predicates2.instanceOf(), String.class));
+        Assertions.assertTrue(list.noneSatisfyWith(Predicates2.instanceOf(), String.class));
         Predicate2<Integer, Integer> greaterThanPredicate = Predicates2.greaterThan();
-        Assert.assertFalse(list.noneSatisfyWith(greaterThanPredicate, 0));
+        Assertions.assertFalse(list.noneSatisfyWith(greaterThanPredicate, 0));
     }
 
     @Override
@@ -335,8 +336,8 @@ public class FastListTest extends AbstractListTestCase
     public void count()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertEquals(5, list.count(Integer.class::isInstance));
-        Assert.assertEquals(0, list.count(Double.class::isInstance));
+        Assertions.assertEquals(5, list.count(Integer.class::isInstance));
+        Assertions.assertEquals(0, list.count(Double.class::isInstance));
     }
 
     @Override
@@ -344,8 +345,8 @@ public class FastListTest extends AbstractListTestCase
     public void countWith()
     {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
-        Assert.assertEquals(5, list.countWith(Predicates2.instanceOf(), Integer.class));
-        Assert.assertEquals(0, list.countWith(Predicates2.instanceOf(), Double.class));
+        Assertions.assertEquals(5, list.countWith(Predicates2.instanceOf(), Integer.class));
+        Assertions.assertEquals(0, list.countWith(Predicates2.instanceOf(), Double.class));
     }
 
     @Override
@@ -353,10 +354,10 @@ public class FastListTest extends AbstractListTestCase
     public void detectIfNone()
     {
         Function0<Integer> defaultResultFunction = new PassThruFunction0<>(6);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(3),
                 FastList.newListWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(3)::equals, defaultResultFunction));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Integer.valueOf(6),
                 FastList.newListWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(6)::equals, defaultResultFunction));
     }
@@ -378,25 +379,25 @@ public class FastListTest extends AbstractListTestCase
         FastList<Integer> collection = FastList.newListWith(1, 2, 3, 4);
         CountProcedure<Integer> countProcedure = new CountProcedure<>(ignored -> true);
         collection.forEachIf(Predicates.lessThan(4), countProcedure);
-        Assert.assertEquals(3, countProcedure.getCount());
+        Assertions.assertEquals(3, countProcedure.getCount());
     }
 
     @Override
     @Test
     public void getFirst()
     {
-        Assert.assertNull(FastList.<Integer>newList().getFirst());
-        Assert.assertEquals(Integer.valueOf(1), FastList.newListWith(1, 2, 3).getFirst());
-        Assert.assertNotEquals(Integer.valueOf(3), FastList.newListWith(1, 2, 3).getFirst());
+        Assertions.assertNull(FastList.<Integer>newList().getFirst());
+        Assertions.assertEquals(Integer.valueOf(1), FastList.newListWith(1, 2, 3).getFirst());
+        Assertions.assertNotEquals(Integer.valueOf(3), FastList.newListWith(1, 2, 3).getFirst());
     }
 
     @Override
     @Test
     public void getLast()
     {
-        Assert.assertNull(FastList.<Integer>newList().getLast());
-        Assert.assertNotEquals(Integer.valueOf(1), FastList.newListWith(1, 2, 3).getLast());
-        Assert.assertEquals(Integer.valueOf(3), FastList.newListWith(1, 2, 3).getLast());
+        Assertions.assertNull(FastList.<Integer>newList().getLast());
+        Assertions.assertNotEquals(Integer.valueOf(1), FastList.newListWith(1, 2, 3).getLast());
+        Assertions.assertEquals(Integer.valueOf(3), FastList.newListWith(1, 2, 3).getLast());
     }
 
     @Override
@@ -405,7 +406,7 @@ public class FastListTest extends AbstractListTestCase
     {
         Verify.assertEmpty(FastList.<Integer>newList());
         Verify.assertNotEmpty(FastList.newListWith(1, 2));
-        Assert.assertTrue(FastList.newListWith(1, 2).notEmpty());
+        Assertions.assertTrue(FastList.newListWith(1, 2).notEmpty());
     }
 
     @Override
@@ -425,10 +426,10 @@ public class FastListTest extends AbstractListTestCase
     @Test
     public void collectWith()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(2, 3, 4),
                 FastList.newListWith(1, 2, 3).collectWith(AddFunction.INTEGER, 1));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(2, 3, 4),
                 FastList.newListWith(1, 2, 3).collectWith(AddFunction.INTEGER, 1, FastList.<Integer>newList()));
     }
@@ -439,14 +440,14 @@ public class FastListTest extends AbstractListTestCase
     {
         MutableList<Integer> objects = FastList.newListWith(1, 2, 3);
         Integer result = objects.injectIntoWith(1, (injectedValued, item, parameter) -> injectedValued + item + parameter, 0);
-        Assert.assertEquals(Integer.valueOf(7), result);
+        Assertions.assertEquals(Integer.valueOf(7), result);
     }
 
     @Test
     public void testRemoveUsingPredicate()
     {
         MutableList<Integer> objects = FastList.newListWith(1, 2, 3, null);
-        Assert.assertTrue(objects.removeIf(Predicates.isNull()));
+        Assertions.assertTrue(objects.removeIf(Predicates.isNull()));
         Verify.assertSize(3, objects);
         Verify.assertContainsAll(objects, 1, 2, 3);
     }
@@ -527,7 +528,7 @@ public class FastListTest extends AbstractListTestCase
         Thread.yield();
         System.gc();
         Thread.yield();
-        Assert.assertNull(ref.get());
+        Assertions.assertNull(ref.get());
     }
 
     @Override
@@ -646,10 +647,10 @@ public class FastListTest extends AbstractListTestCase
         MutableList<String> subList = collection.subList(1, 3);
         Verify.assertContainsAll(subList, "2", "3");
         subList.add("6");
-        Verify.assertItemAtIndex("6", 2, subList);
+        Verify.assertItemAtIndex(2, subList, "6");
         Verify.assertSize(6, collection);
         Verify.assertSize(3, subList);
-        Verify.assertItemAtIndex("6", 3, collection);
+        Verify.assertItemAtIndex(3, collection, "6");
         subList.remove("6");
         Verify.assertSize(5, collection);
         Verify.assertSize(2, subList);
@@ -673,10 +674,10 @@ public class FastListTest extends AbstractListTestCase
         List<List<Object>> arrayList = new ArrayList<>();
         Interval.oneTo(8).forEach(Procedures.cast(object -> arrayList.add(new ArrayList<>())));
         ByteArrayOutputStream stream2 = SerializeTestHelper.getByteArrayOutputStream(arrayList);
-        Assert.assertEquals(194L, stream2.size());
+        Assertions.assertEquals(194L, stream2.size());
 
         ByteArrayOutputStream stream1 = SerializeTestHelper.getByteArrayOutputStream(mutableArrayList);
-        Assert.assertEquals(177L, stream1.size());
+        Assertions.assertEquals(177L, stream1.size());
     }
 
     @Override
@@ -686,19 +687,19 @@ public class FastListTest extends AbstractListTestCase
         super.addAll();
 
         MutableList<Integer> integers1 = FastList.newList();
-        Assert.assertTrue(integers1.addAll(mList(1, 2, 3, 4)));
+        Assertions.assertTrue(integers1.addAll(mList(1, 2, 3, 4)));
         Verify.assertListsEqual(FastList.newListWith(1, 2, 3, 4), integers1);
-        Assert.assertTrue(integers1.addAll(FastList.<Integer>newList(4).with(1, 2, 3, 4)));
+        Assertions.assertTrue(integers1.addAll(FastList.<Integer>newList(4).with(1, 2, 3, 4)));
         Verify.assertListsEqual(FastList.newListWith(1, 2, 3, 4, 1, 2, 3, 4), integers1);
-        Assert.assertTrue(integers1.addAll(mSet(5)));
+        Assertions.assertTrue(integers1.addAll(mSet(5)));
         Verify.assertListsEqual(FastList.newListWith(1, 2, 3, 4, 1, 2, 3, 4, 5), integers1);
 
         MutableList<Integer> integers2 = FastList.newListWith(0);
-        Assert.assertTrue(integers2.addAll(mList(1, 2, 3, 4)));
+        Assertions.assertTrue(integers2.addAll(mList(1, 2, 3, 4)));
         Verify.assertListsEqual(FastList.newListWith(0, 1, 2, 3, 4), integers2);
-        Assert.assertTrue(integers2.addAll(FastList.<Integer>newList(4).with(1, 2, 3, 4)));
+        Assertions.assertTrue(integers2.addAll(FastList.<Integer>newList(4).with(1, 2, 3, 4)));
         Verify.assertListsEqual(FastList.newListWith(0, 1, 2, 3, 4, 1, 2, 3, 4), integers2);
-        Assert.assertTrue(integers2.addAll(mSet(5)));
+        Assertions.assertTrue(integers2.addAll(mSet(5)));
         Verify.assertListsEqual(FastList.newListWith(0, 1, 2, 3, 4, 1, 2, 3, 4, 5), integers2);
 
         Verify.assertThrows(IndexOutOfBoundsException.class, () -> FastList.newList().addAll(1, null));
@@ -711,11 +712,11 @@ public class FastListTest extends AbstractListTestCase
         super.addAllIterable();
 
         FastList<Integer> integers = FastList.newList();
-        Assert.assertTrue(integers.addAllIterable(iList(1, 2, 3, 4)));
+        Assertions.assertTrue(integers.addAllIterable(iList(1, 2, 3, 4)));
         Verify.assertListsEqual(FastList.newListWith(1, 2, 3, 4), integers);
-        Assert.assertTrue(integers.addAllIterable(FastList.<Integer>newList(4).with(1, 2, 3, 4)));
+        Assertions.assertTrue(integers.addAllIterable(FastList.<Integer>newList(4).with(1, 2, 3, 4)));
         Verify.assertListsEqual(FastList.newListWith(1, 2, 3, 4, 1, 2, 3, 4), integers);
-        Assert.assertTrue(integers.addAllIterable(mSet(5)));
+        Assertions.assertTrue(integers.addAllIterable(mSet(5)));
         Verify.assertListsEqual(FastList.newListWith(1, 2, 3, 4, 1, 2, 3, 4, 5), integers);
     }
 
@@ -741,8 +742,8 @@ public class FastListTest extends AbstractListTestCase
         list.addAll(mSet(5, 6));
         list.addAll(new ArrayList<>(mList(7, 8)));
         list.addAll(this.newWith(9, 10));
-        Assert.assertFalse(list.addAll(Lists.mutable.<Integer>of()));
-        Assert.assertEquals(this.newWith(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), list);
+        Assertions.assertFalse(list.addAll(Lists.mutable.<Integer>of()));
+        Assertions.assertEquals(this.newWith(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), list);
     }
 
     @Override
@@ -818,7 +819,7 @@ public class FastListTest extends AbstractListTestCase
         Verify.assertSize(3, sublist2);
         Verify.assertStartsWith(sublist2, "A", "B", "X");
         Verify.assertContainsAll(sublist, "A", "B", "C", "X");
-        Assert.assertEquals("X", sublist2.remove(2));
+        Assertions.assertEquals("X", sublist2.remove(2));
         Verify.assertSize(2, sublist2);
         Verify.assertContainsNone(sublist, "X");
         Verify.assertContainsNone(sublist2, "X");
@@ -849,7 +850,7 @@ public class FastListTest extends AbstractListTestCase
     public void testSetAtIndex()
     {
         FastList<Integer> integers = this.newWith(1, 2, 3, 5);
-        Assert.assertEquals(Integer.valueOf(5), integers.set(3, 4));
+        Assertions.assertEquals(Integer.valueOf(5), integers.set(3, 4));
         Verify.assertStartsWith(integers, 1, 2, 3, 4);
     }
 
@@ -858,11 +859,11 @@ public class FastListTest extends AbstractListTestCase
     public void indexOf()
     {
         FastList<Integer> integers = this.newWith(1, 2, 3, 4);
-        Assert.assertEquals(2, integers.indexOf(3));
-        Assert.assertEquals(-1, integers.indexOf(0));
-        Assert.assertEquals(-1, integers.indexOf(null));
+        Assertions.assertEquals(2, integers.indexOf(3));
+        Assertions.assertEquals(-1, integers.indexOf(0));
+        Assertions.assertEquals(-1, integers.indexOf(null));
         FastList<Integer> integers2 = FastList.<Integer>newList(4).with(null, 2, 3, 4);
-        Assert.assertEquals(0, integers2.indexOf(null));
+        Assertions.assertEquals(0, integers2.indexOf(null));
     }
 
     @Override
@@ -870,11 +871,11 @@ public class FastListTest extends AbstractListTestCase
     public void lastIndexOf()
     {
         FastList<Integer> integers = FastList.<Integer>newList(4).with(1, 2, 3, 4);
-        Assert.assertEquals(2, integers.lastIndexOf(3));
-        Assert.assertEquals(-1, integers.lastIndexOf(0));
-        Assert.assertEquals(-1, integers.lastIndexOf(null));
+        Assertions.assertEquals(2, integers.lastIndexOf(3));
+        Assertions.assertEquals(-1, integers.lastIndexOf(0));
+        Assertions.assertEquals(-1, integers.lastIndexOf(null));
         FastList<Integer> integers2 = FastList.<Integer>newList(4).with(null, 2, 3, 4);
-        Assert.assertEquals(0, integers2.lastIndexOf(null));
+        Assertions.assertEquals(0, integers2.lastIndexOf(null));
     }
 
     @Test
@@ -902,8 +903,8 @@ public class FastListTest extends AbstractListTestCase
         MutableList<Integer> clone = integers.clone();
         Verify.assertListsEqual(integers, clone);
         Verify.assertInstanceOf(FastList.class, clone);
-        Assert.assertEquals(FastList.newList(), FastList.newList().clone());
-        Assert.assertEquals(FastList.newList(0), FastList.newList().clone());
+        Assertions.assertEquals(FastList.newList(), FastList.newList().clone());
+        Assertions.assertEquals(FastList.newList(0), FastList.newList().clone());
     }
 
     @Override
@@ -911,13 +912,13 @@ public class FastListTest extends AbstractListTestCase
     public void toArray()
     {
         Object[] typelessArray = this.newWith(1, 2, 3, 4).toArray();
-        Assert.assertArrayEquals(typelessArray, new Object[]{1, 2, 3, 4});
+        Assertions.assertArrayEquals(typelessArray, new Object[]{1, 2, 3, 4});
         Integer[] typedArray = this.newWith(1, 2, 3, 4).toArray(new Integer[0]);
-        Assert.assertArrayEquals(typedArray, new Integer[]{1, 2, 3, 4});
+        Assertions.assertArrayEquals(typedArray, new Integer[]{1, 2, 3, 4});
         Integer[] typedArray2 = this.newWith(1, 2, 3, 4).toArray(new Integer[5]);
-        Assert.assertArrayEquals(typedArray2, new Integer[]{1, 2, 3, 4, null});
+        Assertions.assertArrayEquals(typedArray2, new Integer[]{1, 2, 3, 4, null});
         Integer[] typedArray3 = this.newWith(1, 2, 3, 4).toTypedArray(Integer.class);
-        Assert.assertArrayEquals(typedArray3, new Integer[]{1, 2, 3, 4});
+        Assertions.assertArrayEquals(typedArray3, new Integer[]{1, 2, 3, 4});
     }
 
     @Override
@@ -925,8 +926,8 @@ public class FastListTest extends AbstractListTestCase
     public void testToString()
     {
         FastList<Integer> integers = this.newWith(1, 2, 3, 4);
-        Assert.assertNotNull(integers.toString());
-        Assert.assertEquals("[1, 2, 3, 4]", integers.toString());
+        Assertions.assertNotNull(integers.toString());
+        Assertions.assertEquals("[1, 2, 3, 4]", integers.toString());
     }
 
     @Test
@@ -934,7 +935,7 @@ public class FastListTest extends AbstractListTestCase
     {
         MutableList<Object> list = FastList.newListWith(1, 2, 3);
         list.add(list);
-        Assert.assertEquals("[1, 2, 3, (this FastList)]", list.toString());
+        Assertions.assertEquals("[1, 2, 3, (this FastList)]", list.toString());
     }
 
     @Test
@@ -942,7 +943,7 @@ public class FastListTest extends AbstractListTestCase
     {
         MutableList<Object> list = FastList.newListWith(1, 2, 3);
         list.add(list);
-        Assert.assertEquals("1, 2, 3, (this FastList)", list.makeString());
+        Assertions.assertEquals("1, 2, 3, (this FastList)", list.makeString());
     }
 
     @Test
@@ -950,16 +951,16 @@ public class FastListTest extends AbstractListTestCase
     {
         FastList<Integer> integers = this.newWith(1, 2, 3, 4);
         integers.trimToSize();
-        Assert.assertEquals("[1, 2, 3, 4]", integers.toString());
+        Assertions.assertEquals("[1, 2, 3, 4]", integers.toString());
     }
 
     @Test
     public void testTrimToSizeWithLoadFactory()
     {
         FastList<Integer> integers = FastList.<Integer>newList(10).with(1, 2, 3, 4);
-        Assert.assertFalse(integers.trimToSizeIfGreaterThanPercent(0.70));
-        Assert.assertTrue(integers.trimToSizeIfGreaterThanPercent(0.10));
-        Assert.assertEquals("[1, 2, 3, 4]", integers.toString());
+        Assertions.assertFalse(integers.trimToSizeIfGreaterThanPercent(0.70));
+        Assertions.assertTrue(integers.trimToSizeIfGreaterThanPercent(0.10));
+        Assertions.assertEquals("[1, 2, 3, 4]", integers.toString());
     }
 
     @Override
@@ -979,20 +980,20 @@ public class FastListTest extends AbstractListTestCase
         Verify.assertEqualsAndHashCode(integers, integers2);
         Verify.assertEqualsAndHashCode(integers, iList(1, 2, 3));
         Verify.assertEqualsAndHashCode(integers, linkedList);
-        Assert.assertNotEquals(integers, integers3);
-        Assert.assertNotEquals(integers, integers5);
-        Assert.assertNotEquals(integers, iList(2, 3, 4));
-        Assert.assertNotEquals(integers, linkedList2);
-        Assert.assertNotEquals(integers, linkedList3);
-        Assert.assertNotEquals(integers, mSet());
+        Assertions.assertNotEquals(integers, integers3);
+        Assertions.assertNotEquals(integers, integers5);
+        Assertions.assertNotEquals(integers, iList(2, 3, 4));
+        Assertions.assertNotEquals(integers, linkedList2);
+        Assertions.assertNotEquals(integers, linkedList3);
+        Assertions.assertNotEquals(integers, mSet());
         Verify.assertEqualsAndHashCode(integers3, integers4);
         Verify.assertEqualsAndHashCode(integers3, new ArrayList<>(integers3));
         Verify.assertEqualsAndHashCode(integers3, new LinkedList<>(integers3));
         Verify.assertEqualsAndHashCode(integers3, ArrayAdapter.newArrayWith(1, null, 3, 4, 5));
-        Assert.assertNotEquals(integers3, ArrayAdapter.newArrayWith(1, null, 3, 4, 6));
+        Assertions.assertNotEquals(integers3, ArrayAdapter.newArrayWith(1, null, 3, 4, 6));
         Verify.assertEqualsAndHashCode(integers3, ArrayListAdapter.<Integer>newList().with(1, null, 3, 4, 5));
-        Assert.assertEquals(integers, integers2);
-        Assert.assertNotEquals(integers, integers3);
+        Assertions.assertEquals(integers, integers2);
+        Assertions.assertNotEquals(integers, integers3);
     }
 
     @Override
@@ -1005,7 +1006,7 @@ public class FastListTest extends AbstractListTestCase
         {
             sum += each.intValue();
         }
-        Assert.assertEquals(10, sum);
+        Assertions.assertEquals(10, sum);
     }
 
     @Override
@@ -1017,7 +1018,7 @@ public class FastListTest extends AbstractListTestCase
         FastList<Integer> integers = this.newWith(1, 2, 3, 4);
         integers.remove(Integer.valueOf(1));
         Verify.assertStartsWith(integers, 2, 3, 4);
-        Assert.assertFalse(integers.remove(Integer.valueOf(5)));
+        Assertions.assertFalse(integers.remove(Integer.valueOf(5)));
     }
 
     @Test
@@ -1068,8 +1069,8 @@ public class FastListTest extends AbstractListTestCase
             for (int j = 0; j < 3; j++)
             {
                 actual.shuffleThis();
-                Assert.assertEquals(Interval.oneTo(i), actual.sortThis());
-                Assert.assertEquals(Interval.oneTo(i).reverseThis(), actual.sortThis(Collections.<Integer>reverseOrder()));
+                Assertions.assertEquals(Interval.oneTo(i), actual.sortThis());
+                Assertions.assertEquals(Interval.oneTo(i).reverseThis(), actual.sortThis(Collections.<Integer>reverseOrder()));
             }
         }
     }
@@ -1102,24 +1103,24 @@ public class FastListTest extends AbstractListTestCase
     public void testNewListWithIterable()
     {
         FastList<Integer> integers = FastList.newList(Interval.oneTo(3));
-        Assert.assertEquals(this.newWith(1, 2, 3), integers);
+        Assertions.assertEquals(this.newWith(1, 2, 3), integers);
     }
 
     @Test
     public void testContainsAll()
     {
         FastList<Integer> list = this.newWith(1, 2, 3, 4, 5, null);
-        Assert.assertTrue(list.containsAll(mList(1, 3, 5, null)));
-        Assert.assertFalse(list.containsAll(mList(2, null, 6)));
-        Assert.assertTrue(list.containsAll(this.newWith(1, 3, 5, null)));
-        Assert.assertFalse(list.containsAll(this.newWith(2, null, 6)));
+        Assertions.assertTrue(list.containsAll(mList(1, 3, 5, null)));
+        Assertions.assertFalse(list.containsAll(mList(2, null, 6)));
+        Assertions.assertTrue(list.containsAll(this.newWith(1, 3, 5, null)));
+        Assertions.assertFalse(list.containsAll(this.newWith(2, null, 6)));
     }
 
     @Test
     public void testToArrayFromTo()
     {
-        Assert.assertArrayEquals(new Integer[]{1, 2, 3}, this.newWith(1, 2, 3, 4).toArray(0, 2));
-        Assert.assertArrayEquals(new Integer[]{2, 3, 4}, this.newWith(1, 2, 3, 4).toArray(1, 3));
+        Assertions.assertArrayEquals(new Integer[]{1, 2, 3}, this.newWith(1, 2, 3, 4).toArray(0, 2));
+        Assertions.assertArrayEquals(new Integer[]{2, 3, 4}, this.newWith(1, 2, 3, 4).toArray(1, 3));
     }
 
     @Test
@@ -1129,7 +1130,7 @@ public class FastListTest extends AbstractListTestCase
                 FastList.newList(Interval.oneTo(5)).asLazy().collect(Object::toString);
         Procedure<String> builder = Procedures.append(new StringBuilder());
         select.forEach(builder);
-        Assert.assertEquals("12345", builder.toString());
+        Assertions.assertEquals("12345", builder.toString());
     }
 
     @Test
@@ -1142,7 +1143,7 @@ public class FastListTest extends AbstractListTestCase
         Appendable builder = new StringBuilder();
         Procedure<String> appendProcedure = Procedures.append(builder);
         select.forEach(appendProcedure);
-        Assert.assertEquals("12345", builder.toString());
+        Assertions.assertEquals("12345", builder.toString());
     }
 
     /**
@@ -1155,7 +1156,7 @@ public class FastListTest extends AbstractListTestCase
         LazyIterable<Integer> select = FastList.newList(Interval.oneTo(5)).asLazy().reject(Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEach(new SumProcedure<>(sum));
-        Assert.assertEquals(5, sum.getValue().intValue());
+        Assertions.assertEquals(5, sum.getValue().intValue());
     }
 
     /**
@@ -1168,25 +1169,25 @@ public class FastListTest extends AbstractListTestCase
         LazyIterable<Integer> select = FastList.newList(Interval.oneTo(5)).asLazy().select(Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEach(new SumProcedure<>(sum));
-        Assert.assertEquals(10, sum.getValue().intValue());
+        Assertions.assertEquals(10, sum.getValue().intValue());
     }
 
     @Test
     public void testWith()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith("1"),
                 FastList.<String>newList().with("1"));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith("1", "2"),
                 FastList.<String>newList().with("1", "2"));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith("1", "2", "3"),
                 FastList.<String>newList().with("1", "2", "3"));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith("1", "2", "3", "4"),
                 FastList.<String>newList().with("1", "2", "3", "4"));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith("1", "2", "3", "4", "5", "6", "7", "8"),
                 FastList.<String>newList().with("1", "2", "3", "4").with("5", "6", "7", "8"));
 
@@ -1194,25 +1195,29 @@ public class FastListTest extends AbstractListTestCase
                 .withAll(Lists.immutable.of("1", "2"))
                 .withAll(Lists.immutable.<String>of())
                 .withAll(Sets.immutable.of("3", "4"));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Bags.mutable.of("A", "1", "2", "3", "4"),
                 list.toBag());
         Verify.assertStartsWith(list, "A", "1", "2");  // "3" and "4" are from a set, so may not be in order
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(42, 10, 11, 12),
                 FastList.newListWith(42).withAll(Interval.from(10).to(12).toList()));
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void min_empty_throws_without_comparator()
     {
-        this.newWith().min();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().min();
+        });
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void max_empty_throws_without_comparator()
     {
-        this.newWith().max();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().max();
+        });
     }
 }

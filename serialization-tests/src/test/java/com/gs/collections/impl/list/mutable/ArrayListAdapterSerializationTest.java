@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ArrayListAdapterSerializationTest
 {
@@ -26,9 +26,11 @@ public class ArrayListAdapterSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuQXJyYXlMaXN0QWRh\n"
-                        + "cHRlcgAAAAAAAAABAgABTAAIZGVsZWdhdGV0ABVMamF2YS91dGlsL0FycmF5TGlzdDt4cHNyABNq\n"
-                        + "YXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0DAAFJAARzaXpleHAAAAAAdwQAAAAAeA==",
+                """
+                rO0ABXNyADVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuQXJyYXlMaXN0QWRh
+                cHRlcgAAAAAAAAABAgABTAAIZGVsZWdhdGV0ABVMamF2YS91dGlsL0FycmF5TGlzdDt4cHNyABNq
+                YXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0DAAFJAARzaXpleHAAAAAAdwQAAAAAeA==\
+                """,
                 ArrayListAdapter.newList(0));
     }
 }

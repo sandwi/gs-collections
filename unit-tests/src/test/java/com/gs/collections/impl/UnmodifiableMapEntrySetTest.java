@@ -40,8 +40,10 @@ import com.gs.collections.impl.set.mutable.primitive.LongHashSet;
 import com.gs.collections.impl.set.mutable.primitive.ShortHashSet;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.ImmutableEntry;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Abstract JUnit test for {@link UnmodifiableMap#entrySet()} .
@@ -60,73 +62,93 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void removeIf()
     {
-        this.getCollection().removeIf(Predicates.cast(null));
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().removeIf(Predicates.cast(null));
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void removeIfWith()
     {
-        this.getCollection().removeIfWith(null, null);
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().removeIfWith(null, null);
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void addAll()
     {
-        this.getCollection().addAll(null);
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().addAll(null);
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void addAllIterable()
     {
-        this.getCollection().addAllIterable(null);
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().addAllIterable(null);
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void removeAll()
     {
-        this.getCollection().removeAll(null);
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().removeAll(null);
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void removeAllIterable()
     {
-        this.getCollection().removeAllIterable(null);
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().removeAllIterable(null);
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void retainAll()
     {
-        this.getCollection().retainAll(null);
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().retainAll(null);
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void retainAllIterable()
     {
-        this.getCollection().retainAllIterable(null);
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().retainAllIterable(null);
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void withAll()
     {
-        this.getCollection().withAll(null);
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().withAll(null);
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void withoutAll()
     {
-        this.getCollection().withAll(null);
+        assertThrows(NullPointerException.class, () -> {
+            this.getCollection().withAll(null);
+        });
     }
 
     @Test
@@ -141,7 +163,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     public void equalsAndHashCode()
     {
         Verify.assertEqualsAndHashCode(this.newWith(1, 2, 3), this.newWith(1, 2, 3));
-        Assert.assertNotEquals(this.newWith(1, 2, 3), this.newWith(1, 2));
+        Assertions.assertNotEquals(this.newWith(1, 2, 3), this.newWith(1, 2));
     }
 
     @Override
@@ -151,7 +173,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
         MutableSet<Map.Entry<String, String>> collection = this.newCollection().newEmpty();
         Verify.assertEmpty(collection);
         Verify.assertSize(0, collection);
-        Assert.assertFalse(collection.notEmpty());
+        Assertions.assertFalse(collection.notEmpty());
     }
 
     @Test
@@ -228,16 +250,16 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     public void containsAllIterable()
     {
         MutableSet<Map.Entry<Integer, Integer>> collection = this.newWith(1, 2, 3, 4);
-        Assert.assertTrue(collection.containsAllIterable(Lists.immutable.of(this.entry(1), this.entry(2))));
-        Assert.assertFalse(collection.containsAllIterable(Lists.immutable.of(this.entry(1), this.entry(5))));
+        Assertions.assertTrue(collection.containsAllIterable(Lists.immutable.of(this.entry(1), this.entry(2))));
+        Assertions.assertFalse(collection.containsAllIterable(Lists.immutable.of(this.entry(1), this.entry(5))));
     }
 
     @Test
     public void containsAllArray()
     {
         MutableSet<Map.Entry<Integer, Integer>> collection = this.newWith(1, 2, 3, 4);
-        Assert.assertTrue(collection.containsAllArguments(this.entry(1), this.entry(2)));
-        Assert.assertFalse(collection.containsAllArguments(this.entry(1), this.entry(5)));
+        Assertions.assertTrue(collection.containsAllArguments(this.entry(1), this.entry(2)));
+        Assertions.assertFalse(collection.containsAllArguments(this.entry(1), this.entry(5)));
     }
 
     @Test
@@ -255,7 +277,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     {
         Verify.assertEmpty(this.newCollection());
         Verify.assertNotEmpty(this.newWith(1, 2));
-        Assert.assertTrue(this.newWith(1, 2).notEmpty());
+        Assertions.assertTrue(this.newWith(1, 2).notEmpty());
     }
 
     @Test
@@ -266,7 +288,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
         for (int i = objects.size(); i-- > 0; )
         {
             Map.Entry<Integer, Integer> entry = iterator.next();
-            Assert.assertEquals(ImmutableEntry.of(3 - i, 3 - i), entry);
+            Assertions.assertEquals(ImmutableEntry.of(3 - i, 3 - i), entry);
             Verify.assertThrows(UnsupportedOperationException.class, () -> entry.setValue(0));
         }
     }
@@ -290,7 +312,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     @Test
     public void collectBoolean()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 BooleanHashSet.newSetWith(false),
                 this.getCollection().collectBoolean(entry -> Boolean.parseBoolean(entry.getValue())));
     }
@@ -299,7 +321,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     @Test
     public void collectByte()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 ByteHashSet.newSetWith((byte) 1, (byte) 2),
                 this.getCollection().collectByte(entry -> Byte.parseByte(entry.getValue())));
     }
@@ -308,7 +330,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     @Test
     public void collectChar()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 CharHashSet.newSetWith((char) 1, (char) 2),
                 this.getCollection().collectChar(entry -> (char) Integer.parseInt(entry.getValue())));
     }
@@ -317,7 +339,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     @Test
     public void collectDouble()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 DoubleHashSet.newSetWith(1.0d, 2.0d),
                 this.getCollection().collectDouble(entry -> Double.parseDouble(entry.getValue())));
     }
@@ -326,7 +348,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     @Test
     public void collectFloat()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FloatHashSet.newSetWith(1.0f, 2.0f),
                 this.getCollection().collectFloat(entry -> Float.parseFloat(entry.getValue())));
     }
@@ -335,7 +357,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     @Test
     public void collectInt()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 IntHashSet.newSetWith(1, 2),
                 this.getCollection().collectInt(entry -> Integer.parseInt(entry.getValue())));
     }
@@ -344,7 +366,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     @Test
     public void collectLong()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 LongHashSet.newSetWith(1L, 2L),
                 this.getCollection().collectLong(entry -> Long.parseLong(entry.getValue())));
     }
@@ -353,7 +375,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     @Test
     public void collectShort()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 ShortHashSet.newSetWith((short) 1, (short) 2),
                 this.getCollection().collectShort(entry -> Short.parseShort(entry.getValue())));
     }

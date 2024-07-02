@@ -18,8 +18,8 @@ package com.gs.collections.impl.set.immutable;
 
 import com.gs.collections.api.set.ImmutableSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
 
@@ -48,7 +48,7 @@ public class ImmutableQuadrupletonSetTest
     public void selectInstanceOf()
     {
         ImmutableSet<Number> numbers = new ImmutableQuadrupletonSet<>(1, 2.0, 3, 4.0);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 iSet(1, 3),
                 numbers.selectInstancesOf(Integer.class));
     }

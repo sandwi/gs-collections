@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableFloatSingletonListSerializationTest
 {
@@ -26,8 +26,10 @@ public class ImmutableFloatSingletonListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAExjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu\n"
-                        + "SW1tdXRhYmxlRmxvYXRTaW5nbGV0b25MaXN0AAAAAAAAAAECAAFGAAhlbGVtZW50MXhwP4AAAA==\n",
+                """
+                rO0ABXNyAExjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu
+                SW1tdXRhYmxlRmxvYXRTaW5nbGV0b25MaXN0AAAAAAAAAAECAAFGAAhlbGVtZW50MXhwP4AAAA==
+                """,
                 new ImmutableFloatSingletonList(1.0f));
     }
 }

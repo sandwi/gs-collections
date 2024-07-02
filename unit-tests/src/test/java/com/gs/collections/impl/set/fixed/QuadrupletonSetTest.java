@@ -28,15 +28,15 @@ import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCase
 {
     private QuadrupletonSet<String> set;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.set = new QuadrupletonSet<>("1", "2", "3", "4");
@@ -68,18 +68,18 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
         set.with(Tuples.twin("3", "3"));
         set.with(Tuples.twin("4", "4"));
 
-        Assert.assertSame(set.getFirst(), twin1);
-        Assert.assertSame(set.getSecond(), twin2);
-        Assert.assertSame(set.getThird(), twin3);
-        Assert.assertSame(set.getLast(), twin4);
+        Assertions.assertSame(set.getFirst(), twin1);
+        Assertions.assertSame(set.getSecond(), twin2);
+        Assertions.assertSame(set.getThird(), twin3);
+        Assertions.assertSame(set.getLast(), twin4);
     }
 
     @Test
     public void contains()
     {
-        Verify.assertContains("1", this.set);
+        Verify.assertContains(this.set, "1");
         Verify.assertContainsAll(this.set, "2", "3", "4");
-        Verify.assertNotContains("5", this.set);
+        Verify.assertNotContains(this.set, "5");
     }
 
     @Test
@@ -94,7 +94,7 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
         try
         {
             this.set.add("1");
-            Assert.fail("Cannot add to TripletonSet");
+            Assertions.fail("Cannot add to TripletonSet");
         }
         catch (UnsupportedOperationException ignored)
         {
@@ -108,7 +108,7 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
         try
         {
             this.set.add("4");
-            Assert.fail("Cannot add to TripletonSet");
+            Assertions.fail("Cannot add to TripletonSet");
         }
         catch (UnsupportedOperationException ignored)
         {
@@ -139,7 +139,7 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
     {
         Verify.assertSize(4, this.set);
         Verify.assertContainsAll(this.set, "1", "2", "3", "4");
-        Verify.assertNotContains("5", this.set);
+        Verify.assertNotContains(this.set, "5");
     }
 
     @Test
@@ -147,7 +147,7 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
     {
         MutableSet<String> copyOfSet = SerializeTestHelper.serializeDeserialize(this.set);
         Verify.assertSetsEqual(this.set, copyOfSet);
-        Assert.assertNotSame(this.set, copyOfSet);
+        Assertions.assertNotSame(this.set, copyOfSet);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
     {
         Verify.assertShallowClone(this.set);
         MutableSet<String> cloneSet = this.set.clone();
-        Assert.assertNotSame(cloneSet, this.set);
+        Assertions.assertNotSame(cloneSet, this.set);
         Verify.assertEqualsAndHashCode(UnifiedSet.newSetWith("1", "2", "3", "4"), cloneSet);
     }
 
@@ -172,8 +172,8 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
     public void getFirstGetLast()
     {
         MutableSet<String> list5 = Sets.fixedSize.of("1", "2", "3", "4");
-        Assert.assertEquals("1", list5.getFirst());
-        Assert.assertEquals("4", list5.getLast());
+        Assertions.assertEquals("1", list5.getFirst());
+        Assertions.assertEquals("4", list5.getLast());
     }
 
     @Test
@@ -182,7 +182,7 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
         MutableList<String> result = Lists.mutable.of();
         MutableSet<String> source = Sets.fixedSize.of("1", "2", "3", "4");
         source.forEach(CollectionAddProcedure.on(result));
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4"), result);
     }
 
     @Test
@@ -195,8 +195,8 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
             result.add(each);
             indexSum[0] += index;
         });
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4"), result);
-        Assert.assertEquals(6, indexSum[0]);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4"), result);
+        Assertions.assertEquals(6, indexSum[0]);
     }
 
     @Test
@@ -205,6 +205,6 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
         MutableList<String> result = Lists.mutable.of();
         MutableSet<String> source = Sets.fixedSize.of("1", "2", "3", "4");
         source.forEachWith(Procedures2.fromProcedure(CollectionAddProcedure.on(result)), null);
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4"), result);
     }
 }

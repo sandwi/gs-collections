@@ -18,33 +18,33 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.factory.primitive.ObjectBooleanMaps;
 import com.gs.collections.impl.map.mutable.primitive.ObjectBooleanHashMap;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableObjectBooleanMapFactoryImplTest
 {
     @Test
     public void of()
     {
-        Assert.assertEquals(new ObjectBooleanHashMap<String>().toImmutable(), ObjectBooleanMaps.immutable.of());
-        Assert.assertEquals(ObjectBooleanHashMap.newWithKeysValues("1", true).toImmutable(), ObjectBooleanMaps.immutable.of("1", true));
+        Assertions.assertEquals(new ObjectBooleanHashMap<String>().toImmutable(), ObjectBooleanMaps.immutable.of());
+        Assertions.assertEquals(ObjectBooleanHashMap.newWithKeysValues("1", true).toImmutable(), ObjectBooleanMaps.immutable.of("1", true));
     }
 
     @Test
     public void with()
     {
-        Assert.assertEquals(ObjectBooleanHashMap.newWithKeysValues("1", true).toImmutable(), ObjectBooleanMaps.immutable.with("1", true));
+        Assertions.assertEquals(ObjectBooleanHashMap.newWithKeysValues("1", true).toImmutable(), ObjectBooleanMaps.immutable.with("1", true));
     }
 
     @Test
     public void ofAll()
     {
-        Assert.assertEquals(new ObjectBooleanHashMap().toImmutable(), ObjectBooleanMaps.immutable.ofAll(ObjectBooleanMaps.immutable.of()));
+        Assertions.assertEquals(new ObjectBooleanHashMap().toImmutable(), ObjectBooleanMaps.immutable.ofAll(ObjectBooleanMaps.immutable.of()));
     }
 
     @Test
     public void withAll()
     {
-        Assert.assertEquals(new ObjectBooleanHashMap().toImmutable(), ObjectBooleanMaps.immutable.withAll(ObjectBooleanMaps.immutable.of()));
+        Assertions.assertEquals(new ObjectBooleanHashMap().toImmutable(), ObjectBooleanMaps.immutable.withAll(ObjectBooleanMaps.immutable.of()));
     }
 }

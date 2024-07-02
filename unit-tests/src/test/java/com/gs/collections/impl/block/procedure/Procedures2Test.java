@@ -22,8 +22,8 @@ import com.gs.collections.api.block.procedure.Procedure2;
 import com.gs.collections.impl.block.factory.Procedures2;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class Procedures2Test
 {
@@ -42,7 +42,7 @@ public class Procedures2Test
         CollectionAddProcedure<Integer> procedure = CollectionAddProcedure.on(FastList.<Integer>newList());
         Procedure2<Integer, Object> procedure2 = Procedures2.fromProcedure(procedure);
         procedure2.value(1, null);
-        Assert.assertEquals(FastList.newListWith(1), procedure.getResult());
+        Assertions.assertEquals(FastList.newListWith(1), procedure.getResult());
     }
 
     @Test

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class GroupByUniqueKeyProcedureSerializationTest
 {
@@ -26,10 +26,12 @@ public class GroupByUniqueKeyProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuR3JvdXBCeVVu\n"
-                        + "aXF1ZUtleVByb2NlZHVyZQAAAAAAAAABAgACTAALa2V5RnVuY3Rpb250ADBMY29tL2dzL2NvbGxl\n"
-                        + "Y3Rpb25zL2FwaS9ibG9jay9mdW5jdGlvbi9GdW5jdGlvbjtMAANtYXB0AA9MamF2YS91dGlsL01h\n"
-                        + "cDt4cHBw",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuR3JvdXBCeVVu
+                aXF1ZUtleVByb2NlZHVyZQAAAAAAAAABAgACTAALa2V5RnVuY3Rpb250ADBMY29tL2dzL2NvbGxl
+                Y3Rpb25zL2FwaS9ibG9jay9mdW5jdGlvbi9GdW5jdGlvbjtMAANtYXB0AA9MamF2YS91dGlsL01h
+                cDt4cHBw\
+                """,
                 new GroupByUniqueKeyProcedure<Object, Object>(null, null));
     }
 }

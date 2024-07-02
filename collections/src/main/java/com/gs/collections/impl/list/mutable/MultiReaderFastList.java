@@ -828,8 +828,10 @@ public final class MultiReaderFastList<T>
     public ListIterator<T> listIterator()
     {
         throw new UnsupportedOperationException(
-                "ListIterator is not supported for MultiReaderFastList.  "
-                        + "If you would like to use a ListIterator, you must either use withReadLockAndDelegate() or withWriteLockAndDelegate().");
+                """
+                ListIterator is not supported for MultiReaderFastList.  \
+                If you would like to use a ListIterator, you must either use withReadLockAndDelegate() or withWriteLockAndDelegate().\
+                """);
     }
 
     /**
@@ -850,8 +852,10 @@ public final class MultiReaderFastList<T>
     public ListIterator<T> listIterator(int index)
     {
         throw new UnsupportedOperationException(
-                "ListIterator is not supported for MultiReaderFastList.  "
-                        + "If you would like to use a ListIterator, you must either use withReadLockAndDelegate() or withWriteLockAndDelegate().");
+                """
+                ListIterator is not supported for MultiReaderFastList.  \
+                If you would like to use a ListIterator, you must either use withReadLockAndDelegate() or withWriteLockAndDelegate().\
+                """);
     }
 
     public T remove(int index)

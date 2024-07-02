@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.CharByteHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableCharMapKeySetSerializationTest
 {
@@ -27,8 +27,10 @@ public class ImmutableCharMapKeySetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVDaGFyU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcEAAAAAHg=",
+                """
+                rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVDaGFyU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcEAAAAAHg=\
+                """,
                 new CharByteHashMap().keySet().freeze());
     }
 }

@@ -35,9 +35,9 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
 import com.gs.collections.impl.utility.ListIterate;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class PredicatesTest
 {
@@ -48,7 +48,7 @@ public class PredicatesTest
 
     private MutableList<Employee> employees;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.alice = new Employee(new Address(State.ARIZONA));
@@ -350,8 +350,8 @@ public class PredicatesTest
     @Test
     public void instanceOf()
     {
-        Assert.assertTrue(Predicates.instanceOf(Integer.class).accept(1));
-        Assert.assertFalse(Predicates.instanceOf(Integer.class).accept(1.0));
+        Assertions.assertTrue(Predicates.instanceOf(Integer.class).accept(1));
+        Assertions.assertFalse(Predicates.instanceOf(Integer.class).accept(1.0));
         assertToString(Predicates.instanceOf(Integer.class));
     }
 
@@ -368,8 +368,8 @@ public class PredicatesTest
     @Test
     public void notInstanceOf()
     {
-        Assert.assertFalse(Predicates.notInstanceOf(Integer.class).accept(1));
-        Assert.assertTrue(Predicates.notInstanceOf(Integer.class).accept(1.0));
+        Assertions.assertFalse(Predicates.notInstanceOf(Integer.class).accept(1));
+        Assertions.assertTrue(Predicates.notInstanceOf(Integer.class).accept(1.0));
 
         assertToString(Predicates.notInstanceOf(Integer.class));
     }
@@ -388,8 +388,8 @@ public class PredicatesTest
 
     private static void assertIf(Predicate<List<Object>> predicate, boolean bool)
     {
-        Assert.assertEquals(bool, predicate.accept(Lists.fixedSize.of()));
-        Assert.assertEquals(!bool, predicate.accept(FastList.newListWith((Object) null)));
+        Assertions.assertEquals(bool, predicate.accept(Lists.fixedSize.of()));
+        Assertions.assertEquals(!bool, predicate.accept(FastList.newListWith((Object) null)));
         assertToString(predicate);
     }
 
@@ -469,11 +469,11 @@ public class PredicatesTest
         Function<Address, String> stateAbbreviation = address -> address.getState().getAbbreviation();
         Predicates<Address> inArizona = Predicates.attributeEqual(stateAbbreviation, "AZ");
         MutableCollection<Employee> azResidents = this.employees.select(Predicates.attributeAnySatisfy(employee -> employee.addresses, inArizona));
-        Assert.assertEquals(FastList.newListWith(this.alice, this.charlie), azResidents);
+        Assertions.assertEquals(FastList.newListWith(this.alice, this.charlie), azResidents);
 
         Predicates<Address> inAlaska = Predicates.attributeEqual(stateAbbreviation, "AK");
         MutableCollection<Employee> akResidents = this.employees.select(Predicates.attributeAnySatisfy(employee -> employee.addresses, inAlaska));
-        Assert.assertEquals(FastList.newListWith(this.bob, this.diane), akResidents);
+        Assertions.assertEquals(FastList.newListWith(this.bob, this.diane), akResidents);
         assertToString(inArizona);
     }
 
@@ -481,7 +481,7 @@ public class PredicatesTest
     public void attributeAllSatisfy()
     {
         MutableCollection<Employee> noExtendedDependents = this.employees.select(Predicates.attributeAllSatisfy(Employee.TO_DEPENEDENTS, Dependent.IS_IMMEDIATE));
-        Assert.assertEquals(FastList.newListWith(this.bob, this.charlie), noExtendedDependents);
+        Assertions.assertEquals(FastList.newListWith(this.bob, this.charlie), noExtendedDependents);
     }
 
     @Test
@@ -490,7 +490,7 @@ public class PredicatesTest
         Function<Address, String> stateAbbreviation = address -> address.getState().getAbbreviation();
         Predicates<Address> inAlabama = Predicates.attributeEqual(stateAbbreviation, "AL");
         MutableCollection<Employee> notAlResidents = this.employees.select(Predicates.attributeNoneSatisfy(employee -> employee.addresses, inAlabama));
-        Assert.assertEquals(FastList.newListWith(this.alice, this.bob, this.charlie, this.diane), notAlResidents);
+        Assertions.assertEquals(FastList.newListWith(this.alice, this.bob, this.charlie, this.diane), notAlResidents);
     }
 
     @Test
@@ -563,7 +563,7 @@ public class PredicatesTest
         assertAccepts(predicate, 1, 2, 3);
         assertRejects(predicate, 0, 4, null);
         assertToString(predicate);
-        Assert.assertTrue(predicate.toString().contains(set.toString()));
+        Assertions.assertTrue(predicate.toString().contains(set.toString()));
     }
 
     @Test
@@ -574,7 +574,7 @@ public class PredicatesTest
         assertAccepts(predicate, 0, 4, null);
         assertRejects(predicate, 1, 2, 3);
         assertToString(predicate);
-        Assert.assertTrue(predicate.toString().contains(set.toString()));
+        Assertions.assertTrue(predicate.toString().contains(set.toString()));
     }
 
     @Test
@@ -607,9 +607,9 @@ public class PredicatesTest
         assertAccepts(predicate, "1");
         assertRejects(predicate, "0");
 
-        Assert.assertEquals(FastList.newListWith("1"), ListIterate.select(Lists.fixedSize.of("1", "2"), inList));
+        Assertions.assertEquals(FastList.newListWith("1"), ListIterate.select(Lists.fixedSize.of("1", "2"), inList));
         assertToString(inList);
-        Assert.assertTrue(inList.toString().contains(list1.toString()));
+        Assertions.assertTrue(inList.toString().contains(list1.toString()));
         assertToString(predicate);
     }
 
@@ -628,7 +628,7 @@ public class PredicatesTest
         assertAccepts(in, "a");
         assertRejects(in, "c");
 
-        Assert.assertEquals(FastList.newListWith("a"), ListIterate.select(Lists.fixedSize.of("a", "c"), in));
+        Assertions.assertEquals(FastList.newListWith("a"), ListIterate.select(Lists.fixedSize.of("a", "c"), in));
         assertToString(in);
     }
 
@@ -650,10 +650,10 @@ public class PredicatesTest
         assertAccepts(predicate2, "0");
         assertRejects(predicate2, "1");
 
-        Assert.assertEquals(FastList.newListWith("2"), ListIterate.select(Lists.fixedSize.of("1", "2"), predicate1));
+        Assertions.assertEquals(FastList.newListWith("2"), ListIterate.select(Lists.fixedSize.of("1", "2"), predicate1));
         assertToString(predicate1);
         assertToString(predicate2);
-        Assert.assertTrue(predicate1.toString().contains(odds.toString()));
+        Assertions.assertTrue(predicate1.toString().contains(odds.toString()));
     }
 
     @Test
@@ -671,7 +671,7 @@ public class PredicatesTest
         assertAccepts(out, "C");
         assertRejects(out, "A");
 
-        Assert.assertEquals(FastList.newListWith("A"), ListIterate.reject(Lists.fixedSize.of("A", "C"), out));
+        Assertions.assertEquals(FastList.newListWith("A"), ListIterate.reject(Lists.fixedSize.of("A", "C"), out));
         assertToString(out);
     }
 
@@ -743,14 +743,14 @@ public class PredicatesTest
     private static void assertToString(Predicate<?> predicate)
     {
         String toString = predicate.toString();
-        Assert.assertTrue(toString.startsWith("Predicates"));
+        Assertions.assertTrue(toString.startsWith("Predicates"));
     }
 
     private static <T> void assertAccepts(Predicate<? super T> predicate, T... elements)
     {
         for (T element : elements)
         {
-            Assert.assertTrue(predicate.accept(element));
+            Assertions.assertTrue(predicate.accept(element));
         }
     }
 
@@ -758,7 +758,7 @@ public class PredicatesTest
     {
         for (T element : elements)
         {
-            Assert.assertFalse(predicate.accept(element));
+            Assertions.assertFalse(predicate.accept(element));
         }
     }
 
@@ -879,18 +879,18 @@ public class PredicatesTest
     public void subClass()
     {
         Predicates<Class<?>> subClass = Predicates.subClass(Number.class);
-        Assert.assertTrue(subClass.accept(Integer.class));
-        Assert.assertFalse(subClass.accept(Object.class));
-        Assert.assertTrue(subClass.accept(Number.class));
+        Assertions.assertTrue(subClass.accept(Integer.class));
+        Assertions.assertFalse(subClass.accept(Object.class));
+        Assertions.assertTrue(subClass.accept(Number.class));
     }
 
     @Test
     public void superClass()
     {
         Predicates<Class<?>> superClass = Predicates.superClass(Number.class);
-        Assert.assertFalse(superClass.accept(Integer.class));
-        Assert.assertTrue(superClass.accept(Object.class));
-        Assert.assertTrue(superClass.accept(Number.class));
+        Assertions.assertFalse(superClass.accept(Integer.class));
+        Assertions.assertTrue(superClass.accept(Object.class));
+        Assertions.assertTrue(superClass.accept(Number.class));
     }
 
     public static final class Employee

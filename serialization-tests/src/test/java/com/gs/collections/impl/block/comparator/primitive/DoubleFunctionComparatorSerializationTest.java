@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.comparator.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DoubleFunctionComparatorSerializationTest
 {
@@ -26,10 +26,12 @@ public class DoubleFunctionComparatorSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5jb21wYXJhdG9yLnByaW1pdGl2\n"
-                        + "ZS5Eb3VibGVGdW5jdGlvbkNvbXBhcmF0b3IAAAAAAAAAAQIAAUwACGZ1bmN0aW9udABATGNvbS9n\n"
-                        + "cy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0RvdWJsZUZ1bmN0aW9u\n"
-                        + "O3hwcA==",
+                """
+                rO0ABXNyAEtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5jb21wYXJhdG9yLnByaW1pdGl2
+                ZS5Eb3VibGVGdW5jdGlvbkNvbXBhcmF0b3IAAAAAAAAAAQIAAUwACGZ1bmN0aW9udABATGNvbS9n
+                cy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svZnVuY3Rpb24vcHJpbWl0aXZlL0RvdWJsZUZ1bmN0aW9u
+                O3hwcA==\
+                """,
                 new DoubleFunctionComparator<Object>(null));
     }
 }

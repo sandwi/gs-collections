@@ -19,7 +19,7 @@ package com.gs.collections.test;
 import java.util.Iterator;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public interface ImmutableUnorderedIterableTestCase extends UnorderedIterableTestCase
 {

@@ -21,21 +21,27 @@ import java.util.NoSuchElementException;
 
 import com.gs.collections.impl.block.factory.Functions;
 import com.gs.collections.impl.factory.Lists;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FlatCollectIteratorTest
 {
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void nextIfDoesntHaveAnything()
     {
-        new FlatCollectIterator<>(Lists.immutable.of(), object -> null).next();
+        assertThrows(NoSuchElementException.class, () -> {
+            new FlatCollectIterator<>(Lists.immutable.of(), object -> null).next();
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeIsUnsupported()
     {
-        new FlatCollectIterator<>(Lists.immutable.of().iterator(), object -> null).remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            new FlatCollectIterator<>(Lists.immutable.of().iterator(), object -> null).remove();
+        });
     }
 
     @Test
@@ -47,6 +53,6 @@ public class FlatCollectIteratorTest
                         Lists.fixedSize.of(),
                         Lists.fixedSize.of(expected)),
                 Functions.<List<Object>>getPassThru());
-        Assert.assertSame(expected, flattenIterator.next());
+        Assertions.assertSame(expected, flattenIterator.next());
     }
 }

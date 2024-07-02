@@ -40,8 +40,10 @@ import com.gs.collections.impl.math.IntegerSum;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.primitive.PrimitiveTuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 {
@@ -55,26 +57,26 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     public void equalsAndHashCode()
     {
         super.equalsAndHashCode();
-        Assert.assertNotEquals(this.newWith(1, 1, 2, 3), this.newWith(1, 2, 2, 3));
+        Assertions.assertNotEquals(this.newWith(1, 1, 2, 3), this.newWith(1, 2, 2, 3));
         Verify.assertEqualsAndHashCode(this.newWith(null, null, 2, 3), this.newWith(null, 2, null, 3));
-        Assert.assertEquals(this.newWith(1, 1, 2, 3).toMapOfItemToCount().hashCode(), this.newWith(1, 1, 2, 3).hashCode());
-        Assert.assertEquals(this.newWith(null, null, 2, 3).toMapOfItemToCount().hashCode(), this.newWith(null, null, 2, 3).hashCode());
+        Assertions.assertEquals(this.newWith(1, 1, 2, 3).toMapOfItemToCount().hashCode(), this.newWith(1, 1, 2, 3).hashCode());
+        Assertions.assertEquals(this.newWith(null, null, 2, 3).toMapOfItemToCount().hashCode(), this.newWith(null, null, 2, 3).hashCode());
     }
 
     @Test
     public void toStringOfItemToCount()
     {
-        Assert.assertEquals("{}", this.newWith().toStringOfItemToCount());
-        Assert.assertEquals("{1=3}", this.newWith(1, 1, 1).toStringOfItemToCount());
+        Assertions.assertEquals("{}", this.newWith().toStringOfItemToCount());
+        Assertions.assertEquals("{1=3}", this.newWith(1, 1, 1).toStringOfItemToCount());
         String actual = this.newWith(1, 2, 2).toStringOfItemToCount();
-        Assert.assertTrue("{1=1, 2=2}".equals(actual) || "{2=2, 1=1}".equals(actual));
+        Assertions.assertTrue("{1=1, 2=2}".equals(actual) || "{2=2, 1=1}".equals(actual));
     }
 
     @Test
     public void toMapOfItemToCount()
     {
         MutableBagIterable<Integer> bag = this.newWith(1, 2, 2, 3, 3, 3);
-        Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), bag.toMapOfItemToCount());
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), bag.toMapOfItemToCount());
     }
 
     @Test
@@ -98,7 +100,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         {
             validate.add(each);
         }
-        Assert.assertEquals(HashBag.newBagWith(1, 1, 2), HashBag.newBag(validate));
+        Assertions.assertEquals(HashBag.newBagWith(1, 1, 2), HashBag.newBag(validate));
 
         Iterator<Integer> iterator = bag.iterator();
         MutableBagIterable<Integer> expected = this.newWith(1, 1, 2);
@@ -108,17 +110,17 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         this.assertIteratorRemove(bag, iterator, expected);
         this.assertIteratorRemove(bag, iterator, expected);
         Verify.assertEmpty(bag);
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasNext());
         Verify.assertThrows(NoSuchElementException.class, (Runnable) iterator::next);
     }
 
     private void assertIteratorRemove(MutableBagIterable<Integer> bag, Iterator<Integer> iterator, MutableBagIterable<Integer> expected)
     {
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         Integer first = iterator.next();
         iterator.remove();
         expected.remove(first);
-        Assert.assertEquals(expected, bag);
+        Assertions.assertEquals(expected, bag);
         Verify.assertThrows(IllegalStateException.class, iterator::remove);
     }
 
@@ -131,16 +133,16 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         iterator.next();
         Integer value = iterator.next();
         Integer value2 = iterator.next();
-        Assert.assertNotEquals(value, value2);
+        Assertions.assertNotEquals(value, value2);
         iterator.remove();
         Integer value3 = iterator.next();
-        Assert.assertNotEquals(value, value3);
+        Assertions.assertNotEquals(value, value3);
         iterator.remove();
         Integer value4 = iterator.next();
-        Assert.assertNotEquals(value, value4);
+        Assertions.assertNotEquals(value, value4);
         iterator.remove();
         Integer value5 = iterator.next();
-        Assert.assertNotEquals(value, value5);
+        Assertions.assertNotEquals(value, value5);
     }
 
     @Test
@@ -159,8 +161,8 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         iterator.next();
         iterator.next();
         iterator.remove();
-        Assert.assertEquals(4, bag.sizeDistinct());
-        Assert.assertEquals(8, bag.size());
+        Assertions.assertEquals(4, bag.sizeDistinct());
+        Assertions.assertEquals(8, bag.size());
     }
 
     @Override
@@ -170,10 +172,10 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         super.removeIf();
 
         MutableBagIterable<Integer> objects = this.newWith(4, 1, 3, 3, 2);
-        Assert.assertTrue(objects.removeIf(Predicates.equal(2)));
-        Assert.assertEquals(HashBag.newBagWith(1, 3, 3, 4), objects);
-        Assert.assertTrue(objects.removeIf(Predicates.equal(3)));
-        Assert.assertEquals(HashBag.newBagWith(1, 4), objects);
+        Assertions.assertTrue(objects.removeIf(Predicates.equal(2)));
+        Assertions.assertEquals(HashBag.newBagWith(1, 3, 3, 4), objects);
+        Assertions.assertTrue(objects.removeIf(Predicates.equal(3)));
+        Assertions.assertEquals(HashBag.newBagWith(1, 4), objects);
     }
 
     @Override
@@ -183,7 +185,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         MutableBagIterable<Integer> bag = this.newWith(1, 1, 2);
         MutableList<Integer> validate = Lists.mutable.of();
         bag.forEach(CollectionAddProcedure.on(validate));
-        Assert.assertEquals(HashBag.newBagWith(1, 1, 2), HashBag.newBag(validate));
+        Assertions.assertEquals(HashBag.newBagWith(1, 1, 2), HashBag.newBag(validate));
     }
 
     @Test
@@ -195,15 +197,15 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         bag.addOccurrences(3, 1);
         IntegerSum sum = new IntegerSum(0);
         bag.forEachWithOccurrences((each, index) -> sum.add(each * index));
-        Assert.assertEquals(10, sum.getIntSum());
+        Assertions.assertEquals(10, sum.getIntSum());
         bag.removeOccurrences(2, 1);
         IntegerSum sum2 = new IntegerSum(0);
         bag.forEachWithOccurrences((each, index) -> sum2.add(each * index));
-        Assert.assertEquals(8, sum2.getIntSum());
+        Assertions.assertEquals(8, sum2.getIntSum());
         bag.removeOccurrences(1, 3);
         IntegerSum sum3 = new IntegerSum(0);
         bag.forEachWithOccurrences((each, index) -> sum3.add(each * index));
-        Assert.assertEquals(5, sum3.getIntSum());
+        Assertions.assertEquals(5, sum3.getIntSum());
     }
 
     @Override
@@ -213,23 +215,23 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         super.toImmutable();
         Verify.assertInstanceOf(MutableBagIterable.class, this.newWith());
         Verify.assertInstanceOf(ImmutableBagIterable.class, this.newWith().toImmutable());
-        Assert.assertFalse(this.newWith().toImmutable() instanceof MutableBagIterable);
+        Assertions.assertFalse(this.newWith().toImmutable() instanceof MutableBagIterable);
     }
 
     @Test
     @Override
     public void getLast()
     {
-        Assert.assertEquals(Integer.valueOf(1), this.newWith(1).getLast());
-        Assert.assertEquals(Integer.valueOf(3), this.newWith(3).getLast());
+        Assertions.assertEquals(Integer.valueOf(1), this.newWith(1).getLast());
+        Assertions.assertEquals(Integer.valueOf(3), this.newWith(3).getLast());
     }
 
     @Test
     public void occurrencesOf()
     {
         MutableBagIterable<Integer> bag = this.newWith(1, 1, 2);
-        Assert.assertEquals(2, bag.occurrencesOf(1));
-        Assert.assertEquals(1, bag.occurrencesOf(2));
+        Assertions.assertEquals(2, bag.occurrencesOf(1));
+        Assertions.assertEquals(1, bag.occurrencesOf(2));
     }
 
     @Test
@@ -240,10 +242,12 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         MutableBagTestCase.assertBagsEqual(HashBag.newBag(), bag);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void addOccurrences_throws()
     {
-        this.newWith().addOccurrences(new Object(), -1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newWith().addOccurrences(new Object(), -1);
+        });
     }
 
     @Test
@@ -252,26 +256,28 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         MutableBagIterable<String> bag = this.newWith("betamax-tape", "betamax-tape");
         MutableBagIterable<String> expected = HashBag.newBag(bag);
 
-        Assert.assertFalse(bag.removeOccurrences("dvd", 2));
+        Assertions.assertFalse(bag.removeOccurrences("dvd", 2));
         MutableBagTestCase.assertBagsEqual(expected, bag);
 
-        Assert.assertFalse(bag.removeOccurrences("dvd", 0));
+        Assertions.assertFalse(bag.removeOccurrences("dvd", 0));
         MutableBagTestCase.assertBagsEqual(expected, bag);
 
-        Assert.assertFalse(bag.removeOccurrences("betamax-tape", 0));
+        Assertions.assertFalse(bag.removeOccurrences("betamax-tape", 0));
         MutableBagTestCase.assertBagsEqual(expected, bag);
 
-        Assert.assertTrue(bag.removeOccurrences("betamax-tape", 1));
+        Assertions.assertTrue(bag.removeOccurrences("betamax-tape", 1));
         MutableBagTestCase.assertBagsEqual(HashBag.newBagWith("betamax-tape"), bag);
 
-        Assert.assertTrue(bag.removeOccurrences("betamax-tape", 10));
+        Assertions.assertTrue(bag.removeOccurrences("betamax-tape", 10));
         MutableBagTestCase.assertBagsEqual(HashBag.<String>newBag(), bag);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void removeOccurrences_throws()
     {
-        this.newWith().removeOccurrences(new Object(), -1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newWith().removeOccurrences(new Object(), -1);
+        });
     }
 
     @Test
@@ -280,40 +286,42 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         MutableBagIterable<String> bag = this.newWith();
         MutableBagIterable<String> expected = this.newWith("betamax-tape", "betamax-tape");
 
-        Assert.assertTrue(bag.setOccurrences("betamax-tape", 2));
+        Assertions.assertTrue(bag.setOccurrences("betamax-tape", 2));
         MutableBagTestCase.assertBagsEqual(expected, bag);
 
-        Assert.assertFalse(bag.setOccurrences("betamax-tape", 2));
+        Assertions.assertFalse(bag.setOccurrences("betamax-tape", 2));
         MutableBagTestCase.assertBagsEqual(expected, bag);
 
-        Assert.assertFalse(bag.setOccurrences("dvd", 0));
+        Assertions.assertFalse(bag.setOccurrences("dvd", 0));
         MutableBagTestCase.assertBagsEqual(expected, bag);
 
-        Assert.assertTrue(bag.setOccurrences("betamax-tape", 3));
+        Assertions.assertTrue(bag.setOccurrences("betamax-tape", 3));
         MutableBagTestCase.assertBagsEqual(expected.with("betamax-tape"), bag);
 
-        Assert.assertTrue(bag.setOccurrences("betamax-tape", 0));
+        Assertions.assertTrue(bag.setOccurrences("betamax-tape", 0));
         MutableBagTestCase.assertBagsEqual(HashBag.<String>newBag(), bag);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void setOccurrences_throws()
     {
-        this.newWith().setOccurrences(new Object(), -1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newWith().setOccurrences(new Object(), -1);
+        });
     }
 
     protected static void assertBagsEqual(Bag<?> expected, Bag<?> actual)
     {
-        Assert.assertEquals(expected.toMapOfItemToCount(), actual.toMapOfItemToCount());
-        Assert.assertEquals(expected.sizeDistinct(), actual.sizeDistinct());
-        Assert.assertEquals(expected.size(), actual.size());
+        Assertions.assertEquals(expected.toMapOfItemToCount(), actual.toMapOfItemToCount());
+        Assertions.assertEquals(expected.sizeDistinct(), actual.sizeDistinct());
+        Assertions.assertEquals(expected.size(), actual.size());
         Verify.assertEqualsAndHashCode(expected, actual);
     }
 
     @Test
     public void toSortedListWith()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(1, 2, 2, 3, 3, 3),
                 this.newWith(3, 3, 3, 2, 2, 1).toSortedList());
     }
@@ -324,7 +332,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     {
         super.toSet();
         MutableBagIterable<Integer> bag = this.newWith(3, 3, 3, 2, 2, 1);
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3), bag.toSet());
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3), bag.toSet());
     }
 
     @Override
@@ -333,7 +341,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     {
         super.toList();
         MutableBagIterable<Integer> bag = this.newWith(1, 1, 1);
-        Assert.assertEquals(FastList.newListWith(1, 1, 1), bag.toList());
+        Assertions.assertEquals(FastList.newListWith(1, 1, 1), bag.toList());
     }
 
     @Override
@@ -343,10 +351,10 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         super.removeObject();
 
         MutableBagIterable<String> bag = this.newWith("dakimakura", "dakimakura");
-        Assert.assertFalse(bag.remove("Mr. T"));
-        Assert.assertTrue(bag.remove("dakimakura"));
-        Assert.assertTrue(bag.remove("dakimakura"));
-        Assert.assertFalse(bag.remove("dakimakura"));
+        Assertions.assertFalse(bag.remove("Mr. T"));
+        Assertions.assertTrue(bag.remove("dakimakura"));
+        Assertions.assertTrue(bag.remove("dakimakura"));
+        Assertions.assertFalse(bag.remove("dakimakura"));
         MutableBagTestCase.assertBagsEqual(Bags.mutable.of(), bag);
     }
 
@@ -379,8 +387,8 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
         MutableBagIterable<Integer> integers = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         PartitionMutableCollection<Integer> result = integers.partition(IntegerPredicates.isEven());
-        Assert.assertEquals(Iterables.iBag(2, 2, 4, 4, 4, 4), result.getSelected());
-        Assert.assertEquals(Iterables.iBag(1, 3, 3, 3), result.getRejected());
+        Assertions.assertEquals(Iterables.iBag(2, 2, 4, 4, 4, 4), result.getSelected());
+        Assertions.assertEquals(Iterables.iBag(1, 3, 3, 3), result.getRejected());
     }
 
     @Override
@@ -391,15 +399,15 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
         MutableBagIterable<Integer> integers = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         PartitionMutableCollection<Integer> result = integers.partitionWith(Predicates2.in(), integers.select(IntegerPredicates.isEven()));
-        Assert.assertEquals(Iterables.iBag(2, 2, 4, 4, 4, 4), result.getSelected());
-        Assert.assertEquals(Iterables.iBag(1, 3, 3, 3), result.getRejected());
+        Assertions.assertEquals(Iterables.iBag(2, 2, 4, 4, 4, 4), result.getSelected());
+        Assertions.assertEquals(Iterables.iBag(1, 3, 3, 3), result.getRejected());
     }
 
     @Test
     public void selectByOccurrences()
     {
         MutableBagIterable<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
-        Assert.assertEquals(Iterables.iBag(1, 1, 1, 1, 3, 3), integers.selectByOccurrences(IntPredicates.isEven()));
+        Assertions.assertEquals(Iterables.iBag(1, 1, 1, 1, 3, 3), integers.selectByOccurrences(IntPredicates.isEven()));
     }
 
     @Test
@@ -418,10 +426,10 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
                 PrimitiveTuples.pair("ten", 10));
         MutableList<ObjectIntPair<String>> top5 = strings.topOccurrences(5);
         Verify.assertSize(5, top5);
-        Assert.assertEquals("ten", top5.getFirst().getOne());
-        Assert.assertEquals(10, top5.getFirst().getTwo());
-        Assert.assertEquals("six", top5.getLast().getOne());
-        Assert.assertEquals(6, top5.getLast().getTwo());
+        Assertions.assertEquals("ten", top5.getFirst().getOne());
+        Assertions.assertEquals(10, top5.getFirst().getTwo());
+        Assertions.assertEquals("six", top5.getLast().getOne());
+        Assertions.assertEquals(6, top5.getLast().getTwo());
         Verify.assertSize(0, this.newWith("one").topOccurrences(0));
         Verify.assertSize(0, this.newWith().topOccurrences(5));
         Verify.assertSize(3, this.newWith("one", "two", "three").topOccurrences(5));
@@ -453,10 +461,10 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
                 PrimitiveTuples.pair("ten", 10));
         MutableList<ObjectIntPair<String>> bottom5 = strings.bottomOccurrences(5);
         Verify.assertSize(5, bottom5);
-        Assert.assertEquals("one", bottom5.getFirst().getOne());
-        Assert.assertEquals(1, bottom5.getFirst().getTwo());
-        Assert.assertEquals("five", bottom5.getLast().getOne());
-        Assert.assertEquals(5, bottom5.getLast().getTwo());
+        Assertions.assertEquals("one", bottom5.getFirst().getOne());
+        Assertions.assertEquals(1, bottom5.getFirst().getTwo());
+        Assertions.assertEquals("five", bottom5.getLast().getOne());
+        Assertions.assertEquals(5, bottom5.getLast().getTwo());
         Verify.assertSize(0, this.newWith("one").bottomOccurrences(0));
         Verify.assertSize(0, this.newWith().bottomOccurrences(5));
         Verify.assertSize(3, this.newWith("one", "two", "three").topOccurrences(5));

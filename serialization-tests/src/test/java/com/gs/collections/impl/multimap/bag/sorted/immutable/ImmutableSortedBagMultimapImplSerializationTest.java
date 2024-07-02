@@ -31,10 +31,12 @@ public class ImmutableSortedBagMultimapImplSerializationTest extends ImmutableMu
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAIFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuc29ydGVkLmltbXV0\n"
-                + "YWJsZS5JbW11dGFibGVTb3J0ZWRCYWdNdWx0aW1hcEltcGwkSW1tdXRhYmxlU29ydGVkQmFnTXVs\n"
-                + "dGltYXBTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAAAnQAAUF3BAAAAANxAH4A\n"
-                + "AnQAAUJxAH4AA3EAfgADdwQAAAABcQB+AAJ4";
+        return """
+                rO0ABXNyAIFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuc29ydGVkLmltbXV0
+                YWJsZS5JbW11dGFibGVTb3J0ZWRCYWdNdWx0aW1hcEltcGwkSW1tdXRhYmxlU29ydGVkQmFnTXVs
+                dGltYXBTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAAAnQAAUF3BAAAAANxAH4A
+                AnQAAUJxAH4AA3EAfgADdwQAAAABcQB+AAJ4\
+                """;
     }
 }
 

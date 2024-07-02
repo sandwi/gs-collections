@@ -34,7 +34,6 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
 import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * JUnit test suite for {@link UnifiedSet}.

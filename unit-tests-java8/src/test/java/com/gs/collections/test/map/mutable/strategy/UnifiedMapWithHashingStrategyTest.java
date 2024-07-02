@@ -25,7 +25,7 @@ import com.gs.collections.test.map.mutable.MutableMapTestCase;
 import com.gs.junit.runners.Java8Runner;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @RunWith(Java8Runner.class)
 public class UnifiedMapWithHashingStrategyTest implements MutableMapTestCase

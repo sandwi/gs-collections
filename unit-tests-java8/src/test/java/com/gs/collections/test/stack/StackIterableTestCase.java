@@ -26,10 +26,11 @@ import com.gs.collections.impl.block.factory.Procedures;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.factory.Stacks;
 import com.gs.collections.test.OrderedIterableWithDuplicatesTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface StackIterableTestCase extends OrderedIterableWithDuplicatesTestCase, TransformsToStackTrait
 {
@@ -114,10 +115,12 @@ public interface StackIterableTestCase extends OrderedIterableWithDuplicatesTest
         assertEquals(Integer.valueOf(5), this.newWith(5, 1, 4, 2, 3).peek());
     }
 
-    @Test(expected = EmptyStackException.class)
+    @Test
     default void StackIterable_peek_throws()
     {
-        this.newWith().peek();
+        assertThrows(EmptyStackException.class, () -> {
+            this.newWith().peek();
+        });
     }
 
     @Test

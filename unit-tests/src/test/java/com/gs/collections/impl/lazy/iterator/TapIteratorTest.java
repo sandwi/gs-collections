@@ -19,23 +19,29 @@ package com.gs.collections.impl.lazy.iterator;
 import java.util.NoSuchElementException;
 
 import com.gs.collections.impl.factory.Lists;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TapIteratorTest
 {
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void nextIfDoesntHaveAnything()
     {
-        new TapIterator<>(Lists.immutable.of(), object -> {
-        }).next();
+        assertThrows(NoSuchElementException.class, () -> {
+            new TapIterator<>(Lists.immutable.of(), object -> {
+            }).next();
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeIsUnsupported()
     {
-        new TapIterator<>(Lists.immutable.of().iterator(), object -> {
-        }).remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            new TapIterator<>(Lists.immutable.of().iterator(), object -> {
+            }).remove();
+        });
     }
 
     @Test
@@ -44,6 +50,6 @@ public class TapIteratorTest
         Object expected = new Object();
         TapIterator<Object> iterator = new TapIterator<>(
                 Lists.fixedSize.of(expected), object -> { });
-        Assert.assertSame(expected, iterator.next());
+        Assertions.assertSame(expected, iterator.next());
     }
 }

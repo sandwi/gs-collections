@@ -18,10 +18,10 @@ package com.gs.collections.test;
 
 import com.gs.collections.api.ordered.SortedIterable;
 import com.gs.collections.impl.block.factory.Comparators;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public interface SortedIterableTestCase extends OrderedIterableTestCase
 {

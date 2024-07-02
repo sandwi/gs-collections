@@ -17,15 +17,19 @@
 package com.gs.collections.impl.string.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CodePointAdapterSerializationTest
 {
-    public static final String EMPTY_CODE_LIST = "rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdHJpbmcuaW1tdXRhYmxlLkNvZGVQb2lu\n"
-            + "dEFkYXB0ZXIAAAAAAAAAAQIAAUwAB2FkYXB0ZWR0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQAAA==\n";
-    public static final String HELLO_WORLD_STRING = "rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdHJpbmcuaW1tdXRhYmxlLkNvZGVQb2lu\n"
-            + "dEFkYXB0ZXIAAAAAAAAAAQIAAUwAB2FkYXB0ZWR0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQADEhl\n"
-            + "bGxvIFdvcmxkIQ==";
+    public static final String EMPTY_CODE_LIST = """
+            rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdHJpbmcuaW1tdXRhYmxlLkNvZGVQb2lu
+            dEFkYXB0ZXIAAAAAAAAAAQIAAUwAB2FkYXB0ZWR0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQAAA==
+            """;
+    public static final String HELLO_WORLD_STRING = """
+            rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdHJpbmcuaW1tdXRhYmxlLkNvZGVQb2lu
+            dEFkYXB0ZXIAAAAAAAAAAQIAAUwAB2FkYXB0ZWR0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQADEhl
+            bGxvIFdvcmxkIQ==\
+            """;
 
     @Test
     public void serializedForm()

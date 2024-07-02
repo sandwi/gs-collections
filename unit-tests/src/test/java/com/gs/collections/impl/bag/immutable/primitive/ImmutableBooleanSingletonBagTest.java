@@ -19,8 +19,8 @@ package com.gs.collections.impl.bag.immutable.primitive;
 import com.gs.collections.api.bag.primitive.ImmutableBooleanBag;
 import com.gs.collections.impl.factory.primitive.BooleanBags;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ImmutableBooleanSingletonBag}.
@@ -40,7 +40,7 @@ public class ImmutableBooleanSingletonBagTest extends AbstractImmutableBooleanBa
         StringBuilder stringBuilder = new StringBuilder();
         this.classUnderTest().forEachWithOccurrences((argument1, argument2) -> stringBuilder.append(argument1).append(argument2));
         String string = stringBuilder.toString();
-        Assert.assertEquals("true1", string);
+        Assertions.assertEquals("true1", string);
     }
 
     @Override

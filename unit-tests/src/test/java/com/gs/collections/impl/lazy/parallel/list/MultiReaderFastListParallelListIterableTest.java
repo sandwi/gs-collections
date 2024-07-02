@@ -20,7 +20,9 @@ import com.gs.collections.api.list.ListIterable;
 import com.gs.collections.api.list.ParallelListIterable;
 import com.gs.collections.impl.list.mutable.ListAdapter;
 import com.gs.collections.impl.list.mutable.MultiReaderFastList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MultiReaderFastListParallelListIterableTest extends ParallelListIterableTestCase
 {
@@ -42,15 +44,19 @@ public class MultiReaderFastListParallelListIterableTest extends ParallelListIte
         return ListAdapter.adapt(MultiReaderFastList.newListWith(littleElements));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void asParallel_small_batch()
     {
-        ListAdapter.adapt(MultiReaderFastList.newListWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)).asParallel(this.executorService, 0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            ListAdapter.adapt(MultiReaderFastList.newListWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)).asParallel(this.executorService, 0);
+        });
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void asParallel_null_executorService()
     {
-        ListAdapter.adapt(MultiReaderFastList.newListWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)).asParallel(null, 2);
+        assertThrows(NullPointerException.class, () -> {
+            ListAdapter.adapt(MultiReaderFastList.newListWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)).asParallel(null, 2);
+        });
     }
 }

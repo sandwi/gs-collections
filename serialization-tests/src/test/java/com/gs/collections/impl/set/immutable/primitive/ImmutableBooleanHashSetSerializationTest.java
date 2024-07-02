@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.immutable.primitive;
 
 import com.gs.collections.impl.factory.primitive.BooleanSets;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableBooleanHashSetSerializationTest
 {
@@ -26,24 +26,32 @@ public class ImmutableBooleanHashSetSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAFVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVCb29sZWFuU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcEAAAAAHg=\n",
-                BooleanSets.immutable.with());
+                BooleanSets.immutable.with(),
+                """
+                rO0ABXNyAFVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVCb29sZWFuU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcEAAAAAHg=
+                """);
 
         Verify.assertSerializedForm(
-                "rO0ABXNyAFVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVCb29sZWFuU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcFAAAAAQB4\n",
-                BooleanSets.immutable.with(false));
+                BooleanSets.immutable.with(false),
+                """
+                rO0ABXNyAFVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVCb29sZWFuU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcFAAAAAQB4
+                """);
 
         Verify.assertSerializedForm(
-                "rO0ABXNyAFVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVCb29sZWFuU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcFAAAAAQF4\n",
-                BooleanSets.immutable.with(true));
+                BooleanSets.immutable.with(true),
+                """
+                rO0ABXNyAFVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVCb29sZWFuU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcFAAAAAQF4
+                """);
 
         Verify.assertSerializedForm(
-                "rO0ABXNyAFVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVCb29sZWFuU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcGAAAAAgAB\n"
-                        + "eA==",
-                BooleanSets.immutable.with(false, true));
+                BooleanSets.immutable.with(false, true),
+                """
+                rO0ABXNyAFVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVCb29sZWFuU2V0U2VyaWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcGAAAAAgAB
+                eA==\
+                """);
     }
 }

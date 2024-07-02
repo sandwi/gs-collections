@@ -19,7 +19,7 @@ package com.gs.collections.impl.set.sorted.mutable;
 import java.util.TreeSet;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SortedSetAdapterSerializationTest
 {
@@ -28,9 +28,11 @@ public class SortedSetAdapterSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLm11dGFibGUuU29ydGVk\n"
-                        + "U2V0QWRhcHRlcgAAAAAAAAABAgABTAAIZGVsZWdhdGV0ABVMamF2YS91dGlsL1NvcnRlZFNldDt4\n"
-                        + "cHNyABFqYXZhLnV0aWwuVHJlZVNldN2YUJOV7YdbAwAAeHBwdwQAAAAAeA==",
+                """
+                rO0ABXNyADtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLm11dGFibGUuU29ydGVk
+                U2V0QWRhcHRlcgAAAAAAAAABAgABTAAIZGVsZWdhdGV0ABVMamF2YS91dGlsL1NvcnRlZFNldDt4
+                cHNyABFqYXZhLnV0aWwuVHJlZVNldN2YUJOV7YdbAwAAeHBwdwQAAAAAeA==\
+                """,
                 SortedSetAdapter.adapt(new TreeSet<Integer>()));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.bag.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SynchronizedDoubleBagSerializationTest
 {
@@ -26,13 +26,15 @@ public class SynchronizedDoubleBagSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcubXV0YWJsZS5wcmltaXRpdmUuU3lu\n"
-                        + "Y2hyb25pemVkRG91YmxlQmFnAAAAAAAAAAECAAB4cgBZY29tLmdzLmNvbGxlY3Rpb25zLmltcGwu\n"
-                        + "Y29sbGVjdGlvbi5tdXRhYmxlLnByaW1pdGl2ZS5BYnN0cmFjdFN5bmNocm9uaXplZERvdWJsZUNv\n"
-                        + "bGxlY3Rpb24AAAAAAAAAAQIAAkwACmNvbGxlY3Rpb250AEVMY29tL2dzL2NvbGxlY3Rpb25zL2Fw\n"
-                        + "aS9jb2xsZWN0aW9uL3ByaW1pdGl2ZS9NdXRhYmxlRG91YmxlQ29sbGVjdGlvbjtMAARsb2NrdAAS\n"
-                        + "TGphdmEvbGFuZy9PYmplY3Q7eHBzcgA7Y29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmFnLm11dGFi\n"
-                        + "bGUucHJpbWl0aXZlLkRvdWJsZUhhc2hCYWcAAAAAAAAAAQwAAHhwdwQAAAAAeHEAfgAE",
+                """
+                rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcubXV0YWJsZS5wcmltaXRpdmUuU3lu
+                Y2hyb25pemVkRG91YmxlQmFnAAAAAAAAAAECAAB4cgBZY29tLmdzLmNvbGxlY3Rpb25zLmltcGwu
+                Y29sbGVjdGlvbi5tdXRhYmxlLnByaW1pdGl2ZS5BYnN0cmFjdFN5bmNocm9uaXplZERvdWJsZUNv
+                bGxlY3Rpb24AAAAAAAAAAQIAAkwACmNvbGxlY3Rpb250AEVMY29tL2dzL2NvbGxlY3Rpb25zL2Fw
+                aS9jb2xsZWN0aW9uL3ByaW1pdGl2ZS9NdXRhYmxlRG91YmxlQ29sbGVjdGlvbjtMAARsb2NrdAAS
+                TGphdmEvbGFuZy9PYmplY3Q7eHBzcgA7Y29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmFnLm11dGFi
+                bGUucHJpbWl0aXZlLkRvdWJsZUhhc2hCYWcAAAAAAAAAAQwAAHhwdwQAAAAAeHEAfgAE\
+                """,
                 new SynchronizedDoubleBag(new DoubleHashBag()));
     }
 }

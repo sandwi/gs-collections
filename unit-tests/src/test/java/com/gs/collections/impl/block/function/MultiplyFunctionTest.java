@@ -17,27 +17,27 @@
 package com.gs.collections.impl.block.function;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class MultiplyFunctionTest
 {
     @Test
     public void integerBlock()
     {
-        Assert.assertEquals(Integer.valueOf(20), MultiplyFunction.INTEGER.value(2, 10));
+        Assertions.assertEquals(Integer.valueOf(20), MultiplyFunction.INTEGER.value(2, 10));
     }
 
     @Test
     public void doubleBlock()
     {
-        Assert.assertEquals(new Double(20), MultiplyFunction.DOUBLE.value(2.0, 10.0));
+        Assertions.assertEquals(Double.valueOf(20), MultiplyFunction.DOUBLE.value(2.0, 10.0));
     }
 
     @Test
     public void longBlock()
     {
-        Assert.assertEquals(Long.valueOf(20), MultiplyFunction.LONG.value(2L, 10L));
+        Assertions.assertEquals(Long.valueOf(20), MultiplyFunction.LONG.value(2L, 10L));
     }
 
     @Test

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SynchronizedObjectBooleanMapSerializationTest
 {
@@ -26,12 +26,14 @@ public class SynchronizedObjectBooleanMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU3lu\n"
-                        + "Y2hyb25pemVkT2JqZWN0Qm9vbGVhbk1hcAAAAAAAAAABAgACTAAEbG9ja3QAEkxqYXZhL2xhbmcv\n"
-                        + "T2JqZWN0O0wAA21hcHQAPkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0\n"
-                        + "YWJsZU9iamVjdEJvb2xlYW5NYXA7eHBxAH4AA3NyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5t\n"
-                        + "YXAubXV0YWJsZS5wcmltaXRpdmUuT2JqZWN0Qm9vbGVhbkhhc2hNYXAAAAAAAAAAAQwAAHhwdwgA\n"
-                        + "AAAAPwAAAHg=",
+                """
+                rO0ABXNyAEpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuU3lu
+                Y2hyb25pemVkT2JqZWN0Qm9vbGVhbk1hcAAAAAAAAAABAgACTAAEbG9ja3QAEkxqYXZhL2xhbmcv
+                T2JqZWN0O0wAA21hcHQAPkxjb20vZ3MvY29sbGVjdGlvbnMvYXBpL21hcC9wcmltaXRpdmUvTXV0
+                YWJsZU9iamVjdEJvb2xlYW5NYXA7eHBxAH4AA3NyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5t
+                YXAubXV0YWJsZS5wcmltaXRpdmUuT2JqZWN0Qm9vbGVhbkhhc2hNYXAAAAAAAAAAAQwAAHhwdwgA
+                AAAAPwAAAHg=\
+                """,
                 new SynchronizedObjectBooleanMap<Object>(new ObjectBooleanHashMap<Object>()));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.comparator;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FunctionComparatorSerializationTest
 {
@@ -26,10 +26,12 @@ public class FunctionComparatorSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5jb21wYXJhdG9yLkZ1bmN0aW9u\n"
-                        + "Q29tcGFyYXRvcgAAAAAAAAABAgACTAAKY29tcGFyYXRvcnQAFkxqYXZhL3V0aWwvQ29tcGFyYXRv\n"
-                        + "cjtMAAhmdW5jdGlvbnQAMExjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL0Z1\n"
-                        + "bmN0aW9uO3hwcHA=",
+                """
+                rO0ABXNyADtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5jb21wYXJhdG9yLkZ1bmN0aW9u
+                Q29tcGFyYXRvcgAAAAAAAAABAgACTAAKY29tcGFyYXRvcnQAFkxqYXZhL3V0aWwvQ29tcGFyYXRv
+                cjtMAAhmdW5jdGlvbnQAMExjb20vZ3MvY29sbGVjdGlvbnMvYXBpL2Jsb2NrL2Z1bmN0aW9uL0Z1
+                bmN0aW9uO3hwcHA=\
+                """,
                 new FunctionComparator<Object, Object>(null, null));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableSingletonListSerializationTest
 {
@@ -25,10 +25,12 @@ public class ImmutableSingletonListSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVT\n"
-                        + "aW5nbGV0b25MaXN0AAAAAAAAAAECAAFMAAhlbGVtZW50MXQAEkxqYXZhL2xhbmcvT2JqZWN0O3hw\n"
-                        + "c3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVt\n"
-                        + "YmVyhqyVHQuU4IsCAAB4cAAAAAE=",
-                new ImmutableSingletonList<Integer>(1));
+                new ImmutableSingletonList<Integer>(1),
+                """
+                rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVT
+                aW5nbGV0b25MaXN0AAAAAAAAAAECAAFMAAhlbGVtZW50MXQAEkxqYXZhL2xhbmcvT2JqZWN0O3hw
+                c3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVt
+                YmVyhqyVHQuU4IsCAAB4cAAAAAE=\
+                """);
     }
 }

@@ -26,7 +26,7 @@ import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.jmh.runner.AbstractJMHTestRunner;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -100,37 +100,37 @@ public class GroupByListTest extends AbstractJMHTestRunner
     @Benchmark
     public void groupBy_2_keys_serial_eager_gsc()
     {
-        Assert.assertEquals(2, this.integersGSC.groupBy(each -> each % 2 == 0).sizeDistinct());
+        Assertions.assertEquals(2, this.integersGSC.groupBy(each -> each % 2 == 0).sizeDistinct());
     }
 
     @Benchmark
     public void groupBy_100_keys_serial_eager_gsc()
     {
-        Assert.assertEquals(100, this.integersGSC.groupBy(each -> each % 100).sizeDistinct());
+        Assertions.assertEquals(100, this.integersGSC.groupBy(each -> each % 100).sizeDistinct());
     }
 
     @Benchmark
     public void groupBy_10000_keys_serial_eager_gsc()
     {
-        Assert.assertEquals(10_000, this.integersGSC.groupBy(each -> each % 10_000).sizeDistinct());
+        Assertions.assertEquals(10_000, this.integersGSC.groupBy(each -> each % 10_000).sizeDistinct());
     }
 
     @Benchmark
     public void groupBy_2_keys_serial_lazy_gsc()
     {
-        Assert.assertEquals(2, this.integersGSC.asLazy().groupBy(each -> each % 2 == 0).sizeDistinct());
+        Assertions.assertEquals(2, this.integersGSC.asLazy().groupBy(each -> each % 2 == 0).sizeDistinct());
     }
 
     @Benchmark
     public void groupBy_100_keys_serial_lazy_gsc()
     {
-        Assert.assertEquals(100, this.integersGSC.asLazy().groupBy(each -> each % 100).sizeDistinct());
+        Assertions.assertEquals(100, this.integersGSC.asLazy().groupBy(each -> each % 100).sizeDistinct());
     }
 
     @Benchmark
     public void groupBy_10000_keys_serial_lazy_gsc()
     {
-        Assert.assertEquals(10_000, this.integersGSC.asLazy().groupBy(each -> each % 10_000).sizeDistinct());
+        Assertions.assertEquals(10_000, this.integersGSC.asLazy().groupBy(each -> each % 10_000).sizeDistinct());
     }
 
     @Benchmark

@@ -23,7 +23,6 @@ import com.gs.collections.api.block.procedure.primitive.IntProcedure;
 import com.gs.collections.impl.bag.mutable.HashBag;
 import com.gs.collections.impl.list.primitive.IntInterval;
 import com.gs.collections.impl.memory.MemoryTestBench;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

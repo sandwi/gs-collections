@@ -26,8 +26,10 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.lazy.iterator.DistinctIterator;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.utility.LazyIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DistinctIterableTest extends AbstractLazyIterableTestCase
 {
@@ -44,7 +46,7 @@ public class DistinctIterableTest extends AbstractLazyIterableTestCase
         Appendable builder = new StringBuilder();
         Procedure<Integer> appendProcedure = Procedures.append(builder);
         distinct.forEach(appendProcedure);
-        Assert.assertEquals("3124", builder.toString());
+        Assertions.assertEquals("3124", builder.toString());
     }
 
     @Test
@@ -56,7 +58,7 @@ public class DistinctIterableTest extends AbstractLazyIterableTestCase
             builder.append(object);
             builder.append(index);
         });
-        Assert.assertEquals("102132435465768798", builder.toString());
+        Assertions.assertEquals("102132435465768798", builder.toString());
     }
 
     @Override
@@ -69,7 +71,7 @@ public class DistinctIterableTest extends AbstractLazyIterableTestCase
         {
             builder.append(each);
         }
-        Assert.assertEquals("31245", builder.toString());
+        Assertions.assertEquals("31245", builder.toString());
     }
 
     @Test
@@ -78,19 +80,23 @@ public class DistinctIterableTest extends AbstractLazyIterableTestCase
         InternalIterable<Integer> distinct = new DistinctIterable<>(FastList.newListWith(1, 3, 3, 2, 5, 4, 2, 5, 4));
         StringBuilder builder = new StringBuilder("");
         distinct.forEachWith((each, aBuilder) -> aBuilder.append(each), builder);
-        Assert.assertEquals("13254", builder.toString());
+        Assertions.assertEquals("13254", builder.toString());
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void noSuchElementException()
     {
-        new DistinctIterator<>(Lists.mutable.<Integer>of()).next();
+        assertThrows(NoSuchElementException.class, () -> {
+            new DistinctIterator<>(Lists.mutable.<Integer>of()).next();
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void remove()
     {
-        new DistinctIterator<>(Lists.mutable.<Integer>of()).remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            new DistinctIterator<>(Lists.mutable.<Integer>of()).remove();
+        });
     }
 
     @Override
@@ -100,8 +106,8 @@ public class DistinctIterableTest extends AbstractLazyIterableTestCase
         super.distinct();
         DistinctIterable<Integer> distinct = new DistinctIterable<>(FastList.newListWith(3, 2, 2, 4, 1, 3, 1, 5));
         LazyIterable<Integer> distinctDistinct = distinct.distinct();
-        Assert.assertSame(distinctDistinct, distinct);
-        Assert.assertEquals(
+        Assertions.assertSame(distinctDistinct, distinct);
+        Assertions.assertEquals(
                 FastList.newListWith(3, 2, 4, 1, 5),
                 distinctDistinct.toList());
     }

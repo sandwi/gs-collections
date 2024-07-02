@@ -36,7 +36,7 @@ import com.gs.collections.impl.jmh.runner.AbstractJMHTestRunner;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.parallel.ParallelIterate;
 import org.apache.commons.lang.RandomStringUtils;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -81,7 +81,7 @@ public class AnagramListTest extends AbstractJMHTestRunner
                 .toSortedList(Comparators.<RichIterable<String>>byIntFunction(RichIterable::size))
                 .asReversed()
                 .collect(iterable -> iterable.size() + ": " + iterable)
-                .forEach(Procedures.cast(e -> Assert.assertFalse(e.isEmpty())));
+                .forEach(Procedures.cast(e -> Assertions.assertFalse(e.isEmpty())));
     }
 
     @Benchmark
@@ -93,7 +93,7 @@ public class AnagramListTest extends AbstractJMHTestRunner
                 .toSortedList(Comparators.<RichIterable<String>>byIntFunction(RichIterable::size))
                 .asReversed()
                 .collect(iterable -> iterable.size() + ": " + iterable)
-                .forEach(Procedures.cast(e -> Assert.assertFalse(e.isEmpty())));
+                .forEach(Procedures.cast(e -> Assertions.assertFalse(e.isEmpty())));
     }
 
     @Benchmark
@@ -105,7 +105,7 @@ public class AnagramListTest extends AbstractJMHTestRunner
                 .toSortedList(Comparators.<RichIterable<String>>byIntFunction(RichIterable::size))
                 .asReversed()
                 .collect(iterable -> iterable.size() + ": " + iterable)
-                .forEach(Procedures.cast(e -> Assert.assertFalse(e.isEmpty())));
+                .forEach(Procedures.cast(e -> Assertions.assertFalse(e.isEmpty())));
     }
 
     @Benchmark
@@ -118,7 +118,7 @@ public class AnagramListTest extends AbstractJMHTestRunner
                 .filter(list -> list.size() >= SIZE_THRESHOLD)
                 .sorted(Comparator.<List<String>>comparingInt(List::size).reversed())
                 .map(list -> list.size() + ": " + list)
-                .forEach(e -> Assert.assertFalse(e.isEmpty()));
+                .forEach(e -> Assertions.assertFalse(e.isEmpty()));
     }
 
     @Benchmark
@@ -131,7 +131,7 @@ public class AnagramListTest extends AbstractJMHTestRunner
                 .filter(list -> list.size() >= SIZE_THRESHOLD)
                 .sorted(Comparator.<List<String>>comparingInt(List::size).reversed())
                 .map(list -> list.size() + ": " + list)
-                .forEach(e -> Assert.assertFalse(e.isEmpty()));
+                .forEach(e -> Assertions.assertFalse(e.isEmpty()));
     }
 
     @Benchmark
@@ -144,7 +144,7 @@ public class AnagramListTest extends AbstractJMHTestRunner
                 .filter(list -> list.size() >= SIZE_THRESHOLD)
                 .sorted(Comparator.<List<String>>comparingInt(List::size).reversed())
                 .map(list -> list.size() + ": " + list)
-                .forEach(e -> Assert.assertFalse(e.isEmpty()));
+                .forEach(e -> Assertions.assertFalse(e.isEmpty()));
     }
 
     @Benchmark
@@ -157,7 +157,7 @@ public class AnagramListTest extends AbstractJMHTestRunner
                 .filter(list -> list.size() >= SIZE_THRESHOLD)
                 .sorted(Comparator.<List<String>>comparingInt(List::size).reversed())
                 .map(list -> list.size() + ": " + list)
-                .forEach(e -> Assert.assertFalse(e.isEmpty()));
+                .forEach(e -> Assertions.assertFalse(e.isEmpty()));
     }
 
     private static final class Alphagram

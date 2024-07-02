@@ -22,10 +22,7 @@ import com.gs.collections.api.bimap.ImmutableBiMap;
 import com.gs.collections.api.bimap.MutableBiMap;
 import com.gs.collections.impl.bimap.mutable.HashBiMap;
 import com.gs.junit.runners.Java8Runner;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.assertNull;
 
 @RunWith(Java8Runner.class)
 public class ImmutableHashBiMapTest implements ImmutableBiMapTestCase

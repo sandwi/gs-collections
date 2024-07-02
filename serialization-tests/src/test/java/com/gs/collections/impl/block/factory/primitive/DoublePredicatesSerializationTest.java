@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.factory.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DoublePredicatesSerializationTest
 {
@@ -26,8 +26,10 @@ public class DoublePredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E\n"
-                        + "b3VibGVQcmVkaWNhdGVzJEFsd2F5c0ZhbHNlRG91YmxlUHJlZGljYXRlAAAAAAAAAAECAAB4cA==\n",
+                """
+                rO0ABXNyAFtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E
+                b3VibGVQcmVkaWNhdGVzJEFsd2F5c0ZhbHNlRG91YmxlUHJlZGljYXRlAAAAAAAAAAECAAB4cA==
+                """,
                 DoublePredicates.alwaysFalse());
     }
 
@@ -36,8 +38,10 @@ public class DoublePredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E\n"
-                        + "b3VibGVQcmVkaWNhdGVzJEFsd2F5c1RydWVEb3VibGVQcmVkaWNhdGUAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAFpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E
+                b3VibGVQcmVkaWNhdGVzJEFsd2F5c1RydWVEb3VibGVQcmVkaWNhdGUAAAAAAAAAAQIAAHhw\
+                """,
                 DoublePredicates.alwaysTrue());
     }
 
@@ -46,9 +50,11 @@ public class DoublePredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E\n"
-                        + "b3VibGVQcmVkaWNhdGVzJEVxdWFsc0RvdWJsZVByZWRpY2F0ZQAAAAAAAAABAgABRAAIZXhwZWN0\n"
-                        + "ZWR4cAAAAAAAAAAA",
+                """
+                rO0ABXNyAFZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E
+                b3VibGVQcmVkaWNhdGVzJEVxdWFsc0RvdWJsZVByZWRpY2F0ZQAAAAAAAAABAgABRAAIZXhwZWN0
+                ZWR4cAAAAAAAAAAA\
+                """,
                 DoublePredicates.equal(0.0));
     }
 
@@ -57,9 +63,11 @@ public class DoublePredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E\n"
-                        + "b3VibGVQcmVkaWNhdGVzJExlc3NUaGFuRG91YmxlUHJlZGljYXRlAAAAAAAAAAECAAFEAAhleHBl\n"
-                        + "Y3RlZHhwAAAAAAAAAAA=",
+                """
+                rO0ABXNyAFhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E
+                b3VibGVQcmVkaWNhdGVzJExlc3NUaGFuRG91YmxlUHJlZGljYXRlAAAAAAAAAAECAAFEAAhleHBl
+                Y3RlZHhwAAAAAAAAAAA=\
+                """,
                 DoublePredicates.lessThan(0.0));
     }
 
@@ -68,9 +76,11 @@ public class DoublePredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E\n"
-                        + "b3VibGVQcmVkaWNhdGVzJEdyZWF0ZXJUaGFuRG91YmxlUHJlZGljYXRlAAAAAAAAAAECAAFEAAhl\n"
-                        + "eHBlY3RlZHhwAAAAAAAAAAA=",
+                """
+                rO0ABXNyAFtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E
+                b3VibGVQcmVkaWNhdGVzJEdyZWF0ZXJUaGFuRG91YmxlUHJlZGljYXRlAAAAAAAAAAECAAFEAAhl
+                eHBlY3RlZHhwAAAAAAAAAAA=\
+                """,
                 DoublePredicates.greaterThan(0.0));
     }
 
@@ -79,12 +89,14 @@ public class DoublePredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E\n"
-                        + "b3VibGVQcmVkaWNhdGVzJEFuZERvdWJsZVByZWRpY2F0ZQAAAAAAAAABAgACTAADb25ldABCTGNv\n"
-                        + "bS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svcHJlZGljYXRlL3ByaW1pdGl2ZS9Eb3VibGVQcmVk\n"
-                        + "aWNhdGU7TAADdHdvcQB+AAF4cHNyAFhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0\n"
-                        + "b3J5LnByaW1pdGl2ZS5Eb3VibGVQcmVkaWNhdGVzJExlc3NUaGFuRG91YmxlUHJlZGljYXRlAAAA\n"
-                        + "AAAAAAECAAFEAAhleHBlY3RlZHhwAAAAAAAAAABzcQB+AAMAAAAAAAAAAA==",
+                """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E
+                b3VibGVQcmVkaWNhdGVzJEFuZERvdWJsZVByZWRpY2F0ZQAAAAAAAAABAgACTAADb25ldABCTGNv
+                bS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svcHJlZGljYXRlL3ByaW1pdGl2ZS9Eb3VibGVQcmVk
+                aWNhdGU7TAADdHdvcQB+AAF4cHNyAFhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0
+                b3J5LnByaW1pdGl2ZS5Eb3VibGVQcmVkaWNhdGVzJExlc3NUaGFuRG91YmxlUHJlZGljYXRlAAAA
+                AAAAAAECAAFEAAhleHBlY3RlZHhwAAAAAAAAAABzcQB+AAMAAAAAAAAAAA==\
+                """,
                 DoublePredicates.and(DoublePredicates.lessThan(0.0), DoublePredicates.lessThan(0.0)));
     }
 
@@ -93,12 +105,14 @@ public class DoublePredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E\n"
-                        + "b3VibGVQcmVkaWNhdGVzJE9yRG91YmxlUHJlZGljYXRlAAAAAAAAAAECAAJMAANvbmV0AEJMY29t\n"
-                        + "L2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9jay9wcmVkaWNhdGUvcHJpbWl0aXZlL0RvdWJsZVByZWRp\n"
-                        + "Y2F0ZTtMAAN0d29xAH4AAXhwc3IAWGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3Rv\n"
-                        + "cnkucHJpbWl0aXZlLkRvdWJsZVByZWRpY2F0ZXMkTGVzc1RoYW5Eb3VibGVQcmVkaWNhdGUAAAAA\n"
-                        + "AAAAAQIAAUQACGV4cGVjdGVkeHAAAAAAAAAAAHNxAH4AAwAAAAAAAAAA",
+                """
+                rO0ABXNyAFJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E
+                b3VibGVQcmVkaWNhdGVzJE9yRG91YmxlUHJlZGljYXRlAAAAAAAAAAECAAJMAANvbmV0AEJMY29t
+                L2dzL2NvbGxlY3Rpb25zL2FwaS9ibG9jay9wcmVkaWNhdGUvcHJpbWl0aXZlL0RvdWJsZVByZWRp
+                Y2F0ZTtMAAN0d29xAH4AAXhwc3IAWGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3Rv
+                cnkucHJpbWl0aXZlLkRvdWJsZVByZWRpY2F0ZXMkTGVzc1RoYW5Eb3VibGVQcmVkaWNhdGUAAAAA
+                AAAAAQIAAUQACGV4cGVjdGVkeHAAAAAAAAAAAHNxAH4AAwAAAAAAAAAA\
+                """,
                 DoublePredicates.or(DoublePredicates.lessThan(0.0), DoublePredicates.lessThan(0.0)));
     }
 
@@ -107,12 +121,14 @@ public class DoublePredicatesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E\n"
-                        + "b3VibGVQcmVkaWNhdGVzJE5vdERvdWJsZVByZWRpY2F0ZQAAAAAAAAABAgABTAAGbmVnYXRldABC\n"
-                        + "TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svcHJlZGljYXRlL3ByaW1pdGl2ZS9Eb3VibGVQ\n"
-                        + "cmVkaWNhdGU7eHBzcgBYY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5wcmlt\n"
-                        + "aXRpdmUuRG91YmxlUHJlZGljYXRlcyRMZXNzVGhhbkRvdWJsZVByZWRpY2F0ZQAAAAAAAAABAgAB\n"
-                        + "RAAIZXhwZWN0ZWR4cAAAAAAAAAAA",
+                """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mYWN0b3J5LnByaW1pdGl2ZS5E
+                b3VibGVQcmVkaWNhdGVzJE5vdERvdWJsZVByZWRpY2F0ZQAAAAAAAAABAgABTAAGbmVnYXRldABC
+                TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvYmxvY2svcHJlZGljYXRlL3ByaW1pdGl2ZS9Eb3VibGVQ
+                cmVkaWNhdGU7eHBzcgBYY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5wcmlt
+                aXRpdmUuRG91YmxlUHJlZGljYXRlcyRMZXNzVGhhbkRvdWJsZVByZWRpY2F0ZQAAAAAAAAABAgAB
+                RAAIZXhwZWN0ZWR4cAAAAAAAAAAA\
+                """,
                 DoublePredicates.not(DoublePredicates.lessThan(0.0)));
     }
 }

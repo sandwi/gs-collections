@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CharArrayListSerializationTest
 {
@@ -26,8 +26,10 @@ public class CharArrayListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUucHJpbWl0aXZlLkNo\n"
-                        + "YXJBcnJheUxpc3QAAAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyADxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUucHJpbWl0aXZlLkNo
+                YXJBcnJheUxpc3QAAAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new CharArrayList());
     }
 }

@@ -29,8 +29,10 @@ import com.gs.collections.impl.factory.primitive.ByteSets;
 import com.gs.collections.impl.list.mutable.primitive.ByteArrayList;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Abstract JUnit test for {@link MutableByteSet}.
@@ -68,14 +70,14 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     public void isEmpty()
     {
         super.isEmpty();
-        Assert.assertFalse(this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -128).isEmpty());
+        Assertions.assertFalse(this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -128).isEmpty());
     }
 
     @Override
     @Test
     public void notEmpty()
     {
-        Assert.assertTrue(this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -128).notEmpty());
+        Assertions.assertTrue(this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -128).notEmpty());
     }
 
     @Override
@@ -86,11 +88,11 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -128);
         set.clear();
         Verify.assertSize(0, set);
-        Assert.assertFalse(set.contains((byte) 0));
-        Assert.assertFalse(set.contains((byte) 31));
-        Assert.assertFalse(set.contains((byte) 1));
-        Assert.assertFalse(set.contains((byte) -1));
-        Assert.assertFalse(set.contains((byte) -128));
+        Assertions.assertFalse(set.contains((byte) 0));
+        Assertions.assertFalse(set.contains((byte) 31));
+        Assertions.assertFalse(set.contains((byte) 1));
+        Assertions.assertFalse(set.contains((byte) -1));
+        Assertions.assertFalse(set.contains((byte) -128));
     }
 
     @Override
@@ -99,20 +101,20 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.add();
         MutableByteSet set = this.newWith();
-        Assert.assertTrue(set.add((byte) 14));
-        Assert.assertFalse(set.add((byte) 14));
-        Assert.assertTrue(set.add((byte) 2));
-        Assert.assertFalse(set.add((byte) 2));
-        Assert.assertTrue(set.add((byte) 35));
-        Assert.assertFalse(set.add((byte) 35));
-        Assert.assertTrue(set.add((byte) 31));
-        Assert.assertFalse(set.add((byte) 31));
-        Assert.assertTrue(set.add((byte) 32));
-        Assert.assertFalse(set.add((byte) 32));
-        Assert.assertTrue(set.add((byte) 0));
-        Assert.assertFalse(set.add((byte) 0));
-        Assert.assertTrue(set.add((byte) 1));
-        Assert.assertFalse(set.add((byte) 1));
+        Assertions.assertTrue(set.add((byte) 14));
+        Assertions.assertFalse(set.add((byte) 14));
+        Assertions.assertTrue(set.add((byte) 2));
+        Assertions.assertFalse(set.add((byte) 2));
+        Assertions.assertTrue(set.add((byte) 35));
+        Assertions.assertFalse(set.add((byte) 35));
+        Assertions.assertTrue(set.add((byte) 31));
+        Assertions.assertFalse(set.add((byte) 31));
+        Assertions.assertTrue(set.add((byte) 32));
+        Assertions.assertFalse(set.add((byte) 32));
+        Assertions.assertTrue(set.add((byte) 0));
+        Assertions.assertFalse(set.add((byte) 0));
+        Assertions.assertTrue(set.add((byte) 1));
+        Assertions.assertFalse(set.add((byte) 1));
     }
 
     @Override
@@ -121,19 +123,19 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.addAllIterable();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -128);
-        Assert.assertFalse(set.addAll(new ByteArrayList()));
-        Assert.assertFalse(set.addAll(ByteArrayList.newListWith((byte) 31, (byte) -1, (byte) -128)));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -128), set);
+        Assertions.assertFalse(set.addAll(new ByteArrayList()));
+        Assertions.assertFalse(set.addAll(ByteArrayList.newListWith((byte) 31, (byte) -1, (byte) -128)));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -128), set);
 
-        Assert.assertTrue(set.addAll(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 2, (byte) 30, (byte) -1, (byte) -128)));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 2, (byte) 30, (byte) 31, (byte) -1, (byte) -128), set);
+        Assertions.assertTrue(set.addAll(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 2, (byte) 30, (byte) -1, (byte) -128)));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 2, (byte) 30, (byte) 31, (byte) -1, (byte) -128), set);
 
-        Assert.assertTrue(set.addAll(ByteHashSet.newSetWith((byte) 5)));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 2, (byte) 5, (byte) 30, (byte) 31, (byte) 31, (byte) -1, (byte) -128), set);
+        Assertions.assertTrue(set.addAll(ByteHashSet.newSetWith((byte) 5)));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 2, (byte) 5, (byte) 30, (byte) 31, (byte) 31, (byte) -1, (byte) -128), set);
 
         ByteHashSet set1 = new ByteHashSet();
-        Assert.assertTrue(set1.addAll((byte) 2, (byte) 35));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 2, (byte) 35), set1);
+        Assertions.assertTrue(set1.addAll((byte) 2, (byte) 35));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 2, (byte) 35), set1);
     }
 
     @Override
@@ -142,20 +144,20 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.remove();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -8);
-        Assert.assertFalse(this.newWith().remove((byte) 15));
-        Assert.assertFalse(set.remove((byte) 15));
-        Assert.assertTrue(set.remove((byte) 0));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 31, (byte) -1, (byte) -8), set);
-        Assert.assertFalse(set.remove((byte) -10));
-        Assert.assertFalse(set.remove((byte) -7));
-        Assert.assertTrue(set.remove((byte) -1));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 31, (byte) -8), set);
-        Assert.assertTrue(set.remove((byte) -8));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 31), set);
-        Assert.assertTrue(set.remove((byte) 31));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 1), set);
-        Assert.assertTrue(set.remove((byte) 1));
-        Assert.assertEquals(ByteHashSet.newSetWith(), set);
+        Assertions.assertFalse(this.newWith().remove((byte) 15));
+        Assertions.assertFalse(set.remove((byte) 15));
+        Assertions.assertTrue(set.remove((byte) 0));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 31, (byte) -1, (byte) -8), set);
+        Assertions.assertFalse(set.remove((byte) -10));
+        Assertions.assertFalse(set.remove((byte) -7));
+        Assertions.assertTrue(set.remove((byte) -1));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 31, (byte) -8), set);
+        Assertions.assertTrue(set.remove((byte) -8));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 31), set);
+        Assertions.assertTrue(set.remove((byte) 31));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 1), set);
+        Assertions.assertTrue(set.remove((byte) 1));
+        Assertions.assertEquals(ByteHashSet.newSetWith(), set);
     }
 
     @Override
@@ -164,17 +166,17 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.removeAll();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64, (byte) -100, (byte) -128);
-        Assert.assertFalse(set.removeAll());
-        Assert.assertFalse(set.removeAll((byte) 15, (byte) -5, (byte) -32));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64, (byte) -100, (byte) -128), set);
-        Assert.assertTrue(set.removeAll((byte) 0, (byte) 1, (byte) -1, (byte) -128));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 31, (byte) 63, (byte) 100, (byte) 127, (byte) -35, (byte) -64, (byte) -100), set);
-        Assert.assertTrue(set.removeAll((byte) 31, (byte) 63, (byte) 14, (byte) -100));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 100, (byte) 127, (byte) -35, (byte) -64), set);
-        Assert.assertFalse(set.removeAll((byte) -34, (byte) -36, (byte) -63, (byte) -65, (byte) 99, (byte) 101, (byte) 126, (byte) 128));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 100, (byte) 127, (byte) -35, (byte) -64), set);
-        Assert.assertTrue(set.removeAll((byte) -35, (byte) -63, (byte) -64, (byte) 100, (byte) 127));
-        Assert.assertEquals(new ByteHashSet(), set);
+        Assertions.assertFalse(set.removeAll());
+        Assertions.assertFalse(set.removeAll((byte) 15, (byte) -5, (byte) -32));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64, (byte) -100, (byte) -128), set);
+        Assertions.assertTrue(set.removeAll((byte) 0, (byte) 1, (byte) -1, (byte) -128));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 31, (byte) 63, (byte) 100, (byte) 127, (byte) -35, (byte) -64, (byte) -100), set);
+        Assertions.assertTrue(set.removeAll((byte) 31, (byte) 63, (byte) 14, (byte) -100));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 100, (byte) 127, (byte) -35, (byte) -64), set);
+        Assertions.assertFalse(set.removeAll((byte) -34, (byte) -36, (byte) -63, (byte) -65, (byte) 99, (byte) 101, (byte) 126, (byte) 128));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 100, (byte) 127, (byte) -35, (byte) -64), set);
+        Assertions.assertTrue(set.removeAll((byte) -35, (byte) -63, (byte) -64, (byte) 100, (byte) 127));
+        Assertions.assertEquals(new ByteHashSet(), set);
     }
 
     @Override
@@ -183,15 +185,15 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.removeAll_iterable();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64, (byte) -100, (byte) -128);
-        Assert.assertFalse(set.removeAll(new ByteArrayList()));
-        Assert.assertFalse(set.removeAll(ByteArrayList.newListWith((byte) 15, (byte) 98, (byte) -98, (byte) -127)));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64, (byte) -100, (byte) -128), set);
-        Assert.assertTrue(set.removeAll(ByteHashSet.newSetWith((byte) 0, (byte) 31, (byte) -128, (byte) -100)));
-        Assert.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64), set);
-        Assert.assertTrue(set.removeAll(ByteHashSet.newSetWith((byte) 1, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64)));
-        Assert.assertEquals(new ByteHashSet(), set);
-        Assert.assertFalse(set.removeAll(ByteHashSet.newSetWith((byte) 1)));
-        Assert.assertEquals(new ByteHashSet(), set);
+        Assertions.assertFalse(set.removeAll(new ByteArrayList()));
+        Assertions.assertFalse(set.removeAll(ByteArrayList.newListWith((byte) 15, (byte) 98, (byte) -98, (byte) -127)));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64, (byte) -100, (byte) -128), set);
+        Assertions.assertTrue(set.removeAll(ByteHashSet.newSetWith((byte) 0, (byte) 31, (byte) -128, (byte) -100)));
+        Assertions.assertEquals(ByteHashSet.newSetWith((byte) 1, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64), set);
+        Assertions.assertTrue(set.removeAll(ByteHashSet.newSetWith((byte) 1, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64)));
+        Assertions.assertEquals(new ByteHashSet(), set);
+        Assertions.assertFalse(set.removeAll(ByteHashSet.newSetWith((byte) 1)));
+        Assertions.assertEquals(new ByteHashSet(), set);
     }
 
     @Override
@@ -202,45 +204,47 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
         MutableSet<Byte> actual = UnifiedSet.newSet();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 100, (byte) 127, (byte) -1, (byte) -35, (byte) -64, (byte) -100, (byte) -128);
         ByteIterator iterator = set.byteIterator();
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertFalse(iterator.hasNext());
-        Assert.assertEquals(expected, actual);
+        Assertions.assertFalse(iterator.hasNext());
+        Assertions.assertEquals(expected, actual);
         Verify.assertThrows(NoSuchElementException.class, (Runnable) iterator::next);
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void byteIterator_throws()
     {
-        MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -31);
-        ByteIterator iterator = set.byteIterator();
-        while (iterator.hasNext())
-        {
-            iterator.next();
-        }
+        assertThrows(NoSuchElementException.class, () -> {
+            MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -31);
+            ByteIterator iterator = set.byteIterator();
+            while (iterator.hasNext())
+            {
+                iterator.next();
+            }
 
-        iterator.next();
+            iterator.next();
+        });
     }
 
     @Override
@@ -252,7 +256,7 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 65, (byte) 100, (byte) 127, (byte) 12, (byte) -76, (byte) -1, (byte) -54, (byte) -64, (byte) -63, (byte) -95, (byte) -128, (byte) -127);
         set.forEach(each -> sum[0] += each);
 
-        Assert.assertEquals(-209L, sum[0]);
+        Assertions.assertEquals(-209L, sum[0]);
     }
 
     @Override
@@ -261,14 +265,14 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.count();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 65, (byte) 100, (byte) 127, (byte) 12, (byte) -76, (byte) -1, (byte) -54, (byte) -64, (byte) -63, (byte) -95, (byte) -128, (byte) -127);
-        Assert.assertEquals(7L, set.count(BytePredicates.greaterThan((byte) 0)));
-        Assert.assertEquals(12L, set.count(BytePredicates.lessThan((byte) 32)));
-        Assert.assertEquals(4L, set.count(BytePredicates.greaterThan((byte) 32)));
-        Assert.assertEquals(1L, set.count(BytePredicates.greaterThan((byte) 100)));
-        Assert.assertEquals(14L, set.count(BytePredicates.lessThan((byte) 100)));
-        Assert.assertEquals(7L, set.count(BytePredicates.lessThan((byte) -50)));
-        Assert.assertEquals(6L, set.count(BytePredicates.lessThan((byte) -54)));
-        Assert.assertEquals(15L, set.count(BytePredicates.greaterThan((byte) -128)));
+        Assertions.assertEquals(7L, set.count(BytePredicates.greaterThan((byte) 0)));
+        Assertions.assertEquals(12L, set.count(BytePredicates.lessThan((byte) 32)));
+        Assertions.assertEquals(4L, set.count(BytePredicates.greaterThan((byte) 32)));
+        Assertions.assertEquals(1L, set.count(BytePredicates.greaterThan((byte) 100)));
+        Assertions.assertEquals(14L, set.count(BytePredicates.lessThan((byte) 100)));
+        Assertions.assertEquals(7L, set.count(BytePredicates.lessThan((byte) -50)));
+        Assertions.assertEquals(6L, set.count(BytePredicates.lessThan((byte) -54)));
+        Assertions.assertEquals(15L, set.count(BytePredicates.greaterThan((byte) -128)));
     }
 
     @Override
@@ -277,8 +281,8 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.select();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 63, (byte) 65, (byte) 100, (byte) 127, (byte) 12, (byte) -76, (byte) -1, (byte) -54, (byte) -64, (byte) -63, (byte) -95, (byte) -128, (byte) -127);
-        Assert.assertEquals(this.newWith((byte) 63, (byte) 65, (byte) 100, (byte) 127), set.select(BytePredicates.greaterThan((byte) 32)));
-        Assert.assertEquals(this.newWith((byte) -76, (byte) -1, (byte) -54, (byte) -64, (byte) -63, (byte) -95, (byte) -128, (byte) -127), set.select(BytePredicates.lessThan((byte) 0)));
+        Assertions.assertEquals(this.newWith((byte) 63, (byte) 65, (byte) 100, (byte) 127), set.select(BytePredicates.greaterThan((byte) 32)));
+        Assertions.assertEquals(this.newWith((byte) -76, (byte) -1, (byte) -54, (byte) -64, (byte) -63, (byte) -95, (byte) -128, (byte) -127), set.select(BytePredicates.lessThan((byte) 0)));
     }
 
     @Override
@@ -287,8 +291,8 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.reject();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -127, (byte) -63);
-        Assert.assertEquals(this.newWith((byte) 0, (byte) -1, (byte) -127, (byte) -63), set.reject(BytePredicates.greaterThan((byte) 0)));
-        Assert.assertEquals(this.newWith((byte) 0, (byte) 1, (byte) 31), set.reject(BytePredicates.lessThan((byte) 0)));
+        Assertions.assertEquals(this.newWith((byte) 0, (byte) -1, (byte) -127, (byte) -63), set.reject(BytePredicates.greaterThan((byte) 0)));
+        Assertions.assertEquals(this.newWith((byte) 0, (byte) 1, (byte) 31), set.reject(BytePredicates.lessThan((byte) 0)));
     }
 
     @Override
@@ -297,12 +301,12 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.detectIfNone();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 64, (byte) 127, (byte) -1, (byte) -67, (byte) -128, (byte) -63);
-        Assert.assertEquals(127, set.detectIfNone(BytePredicates.greaterThan((byte) 126), (byte) 9));
-        Assert.assertEquals(127, set.detectIfNone(BytePredicates.greaterThan((byte) 64), (byte) 9));
-        Assert.assertEquals(-128, set.detectIfNone(BytePredicates.lessThan((byte) -68), (byte) 9));
+        Assertions.assertEquals(127, set.detectIfNone(BytePredicates.greaterThan((byte) 126), (byte) 9));
+        Assertions.assertEquals(127, set.detectIfNone(BytePredicates.greaterThan((byte) 64), (byte) 9));
+        Assertions.assertEquals(-128, set.detectIfNone(BytePredicates.lessThan((byte) -68), (byte) 9));
 
         MutableByteSet set1 = this.newWith((byte) 0, (byte) -1, (byte) 12, (byte) 64);
-        Assert.assertEquals(-1, set1.detectIfNone(BytePredicates.lessThan((byte) 0), (byte) 9));
+        Assertions.assertEquals(-1, set1.detectIfNone(BytePredicates.lessThan((byte) 0), (byte) 9));
     }
 
     @Override
@@ -312,7 +316,7 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
         super.collect();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -127, (byte) -63);
 
-        Assert.assertEquals(UnifiedSet.newSetWith((byte) -1, (byte) 0, (byte) 30, (byte) -128, (byte) -64), set.collect(byteParameter -> (byte) (byteParameter - 1)));
+        Assertions.assertEquals(UnifiedSet.newSetWith((byte) -1, (byte) 0, (byte) 30, (byte) -128, (byte) -64), set.collect(byteParameter -> (byte) (byteParameter - 1)));
     }
 
     @Override
@@ -321,7 +325,7 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.toSortedArray();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -123, (byte) -53);
-        Assert.assertArrayEquals(new byte[]{(byte) -123, (byte) -53, (byte) -1, (byte) 0, (byte) 1, (byte) 31}, set.toSortedArray());
+        Assertions.assertArrayEquals(new byte[]{(byte) -123, (byte) -53, (byte) -1, (byte) 0, (byte) 1, (byte) 31}, set.toSortedArray());
     }
 
     @Override
@@ -347,16 +351,16 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
         super.testEquals();
         MutableByteSet set1 = this.newWith((byte) 1, (byte) 31, (byte) 32);
         MutableByteSet set2 = this.newWith((byte) 32, (byte) 31, (byte) 1);
-        Assert.assertEquals(set1.hashCode(), set2.hashCode());
+        Assertions.assertEquals(set1.hashCode(), set2.hashCode());
     }
 
     @Override
     @Test
     public void toBag()
     {
-        Assert.assertEquals(ByteHashBag.newBagWith((byte) 1, (byte) 2, (byte) 3), this.classUnderTest().toBag());
-        Assert.assertEquals(ByteHashBag.newBagWith((byte) 0, (byte) 1, (byte) 31), this.newWith((byte) 0, (byte) 1, (byte) 31).toBag());
-        Assert.assertEquals(ByteHashBag.newBagWith((byte) 0, (byte) 1, (byte) 31, (byte) 32), this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 32).toBag());
+        Assertions.assertEquals(ByteHashBag.newBagWith((byte) 1, (byte) 2, (byte) 3), this.classUnderTest().toBag());
+        Assertions.assertEquals(ByteHashBag.newBagWith((byte) 0, (byte) 1, (byte) 31), this.newWith((byte) 0, (byte) 1, (byte) 31).toBag());
+        Assertions.assertEquals(ByteHashBag.newBagWith((byte) 0, (byte) 1, (byte) 31, (byte) 32), this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 32).toBag());
     }
 
     @Override
@@ -365,7 +369,7 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
     {
         super.asLazy();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -31, (byte) -24);
-        Assert.assertEquals(set.toSet(), set.asLazy().toSet());
+        Assertions.assertEquals(set.toSet(), set.asLazy().toSet());
         Verify.assertInstanceOf(LazyByteIterable.class, set.asLazy());
     }
 
@@ -376,7 +380,7 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
         super.asSynchronized();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -31, (byte) -24);
         Verify.assertInstanceOf(SynchronizedByteSet.class, set.asSynchronized());
-        Assert.assertEquals(new SynchronizedByteSet(set), set.asSynchronized());
+        Assertions.assertEquals(new SynchronizedByteSet(set), set.asSynchronized());
     }
 
     @Override
@@ -386,7 +390,7 @@ public abstract class AbstractByteSetTestCase extends AbstractMutableByteCollect
         super.asUnmodifiable();
         MutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) -1, (byte) -31, (byte) -24);
         Verify.assertInstanceOf(UnmodifiableByteSet.class, set.asUnmodifiable());
-        Assert.assertEquals(new UnmodifiableByteSet(set), set.asUnmodifiable());
+        Assertions.assertEquals(new UnmodifiableByteSet(set), set.asUnmodifiable());
     }
 
     @Test

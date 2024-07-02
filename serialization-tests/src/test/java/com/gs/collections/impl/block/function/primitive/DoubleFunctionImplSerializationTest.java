@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class DoubleFunctionImplSerializationTest
 {
@@ -36,10 +36,12 @@ public final class DoubleFunctionImplSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu\n"
-                        + "RG91YmxlRnVuY3Rpb25JbXBsU2VyaWFsaXphdGlvblRlc3QkMQAAAAAAAAABAgAAeHIAQ2NvbS5n\n"
-                        + "cy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZ1bmN0aW9uLnByaW1pdGl2ZS5Eb3VibGVGdW5jdGlv\n"
-                        + "bkltcGwAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAFZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu
+                RG91YmxlRnVuY3Rpb25JbXBsU2VyaWFsaXphdGlvblRlc3QkMQAAAAAAAAABAgAAeHIAQ2NvbS5n
+                cy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZ1bmN0aW9uLnByaW1pdGl2ZS5Eb3VibGVGdW5jdGlv
+                bkltcGwAAAAAAAAAAQIAAHhw\
+                """,
                 DOUBLE_FUNCTION);
     }
 }

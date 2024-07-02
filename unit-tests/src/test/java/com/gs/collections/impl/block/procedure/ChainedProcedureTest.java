@@ -21,8 +21,8 @@ import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ChainedProcedureTest
 {
@@ -38,7 +38,7 @@ public class ChainedProcedureTest
         MutableList<String> list = FastList.newListWith("1", "2");
         Iterate.forEach(list, chainedProcedure);
 
-        Assert.assertEquals(list, list1);
-        Assert.assertEquals(list, list2);
+        Assertions.assertEquals(list, list1);
+        Assertions.assertEquals(list, list2);
     }
 }

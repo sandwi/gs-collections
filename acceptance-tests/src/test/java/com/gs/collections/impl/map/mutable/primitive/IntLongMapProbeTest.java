@@ -25,7 +25,6 @@ import com.gs.collections.impl.SpreadFunctions;
 import com.gs.collections.impl.list.mutable.primitive.IntArrayList;
 import com.gs.collections.impl.set.mutable.primitive.IntHashSet;
 import org.junit.Assert;
-import org.junit.Test;
 
 public class IntLongMapProbeTest
 {

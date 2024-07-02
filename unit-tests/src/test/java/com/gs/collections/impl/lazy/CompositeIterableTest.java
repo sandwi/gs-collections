@@ -26,8 +26,8 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CompositeIterableTest extends AbstractLazyIterableTestCase
 {
@@ -47,14 +47,14 @@ public class CompositeIterableTest extends AbstractLazyIterableTestCase
         {
             builder.append(each);
         }
-        Assert.assertEquals("12345", builder.toString());
+        Assertions.assertEquals("12345", builder.toString());
     }
 
     @Test
     public void emptyIterator()
     {
         LazyIterable<String> list = new CompositeIterable<>();
-        Assert.assertFalse(list.iterator().hasNext());
+        Assertions.assertFalse(list.iterator().hasNext());
     }
 
     @Test
@@ -110,7 +110,7 @@ public class CompositeIterableTest extends AbstractLazyIterableTestCase
         List<Integer> expected = Interval.oneTo(5);
         iterables.add(expected);
         iterables.add(() -> { throw new RuntimeException("Iterator should not be invoked eagerly"); });
-        Assert.assertEquals(expected, iterables.take(expected.size()).toList());
+        Assertions.assertEquals(expected, iterables.take(expected.size()).toList());
     }
 
     @Override
@@ -121,7 +121,7 @@ public class CompositeIterableTest extends AbstractLazyIterableTestCase
         CompositeIterable<Integer> composite = new CompositeIterable<>();
         MutableList<Integer> expected = FastList.newListWith(3, 2, 2, 4, 1, 3, 1, 5);
         composite.add(expected);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(3, 2, 4, 1, 5),
                 composite.distinct().toList());
     }

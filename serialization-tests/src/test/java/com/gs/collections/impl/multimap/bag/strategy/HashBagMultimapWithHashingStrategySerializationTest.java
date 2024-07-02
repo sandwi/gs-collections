@@ -32,10 +32,12 @@ public class HashBagMultimapWithHashingStrategySerializationTest
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAFBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuc3RyYXRlZ3kuSGFz\n"
-                + "aEJhZ011bHRpbWFwV2l0aEhhc2hpbmdTdHJhdGVneQAAAAAAAAABDAAAeHBzcgBHY29tLmdzLmNv\n"
-                + "bGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5IYXNoaW5nU3RyYXRlZ2llcyREZWZhdWx0U3Ry\n"
-                + "YXRlZ3kAAAAAAAAAAQIAAHhwdwQAAAACdAABQXcEAAAAAnEAfgAEdwQAAAABdAABQncEAAAAAnEA\n"
-                + "fgAFdwQAAAABcQB+AAR3BAAAAAF4";
+        return """
+                rO0ABXNyAFBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuc3RyYXRlZ3kuSGFz
+                aEJhZ011bHRpbWFwV2l0aEhhc2hpbmdTdHJhdGVneQAAAAAAAAABDAAAeHBzcgBHY29tLmdzLmNv
+                bGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5IYXNoaW5nU3RyYXRlZ2llcyREZWZhdWx0U3Ry
+                YXRlZ3kAAAAAAAAAAQIAAHhwdwQAAAACdAABQXcEAAAAAnEAfgAEdwQAAAABdAABQncEAAAAAnEA
+                fgAFdwQAAAABcQB+AAR3BAAAAAF4\
+                """;
     }
 }

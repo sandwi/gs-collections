@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.predicate;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MapEntrySerializationTest
 {
@@ -36,9 +36,11 @@ public class MapEntrySerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuTWFwRW50cnlT\n"
-                        + "ZXJpYWxpemF0aW9uVGVzdCQxAAAAAAAAAAECAAB4cgA5Y29tLmdzLmNvbGxlY3Rpb25zLmltcGwu\n"
-                        + "YmxvY2sucHJlZGljYXRlLk1hcEVudHJ5UHJlZGljYXRlAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuTWFwRW50cnlT
+                ZXJpYWxpemF0aW9uVGVzdCQxAAAAAAAAAAECAAB4cgA5Y29tLmdzLmNvbGxlY3Rpb25zLmltcGwu
+                YmxvY2sucHJlZGljYXRlLk1hcEVudHJ5UHJlZGljYXRlAAAAAAAAAAECAAB4cA==\
+                """,
                 MAP_ENTRY_PREDICATE);
     }
 }

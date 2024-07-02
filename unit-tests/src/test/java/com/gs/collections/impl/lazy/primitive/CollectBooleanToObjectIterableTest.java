@@ -23,8 +23,10 @@ import com.gs.collections.impl.block.factory.Procedures;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CollectBooleanToObjectIterableTest
 {
@@ -40,7 +42,7 @@ public class CollectBooleanToObjectIterableTest
         Appendable builder = new StringBuilder();
         Procedure<Boolean> appendProcedure = Procedures.append(builder);
         select.forEach(appendProcedure);
-        Assert.assertEquals("truefalsetruefalsetrue", builder.toString());
+        Assertions.assertEquals("truefalsetruefalsetrue", builder.toString());
     }
 
     @Test
@@ -52,7 +54,7 @@ public class CollectBooleanToObjectIterableTest
             builder.append(object);
             builder.append(index);
         });
-        Assert.assertEquals("true0false1true2false3true4", builder.toString());
+        Assertions.assertEquals("true0false1true2false3true4", builder.toString());
     }
 
     @Test
@@ -64,7 +66,7 @@ public class CollectBooleanToObjectIterableTest
         {
             builder.append(each);
         }
-        Assert.assertEquals("truefalsetruefalsetrue", builder.toString());
+        Assertions.assertEquals("truefalsetruefalsetrue", builder.toString());
     }
 
     @Test
@@ -73,13 +75,13 @@ public class CollectBooleanToObjectIterableTest
         InternalIterable<Boolean> select = this.newPrimitiveWith(true, false, true, false, true);
         StringBuilder builder = new StringBuilder("");
         select.forEachWith((each, aBuilder) -> aBuilder.append(each), builder);
-        Assert.assertEquals("truefalsetruefalsetrue", builder.toString());
+        Assertions.assertEquals("truefalsetruefalsetrue", builder.toString());
     }
 
     @Test
     public void selectInstancesOf()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(true, false, true, false, true),
                 this.newPrimitiveWith(true, false, true, false, true).selectInstancesOf(Boolean.class).toList());
     }
@@ -89,12 +91,14 @@ public class CollectBooleanToObjectIterableTest
     {
         Verify.assertIterableSize(2, this.newPrimitiveWith(true, false));
         Verify.assertIterableEmpty(this.newPrimitiveWith());
-        Assert.assertTrue(this.newPrimitiveWith(true, false).notEmpty());
+        Assertions.assertTrue(this.newPrimitiveWith(true, false).notEmpty());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeThrows()
     {
-        this.newPrimitiveWith().iterator().remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newPrimitiveWith().iterator().remove();
+        });
     }
 }

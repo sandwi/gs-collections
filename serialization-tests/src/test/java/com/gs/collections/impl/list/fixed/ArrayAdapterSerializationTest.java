@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.fixed;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ArrayAdapterSerializationTest
 {
@@ -26,8 +26,10 @@ public class ArrayAdapterSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAC9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmZpeGVkLkFycmF5QWRhcHRlcgAA\n"
-                        + "AAAAAAABAwAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyAC9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmZpeGVkLkFycmF5QWRhcHRlcgAA
+                AAAAAAABAwAAeHB3BAAAAAB4\
+                """,
                 ArrayAdapter.newArray());
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.stack.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SynchronizedDoubleStackSerializationTest
 {
@@ -26,11 +26,13 @@ public class SynchronizedDoubleStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLnByaW1pdGl2ZS5T\n"
-                        + "eW5jaHJvbml6ZWREb3VibGVTdGFjawAAAAAAAAABAgACTAAEbG9ja3QAEkxqYXZhL2xhbmcvT2Jq\n"
-                        + "ZWN0O0wABXN0YWNrdAA7TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvc3RhY2svcHJpbWl0aXZlL011\n"
-                        + "dGFibGVEb3VibGVTdGFjazt4cHEAfgADc3IAQGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLnN0YWNr\n"
-                        + "Lm11dGFibGUucHJpbWl0aXZlLkRvdWJsZUFycmF5U3RhY2sAAAAAAAAAAQwAAHhwdwQAAAAAeA==\n",
+                """
+                rO0ABXNyAEdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLnByaW1pdGl2ZS5T
+                eW5jaHJvbml6ZWREb3VibGVTdGFjawAAAAAAAAABAgACTAAEbG9ja3QAEkxqYXZhL2xhbmcvT2Jq
+                ZWN0O0wABXN0YWNrdAA7TGNvbS9ncy9jb2xsZWN0aW9ucy9hcGkvc3RhY2svcHJpbWl0aXZlL011
+                dGFibGVEb3VibGVTdGFjazt4cHEAfgADc3IAQGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLnN0YWNr
+                Lm11dGFibGUucHJpbWl0aXZlLkRvdWJsZUFycmF5U3RhY2sAAAAAAAAAAQwAAHhwdwQAAAAAeA==
+                """,
                 new SynchronizedDoubleStack(new DoubleArrayStack()));
     }
 }

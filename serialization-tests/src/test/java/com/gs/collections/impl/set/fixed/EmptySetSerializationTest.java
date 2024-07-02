@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.fixed;
 
 import com.gs.collections.impl.factory.Sets;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class EmptySetSerializationTest
 {
@@ -27,8 +27,10 @@ public class EmptySetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyACpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuZml4ZWQuRW1wdHlTZXQAAAAAAAAA\n"
-                        + "AQIAAHhw",
+                """
+                rO0ABXNyACpjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuZml4ZWQuRW1wdHlTZXQAAAAAAAAA
+                AQIAAHhw\
+                """,
                 Sets.fixedSize.of());
     }
 }

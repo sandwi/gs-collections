@@ -18,10 +18,10 @@ package com.gs.collections.test.set;
 
 import com.gs.collections.api.set.SetIterable;
 import com.gs.collections.test.RichIterableUniqueTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public interface SetIterableTestCase extends RichIterableUniqueTestCase
 {

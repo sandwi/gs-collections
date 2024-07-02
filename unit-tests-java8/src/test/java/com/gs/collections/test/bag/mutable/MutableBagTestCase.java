@@ -21,11 +21,11 @@ import com.gs.collections.impl.factory.Bags;
 import com.gs.collections.test.MutableUnorderedIterableTestCase;
 import com.gs.collections.test.bag.UnsortedBagTestCase;
 import com.gs.collections.test.bag.mutable.sorted.MutableBagIterableTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public interface MutableBagTestCase extends UnsortedBagTestCase, MutableUnorderedIterableTestCase, MutableBagIterableTestCase
 {

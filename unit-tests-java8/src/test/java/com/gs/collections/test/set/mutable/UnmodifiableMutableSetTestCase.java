@@ -18,7 +18,7 @@ package com.gs.collections.test.set.mutable;
 
 import com.gs.collections.test.UnmodifiableMutableCollectionTestCase;
 import com.gs.collections.test.set.UnmodifiableSetTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
 

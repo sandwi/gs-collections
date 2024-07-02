@@ -23,6 +23,7 @@ import com.gs.collections.impl.bag.mutable.HashBag;
 import com.gs.collections.test.IterableTestCase;
 import com.gs.collections.test.NoIteratorTestCase;
 import com.gs.junit.runners.Java8Runner;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Java8Runner.class)
@@ -38,6 +39,7 @@ public class HashBagNoIteratorTest implements MutableBagTestCase, NoIteratorTest
     }
 
     @Override
+    @Test
     public void Iterable_next()
     {
         NoIteratorTestCase.super.Iterable_next();
@@ -50,18 +52,21 @@ public class HashBagNoIteratorTest implements MutableBagTestCase, NoIteratorTest
     }
 
     @Override
+    @Test
     public void RichIterable_iterator_iterationOrder()
     {
         NoIteratorTestCase.super.RichIterable_iterator_iterationOrder();
     }
 
     @Override
+    @Test
     public void RichIterable_getFirst()
     {
         NoIteratorTestCase.super.RichIterable_getFirst();
     }
 
     @Override
+    @Test
     public void RichIterable_getLast()
     {
         NoIteratorTestCase.super.RichIterable_getLast();

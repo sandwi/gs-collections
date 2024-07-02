@@ -38,9 +38,10 @@ import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.utility.ListIterate;
 import com.gs.collections.impl.utility.MapIterate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CheckedBlocksTest
 {
@@ -316,34 +317,38 @@ public class CheckedBlocksTest
         }
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void codeBlockFailure()
     {
-        Function0<Object> function = new CheckedFunction0<Object>()
-        {
-            @Override
-            public Object safeValue() throws InterruptedException
+        assertThrows(RuntimeException.class, () -> {
+            Function0<Object> function = new CheckedFunction0<Object>()
             {
-                throw new InterruptedException();
-            }
-        };
-        MutableMap<String, Object> values = UnifiedMap.newMap();
-        MapIterate.getIfAbsentPut(values, "test", function);
+                @Override
+                public Object safeValue() throws InterruptedException
+                {
+                    throw new InterruptedException();
+                }
+            };
+            MutableMap<String, Object> values = UnifiedMap.newMap();
+            MapIterate.getIfAbsentPut(values, "test", function);
+        });
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void codeBlockRuntimeException()
     {
-        Function0<Object> function = new CheckedFunction0<Object>()
-        {
-            @Override
-            public Object safeValue()
+        assertThrows(RuntimeException.class, () -> {
+            Function0<Object> function = new CheckedFunction0<Object>()
             {
-                throw new RuntimeException();
-            }
-        };
-        MutableMap<String, Object> values = UnifiedMap.newMap();
-        MapIterate.getIfAbsentPut(values, "test", function);
+                @Override
+                public Object safeValue()
+                {
+                    throw new RuntimeException();
+                }
+            };
+            MutableMap<String, Object> values = UnifiedMap.newMap();
+            MapIterate.getIfAbsentPut(values, "test", function);
+        });
     }
 
     @Test
@@ -361,32 +366,36 @@ public class CheckedBlocksTest
         MapIterate.getIfAbsentPut(values, "test", function);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void procedureFailure()
     {
-        Procedure<Object> block = new CheckedProcedure<Object>()
-        {
-            @Override
-            public void safeValue(Object object) throws InterruptedException
+        assertThrows(RuntimeException.class, () -> {
+            Procedure<Object> block = new CheckedProcedure<Object>()
             {
-                throw new InterruptedException();
-            }
-        };
-        iList("test").forEach(block);
+                @Override
+                public void safeValue(Object object) throws InterruptedException
+                {
+                    throw new InterruptedException();
+                }
+            };
+            iList("test").forEach(block);
+        });
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void procedureRuntimeException()
     {
-        Procedure<Object> block = new CheckedProcedure<Object>()
-        {
-            @Override
-            public void safeValue(Object object)
+        assertThrows(RuntimeException.class, () -> {
+            Procedure<Object> block = new CheckedProcedure<Object>()
             {
-                throw new RuntimeException();
-            }
-        };
-        iList("test").forEach(block);
+                @Override
+                public void safeValue(Object object)
+                {
+                    throw new RuntimeException();
+                }
+            };
+            iList("test").forEach(block);
+        });
     }
 
     @Test
@@ -402,32 +411,36 @@ public class CheckedBlocksTest
         iList("test").forEach(block);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void objectIntProcedureFailure()
     {
-        ObjectIntProcedure<Object> block = new CheckedObjectIntProcedure<Object>()
-        {
-            @Override
-            public void safeValue(Object object, int index) throws InterruptedException
+        assertThrows(RuntimeException.class, () -> {
+            ObjectIntProcedure<Object> block = new CheckedObjectIntProcedure<Object>()
             {
-                throw new InterruptedException();
-            }
-        };
-        iList("test").forEachWithIndex(block);
+                @Override
+                public void safeValue(Object object, int index) throws InterruptedException
+                {
+                    throw new InterruptedException();
+                }
+            };
+            iList("test").forEachWithIndex(block);
+        });
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void objectIntProcedureRuntimeException()
     {
-        ObjectIntProcedure<Object> block = new CheckedObjectIntProcedure<Object>()
-        {
-            @Override
-            public void safeValue(Object object, int index)
+        assertThrows(RuntimeException.class, () -> {
+            ObjectIntProcedure<Object> block = new CheckedObjectIntProcedure<Object>()
             {
-                throw new RuntimeException();
-            }
-        };
-        iList("test").forEachWithIndex(block);
+                @Override
+                public void safeValue(Object object, int index)
+                {
+                    throw new RuntimeException();
+                }
+            };
+            iList("test").forEachWithIndex(block);
+        });
     }
 
     @Test
@@ -443,32 +456,36 @@ public class CheckedBlocksTest
         iList("test").forEachWithIndex(block);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void functionFailure()
     {
-        Function<Object, Object> block = new CheckedFunction<Object, Object>()
-        {
-            @Override
-            public Object safeValueOf(Object object) throws InterruptedException
+        assertThrows(RuntimeException.class, () -> {
+            Function<Object, Object> block = new CheckedFunction<Object, Object>()
             {
-                throw new InterruptedException();
-            }
-        };
-        iList("test").collect(block);
+                @Override
+                public Object safeValueOf(Object object) throws InterruptedException
+                {
+                    throw new InterruptedException();
+                }
+            };
+            iList("test").collect(block);
+        });
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void functionRuntimeException()
     {
-        Function<Object, Object> block = new CheckedFunction<Object, Object>()
-        {
-            @Override
-            public Object safeValueOf(Object object)
+        assertThrows(RuntimeException.class, () -> {
+            Function<Object, Object> block = new CheckedFunction<Object, Object>()
             {
-                throw new RuntimeException();
-            }
-        };
-        iList("test").collect(block);
+                @Override
+                public Object safeValueOf(Object object)
+                {
+                    throw new RuntimeException();
+                }
+            };
+            iList("test").collect(block);
+        });
     }
 
     @Test
@@ -485,32 +502,36 @@ public class CheckedBlocksTest
         iList("test").collect(block);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void predicateFailure()
     {
-        Predicate<Object> block = new CheckedPredicate<Object>()
-        {
-            @Override
-            public boolean safeAccept(Object object) throws InterruptedException
+        assertThrows(RuntimeException.class, () -> {
+            Predicate<Object> block = new CheckedPredicate<Object>()
             {
-                throw new InterruptedException();
-            }
-        };
-        iList("test").select(block);
+                @Override
+                public boolean safeAccept(Object object) throws InterruptedException
+                {
+                    throw new InterruptedException();
+                }
+            };
+            iList("test").select(block);
+        });
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void predicateRuntimeException()
     {
-        Predicate<Object> block = new CheckedPredicate<Object>()
-        {
-            @Override
-            public boolean safeAccept(Object object)
+        assertThrows(RuntimeException.class, () -> {
+            Predicate<Object> block = new CheckedPredicate<Object>()
             {
-                throw new RuntimeException();
-            }
-        };
-        iList("test").select(block);
+                @Override
+                public boolean safeAccept(Object object)
+                {
+                    throw new RuntimeException();
+                }
+            };
+            iList("test").select(block);
+        });
     }
 
     @Test
@@ -527,32 +548,36 @@ public class CheckedBlocksTest
         iList("test").select(block);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void procedure2Failure()
     {
-        Procedure2<Object, Object> block = new CheckedProcedure2<Object, Object>()
-        {
-            @Override
-            public void safeValue(Object argument1, Object argument2) throws InterruptedException
+        assertThrows(RuntimeException.class, () -> {
+            Procedure2<Object, Object> block = new CheckedProcedure2<Object, Object>()
             {
-                throw new InterruptedException();
-            }
-        };
-        ListIterate.forEachInBoth(mList("test"), mList("test"), block);
+                @Override
+                public void safeValue(Object argument1, Object argument2) throws InterruptedException
+                {
+                    throw new InterruptedException();
+                }
+            };
+            ListIterate.forEachInBoth(mList("test"), mList("test"), block);
+        });
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void procedure2RuntimeException()
     {
-        Procedure2<Object, Object> block = new CheckedProcedure2<Object, Object>()
-        {
-            @Override
-            public void safeValue(Object argument1, Object argument2)
+        assertThrows(RuntimeException.class, () -> {
+            Procedure2<Object, Object> block = new CheckedProcedure2<Object, Object>()
             {
-                throw new RuntimeException();
-            }
-        };
-        ListIterate.forEachInBoth(mList("test"), mList("test"), block);
+                @Override
+                public void safeValue(Object argument1, Object argument2)
+                {
+                    throw new RuntimeException();
+                }
+            };
+            ListIterate.forEachInBoth(mList("test"), mList("test"), block);
+        });
     }
 
     @Test
@@ -569,32 +594,36 @@ public class CheckedBlocksTest
         ListIterate.forEachInBoth(mList("test"), mList("test"), block);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void predicate2Failure()
     {
-        Predicate2<Object, Object> block = new CheckedPredicate2<Object, Object>()
-        {
-            @Override
-            public boolean safeAccept(Object object, Object param) throws InterruptedException
+        assertThrows(RuntimeException.class, () -> {
+            Predicate2<Object, Object> block = new CheckedPredicate2<Object, Object>()
             {
-                throw new InterruptedException();
-            }
-        };
-        mList("test").selectWith(block, null);
+                @Override
+                public boolean safeAccept(Object object, Object param) throws InterruptedException
+                {
+                    throw new InterruptedException();
+                }
+            };
+            mList("test").selectWith(block, null);
+        });
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void predicate2RuntimeException()
     {
-        Predicate2<Object, Object> block = new CheckedPredicate2<Object, Object>()
-        {
-            @Override
-            public boolean safeAccept(Object object, Object param)
+        assertThrows(RuntimeException.class, () -> {
+            Predicate2<Object, Object> block = new CheckedPredicate2<Object, Object>()
             {
-                throw new RuntimeException();
-            }
-        };
-        mList("test").selectWith(block, null);
+                @Override
+                public boolean safeAccept(Object object, Object param)
+                {
+                    throw new RuntimeException();
+                }
+            };
+            mList("test").selectWith(block, null);
+        });
     }
 
     @Test

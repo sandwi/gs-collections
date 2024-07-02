@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CounterProcedureSerializationTest
 {
@@ -26,9 +26,11 @@ public class CounterProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ291bnRlclBy\n"
-                        + "b2NlZHVyZQAAAAAAAAABAgACSQAFY291bnRMAAlwcm9jZWR1cmV0ADJMY29tL2dzL2NvbGxlY3Rp\n"
-                        + "b25zL2FwaS9ibG9jay9wcm9jZWR1cmUvUHJvY2VkdXJlO3hwAAAAAHA=",
+                """
+                rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ291bnRlclBy
+                b2NlZHVyZQAAAAAAAAABAgACSQAFY291bnRMAAlwcm9jZWR1cmV0ADJMY29tL2dzL2NvbGxlY3Rp
+                b25zL2FwaS9ibG9jay9wcm9jZWR1cmUvUHJvY2VkdXJlO3hwAAAAAHA=\
+                """,
                 new CounterProcedure<Object>(null));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.sorted.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TreeSortedMapSerializationTest
 {
@@ -26,8 +26,10 @@ public class TreeSortedMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc29ydGVkLm11dGFibGUuVHJlZVNv\n"
-                        + "cnRlZE1hcAAAAAAAAAABDAAAeHBwdwQAAAAAeA==",
+                """
+                rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc29ydGVkLm11dGFibGUuVHJlZVNv
+                cnRlZE1hcAAAAAAAAAABDAAAeHBwdwQAAAAAeA==\
+                """,
                 TreeSortedMap.newMap());
     }
 }

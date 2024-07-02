@@ -18,16 +18,16 @@ package com.gs.collections.impl.lazy;
 
 import com.gs.collections.impl.block.factory.Procedures;
 import com.gs.collections.impl.list.mutable.FastList;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ChunkIterableTest
 {
     private final StringBuffer buffer = new StringBuffer();
     private ChunkIterable<Integer> undertest;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.undertest = new ChunkIterable<>(FastList.newListWith(1, 2, 3, 4, 5), 2);
@@ -37,7 +37,7 @@ public class ChunkIterableTest
     public void forEach()
     {
         this.undertest.forEach(Procedures.cast(this.buffer::append));
-        Assert.assertEquals("[1, 2][3, 4][5]", this.buffer.toString());
+        Assertions.assertEquals("[1, 2][3, 4][5]", this.buffer.toString());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class ChunkIterableTest
             this.buffer.append(index);
         });
 
-        Assert.assertEquals("|[1, 2]0|[3, 4]1|[5]2", this.buffer.toString());
+        Assertions.assertEquals("|[1, 2]0|[3, 4]1|[5]2", this.buffer.toString());
     }
 
     @Test
@@ -60,6 +60,6 @@ public class ChunkIterableTest
             this.buffer.append(argument1);
             this.buffer.append(argument2);
         }, 'A');
-        Assert.assertEquals("|[1, 2]A|[3, 4]A|[5]A", this.buffer.toString());
+        Assertions.assertEquals("|[1, 2]A|[3, 4]A|[5]A", this.buffer.toString());
     }
 }

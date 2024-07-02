@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableDecapletonListSerializationTest
 {
@@ -25,14 +25,16 @@ public class ImmutableDecapletonListSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVE\n"
-                        + "ZWNhcGxldG9uTGlzdAAAAAAAAAABAgAKTAAIZWxlbWVudDF0ABJMamF2YS9sYW5nL09iamVjdDtM\n"
-                        + "AAllbGVtZW50MTBxAH4AAUwACGVsZW1lbnQycQB+AAFMAAhlbGVtZW50M3EAfgABTAAIZWxlbWVu\n"
-                        + "dDRxAH4AAUwACGVsZW1lbnQ1cQB+AAFMAAhlbGVtZW50NnEAfgABTAAIZWxlbWVudDdxAH4AAUwA\n"
-                        + "CGVsZW1lbnQ4cQB+AAFMAAhlbGVtZW50OXEAfgABeHBzcgARamF2YS5sYW5nLkludGVnZXIS4qCk\n"
-                        + "94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXNxAH4A\n"
-                        + "AwAAAApzcQB+AAMAAAACc3EAfgADAAAAA3NxAH4AAwAAAARzcQB+AAMAAAAFc3EAfgADAAAABnNx\n"
-                        + "AH4AAwAAAAdzcQB+AAMAAAAIc3EAfgADAAAACQ==",
-                new ImmutableDecapletonList<Integer>(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+                new ImmutableDecapletonList<Integer>(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                """
+                rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVE
+                ZWNhcGxldG9uTGlzdAAAAAAAAAABAgAKTAAIZWxlbWVudDF0ABJMamF2YS9sYW5nL09iamVjdDtM
+                AAllbGVtZW50MTBxAH4AAUwACGVsZW1lbnQycQB+AAFMAAhlbGVtZW50M3EAfgABTAAIZWxlbWVu
+                dDRxAH4AAUwACGVsZW1lbnQ1cQB+AAFMAAhlbGVtZW50NnEAfgABTAAIZWxlbWVudDdxAH4AAUwA
+                CGVsZW1lbnQ4cQB+AAFMAAhlbGVtZW50OXEAfgABeHBzcgARamF2YS5sYW5nLkludGVnZXIS4qCk
+                94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXNxAH4A
+                AwAAAApzcQB+AAMAAAACc3EAfgADAAAAA3NxAH4AAwAAAARzcQB+AAMAAAAFc3EAfgADAAAABnNx
+                AH4AAwAAAAdzcQB+AAMAAAAIc3EAfgADAAAACQ==\
+                """);
     }
 }

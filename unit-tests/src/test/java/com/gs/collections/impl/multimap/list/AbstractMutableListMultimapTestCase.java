@@ -30,8 +30,8 @@ import com.gs.collections.impl.multimap.bag.HashBagMultimap;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public abstract class AbstractMutableListMultimapTestCase extends AbstractMutableMultimapTestCase
 {
@@ -72,8 +72,8 @@ public abstract class AbstractMutableListMultimapTestCase extends AbstractMutabl
     {
         ListMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("Less than 2", 1, "Less than 3", 1, "Less than 3", 2, "Less than 3", 2);
         UnsortedBagMultimap<Integer, String> flipped = multimap.flip();
-        Assert.assertEquals(Bags.immutable.with("Less than 3", "Less than 3"), flipped.get(2));
-        Assert.assertEquals(Bags.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
+        Assertions.assertEquals(Bags.immutable.with("Less than 3", "Less than 3"), flipped.get(2));
+        Assertions.assertEquals(Bags.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
     }
 
     @Test
@@ -82,7 +82,7 @@ public abstract class AbstractMutableListMultimapTestCase extends AbstractMutabl
     {
         MutableMultimap<String, Integer> multimap =
                 this.newMultimapWithKeysValues("One", 1, "One", 2);
-        Assert.assertEquals("{One=[1, 2]}", multimap.toString());
+        Assertions.assertEquals("{One=[1, 2]}", multimap.toString());
     }
 
     @Override
@@ -97,7 +97,7 @@ public abstract class AbstractMutableListMultimapTestCase extends AbstractMutabl
         MutableListMultimap<String, Integer> selectedMultimap = multimap.selectKeysValues((key, value) -> ("Two".equals(key) && (value % 2 == 0)));
         MutableListMultimap<String, Integer> expectedMultimap = FastListMultimap.newMultimap();
         expectedMultimap.putAll("Two", FastList.newListWith(2, 4, 2));
-        Assert.assertEquals(expectedMultimap, selectedMultimap);
+        Assertions.assertEquals(expectedMultimap, selectedMultimap);
         Verify.assertListsEqual(expectedMultimap.get("Two"), selectedMultimap.get("Two"));
     }
 
@@ -113,7 +113,7 @@ public abstract class AbstractMutableListMultimapTestCase extends AbstractMutabl
         MutableListMultimap<String, Integer> rejectedMultimap = multimap.rejectKeysValues((key, value) -> ("Two".equals(key) || (value % 2 == 0)));
         MutableListMultimap<String, Integer> expectedMultimap = FastListMultimap.newMultimap();
         expectedMultimap.putAll("One", FastList.newListWith(1, 3, 1));
-        Assert.assertEquals(expectedMultimap, rejectedMultimap);
+        Assertions.assertEquals(expectedMultimap, rejectedMultimap);
         Verify.assertListsEqual(expectedMultimap.get("One"), rejectedMultimap.get("One"));
     }
 
@@ -131,7 +131,7 @@ public abstract class AbstractMutableListMultimapTestCase extends AbstractMutabl
         MutableListMultimap<Integer, String> selectedMultimap = multimap.selectKeysMultiValues((key, values) -> (key % 2 == 0 && Iterate.sizeOf(values) > 3));
         MutableListMultimap<Integer, String> expectedMultimap = FastListMultimap.newMultimap();
         expectedMultimap.putAll(2, FastList.newListWith("2", "3", "4", "5", "2"));
-        Assert.assertEquals(expectedMultimap, selectedMultimap);
+        Assertions.assertEquals(expectedMultimap, selectedMultimap);
         Verify.assertListsEqual(expectedMultimap.get(2), selectedMultimap.get(2));
     }
 
@@ -149,7 +149,7 @@ public abstract class AbstractMutableListMultimapTestCase extends AbstractMutabl
         MutableListMultimap<Integer, String> rejectedMultimap = multimap.rejectKeysMultiValues((key, values) -> (key % 2 == 0 || Iterate.sizeOf(values) > 4));
         MutableListMultimap<Integer, String> expectedMultimap = FastListMultimap.newMultimap();
         expectedMultimap.putAll(3, FastList.newListWith("2", "3", "4", "2"));
-        Assert.assertEquals(expectedMultimap, rejectedMultimap);
+        Assertions.assertEquals(expectedMultimap, rejectedMultimap);
         Verify.assertListsEqual(expectedMultimap.get(3), rejectedMultimap.get(3));
     }
 
@@ -165,13 +165,13 @@ public abstract class AbstractMutableListMultimapTestCase extends AbstractMutabl
         MutableBagMultimap<Integer, String> expectedMultimap1 = HashBagMultimap.newMultimap();
         expectedMultimap1.putAll(1, FastList.newListWith("1Value", "2Value", "3Value", "4Value", "4Value"));
         expectedMultimap1.putAll(2, FastList.newListWith("2Value", "3Value", "4Value", "5Value", "3Value", "2Value"));
-        Assert.assertEquals(expectedMultimap1, collectedMultimap1);
+        Assertions.assertEquals(expectedMultimap1, collectedMultimap1);
 
         MutableBagMultimap<Integer, String> collectedMultimap2 = multimap.collectKeysValues((key, value) -> Tuples.pair(1, value + "Value"));
         MutableBagMultimap<Integer, String> expectedMultimap2 = HashBagMultimap.newMultimap();
         expectedMultimap2.putAll(1, FastList.newListWith("1Value", "2Value", "3Value", "4Value", "4Value"));
         expectedMultimap2.putAll(1, FastList.newListWith("2Value", "3Value", "4Value", "5Value", "3Value", "2Value"));
-        Assert.assertEquals(expectedMultimap2, collectedMultimap2);
+        Assertions.assertEquals(expectedMultimap2, collectedMultimap2);
     }
 
     @Override
@@ -187,7 +187,7 @@ public abstract class AbstractMutableListMultimapTestCase extends AbstractMutabl
         MutableListMultimap<String, String> expectedMultimap = FastListMultimap.newMultimap();
         expectedMultimap.putAll("1", FastList.newListWith("1Value", "2Value", "3Value", "4Value", "4Value"));
         expectedMultimap.putAll("2", FastList.newListWith("2Value", "3Value", "4Value", "5Value", "3Value", "2Value"));
-        Assert.assertEquals(expectedMultimap, collectedMultimap);
+        Assertions.assertEquals(expectedMultimap, collectedMultimap);
         Verify.assertListsEqual(expectedMultimap.get("1"), collectedMultimap.get("1"));
         Verify.assertListsEqual(expectedMultimap.get("2"), collectedMultimap.get("2"));
     }

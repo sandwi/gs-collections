@@ -31,8 +31,10 @@ public class HashBagMultimapSerializationTest
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyADRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuSGFzaEJhZ011bHRp\n"
-                + "bWFwAAAAAAAAAAEMAAB4cHcEAAAAAnQAAUF3BAAAAAJxAH4AAncEAAAAAXQAAUJ3BAAAAAJxAH4A\n"
-                + "A3cEAAAAAXEAfgACdwQAAAABeA==";
+        return """
+                rO0ABXNyADRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuSGFzaEJhZ011bHRp
+                bWFwAAAAAAAAAAEMAAB4cHcEAAAAAnQAAUF3BAAAAAJxAH4AAncEAAAAAXQAAUJ3BAAAAAJxAH4A
+                A3cEAAAAAXEAfgACdwQAAAABeA==\
+                """;
     }
 }

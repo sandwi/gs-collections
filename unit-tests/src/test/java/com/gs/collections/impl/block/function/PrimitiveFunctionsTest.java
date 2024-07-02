@@ -22,8 +22,8 @@ import com.gs.collections.impl.set.mutable.primitive.DoubleHashSet;
 import com.gs.collections.impl.set.mutable.primitive.FloatHashSet;
 import com.gs.collections.impl.set.mutable.primitive.IntHashSet;
 import com.gs.collections.impl.set.mutable.primitive.LongHashSet;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Junit test for {@link PrimitiveFunctions}.
@@ -33,11 +33,11 @@ public class PrimitiveFunctionsTest
     @Test
     public void unboxNumberToInt()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 IntHashSet.newSetWith(1, 2, 3),
                 UnifiedSet.newSetWith(Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3)).collectInt(PrimitiveFunctions.unboxNumberToInt()));
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 IntHashSet.newSetWith(1, 2, 3),
                 UnifiedSet.newSetWith(1.1, 2.2, 3.3).collectInt(PrimitiveFunctions.unboxNumberToInt()));
     }
@@ -45,7 +45,7 @@ public class PrimitiveFunctionsTest
     @Test
     public void unboxNumberToFloat()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FloatHashSet.newSetWith(1.0f, 2.0f, 3.0f),
                 UnifiedSet.newSetWith(1, 2, 3).collectFloat(PrimitiveFunctions.unboxNumberToFloat()));
     }
@@ -53,7 +53,7 @@ public class PrimitiveFunctionsTest
     @Test
     public void unboxNumberToLong()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 LongHashSet.newSetWith(1L, 2L, 3L),
                 UnifiedSet.newSetWith(1, 2, 3).collectLong(PrimitiveFunctions.unboxNumberToLong()));
     }
@@ -61,7 +61,7 @@ public class PrimitiveFunctionsTest
     @Test
     public void unboxNumberToDouble()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 DoubleHashSet.newSetWith(1.0, 2.0, 3.0),
                 UnifiedSet.newSetWith(1, 2, 3).collectDouble(PrimitiveFunctions.unboxNumberToDouble()));
     }
@@ -69,7 +69,7 @@ public class PrimitiveFunctionsTest
     @Test
     public void unboxDoubleToDouble()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 DoubleHashSet.newSetWith(1.0, 2.0, 3.0),
                 UnifiedSet.newSetWith(Double.valueOf(1.0), Double.valueOf(2.0), Double.valueOf(3.0)).collectDouble(PrimitiveFunctions.unboxDoubleToDouble()));
     }
@@ -77,7 +77,7 @@ public class PrimitiveFunctionsTest
     @Test
     public void unboxFloatToFloat()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FloatHashSet.newSetWith(1.0f, 2.0f, 3.0f),
                 UnifiedSet.newSetWith(Float.valueOf(1.0f), Float.valueOf(2.0f), Float.valueOf(3.0f)).collectFloat(PrimitiveFunctions.unboxFloatToFloat()));
     }

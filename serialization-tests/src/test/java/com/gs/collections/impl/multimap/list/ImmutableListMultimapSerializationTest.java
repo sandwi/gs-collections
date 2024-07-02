@@ -31,8 +31,10 @@ public class ImmutableListMultimapSerializationTest
     @Override
     public String getSerializedForm()
     {
-        return "rO0ABXNyAGdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5saXN0LkltbXV0YWJsZUxp\n"
-                + "c3RNdWx0aW1hcEltcGwkSW1tdXRhYmxlTGlzdE11bHRpbWFwU2VyaWFsaXphdGlvblByb3h5AAAA\n"
-                + "AAAAAAEMAAB4cHcEAAAAAnQAAUF3BAAAAANxAH4AAnQAAUJxAH4AA3EAfgADdwQAAAABcQB+AAJ4\n";
+        return """
+                rO0ABXNyAGdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5saXN0LkltbXV0YWJsZUxp
+                c3RNdWx0aW1hcEltcGwkSW1tdXRhYmxlTGlzdE11bHRpbWFwU2VyaWFsaXphdGlvblByb3h5AAAA
+                AAAAAAEMAAB4cHcEAAAAAnQAAUF3BAAAAANxAH4AAnQAAUJxAH4AA3EAfgADdwQAAAABcQB+AAJ4
+                """;
     }
 }

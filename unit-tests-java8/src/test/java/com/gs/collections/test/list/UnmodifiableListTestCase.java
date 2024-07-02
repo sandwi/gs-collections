@@ -19,31 +19,39 @@ package com.gs.collections.test.list;
 import java.util.List;
 
 import com.gs.collections.test.UnmodifiableCollectionTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface UnmodifiableListTestCase extends UnmodifiableCollectionTestCase, ListTestCase
 {
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void List_set()
     {
-        List<Integer> list = this.newWith(1, 2, 3);
-        list.set(1, 4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            List<Integer> list = this.newWith(1, 2, 3);
+            list.set(1, 4);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void List_set_negative()
     {
-        List<Integer> list = this.newWith(1, 2, 3);
-        list.set(-1, 4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            List<Integer> list = this.newWith(1, 2, 3);
+            list.set(-1, 4);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void List_set_out_of_bounds()
     {
-        List<Integer> list = this.newWith(1, 2, 3);
-        list.set(4, 4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            List<Integer> list = this.newWith(1, 2, 3);
+            list.set(4, 4);
+        });
     }
 }

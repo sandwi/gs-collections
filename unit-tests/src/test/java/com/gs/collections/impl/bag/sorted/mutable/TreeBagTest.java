@@ -24,8 +24,10 @@ import com.gs.collections.api.bag.sorted.MutableSortedBag;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link TreeBag}.
@@ -59,7 +61,7 @@ public class TreeBagTest extends AbstractMutableSortedBagTestCase
         TreeBag<Integer> sortedBagA = TreeBag.newBag(Collections.<Integer>reverseOrder());
         TreeBag<Integer> sortedBagB = TreeBag.newBag(sortedBagA.with(1).with(2, 3).with(4, 5, 6).with(1, 1, 1, 1));
         Verify.assertSortedBagsEqual(sortedBagA, sortedBagB);
-        Assert.assertTrue(sortedBagA.getFirst().equals(sortedBagB.getFirst()) && sortedBagB.getFirst() == 6);
+        Assertions.assertTrue(sortedBagA.getFirst().equals(sortedBagB.getFirst()) && sortedBagB.getFirst() == 6);
         Verify.assertSortedBagsEqual(sortedBagB, TreeBag.newBag(sortedBagB));
     }
 
@@ -88,16 +90,20 @@ public class TreeBagTest extends AbstractMutableSortedBagTestCase
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void min_null_safe()
     {
-        super.min_null_safe();
+        assertThrows(NullPointerException.class, () -> {
+            super.min_null_safe();
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void max_null_safe()
     {
-        super.max_null_safe();
+        assertThrows(NullPointerException.class, () -> {
+            super.max_null_safe();
+        });
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ShortArrayListSerializationTest
 {
@@ -26,8 +26,10 @@ public class ShortArrayListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUucHJpbWl0aXZlLlNo\n"
-                        + "b3J0QXJyYXlMaXN0AAAAAAAAAAEMAAB4cHcEAAAAAHg=",
+                """
+                rO0ABXNyAD1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUucHJpbWl0aXZlLlNo
+                b3J0QXJyYXlMaXN0AAAAAAAAAAEMAAB4cHcEAAAAAHg=\
+                """,
                 new ShortArrayList());
     }
 }

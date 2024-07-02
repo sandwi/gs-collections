@@ -19,7 +19,6 @@ package com.gs.collections.impl.list.mutable;
 import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
 
 /**
  * JUnit test for {@link MultiReaderFastList}.

@@ -37,11 +37,11 @@ import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.multimap.set.UnifiedSetMultimap;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -63,14 +63,14 @@ public class GroupBySetTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
-    @Before
+    @BeforeEach
     @Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     }
 
-    @After
+    @AfterEach
     @TearDown
     public void tearDown() throws InterruptedException
     {
@@ -320,7 +320,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         return multimap;
     }
 
-    @Ignore("Why is Guava reordering values?")
+    @Disabled("Why is Guava reordering values?")
     @Test
     public void test_groupBy_unordered_lists_2_keys_serial_eager_guava()
     {
@@ -347,7 +347,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         {
             ImmutableList<Integer> integers = multimap.get(i);
             Verify.assertSize(10_000, integers);
-            Assert.assertEquals(Interval.fromToBy(i, 999_999, 100), integers);
+            Assertions.assertEquals(Interval.fromToBy(i, 999_999, 100), integers);
         }
     }
 
@@ -367,7 +367,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         {
             ImmutableList<Integer> integers = multimap.get(i);
             Verify.assertSize(100, integers);
-            Assert.assertEquals(Interval.fromToBy(i, 999_999, 10_000), integers);
+            Assertions.assertEquals(Interval.fromToBy(i, 999_999, 10_000), integers);
         }
     }
 
@@ -375,7 +375,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
     public UnifiedSetMultimap<Boolean, Integer> groupBy_2_keys_serial_eager_gsc()
     {
         UnifiedSetMultimap<Boolean, Integer> multimap = this.integersGSC.groupBy(each -> each % 2 == 0);
-        Assert.assertEquals(2, multimap.sizeDistinct());
+        Assertions.assertEquals(2, multimap.sizeDistinct());
         return multimap;
     }
 
@@ -393,7 +393,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
     public UnifiedSetMultimap<Integer, Integer> groupBy_100_keys_serial_eager_gsc()
     {
         UnifiedSetMultimap<Integer, Integer> multimap = this.integersGSC.groupBy(each -> each % 100);
-        Assert.assertEquals(100, multimap.sizeDistinct());
+        Assertions.assertEquals(100, multimap.sizeDistinct());
         return multimap;
     }
 
@@ -413,7 +413,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
     public UnifiedSetMultimap<Integer, Integer> groupBy_10000_keys_serial_eager_gsc()
     {
         UnifiedSetMultimap<Integer, Integer> multimap = this.integersGSC.groupBy(each -> each % 10_000);
-        Assert.assertEquals(10_000, multimap.sizeDistinct());
+        Assertions.assertEquals(10_000, multimap.sizeDistinct());
         return multimap;
     }
 
@@ -433,7 +433,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
     public Multimap<Boolean, Integer> groupBy_unordered_lists_2_keys_serial_lazy_gsc()
     {
         Multimap<Boolean, Integer> multimap = this.integersGSC.asLazy().groupBy(each -> each % 2 == 0);
-        Assert.assertEquals(2, multimap.sizeDistinct());
+        Assertions.assertEquals(2, multimap.sizeDistinct());
         return multimap;
     }
 
@@ -451,7 +451,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
     public Multimap<Integer, Integer> groupBy_unordered_lists_100_keys_serial_lazy_gsc()
     {
         Multimap<Integer, Integer> multimap = this.integersGSC.asLazy().groupBy(each -> each % 100);
-        Assert.assertEquals(100, multimap.sizeDistinct());
+        Assertions.assertEquals(100, multimap.sizeDistinct());
         return multimap;
     }
 
@@ -471,7 +471,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
     public Multimap<Integer, Integer> groupBy_unordered_lists_10000_keys_serial_lazy_gsc()
     {
         Multimap<Integer, Integer> multimap = this.integersGSC.asLazy().groupBy(each -> each % 10_000);
-        Assert.assertEquals(10_000, multimap.sizeDistinct());
+        Assertions.assertEquals(10_000, multimap.sizeDistinct());
         return multimap;
     }
 
@@ -491,7 +491,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
     public UnsortedSetMultimap<Boolean, Integer> groupBy_2_keys_parallel_lazy_gsc()
     {
         UnsortedSetMultimap<Boolean, Integer> multimap = this.integersGSC.asParallel(this.executorService, BATCH_SIZE).groupBy(each -> each % 2 == 0);
-        Assert.assertEquals(2, multimap.sizeDistinct());
+        Assertions.assertEquals(2, multimap.sizeDistinct());
         return multimap;
     }
 
@@ -509,7 +509,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
     public UnsortedSetMultimap<Integer, Integer> groupBy_100_keys_parallel_lazy_gsc()
     {
         UnsortedSetMultimap<Integer, Integer> multimap = this.integersGSC.asParallel(this.executorService, BATCH_SIZE).groupBy(each -> each % 100);
-        Assert.assertEquals(100, multimap.sizeDistinct());
+        Assertions.assertEquals(100, multimap.sizeDistinct());
         return multimap;
     }
 
@@ -529,7 +529,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
     public UnsortedSetMultimap<Integer, Integer> groupBy_10000_keys_parallel_lazy_gsc()
     {
         UnsortedSetMultimap<Integer, Integer> multimap = this.integersGSC.asParallel(this.executorService, BATCH_SIZE).groupBy(each -> each % 10_000);
-        Assert.assertEquals(10_000, multimap.sizeDistinct());
+        Assertions.assertEquals(10_000, multimap.sizeDistinct());
         return multimap;
     }
 

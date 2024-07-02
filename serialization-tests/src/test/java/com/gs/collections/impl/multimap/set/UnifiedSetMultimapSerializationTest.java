@@ -25,9 +25,11 @@ public class UnifiedSetMultimapSerializationTest
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyADdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuVW5pZmllZFNldE11\n"
-                + "bHRpbWFwAAAAAAAAAAEMAAB4cHcEAAAAAnQAAUF3BAAAAAJxAH4AAnQAAUJxAH4AA3cEAAAAAXEA\n"
-                + "fgACeA==";
+        return """
+                rO0ABXNyADdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuVW5pZmllZFNldE11
+                bHRpbWFwAAAAAAAAAAEMAAB4cHcEAAAAAnQAAUF3BAAAAAJxAH4AAnQAAUJxAH4AA3cEAAAAAXEA
+                fgACeA==\
+                """;
     }
 
     @Override

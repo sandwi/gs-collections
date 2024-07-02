@@ -24,13 +24,13 @@ import com.gs.collections.impl.bag.mutable.MultiReaderHashBag;
 import com.gs.collections.impl.block.factory.Procedures;
 import com.gs.collections.test.collection.mutable.MultiReaderMutableCollectionTestCase;
 import com.gs.junit.runners.Java8Runner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
 import static com.gs.collections.test.IterableTestCase.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RunWith(Java8Runner.class)
 public class MultiReaderHashBagTest implements MutableBagTestCase, MultiReaderMutableCollectionTestCase

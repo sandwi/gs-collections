@@ -41,8 +41,10 @@ import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.set.sorted.mutable.TreeSortedSet;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class AbstractImmutableUnifiedSetTestCase
 {
@@ -58,8 +60,8 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     public void newCollection()
     {
         ImmutableSet<Integer> set = this.newSet();
-        Assert.assertTrue(set.isEmpty());
-        Assert.assertEquals(0, set.size());
+        Assertions.assertTrue(set.isEmpty());
+        Assertions.assertEquals(0, set.size());
     }
 
     @Test
@@ -67,9 +69,9 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> set = this.newSet(1, 2, 3);
         ImmutableSet<Integer> with = set.newWith(4);
-        Assert.assertNotEquals(set, with);
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4), with);
-        Assert.assertSame(set, set.newWith(3));
+        Assertions.assertNotEquals(set, with);
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4), with);
+        Assertions.assertSame(set, set.newWith(3));
     }
 
     @Test
@@ -77,8 +79,8 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> set = this.newSet(1, 2, 3);
         ImmutableSet<Integer> withAll = set.newWithAll(UnifiedSet.newSetWith(4, 5));
-        Assert.assertNotEquals(set, withAll);
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4, 5), withAll);
+        Assertions.assertNotEquals(set, withAll);
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4, 5), withAll);
     }
 
     @Test
@@ -86,9 +88,9 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> set = this.newSet(1, 2, 3, 4);
         ImmutableSet<Integer> without = set.newWithout(4);
-        Assert.assertNotEquals(set, without);
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3), without);
-        Assert.assertSame(set, set.newWithout(5));
+        Assertions.assertNotEquals(set, without);
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3), without);
+        Assertions.assertSame(set, set.newWithout(5));
     }
 
     @Test
@@ -96,34 +98,34 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> set = this.newSet(1, 2, 3, 4, 5);
         ImmutableSet<Integer> withoutAll = set.newWithoutAll(UnifiedSet.newSetWith(4, 5));
-        Assert.assertNotEquals(set, withoutAll);
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3), withoutAll);
+        Assertions.assertNotEquals(set, withoutAll);
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3), withoutAll);
         ImmutableSet<Integer> largeList = this.newSet(Interval.oneTo(200).toArray());
         ImmutableSet<Integer> largeWithoutAll = largeList.newWithoutAll(FastList.newList(Interval.oneTo(100)));
-        Assert.assertEquals(UnifiedSet.newSet(Interval.fromTo(101, 200)), largeWithoutAll);
+        Assertions.assertEquals(UnifiedSet.newSet(Interval.fromTo(101, 200)), largeWithoutAll);
         ImmutableSet<Integer> largeWithoutAll2 = largeWithoutAll.newWithoutAll(Interval.fromTo(101, 150));
-        Assert.assertEquals(UnifiedSet.newSet(Interval.fromTo(151, 200)), largeWithoutAll2);
+        Assertions.assertEquals(UnifiedSet.newSet(Interval.fromTo(151, 200)), largeWithoutAll2);
         ImmutableSet<Integer> largeWithoutAll3 = largeWithoutAll2.newWithoutAll(UnifiedSet.newSet(Interval.fromTo(151, 199)));
-        Assert.assertEquals(UnifiedSet.newSetWith(200), largeWithoutAll3);
+        Assertions.assertEquals(UnifiedSet.newSetWith(200), largeWithoutAll3);
     }
 
     @Test
     public void newSetWith()
     {
         ImmutableSet<Integer> set = this.newSetWith(1);
-        Assert.assertTrue(set.notEmpty());
-        Assert.assertEquals(1, set.size());
-        Assert.assertTrue(set.contains(1));
+        Assertions.assertTrue(set.notEmpty());
+        Assertions.assertEquals(1, set.size());
+        Assertions.assertTrue(set.contains(1));
     }
 
     @Test
     public void newListWithVarArgs()
     {
         ImmutableSet<Integer> set = this.newSetWith(1, 2, 3, 4);
-        Assert.assertTrue(set.notEmpty());
-        Assert.assertEquals(4, set.size());
-        Assert.assertTrue(set.containsAllArguments(1, 2, 3, 4));
-        Assert.assertTrue(set.containsAllIterable(Interval.oneTo(4)));
+        Assertions.assertTrue(set.notEmpty());
+        Assertions.assertEquals(4, set.size());
+        Assertions.assertTrue(set.containsAllArguments(1, 2, 3, 4));
+        Assertions.assertTrue(set.containsAllIterable(Interval.oneTo(4)));
     }
 
     @Test
@@ -131,8 +133,8 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         MutableList<Integer> tapResult = Lists.mutable.of();
         ImmutableSet<Integer> set = this.newSetWith(1, 2, 3, 4);
-        Assert.assertSame(set, set.tap(tapResult::add));
-        Assert.assertEquals(set.toList(), tapResult);
+        Assertions.assertSame(set, set.tap(tapResult::add));
+        Assertions.assertEquals(set.toList(), tapResult);
     }
 
     @Test
@@ -157,70 +159,70 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     @Test
     public void select()
     {
-        Assert.assertTrue(this.newSetWith(1, 2, 3, 4, 5).select(Predicates.lessThan(3)).containsAllArguments(1, 2));
-        Assert.assertFalse(this.newSetWith(-1, 2, 3, 4, 5).select(Predicates.lessThan(3)).containsAllArguments(3, 4, 5));
+        Assertions.assertTrue(this.newSetWith(1, 2, 3, 4, 5).select(Predicates.lessThan(3)).containsAllArguments(1, 2));
+        Assertions.assertFalse(this.newSetWith(-1, 2, 3, 4, 5).select(Predicates.lessThan(3)).containsAllArguments(3, 4, 5));
     }
 
     @Test
     public void reject()
     {
-        Assert.assertTrue(this.newSetWith(1, 2, 3, 4).reject(Predicates.lessThan(3)).containsAllArguments(3, 4));
+        Assertions.assertTrue(this.newSetWith(1, 2, 3, 4).reject(Predicates.lessThan(3)).containsAllArguments(3, 4));
     }
 
     @Test
     public void collect()
     {
-        Assert.assertTrue(
+        Assertions.assertTrue(
                 this.newSetWith(1, 2, 3, 4).collect(String::valueOf).containsAllArguments("1", "2", "3", "4"));
     }
 
     @Test
     public void detect()
     {
-        Assert.assertEquals(Integer.valueOf(3), this.newSetWith(1, 2, 3, 4, 5).detect(Integer.valueOf(3)::equals));
-        Assert.assertNull(this.newSetWith(1, 2, 3, 4, 5).detect(Integer.valueOf(6)::equals));
+        Assertions.assertEquals(Integer.valueOf(3), this.newSetWith(1, 2, 3, 4, 5).detect(Integer.valueOf(3)::equals));
+        Assertions.assertNull(this.newSetWith(1, 2, 3, 4, 5).detect(Integer.valueOf(6)::equals));
     }
 
     @Test
     public void detectIfNone()
     {
         Function0<Integer> function = new PassThruFunction0<>(6);
-        Assert.assertEquals(Integer.valueOf(3), this.newSetWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(3)::equals, function));
-        Assert.assertEquals(Integer.valueOf(6), this.newSetWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(6)::equals, function));
+        Assertions.assertEquals(Integer.valueOf(3), this.newSetWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(3)::equals, function));
+        Assertions.assertEquals(Integer.valueOf(6), this.newSetWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(6)::equals, function));
     }
 
     @Test
     public void allSatisfy()
     {
-        Assert.assertTrue(this.newSetWith(1, 2, 3).allSatisfy(Integer.class::isInstance));
-        Assert.assertFalse(this.newSetWith(1, 2, 3).allSatisfy(Integer.valueOf(1)::equals));
+        Assertions.assertTrue(this.newSetWith(1, 2, 3).allSatisfy(Integer.class::isInstance));
+        Assertions.assertFalse(this.newSetWith(1, 2, 3).allSatisfy(Integer.valueOf(1)::equals));
     }
 
     @Test
     public void anySatisfy()
     {
-        Assert.assertFalse(this.newSetWith(1, 2, 3).anySatisfy(String.class::isInstance));
-        Assert.assertTrue(this.newSetWith(1, 2, 3).anySatisfy(Integer.class::isInstance));
+        Assertions.assertFalse(this.newSetWith(1, 2, 3).anySatisfy(String.class::isInstance));
+        Assertions.assertTrue(this.newSetWith(1, 2, 3).anySatisfy(Integer.class::isInstance));
     }
 
     @Test
     public void noneSatisfy()
     {
-        Assert.assertTrue(this.newSetWith(1, 2, 3).noneSatisfy(String.class::isInstance));
-        Assert.assertTrue(this.newSetWith(1, 2, 3).noneSatisfy(Integer.valueOf(100)::equals));
-        Assert.assertFalse(this.newSetWith(1, 2, 3).noneSatisfy(Integer.valueOf(1)::equals));
+        Assertions.assertTrue(this.newSetWith(1, 2, 3).noneSatisfy(String.class::isInstance));
+        Assertions.assertTrue(this.newSetWith(1, 2, 3).noneSatisfy(Integer.valueOf(100)::equals));
+        Assertions.assertFalse(this.newSetWith(1, 2, 3).noneSatisfy(Integer.valueOf(1)::equals));
     }
 
     @Test
     public void count()
     {
-        Assert.assertEquals(3, this.newSetWith(1, 2, 3).count(Integer.class::isInstance));
+        Assertions.assertEquals(3, this.newSetWith(1, 2, 3).count(Integer.class::isInstance));
     }
 
     @Test
     public void collectIf()
     {
-        Assert.assertTrue(this.newSetWith(1, 2, 3).collectIf(
+        Assertions.assertTrue(this.newSetWith(1, 2, 3).collectIf(
                 Integer.class::isInstance,
                 String::valueOf).containsAllArguments("1", "2", "3"));
     }
@@ -228,21 +230,21 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     @Test
     public void getFirst()
     {
-        Assert.assertEquals(Integer.valueOf(1), this.newSetWith(1, 2, 3).getFirst());
-        Assert.assertNotEquals(Integer.valueOf(3), this.newSetWith(1, 2, 3).getFirst());
+        Assertions.assertEquals(Integer.valueOf(1), this.newSetWith(1, 2, 3).getFirst());
+        Assertions.assertNotEquals(Integer.valueOf(3), this.newSetWith(1, 2, 3).getFirst());
     }
 
     @Test
     public void getLast()
     {
-        Assert.assertNotNull(this.newSetWith(1, 2, 3).getLast());
+        Assertions.assertNotNull(this.newSetWith(1, 2, 3).getLast());
     }
 
     @Test
     public void isEmpty()
     {
-        Assert.assertTrue(this.newSet().isEmpty());
-        Assert.assertTrue(this.newSetWith(1, 2).notEmpty());
+        Assertions.assertTrue(this.newSet().isEmpty());
+        Assertions.assertTrue(this.newSetWith(1, 2).notEmpty());
     }
 
     @Test
@@ -253,7 +255,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
         for (int i = objects.size(); i-- > 0; )
         {
             Integer integer = iterator.next();
-            Assert.assertEquals(3, integer.intValue() + i);
+            Assertions.assertEquals(3, integer.intValue() + i);
         }
     }
 
@@ -262,7 +264,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> objects = this.newSetWith(1, 2, 3);
         Integer result = objects.injectInto(1, AddFunction.INTEGER);
-        Assert.assertEquals(Integer.valueOf(7), result);
+        Assertions.assertEquals(Integer.valueOf(7), result);
     }
 
     @Test
@@ -270,7 +272,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> objects = this.newSetWith(1, 2, 3);
         int result = objects.injectInto(1, AddFunction.INTEGER_TO_INT);
-        Assert.assertEquals(7, result);
+        Assertions.assertEquals(7, result);
     }
 
     @Test
@@ -278,7 +280,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> objects = this.newSetWith(1, 2, 3);
         long result = objects.injectInto(1, AddFunction.INTEGER_TO_LONG);
-        Assert.assertEquals(7, result);
+        Assertions.assertEquals(7, result);
     }
 
     @Test
@@ -286,7 +288,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> objects = this.newSetWith(1, 2, 3);
         double result = objects.injectInto(1, AddFunction.INTEGER_TO_DOUBLE);
-        Assert.assertEquals(7.0d, result, 0.001);
+        Assertions.assertEquals(7.0d, result, 0.001);
     }
 
     @Test
@@ -294,7 +296,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> objects = this.newSetWith(1, 2, 3);
         float result = objects.injectInto(1, AddFunction.INTEGER_TO_FLOAT);
-        Assert.assertEquals(7.0d, result, 0.001);
+        Assertions.assertEquals(7.0d, result, 0.001);
     }
 
     @Test
@@ -302,7 +304,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> objects = this.newSetWith(1, 2, 3);
         double actual = objects.sumOfFloat(Integer::floatValue);
-        Assert.assertEquals(6.0f, actual, 0.001);
+        Assertions.assertEquals(6.0f, actual, 0.001);
     }
 
     @Test
@@ -310,7 +312,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> objects = this.newSetWith(1, 2, 3);
         double actual = objects.sumOfDouble(Integer::doubleValue);
-        Assert.assertEquals(6.0d, actual, 0.001);
+        Assertions.assertEquals(6.0d, actual, 0.001);
     }
 
     @Test
@@ -318,7 +320,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> objects = this.newSetWith(1, 2, 3);
         long actual = objects.sumOfInt(integer -> integer);
-        Assert.assertEquals(6, actual);
+        Assertions.assertEquals(6, actual);
     }
 
     @Test
@@ -326,7 +328,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> objects = this.newSetWith(1, 2, 3);
         long actual = objects.sumOfLong(Integer::longValue);
-        Assert.assertEquals(6, actual);
+        Assertions.assertEquals(6, actual);
     }
 
     @Test
@@ -345,13 +347,13 @@ public abstract class AbstractImmutableUnifiedSetTestCase
         ImmutableSet<Integer> set1 = this.newSetWith(1, 2, 3, 4);
         ImmutableSet<Integer> set2 = this.newSetWith(1, 2, 3, 4);
         ImmutableSet<Integer> set3 = this.newSetWith(2, 3, 4);
-        Assert.assertNotEquals(set1, null);
+        Assertions.assertNotEquals(set1, null);
         Verify.assertEqualsAndHashCode(set1, set1);
         Verify.assertEqualsAndHashCode(set1, set2);
-        Assert.assertNotEquals(set2, set3);
+        Assertions.assertNotEquals(set2, set3);
         UnifiedSet<Integer> fastSet = UnifiedSet.newSet(set1);
         Verify.assertEqualsAndHashCode(set1, fastSet);
-        Assert.assertEquals(set1, new HashSet<>(fastSet));
+        Assertions.assertEquals(set1, new HashSet<>(fastSet));
         Verify.assertEqualsAndHashCode(set1, UnifiedSet.newSetWith(1, 2, 3, 4));
     }
 
@@ -370,7 +372,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> integers = this.newSetWith(1, 2, 3, 4);
         MutableList<Integer> list = integers.toList();
-        Assert.assertTrue(list.containsAllArguments(1, 2, 3, 4));
+        Assertions.assertTrue(list.containsAllArguments(1, 2, 3, 4));
     }
 
     @Test
@@ -378,7 +380,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> integers = this.newSetWith(2, 4, 1, 3);
         MutableList<Integer> list = integers.toSortedList(Collections.<Integer>reverseOrder());
-        Assert.assertEquals(FastList.newListWith(4, 3, 2, 1), list);
+        Assertions.assertEquals(FastList.newListWith(4, 3, 2, 1), list);
     }
 
     @Test
@@ -386,7 +388,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> integers = this.newSetWith(2, 4, 1, 3);
         MutableList<Integer> list = integers.toSortedListBy(String::valueOf);
-        Assert.assertEquals(FastList.newListWith(1, 2, 3, 4), list);
+        Assertions.assertEquals(FastList.newListWith(1, 2, 3, 4), list);
     }
 
     @Test
@@ -427,7 +429,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
         ImmutableSet<Integer> integers = this.newSetWith(1, 2, 3, 4);
         MutableMap<String, String> map =
                 integers.toMap(String::valueOf, String::valueOf);
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("1", "1", "2", "2", "3", "3", "4", "4"), map);
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("1", "1", "2", "2", "3", "3", "4", "4"), map);
     }
 
     @Test
@@ -435,15 +437,15 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     {
         ImmutableSet<Integer> set = this.newSetWith(1, 2, 3, 4, 5);
         ImmutableSet<Integer> deserializedCollection = SerializeTestHelper.serializeDeserialize(set);
-        Assert.assertEquals(5, deserializedCollection.size());
-        Assert.assertTrue(deserializedCollection.containsAllArguments(1, 2, 3, 4, 5));
+        Assertions.assertEquals(5, deserializedCollection.size());
+        Assertions.assertTrue(deserializedCollection.containsAllArguments(1, 2, 3, 4, 5));
         Verify.assertEqualsAndHashCode(set, deserializedCollection);
     }
 
     @Test
     public void testToString()
     {
-        Assert.assertEquals("[1]", this.newSetWith(1).toString());
+        Assertions.assertEquals("[1]", this.newSetWith(1).toString());
     }
 
     @Test
@@ -461,25 +463,29 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     @Test
     public void groupByUniqueKey()
     {
-        Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), this.newSetWith(1, 2, 3).groupByUniqueKey(id -> id));
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), this.newSetWith(1, 2, 3).groupByUniqueKey(id -> id));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void groupByUniqueKey_throws()
     {
-        this.newSetWith(1, 2, 3).groupByUniqueKey(Functions.getFixedValue(1));
+        assertThrows(IllegalStateException.class, () -> {
+            this.newSetWith(1, 2, 3).groupByUniqueKey(Functions.getFixedValue(1));
+        });
     }
 
     @Test
     public void groupByUniqueKey_target()
     {
         MutableMap<Integer, Integer> integers = this.newSetWith(1, 2, 3).groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues(0, 0, 1, 1, 2, 2, 3, 3), integers);
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues(0, 0, 1, 1, 2, 2, 3, 3), integers);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void groupByUniqueKey_target_throws()
     {
-        this.newSetWith(1, 2, 3).groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(2, 2));
+        assertThrows(IllegalStateException.class, () -> {
+            this.newSetWith(1, 2, 3).groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(2, 2));
+        });
     }
 }

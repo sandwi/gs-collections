@@ -24,8 +24,10 @@ import com.gs.collections.api.set.MutableSet;
 import com.gs.collections.impl.bag.sorted.mutable.TreeBag;
 import com.gs.collections.impl.collection.mutable.AbstractCollectionTestCase;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MultiReaderUnifiedSetAsWriteUntouchableTest extends AbstractCollectionTestCase
 {
@@ -36,17 +38,18 @@ public class MultiReaderUnifiedSetAsWriteUntouchableTest extends AbstractCollect
     }
 
     @Override
+    @Test
     public void getLast()
     {
-        Assert.assertNotNull(this.newWith(1, 2, 3).getLast());
-        Assert.assertNull(this.newWith().getLast());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getLast());
+        Assertions.assertNull(this.newWith().getLast());
     }
 
     @Override
     @Test
     public void makeString()
     {
-        Assert.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());
+        Assertions.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());
     }
 
     @Override
@@ -55,14 +58,14 @@ public class MultiReaderUnifiedSetAsWriteUntouchableTest extends AbstractCollect
     {
         Appendable builder = new StringBuilder();
         this.newWith(1, 2, 3).appendString(builder);
-        Assert.assertEquals("1, 2, 3", builder.toString());
+        Assertions.assertEquals("1, 2, 3", builder.toString());
     }
 
     @Override
     @Test
     public void testToString()
     {
-        Assert.assertEquals("[1, 2, 3]", this.newWith(1, 2, 3).toString());
+        Assertions.assertEquals("[1, 2, 3]", this.newWith(1, 2, 3).toString());
     }
 
     @Override
@@ -98,10 +101,12 @@ public class MultiReaderUnifiedSetAsWriteUntouchableTest extends AbstractCollect
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void toSortedBag_with_null()
     {
-        this.newWith(3, 4, null, 1, 2).toSortedBag();
+        assertThrows(NullPointerException.class, () -> {
+            this.newWith(3, 4, null, 1, 2).toSortedBag();
+        });
     }
 
     @Override

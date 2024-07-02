@@ -20,8 +20,10 @@ import com.gs.collections.api.block.function.Function;
 import com.gs.collections.impl.block.factory.StringFunctions;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class StringFunctionsTest
 {
@@ -29,26 +31,26 @@ public final class StringFunctionsTest
     public void toUpperCase()
     {
         Function<String, String> function = StringFunctions.toUpperCase();
-        Assert.assertEquals("UPPER", function.valueOf("upper"));
-        Assert.assertEquals("UPPER", function.valueOf("Upper"));
-        Assert.assertEquals("UPPER", function.valueOf("UPPER"));
-        Assert.assertSame("UPPER", function.valueOf("UPPER"));
+        Assertions.assertEquals("UPPER", function.valueOf("upper"));
+        Assertions.assertEquals("UPPER", function.valueOf("Upper"));
+        Assertions.assertEquals("UPPER", function.valueOf("UPPER"));
+        Assertions.assertSame("UPPER", function.valueOf("UPPER"));
     }
 
     @Test
     public void toLowerCase()
     {
         Function<String, String> function = StringFunctions.toLowerCase();
-        Assert.assertEquals("lower", function.valueOf("LOWER"));
-        Assert.assertEquals("lower", function.valueOf("Lower"));
-        Assert.assertEquals("lower", function.valueOf("lower"));
-        Assert.assertSame("lower", function.valueOf("lower"));
+        Assertions.assertEquals("lower", function.valueOf("LOWER"));
+        Assertions.assertEquals("lower", function.valueOf("Lower"));
+        Assertions.assertEquals("lower", function.valueOf("lower"));
+        Assertions.assertSame("lower", function.valueOf("lower"));
     }
 
     @Test
     public void toInteger()
     {
-        Assert.assertEquals(-42L, StringFunctions.toInteger().valueOf("-42").longValue());
+        Assertions.assertEquals(-42L, StringFunctions.toInteger().valueOf("-42").longValue());
         Verify.assertInstanceOf(Integer.class, StringFunctions.toInteger().valueOf("10"));
     }
 
@@ -56,30 +58,30 @@ public final class StringFunctionsTest
     public void length()
     {
         Function<String, Integer> function = StringFunctions.length();
-        Assert.assertEquals(Integer.valueOf(6), function.valueOf("string"));
-        Assert.assertEquals(Integer.valueOf(0), function.valueOf(""));
-        Assert.assertEquals("string.length()", function.toString());
+        Assertions.assertEquals(Integer.valueOf(6), function.valueOf("string"));
+        Assertions.assertEquals(Integer.valueOf(0), function.valueOf(""));
+        Assertions.assertEquals("string.length()", function.toString());
     }
 
     @Test
     public void trim()
     {
         Function<String, String> function = StringFunctions.trim();
-        Assert.assertEquals("trim", function.valueOf("trim "));
-        Assert.assertEquals("trim", function.valueOf(" trim"));
-        Assert.assertEquals("trim", function.valueOf("  trim  "));
-        Assert.assertEquals("trim", function.valueOf("trim"));
-        Assert.assertSame("trim", function.valueOf("trim"));
-        Assert.assertEquals("string.trim()", function.toString());
+        Assertions.assertEquals("trim", function.valueOf("trim "));
+        Assertions.assertEquals("trim", function.valueOf(" trim"));
+        Assertions.assertEquals("trim", function.valueOf("  trim  "));
+        Assertions.assertEquals("trim", function.valueOf("trim"));
+        Assertions.assertSame("trim", function.valueOf("trim"));
+        Assertions.assertEquals("string.trim()", function.toString());
     }
 
     @Test
     public void firstLetter()
     {
         Function<String, Character> function = StringFunctions.firstLetter();
-        Assert.assertNull(function.valueOf(null));
-        Assert.assertNull(function.valueOf(""));
-        Assert.assertEquals('A', function.valueOf("Autocthonic").charValue());
+        Assertions.assertNull(function.valueOf(null));
+        Assertions.assertNull(function.valueOf(""));
+        Assertions.assertEquals('A', function.valueOf("Autocthonic").charValue());
     }
 
     @Test
@@ -87,11 +89,11 @@ public final class StringFunctionsTest
     {
         Function<String, String> function1 = StringFunctions.subString(2, 5);
         String testString = "habits";
-        Assert.assertEquals("bit", function1.valueOf(testString));
-        Verify.assertContains("string.subString", function1.toString());
+        Assertions.assertEquals("bit", function1.valueOf(testString));
+        Verify.assertContains(function1.toString(), "string.subString");
 
         Function<String, String> function2 = StringFunctions.subString(0, testString.length());
-        Assert.assertEquals(testString, function2.valueOf(testString));
+        Assertions.assertEquals(testString, function2.valueOf(testString));
 
         Function<String, String> function3 = StringFunctions.subString(0, testString.length() + 1);
         Verify.assertThrows(StringIndexOutOfBoundsException.class, () -> function3.valueOf(testString));
@@ -100,77 +102,83 @@ public final class StringFunctionsTest
         Verify.assertThrows(StringIndexOutOfBoundsException.class, () -> function4.valueOf(testString));
     }
 
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void subString_throws_on_short_string()
     {
-        StringFunctions.subString(2, 4).valueOf("hi");
+        assertThrows(StringIndexOutOfBoundsException.class, () -> {
+            StringFunctions.subString(2, 4).valueOf("hi");
+        });
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void subString_throws_on_null()
     {
-        StringFunctions.subString(2, 4).valueOf(null);
+        assertThrows(NullPointerException.class, () -> {
+            StringFunctions.subString(2, 4).valueOf(null);
+        });
     }
 
     @Test
     public void toPrimitiveBoolean()
     {
-        Assert.assertTrue(StringFunctions.toPrimitiveBoolean().booleanValueOf("true"));
-        Assert.assertFalse(StringFunctions.toPrimitiveBoolean().booleanValueOf("nah"));
+        Assertions.assertTrue(StringFunctions.toPrimitiveBoolean().booleanValueOf("true"));
+        Assertions.assertFalse(StringFunctions.toPrimitiveBoolean().booleanValueOf("nah"));
     }
 
     @Test
     public void toPrimitiveByte()
     {
-        Assert.assertEquals((byte) 16, StringFunctions.toPrimitiveByte().byteValueOf("16"));
+        Assertions.assertEquals((byte) 16, StringFunctions.toPrimitiveByte().byteValueOf("16"));
     }
 
     @Test
     public void toFirstChar()
     {
-        Assert.assertEquals('X', StringFunctions.toFirstChar().charValueOf("X-ray"));
+        Assertions.assertEquals('X', StringFunctions.toFirstChar().charValueOf("X-ray"));
     }
 
     @Test
     public void toPrimitiveChar()
     {
-        Assert.assertEquals('A', StringFunctions.toPrimitiveChar().charValueOf("65"));
+        Assertions.assertEquals('A', StringFunctions.toPrimitiveChar().charValueOf("65"));
     }
 
-    @Test(expected = StringIndexOutOfBoundsException.class)
+    @Test
     public void toPrimitiveCharWithEmptyString()
     {
-        StringFunctions.toFirstChar().charValueOf("");
+        assertThrows(StringIndexOutOfBoundsException.class, () -> {
+            StringFunctions.toFirstChar().charValueOf("");
+        });
     }
 
     @Test
     public void toPrimitiveDouble()
     {
-        Assert.assertEquals(3.14159265359d, StringFunctions.toPrimitiveDouble().doubleValueOf("3.14159265359"), 0.0);
+        Assertions.assertEquals(3.14159265359d, StringFunctions.toPrimitiveDouble().doubleValueOf("3.14159265359"), 0.0);
     }
 
     @Test
     public void toPrimitiveFloat()
     {
-        Assert.assertEquals(3.1415d, StringFunctions.toPrimitiveFloat().floatValueOf("3.1415"), 0.00001);
+        Assertions.assertEquals(3.1415d, StringFunctions.toPrimitiveFloat().floatValueOf("3.1415"), 0.00001);
     }
 
     @Test
     public void toPrimitiveInt()
     {
-        Assert.assertEquals(256, StringFunctions.toPrimitiveInt().intValueOf("256"));
+        Assertions.assertEquals(256, StringFunctions.toPrimitiveInt().intValueOf("256"));
     }
 
     @Test
     public void toPrimitiveLong()
     {
-        Assert.assertEquals(0x7fffffffffffffffL, StringFunctions.toPrimitiveLong().longValueOf("9223372036854775807"));
+        Assertions.assertEquals(0x7fffffffffffffffL, StringFunctions.toPrimitiveLong().longValueOf("9223372036854775807"));
     }
 
     @Test
     public void toPrimitiveShort()
     {
-        Assert.assertEquals(-32768, StringFunctions.toPrimitiveShort().shortValueOf("-32768"));
+        Assertions.assertEquals(-32768, StringFunctions.toPrimitiveShort().shortValueOf("-32768"));
     }
 
     @Test

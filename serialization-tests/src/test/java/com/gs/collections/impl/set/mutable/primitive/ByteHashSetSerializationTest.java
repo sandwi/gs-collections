@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ByteHashSetSerializationTest
 {
@@ -26,8 +26,10 @@ public class ByteHashSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuQnl0\n"
-                        + "ZUhhc2hTZXQAAAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQubXV0YWJsZS5wcmltaXRpdmUuQnl0
+                ZUhhc2hTZXQAAAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 new ByteHashSet());
     }
 }

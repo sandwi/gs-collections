@@ -229,7 +229,7 @@ public class GsCollectionsCodeGenerator
 
         private void logError(STMessage stMessage, String errorType)
         {
-            String error = String.format("String template %s error while processing [%s]: %s", errorType, GsCollectionsCodeGenerator.this.url.getPath(), stMessage.toString());
+            String error = "String template %s error while processing [%s]: %s".formatted(errorType, GsCollectionsCodeGenerator.this.url.getPath(), stMessage.toString());
             this.errorListener.error(error);
             throw new RuntimeException();
         }

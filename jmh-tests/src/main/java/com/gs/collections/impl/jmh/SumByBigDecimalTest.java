@@ -27,8 +27,8 @@ import com.gs.collections.impl.jmh.domain.Product;
 import com.gs.collections.impl.jmh.runner.AbstractJMHTestRunner;
 import com.gs.collections.impl.parallel.ParallelIterate;
 import com.gs.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -58,7 +58,7 @@ public class SumByBigDecimalTest extends AbstractJMHTestRunner
     @Test
     public void sumByProduct_gsc()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.sumByBigDecimalProduct_parallel_eager_gsc(),
                 this.sumByBigDecimalProduct_serial_eager_gsc());
     }
@@ -78,7 +78,7 @@ public class SumByBigDecimalTest extends AbstractJMHTestRunner
     @Test
     public void sumByAccount_gsc()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.sumByBigDecimalAccount_parallel_eager_gsc(),
                 this.sumByBigDecimalAccount_serial_eager_gsc());
     }
@@ -98,7 +98,7 @@ public class SumByBigDecimalTest extends AbstractJMHTestRunner
     @Test
     public void sumByCategory_gsc()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 this.sumByBigDecimalCategory_parallel_eager_gsc(),
                 this.sumByBigDecimalCategory_serial_eager_gsc());
     }

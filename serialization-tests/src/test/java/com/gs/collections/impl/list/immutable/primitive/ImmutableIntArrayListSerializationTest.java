@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableIntArrayListSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableIntArrayListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu\n"
-                        + "SW1tdXRhYmxlSW50QXJyYXlMaXN0AAAAAAAAAAECAAFbAAVpdGVtc3QAAltJeHB1cgACW0lNumAm\n"
-                        + "duqypQIAAHhwAAAACwAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAAL\n",
+                """
+                rO0ABXNyAEZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5wcmltaXRpdmUu
+                SW1tdXRhYmxlSW50QXJyYXlMaXN0AAAAAAAAAAECAAFbAAVpdGVtc3QAAltJeHB1cgACW0lNumAm
+                duqypQIAAHhwAAAACwAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAAL
+                """,
                 ImmutableIntArrayList.newListWith(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
     }
 }

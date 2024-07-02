@@ -17,14 +17,18 @@
 package com.gs.collections.impl.set.mutable;
 
 import com.gs.collections.impl.collection.mutable.AbstractCollectionTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class MultiReaderMutableCollectionTestCase extends AbstractCollectionTestCase
 {
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void iterator_throws()
     {
-        this.newWith(1, 2, 3).iterator();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3).iterator();
+        });
     }
 }

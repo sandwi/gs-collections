@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.gs.collections.impl.list.Interval;
-import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

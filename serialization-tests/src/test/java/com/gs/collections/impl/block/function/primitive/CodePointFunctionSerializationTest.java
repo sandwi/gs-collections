@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CodePointFunctionSerializationTest
 {
@@ -26,8 +26,10 @@ public class CodePointFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu\n"
-                        + "Q29kZVBvaW50RnVuY3Rpb24kMQAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu
+                Q29kZVBvaW50RnVuY3Rpb24kMQAAAAAAAAABAgAAeHA=\
+                """,
                 CodePointFunction.TO_UPPERCASE);
     }
 
@@ -36,8 +38,10 @@ public class CodePointFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu\n"
-                        + "Q29kZVBvaW50RnVuY3Rpb24kMgAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5wcmltaXRpdmUu
+                Q29kZVBvaW50RnVuY3Rpb24kMgAAAAAAAAABAgAAeHA=\
+                """,
                 CodePointFunction.TO_LOWERCASE);
     }
 }

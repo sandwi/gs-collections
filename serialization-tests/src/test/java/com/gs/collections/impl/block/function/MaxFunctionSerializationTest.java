@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MaxFunctionSerializationTest
 {
@@ -26,8 +26,10 @@ public class MaxFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NYXhGdW5jdGlv\n"
-                        + "biRNYXhEb3VibGVGdW5jdGlvbgAAAAAAAAABAgAAeHA=",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NYXhGdW5jdGlv
+                biRNYXhEb3VibGVGdW5jdGlvbgAAAAAAAAABAgAAeHA=\
+                """,
                 MaxFunction.DOUBLE);
     }
 
@@ -36,8 +38,10 @@ public class MaxFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NYXhGdW5jdGlv\n"
-                        + "biRNYXhJbnRlZ2VyRnVuY3Rpb24AAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAEVjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NYXhGdW5jdGlv
+                biRNYXhJbnRlZ2VyRnVuY3Rpb24AAAAAAAAAAQIAAHhw\
+                """,
                 MaxFunction.INTEGER);
     }
 
@@ -46,8 +50,10 @@ public class MaxFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NYXhGdW5jdGlv\n"
-                        + "biRNYXhMb25nRnVuY3Rpb24AAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NYXhGdW5jdGlv
+                biRNYXhMb25nRnVuY3Rpb24AAAAAAAAAAQIAAHhw\
+                """,
                 MaxFunction.LONG);
     }
 }

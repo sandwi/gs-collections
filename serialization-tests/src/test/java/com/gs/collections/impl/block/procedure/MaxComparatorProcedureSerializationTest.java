@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MaxComparatorProcedureSerializationTest
 {
@@ -26,11 +26,13 @@ public class MaxComparatorProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWF4Q29tcGFy\n"
-                        + "YXRvclByb2NlZHVyZQAAAAAAAAABAgAAeHIAO2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2Nr\n"
-                        + "LnByb2NlZHVyZS5Db21wYXJhdG9yUHJvY2VkdXJlAAAAAAAAAAECAANaABJ2aXNpdGVkQXRMZWFz\n"
-                        + "dE9uY2VMAApjb21wYXJhdG9ydAAWTGphdmEvdXRpbC9Db21wYXJhdG9yO0wABnJlc3VsdHQAEkxq\n"
-                        + "YXZhL2xhbmcvT2JqZWN0O3hwAHBw",
+                """
+                rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuTWF4Q29tcGFy
+                YXRvclByb2NlZHVyZQAAAAAAAAABAgAAeHIAO2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2Nr
+                LnByb2NlZHVyZS5Db21wYXJhdG9yUHJvY2VkdXJlAAAAAAAAAAECAANaABJ2aXNpdGVkQXRMZWFz
+                dE9uY2VMAApjb21wYXJhdG9ydAAWTGphdmEvdXRpbC9Db21wYXJhdG9yO0wABnJlc3VsdHQAEkxq
+                YXZhL2xhbmcvT2JqZWN0O3hwAHBw\
+                """,
                 new MaxComparatorProcedure<Object>(null));
     }
 }

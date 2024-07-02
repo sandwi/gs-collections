@@ -33,8 +33,8 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SortedSetAdapter}.
@@ -135,11 +135,11 @@ public class SortedSetAdapterTest extends AbstractSortedSetTestCase
         MutableSortedSet<Integer> set4 = TreeSortedSet.newSetWith(2, 3, 4);
 
         Verify.assertEqualsAndHashCode(set1, set1);
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3), set1);
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3), set2);
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3), set1);
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3), set2);
 
-        Assert.assertEquals(set1, set2);
-        Assert.assertNotEquals(set2, set3);
+        Assertions.assertEquals(set1, set2);
+        Assertions.assertNotEquals(set2, set3);
         Verify.assertEqualsAndHashCode(set3, set4);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(Collections.<Integer>reverseOrder(), 1, 2, 3), set2);
     }
@@ -170,8 +170,8 @@ public class SortedSetAdapterTest extends AbstractSortedSetTestCase
     public void getFirst()
     {
         super.getFirst();
-        Assert.assertEquals(Integer.valueOf(1), this.newWith(1, 2, 3).getFirst());
-        Assert.assertEquals(Integer.valueOf(3), this.newWith(Collections.<Integer>reverseOrder(), 1, 2, 3).getFirst());
+        Assertions.assertEquals(Integer.valueOf(1), this.newWith(1, 2, 3).getFirst());
+        Assertions.assertEquals(Integer.valueOf(3), this.newWith(Collections.<Integer>reverseOrder(), 1, 2, 3).getFirst());
         Verify.assertThrows(NoSuchElementException.class, () -> new SortedSetAdapter<>(new TreeSet<>()).getFirst());
     }
 
@@ -180,9 +180,9 @@ public class SortedSetAdapterTest extends AbstractSortedSetTestCase
     public void getLast()
     {
         super.getLast();
-        Assert.assertNotNull(this.newWith(1, 2, 3).getLast());
-        Assert.assertEquals(Integer.valueOf(3), this.newWith(1, 2, 3).getLast());
-        Assert.assertEquals(Integer.valueOf(1), this.newWith(Collections.<Integer>reverseOrder(), 1, 2, 3).getLast());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getLast());
+        Assertions.assertEquals(Integer.valueOf(3), this.newWith(1, 2, 3).getLast());
+        Assertions.assertEquals(Integer.valueOf(1), this.newWith(Collections.<Integer>reverseOrder(), 1, 2, 3).getLast());
         Verify.assertThrows(NoSuchElementException.class, () -> new SortedSetAdapter<>(new TreeSet<>()).getLast());
     }
 

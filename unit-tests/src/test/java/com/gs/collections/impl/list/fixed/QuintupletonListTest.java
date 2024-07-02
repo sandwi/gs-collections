@@ -26,8 +26,8 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTestCase
 {
@@ -63,12 +63,12 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
     @Test
     public void testContains()
     {
-        Verify.assertContains("1", this.list);
-        Verify.assertContains("2", this.list);
-        Verify.assertContains("3", this.list);
-        Verify.assertContains("4", this.list);
-        Verify.assertContains("5", this.list);
-        Verify.assertNotContains("6", this.list);
+        Verify.assertContains(this.list, "1");
+        Verify.assertContains(this.list, "2");
+        Verify.assertContains(this.list, "3");
+        Verify.assertContains(this.list, "4");
+        Verify.assertContains(this.list, "5");
+        Verify.assertNotContains(this.list, "6");
     }
 
     @Test
@@ -111,20 +111,20 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
     public void testSet()
     {
         MutableList<String> list = Lists.fixedSize.of("1", "2", "3", "4", "5");
-        Assert.assertEquals("1", list.set(0, "5"));
-        Assert.assertEquals("2", list.set(1, "4"));
-        Assert.assertEquals("3", list.set(2, "3"));
-        Assert.assertEquals("4", list.set(3, "2"));
-        Assert.assertEquals("5", list.set(4, "1"));
-        Assert.assertEquals(FastList.newListWith("5", "4", "3", "2", "1"), list);
+        Assertions.assertEquals("1", list.set(0, "5"));
+        Assertions.assertEquals("2", list.set(1, "4"));
+        Assertions.assertEquals("3", list.set(2, "3"));
+        Assertions.assertEquals("4", list.set(3, "2"));
+        Assertions.assertEquals("5", list.set(4, "1"));
+        Assertions.assertEquals(FastList.newListWith("5", "4", "3", "2", "1"), list);
         Verify.assertThrows(IndexOutOfBoundsException.class, () -> list.set(5, "0"));
     }
 
     private void assertUnchanged()
     {
         Verify.assertSize(5, this.list);
-        Verify.assertNotContains("6", this.list);
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5"), this.list);
+        Verify.assertNotContains(this.list, "6");
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4", "5"), this.list);
     }
 
     @Test
@@ -132,15 +132,15 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
     {
         Verify.assertPostSerializedEqualsAndHashCode(this.list);
         MutableList<String> copyOfList = SerializeTestHelper.serializeDeserialize(this.list);
-        Assert.assertNotSame(this.list, copyOfList);
+        Assertions.assertNotSame(this.list, copyOfList);
     }
 
     @Test
     public void testGetFirstGetLast()
     {
         MutableList<String> list5 = Lists.fixedSize.of("1", "2", "3", "4", "5");
-        Assert.assertEquals("1", list5.getFirst());
-        Assert.assertEquals("5", list5.getLast());
+        Assertions.assertEquals("1", list5.getFirst());
+        Assertions.assertEquals("5", list5.getLast());
     }
 
     @Test
@@ -149,7 +149,7 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3", "4", "5");
         source.forEach(CollectionAddProcedure.on(result));
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4", "5"), result);
     }
 
     @Test
@@ -162,8 +162,8 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
             result.add(each);
             indexSum[0] += index;
         });
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5"), result);
-        Assert.assertEquals(10, indexSum[0]);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4", "5"), result);
+        Assertions.assertEquals(10, indexSum[0]);
     }
 
     @Test
@@ -172,7 +172,7 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3", "4", "5");
         source.forEachWith(Procedures2.fromProcedure(result::add), null);
-        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2", "3", "4", "5"), result);
     }
 
     @Test
@@ -182,7 +182,7 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO", "THREE", "FOUR", "FIVE");
         for (String each : list)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
     }
 
@@ -194,7 +194,7 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO", "THREE", "FOUR", "FIVE");
         for (String each : subList)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
     }
 
@@ -202,7 +202,7 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
     public void without()
     {
         MutableList<Integer> list = new QuintupletonList<>(1, 2, 3, 2, 4);
-        Assert.assertSame(list, list.without(9));
+        Assertions.assertSame(list, list.without(9));
         list = list.without(2);
         Verify.assertListsEqual(FastList.newListWith(1, 3, 2, 4), list);
         Verify.assertInstanceOf(QuadrupletonList.class, list);

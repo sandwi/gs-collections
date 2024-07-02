@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.FloatIntHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableFloatIntHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableFloatIntHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVGbG9hdEludEhhc2hNYXAkSW1tdXRhYmxlRmxvYXRJbnRNYXBTZXJpYWxpemF0aW9u\n"
-                        + "UHJveHkAAAAAAAAAAQwAAHhwdxQAAAACP4AAAAAAAAFAAAAAAAAAAng=",
+                """
+                rO0ABXNyAG9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVGbG9hdEludEhhc2hNYXAkSW1tdXRhYmxlRmxvYXRJbnRNYXBTZXJpYWxpemF0aW9u
+                UHJveHkAAAAAAAAAAQwAAHhwdxQAAAACP4AAAAAAAAFAAAAAAAAAAng=\
+                """,
                 new ImmutableFloatIntHashMap(FloatIntHashMap.newWithKeysValues(1.0f, 1, 2.0f, 2)));
     }
 }

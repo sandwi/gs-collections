@@ -113,7 +113,7 @@ final class ImmutableEmptyBag<T>
         {
             return true;
         }
-        return obj instanceof Bag && ((Bag<?>) obj).isEmpty();
+        return obj instanceof Bag b && b.isEmpty();
     }
 
     public int sizeDistinct()

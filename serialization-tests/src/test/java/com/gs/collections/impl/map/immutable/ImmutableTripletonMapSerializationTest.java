@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableTripletonMapSerializationTest
 {
@@ -26,8 +26,10 @@ public class ImmutableTripletonMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLkltbXV0YWJsZU1h\n"
-                        + "cFNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAAN0AAFhcHQAAWJwdAABY3B4",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLkltbXV0YWJsZU1h
+                cFNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAAN0AAFhcHQAAWJwdAABY3B4\
+                """,
                 new ImmutableTripletonMap<String, Object>("a", null, "b", null, "c", null));
     }
 }

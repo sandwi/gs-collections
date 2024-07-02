@@ -21,8 +21,8 @@ import com.gs.collections.impl.math.IntegerSum;
 import com.gs.collections.impl.math.Sum;
 import com.gs.collections.impl.parallel.BatchIterable;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableUnifiedMapTest extends ImmutableMapTestCase
 {
@@ -42,14 +42,14 @@ public class ImmutableUnifiedMapTest extends ImmutableMapTestCase
     @Override
     public void testToString()
     {
-        Assert.assertEquals("{1=1, 2=2, 3=3, 4=4}", this.classUnderTest().toString());
+        Assertions.assertEquals("{1=1, 2=2, 3=3, 4=4}", this.classUnderTest().toString());
     }
 
     @Test
     public void getBatchCount()
     {
         BatchIterable<Integer> integerBatchIterable = (BatchIterable<Integer>) this.classUnderTest();
-        Assert.assertEquals(5, integerBatchIterable.getBatchCount(3));
+        Assertions.assertEquals(5, integerBatchIterable.getBatchCount(3));
     }
 
     @Test
@@ -58,6 +58,6 @@ public class ImmutableUnifiedMapTest extends ImmutableMapTestCase
         Sum sum = new IntegerSum(0);
         BatchIterable<String> integerBatchIterable = (BatchIterable<String>) this.classUnderTest();
         integerBatchIterable.batchForEach(each -> sum.add(Integer.valueOf(each)), 0, 1);
-        Assert.assertEquals(10, sum.getValue());
+        Assertions.assertEquals(10, sum.getValue());
     }
 }

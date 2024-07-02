@@ -22,7 +22,7 @@ import java.util.Iterator;
 import com.gs.collections.api.stack.MutableStack;
 import com.gs.collections.impl.factory.Stacks;
 import com.gs.collections.test.stack.StackIterableTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
 import static com.gs.collections.test.IterableTestCase.assertEquals;

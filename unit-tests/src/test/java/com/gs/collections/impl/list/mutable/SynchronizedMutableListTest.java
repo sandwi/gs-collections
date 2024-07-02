@@ -18,8 +18,8 @@ package com.gs.collections.impl.list.mutable;
 
 import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SynchronizedMutableList}.
@@ -55,14 +55,14 @@ public class SynchronizedMutableListTest extends AbstractListTestCase
     public void testToString()
     {
         MutableList<Object> list = this.newWith(1, 2, 3);
-        Assert.assertEquals("[1, 2, 3]", list.toString());
+        Assertions.assertEquals("[1, 2, 3]", list.toString());
     }
 
     @Override
     @Test
     public void makeString()
     {
-        Assert.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());
+        Assertions.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());
     }
 
     @Override
@@ -71,6 +71,6 @@ public class SynchronizedMutableListTest extends AbstractListTestCase
     {
         Appendable builder = new StringBuilder();
         this.newWith(1, 2, 3).appendString(builder);
-        Assert.assertEquals("1, 2, 3", builder.toString());
+        Assertions.assertEquals("1, 2, 3", builder.toString());
     }
 }

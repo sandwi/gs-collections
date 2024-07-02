@@ -25,8 +25,10 @@ import com.gs.collections.impl.bag.mutable.HashBag;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class ObjectBooleanHashMapKeySetTestCase
 {
@@ -40,16 +42,20 @@ public abstract class ObjectBooleanHashMapKeySetTestCase
 
     public abstract MutableObjectBooleanMap<String> newEmptyMap();
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void add()
     {
-        this.newMapWithKeysValues("One", true, "Two", false, "Three", true).keySet().add("Four");
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues("One", true, "Two", false, "Three", true).keySet().add("Four");
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addAll()
     {
-        this.newMapWithKeysValues("One", true, "Two", false, "Three", true).keySet().addAll(FastList.newListWith("Four"));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newMapWithKeysValues("One", true, "Two", false, "Three", true).keySet().addAll(FastList.newListWith("Four"));
+        });
     }
 
     @Test
@@ -57,15 +63,15 @@ public abstract class ObjectBooleanHashMapKeySetTestCase
     {
         MutableObjectBooleanMap<String> map = this.newMapWithKeysValues("One", true, "Two", false, "Three", true, null, false);
         Set<String> keySet = map.keySet();
-        Assert.assertTrue(keySet.contains("One"));
-        Assert.assertTrue(keySet.contains("Two"));
-        Assert.assertTrue(keySet.contains("Three"));
-        Assert.assertFalse(keySet.contains("Four"));
-        Assert.assertTrue(keySet.contains(null));
+        Assertions.assertTrue(keySet.contains("One"));
+        Assertions.assertTrue(keySet.contains("Two"));
+        Assertions.assertTrue(keySet.contains("Three"));
+        Assertions.assertFalse(keySet.contains("Four"));
+        Assertions.assertTrue(keySet.contains(null));
         keySet.remove(null);
-        Assert.assertFalse(keySet.contains(null));
+        Assertions.assertFalse(keySet.contains(null));
         map.removeKey("One");
-        Assert.assertFalse(keySet.contains("One"));
+        Assertions.assertFalse(keySet.contains("One"));
     }
 
     @Test
@@ -73,17 +79,17 @@ public abstract class ObjectBooleanHashMapKeySetTestCase
     {
         MutableObjectBooleanMap<String> map = this.newMapWithKeysValues("One", true, "Two", false, "Three", true, null, false);
         Set<String> keySet = map.keySet();
-        Assert.assertTrue(keySet.containsAll(FastList.newListWith("One", "Two")));
-        Assert.assertTrue(keySet.containsAll(FastList.newListWith("One", "Two", "Three", null)));
-        Assert.assertTrue(keySet.containsAll(FastList.newListWith(null, null)));
-        Assert.assertFalse(keySet.containsAll(FastList.newListWith("One", "Four")));
-        Assert.assertFalse(keySet.containsAll(FastList.newListWith("Five", "Four")));
+        Assertions.assertTrue(keySet.containsAll(FastList.newListWith("One", "Two")));
+        Assertions.assertTrue(keySet.containsAll(FastList.newListWith("One", "Two", "Three", null)));
+        Assertions.assertTrue(keySet.containsAll(FastList.newListWith(null, null)));
+        Assertions.assertFalse(keySet.containsAll(FastList.newListWith("One", "Four")));
+        Assertions.assertFalse(keySet.containsAll(FastList.newListWith("Five", "Four")));
         keySet.remove(null);
-        Assert.assertFalse(keySet.containsAll(FastList.newListWith("One", "Two", "Three", null)));
-        Assert.assertTrue(keySet.containsAll(FastList.newListWith("One", "Two", "Three")));
+        Assertions.assertFalse(keySet.containsAll(FastList.newListWith("One", "Two", "Three", null)));
+        Assertions.assertTrue(keySet.containsAll(FastList.newListWith("One", "Two", "Three")));
         map.removeKey("One");
-        Assert.assertFalse(keySet.containsAll(FastList.newListWith("One", "Two")));
-        Assert.assertTrue(keySet.containsAll(FastList.newListWith("Three", "Two")));
+        Assertions.assertFalse(keySet.containsAll(FastList.newListWith("One", "Two")));
+        Assertions.assertTrue(keySet.containsAll(FastList.newListWith("Three", "Two")));
     }
 
     @Test
@@ -91,12 +97,12 @@ public abstract class ObjectBooleanHashMapKeySetTestCase
     {
         MutableObjectBooleanMap<String> map = this.newMapWithKeysValues("One", true, "Two", false, "Three", true, null, false);
         Set<String> keySet = map.keySet();
-        Assert.assertFalse(keySet.isEmpty());
+        Assertions.assertFalse(keySet.isEmpty());
         MutableObjectBooleanMap<String> map1 = this.newEmptyMap();
         Set<String> keySet1 = map1.keySet();
-        Assert.assertTrue(keySet1.isEmpty());
+        Assertions.assertTrue(keySet1.isEmpty());
         map1.put("One", true);
-        Assert.assertFalse(keySet1.isEmpty());
+        Assertions.assertFalse(keySet1.isEmpty());
     }
 
     @Test
@@ -129,17 +135,17 @@ public abstract class ObjectBooleanHashMapKeySetTestCase
         Verify.assertThrows(IllegalStateException.class, iterator::remove);
         for (int i = 0; i < 4; i++)
         {
-            Assert.assertTrue(iterator.hasNext());
+            Assertions.assertTrue(iterator.hasNext());
             actual.add(iterator.next());
         }
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasNext());
         Verify.assertThrows(NoSuchElementException.class, (Runnable) iterator::next);
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
         Iterator<String> iterator1 = keySet.iterator();
         for (int i = 4; i > 0; i--)
         {
-            Assert.assertTrue(iterator1.hasNext());
+            Assertions.assertTrue(iterator1.hasNext());
             iterator1.next();
             iterator1.remove();
             Verify.assertThrows(IllegalStateException.class, iterator1::remove);
@@ -147,7 +153,7 @@ public abstract class ObjectBooleanHashMapKeySetTestCase
             Verify.assertSize(i - 1, map);
         }
 
-        Assert.assertFalse(iterator1.hasNext());
+        Assertions.assertFalse(iterator1.hasNext());
         Verify.assertEmpty(map);
         Verify.assertEmpty(keySet);
     }
@@ -156,50 +162,50 @@ public abstract class ObjectBooleanHashMapKeySetTestCase
     public void removeFromKeySet()
     {
         MutableObjectBooleanMap<String> map = this.newMapWithKeysValues("One", true, "Two", false, "Three", true);
-        Assert.assertFalse(map.keySet().remove("Four"));
+        Assertions.assertFalse(map.keySet().remove("Four"));
 
-        Assert.assertTrue(map.keySet().remove("Two"));
-        Assert.assertEquals(this.newMapWithKeysValues("One", true, "Three", true), map);
-        Assert.assertEquals(UnifiedSet.newSetWith("One", "Three"), map.keySet());
+        Assertions.assertTrue(map.keySet().remove("Two"));
+        Assertions.assertEquals(this.newMapWithKeysValues("One", true, "Three", true), map);
+        Assertions.assertEquals(UnifiedSet.newSetWith("One", "Three"), map.keySet());
     }
 
     @Test
     public void removeNullFromKeySet()
     {
         MutableObjectBooleanMap<String> map = this.newMapWithKeysValues("One", true, "Two", false, "Three", true);
-        Assert.assertFalse(map.keySet().remove(null));
-        Assert.assertEquals(this.newMapWithKeysValues("One", true, "Two", false, "Three", true), map);
-        Assert.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
+        Assertions.assertFalse(map.keySet().remove(null));
+        Assertions.assertEquals(this.newMapWithKeysValues("One", true, "Two", false, "Three", true), map);
+        Assertions.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
 
         map.put(null, true);
-        Assert.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three", null), map.keySet());
-        Assert.assertTrue(map.keySet().remove(null));
-        Assert.assertEquals(this.newMapWithKeysValues("One", true, "Two", false, "Three", true), map);
-        Assert.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
+        Assertions.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three", null), map.keySet());
+        Assertions.assertTrue(map.keySet().remove(null));
+        Assertions.assertEquals(this.newMapWithKeysValues("One", true, "Two", false, "Three", true), map);
+        Assertions.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
     }
 
     @Test
     public void removeAllFromKeySet()
     {
         MutableObjectBooleanMap<String> map = this.newMapWithKeysValues("One", true, "Two", false, "Three", true);
-        Assert.assertFalse(map.keySet().removeAll(FastList.newListWith("Four")));
-        Assert.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
+        Assertions.assertFalse(map.keySet().removeAll(FastList.newListWith("Four")));
+        Assertions.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
 
-        Assert.assertTrue(map.keySet().removeAll(FastList.newListWith("Two", "Four")));
-        Assert.assertEquals(this.newMapWithKeysValues("One", true, "Three", true), map);
-        Assert.assertEquals(UnifiedSet.newSetWith("One", "Three"), map.keySet());
+        Assertions.assertTrue(map.keySet().removeAll(FastList.newListWith("Two", "Four")));
+        Assertions.assertEquals(this.newMapWithKeysValues("One", true, "Three", true), map);
+        Assertions.assertEquals(UnifiedSet.newSetWith("One", "Three"), map.keySet());
     }
 
     @Test
     public void retainAllFromKeySet()
     {
         MutableObjectBooleanMap<String> map = this.newMapWithKeysValues("One", true, "Two", false, "Three", true);
-        Assert.assertFalse(map.keySet().retainAll(FastList.newListWith("One", "Two", "Three", "Four")));
-        Assert.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
+        Assertions.assertFalse(map.keySet().retainAll(FastList.newListWith("One", "Two", "Three", "Four")));
+        Assertions.assertEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
 
-        Assert.assertTrue(map.keySet().retainAll(FastList.newListWith("One", "Three")));
-        Assert.assertEquals(this.newMapWithKeysValues("One", true, "Three", true), map);
-        Assert.assertEquals(UnifiedSet.newSetWith("One", "Three"), map.keySet());
+        Assertions.assertTrue(map.keySet().retainAll(FastList.newListWith("One", "Three")));
+        Assertions.assertEquals(this.newMapWithKeysValues("One", true, "Three", true), map);
+        Assertions.assertEquals(UnifiedSet.newSetWith("One", "Three"), map.keySet());
     }
 
     @Test
@@ -216,8 +222,8 @@ public abstract class ObjectBooleanHashMapKeySetTestCase
     {
         MutableObjectBooleanMap<String> map = this.newMapWithKeysValues("One", true, "Two", false, "Three", true, null, false);
         Verify.assertEqualsAndHashCode(UnifiedSet.newSetWith("One", "Two", "Three", null), map.keySet());
-        Assert.assertNotEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
-        Assert.assertNotEquals(FastList.newListWith("One", "Two", "Three", null), map.keySet());
+        Assertions.assertNotEquals(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
+        Assertions.assertNotEquals(FastList.newListWith("One", "Two", "Three", null), map.keySet());
     }
 
     @Test
@@ -226,10 +232,10 @@ public abstract class ObjectBooleanHashMapKeySetTestCase
         MutableObjectBooleanMap<String> map = this.newMapWithKeysValues("One", true, "Two", false, "Three", true);
         HashBag<String> expected = HashBag.newBagWith("One", "Two", "Three");
         Set<String> keySet = map.keySet();
-        Assert.assertEquals(expected, HashBag.newBagWith(keySet.toArray()));
-        Assert.assertEquals(expected, HashBag.newBagWith(keySet.toArray(new String[keySet.size()])));
-        Assert.assertEquals(expected, HashBag.newBagWith(keySet.toArray(new String[0])));
+        Assertions.assertEquals(expected, HashBag.newBagWith(keySet.toArray()));
+        Assertions.assertEquals(expected, HashBag.newBagWith(keySet.toArray(new String[keySet.size()])));
+        Assertions.assertEquals(expected, HashBag.newBagWith(keySet.toArray(new String[0])));
         expected.add(null);
-        Assert.assertEquals(expected, HashBag.newBagWith(keySet.toArray(new String[keySet.size() + 1])));
+        Assertions.assertEquals(expected, HashBag.newBagWith(keySet.toArray(new String[keySet.size() + 1])));
     }
 }

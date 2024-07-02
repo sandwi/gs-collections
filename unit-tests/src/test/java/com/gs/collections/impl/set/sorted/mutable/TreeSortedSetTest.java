@@ -25,8 +25,8 @@ import com.gs.collections.api.LazyIterable;
 import com.gs.collections.api.set.sorted.MutableSortedSet;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TreeSortedSetTest extends AbstractSortedSetTestCase
 {
@@ -62,7 +62,7 @@ public class TreeSortedSetTest extends AbstractSortedSetTestCase
         TreeSortedSet<Integer> sortedSetA = TreeSortedSet.newSet(Collections.<Integer>reverseOrder());
         TreeSortedSet<Integer> sortedSetB = TreeSortedSet.newSet(sortedSetA.with(1).with(2, 3).with(4, 5, 6));
         Verify.assertSortedSetsEqual(sortedSetA, sortedSetB);
-        Assert.assertTrue(sortedSetA.first().equals(sortedSetB.first()) && sortedSetB.first() == 6);
+        Assertions.assertTrue(sortedSetA.first().equals(sortedSetB.first()) && sortedSetB.first() == 6);
         Verify.assertSortedSetsEqual(sortedSetB, new TreeSortedSet<>(sortedSetB));
     }
 

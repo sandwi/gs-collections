@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MapAdapterSerializationTest
 {
@@ -26,9 +26,11 @@ public class MapAdapterSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5NYXBBZGFwdGVyAAAA\n"
-                        + "AAAAAAECAAFMAAhkZWxlZ2F0ZXQAD0xqYXZhL3V0aWwvTWFwO3hwc3IALmNvbS5ncy5jb2xsZWN0\n"
-                        + "aW9ucy5pbXBsLm1hcC5tdXRhYmxlLlVuaWZpZWRNYXAAAAAAAAAAAQwAAHhwdwgAAAAAP0AAAHg=\n",
+                """
+                rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5NYXBBZGFwdGVyAAAA
+                AAAAAAECAAFMAAhkZWxlZ2F0ZXQAD0xqYXZhL3V0aWwvTWFwO3hwc3IALmNvbS5ncy5jb2xsZWN0
+                aW9ucy5pbXBsLm1hcC5tdXRhYmxlLlVuaWZpZWRNYXAAAAAAAAAAAQwAAHhwdwgAAAAAP0AAAHg=
+                """,
                 new MapAdapter<Object, Object>(UnifiedMap.newMap()));
     }
 

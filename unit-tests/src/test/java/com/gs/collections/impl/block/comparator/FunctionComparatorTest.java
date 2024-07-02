@@ -22,8 +22,8 @@ import com.gs.collections.api.block.function.Function;
 import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.list.mutable.FastList;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class FunctionComparatorTest
 {
@@ -42,8 +42,8 @@ public class FunctionComparatorTest
                 Band.TO_NAME,
                 String::compareTo);
 
-        Assert.assertEquals(comparator.compare(ACDC, ZZTOP), ACDC.getName().compareTo(ZZTOP.getName()));
-        Assert.assertEquals(comparator.compare(ZZTOP, ACDC), ZZTOP.getName().compareTo(ACDC.getName()));
+        Assertions.assertEquals(comparator.compare(ACDC, ZZTOP), ACDC.getName().compareTo(ZZTOP.getName()));
+        Assertions.assertEquals(comparator.compare(ZZTOP, ACDC), ZZTOP.getName().compareTo(ACDC.getName()));
     }
 
     private MutableList<Band> createTestList()
@@ -56,7 +56,7 @@ public class FunctionComparatorTest
     {
         Comparator<Band> byName = (bandA, bandB) -> Band.TO_NAME.valueOf(bandA).compareTo(Band.TO_NAME.valueOf(bandB));
         MutableList<Band> sortedList = this.createTestList().sortThis(byName);
-        Assert.assertEquals(FastList.newListWith(BON_JOVI, METALLICA, SCORPIONS, VAN_HALEN), sortedList);
+        Assertions.assertEquals(FastList.newListWith(BON_JOVI, METALLICA, SCORPIONS, VAN_HALEN), sortedList);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class FunctionComparatorTest
     {
         Comparator<Band> byName = Comparators.byFunction(Band.TO_NAME, String::compareTo);
         MutableList<Band> sortedList = this.createTestList().sortThis(byName);
-        Assert.assertEquals(FastList.newListWith(BON_JOVI, METALLICA, SCORPIONS, VAN_HALEN), sortedList);
+        Assertions.assertEquals(FastList.newListWith(BON_JOVI, METALLICA, SCORPIONS, VAN_HALEN), sortedList);
     }
 
     private static final class Band
@@ -98,7 +98,7 @@ public class FunctionComparatorTest
         @Override
         public boolean equals(Object other)
         {
-            return this == other || other instanceof Band && this.name.equals(((Band) other).name);
+            return this == other || other instanceof Band b && this.name.equals(b.name);
         }
 
         @Override

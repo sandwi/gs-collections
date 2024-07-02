@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CompositeFastListSerializationTest
 {
@@ -26,10 +26,12 @@ public class CompositeFastListSerializationTest
     {
         Verify.assertSerializedForm(
                 2L,
-                "rO0ABXNyADZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuQ29tcG9zaXRlRmFz\n"
-                        + "dExpc3QAAAAAAAAAAgIAAkkABHNpemVMAAVsaXN0c3QAL0xjb20vZ3MvY29sbGVjdGlvbnMvaW1w\n"
-                        + "bC9saXN0L211dGFibGUvRmFzdExpc3Q7eHAAAAAAc3IALWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs\n"
-                        + "Lmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAAAAABDAAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyADZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuQ29tcG9zaXRlRmFz
+                dExpc3QAAAAAAAAAAgIAAkkABHNpemVMAAVsaXN0c3QAL0xjb20vZ3MvY29sbGVjdGlvbnMvaW1w
+                bC9saXN0L211dGFibGUvRmFzdExpc3Q7eHAAAAAAc3IALWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBs
+                Lmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAAAAABDAAAeHB3BAAAAAB4\
+                """,
                 new CompositeFastList<Object>());
     }
 }

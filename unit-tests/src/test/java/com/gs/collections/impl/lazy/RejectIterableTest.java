@@ -25,8 +25,8 @@ import com.gs.collections.impl.math.IntegerSum;
 import com.gs.collections.impl.math.Sum;
 import com.gs.collections.impl.math.SumProcedure;
 import com.gs.collections.impl.utility.LazyIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class RejectIterableTest extends AbstractLazyIterableTestCase
 {
@@ -42,7 +42,7 @@ public class RejectIterableTest extends AbstractLazyIterableTestCase
         InternalIterable<Integer> select = new RejectIterable<>(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEach(new SumProcedure<>(sum));
-        Assert.assertEquals(5, sum.getValue().intValue());
+        Assertions.assertEquals(5, sum.getValue().intValue());
     }
 
     @Test
@@ -54,7 +54,7 @@ public class RejectIterableTest extends AbstractLazyIterableTestCase
             sum.add(object);
             sum.add(index);
         });
-        Assert.assertEquals(6, sum.getValue().intValue());
+        Assertions.assertEquals(6, sum.getValue().intValue());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class RejectIterableTest extends AbstractLazyIterableTestCase
         {
             sum.add(each);
         }
-        Assert.assertEquals(5, sum.getValue().intValue());
+        Assertions.assertEquals(5, sum.getValue().intValue());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class RejectIterableTest extends AbstractLazyIterableTestCase
         InternalIterable<Integer> select = new RejectIterable<>(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEachWith((each, aSum) -> aSum.add(each), sum);
-        Assert.assertEquals(5, sum.getValue().intValue());
+        Assertions.assertEquals(5, sum.getValue().intValue());
     }
 
     @Override
@@ -85,7 +85,7 @@ public class RejectIterableTest extends AbstractLazyIterableTestCase
     {
         super.distinct();
         RejectIterable<Integer> iterable = new RejectIterable<>(FastList.newListWith(3, 2, 2, 4, 1, 3, 1, 5), Predicates.lessThan(2));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(3, 2, 4, 5),
                 iterable.distinct().toList());
     }

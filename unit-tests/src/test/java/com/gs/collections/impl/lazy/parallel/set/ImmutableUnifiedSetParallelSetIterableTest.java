@@ -19,7 +19,9 @@ package com.gs.collections.impl.lazy.parallel.set;
 import com.gs.collections.api.set.MutableSet;
 import com.gs.collections.api.set.ParallelUnsortedSetIterable;
 import com.gs.collections.impl.factory.Sets;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ImmutableUnifiedSetParallelSetIterableTest extends ParallelUnsortedSetIterableTestCase
 {
@@ -41,15 +43,19 @@ public class ImmutableUnifiedSetParallelSetIterableTest extends ParallelUnsorted
         return Sets.immutable.with(littleElements).toSet();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void asParallel_small_batch()
     {
-        Sets.immutable.with(1, 2, 3, 4).asParallel(this.executorService, 0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            Sets.immutable.with(1, 2, 3, 4).asParallel(this.executorService, 0);
+        });
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void asParallel_null_executorService()
     {
-        Sets.immutable.with(1, 2, 3, 4).asParallel(null, 2);
+        assertThrows(NullPointerException.class, () -> {
+            Sets.immutable.with(1, 2, 3, 4).asParallel(null, 2);
+        });
     }
 }

@@ -20,8 +20,8 @@ import com.gs.collections.api.bag.primitive.MutableCharBag;
 import com.gs.collections.api.list.primitive.ImmutableCharList;
 import com.gs.collections.impl.factory.primitive.CharBags;
 import com.gs.collections.impl.list.immutable.primitive.AbstractImmutableCharListTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CharAdapterTest extends AbstractImmutableCharListTestCase
 {
@@ -44,7 +44,7 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
     public void stringBuilder()
     {
         CharAdapter adapt = CharAdapter.adapt(UNICODE_STRING);
-        Assert.assertEquals(UNICODE_STRING, new StringBuilder(adapt).toString());
+        Assertions.assertEquals(UNICODE_STRING, new StringBuilder(adapt).toString());
     }
 
     @Test
@@ -52,10 +52,11 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
     {
         CharAdapter adapt = CharAdapter.adapt(UNICODE_STRING);
         CharSequence sequence = adapt.subSequence(1, 3);
-        Assert.assertEquals(UNICODE_STRING.subSequence(1, 3), sequence);
+        Assertions.assertEquals(UNICODE_STRING.subSequence(1, 3), sequence);
     }
 
     @Override
+    @Test
     public void toBag()
     {
         super.toBag();
@@ -63,7 +64,7 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
         expected.addOccurrences('a', 3);
         expected.addOccurrences('b', 3);
         expected.addOccurrences('c', 3);
-        Assert.assertEquals(expected, CharAdapter.adapt("aaabbbccc").toBag());
+        Assertions.assertEquals(expected, CharAdapter.adapt("aaabbbccc").toBag());
     }
 
     @Override
@@ -81,8 +82,8 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
             expectedString.append(each == size - 1 ? "" : ", ");
             expectedString1.append(each == size - 1 ? "" : "/");
         }
-        Assert.assertEquals(expectedString.toString(), list.makeString());
-        Assert.assertEquals(expectedString1.toString(), list.makeString("/"));
+        Assertions.assertEquals(expectedString.toString(), list.makeString());
+        Assertions.assertEquals(expectedString1.toString(), list.makeString("/"));
     }
 
     @Override
@@ -102,10 +103,10 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
         ImmutableCharList list = this.classUnderTest();
         StringBuilder appendable2 = new StringBuilder();
         list.appendString(appendable2);
-        Assert.assertEquals(expectedString.toString(), appendable2.toString());
+        Assertions.assertEquals(expectedString.toString(), appendable2.toString());
         StringBuilder appendable3 = new StringBuilder();
         list.appendString(appendable3, "/");
-        Assert.assertEquals(expectedString1.toString(), appendable3.toString());
+        Assertions.assertEquals(expectedString1.toString(), appendable3.toString());
     }
 
     @Override
@@ -118,6 +119,6 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
         {
             expectedString.append((char) (each + (char) 1));
         }
-        Assert.assertEquals(expectedString.toString(), this.classUnderTest().toString());
+        Assertions.assertEquals(expectedString.toString(), this.classUnderTest().toString());
     }
 }

@@ -18,7 +18,7 @@ package com.gs.collections.impl.bag.sorted.mutable;
 
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @since 4.2
@@ -30,12 +30,14 @@ public class TreeBagSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuc29ydGVkLm11dGFibGUuVHJlZUJh\n"
-                        + "ZwAAAAAAAAABDAAAeHBzcgBDY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5D\n"
-                        + "b21wYXJhdG9ycyRSZXZlcnNlQ29tcGFyYXRvcgAAAAAAAAABAgABTAAKY29tcGFyYXRvcnQAFkxq\n"
-                        + "YXZhL3V0aWwvQ29tcGFyYXRvcjt4cHNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5m\n"
-                        + "YWN0b3J5LkNvbXBhcmF0b3JzJE5hdHVyYWxPcmRlckNvbXBhcmF0b3IAAAAAAAAAAQIAAHhwdwQA\n"
-                        + "AAAAeA==",
+                """
+                rO0ABXNyADJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuc29ydGVkLm11dGFibGUuVHJlZUJh
+                ZwAAAAAAAAABDAAAeHBzcgBDY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5D
+                b21wYXJhdG9ycyRSZXZlcnNlQ29tcGFyYXRvcgAAAAAAAAABAgABTAAKY29tcGFyYXRvcnQAFkxq
+                YXZhL3V0aWwvQ29tcGFyYXRvcjt4cHNyAEhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5m
+                YWN0b3J5LkNvbXBhcmF0b3JzJE5hdHVyYWxPcmRlckNvbXBhcmF0b3IAAAAAAAAAAQIAAHhwdwQA
+                AAAAeA==\
+                """,
                 TreeBag.newBag(Comparators.reverseNaturalOrder()));
     }
 }

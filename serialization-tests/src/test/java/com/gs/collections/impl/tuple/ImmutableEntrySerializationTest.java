@@ -17,7 +17,7 @@
 package com.gs.collections.impl.tuple;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableEntrySerializationTest
 {
@@ -26,10 +26,12 @@ public class ImmutableEntrySerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyACxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC50dXBsZS5JbW11dGFibGVFbnRyeQAAAAAA\n"
-                        + "AAABAgAAeHIANGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLnR1cGxlLkFic3RyYWN0SW1tdXRhYmxl\n"
-                        + "RW50cnkAAAAAAAAAAQIAAkwAA2tleXQAEkxqYXZhL2xhbmcvT2JqZWN0O0wABXZhbHVlcQB+AAJ4\n"
-                        + "cHBw",
+                """
+                rO0ABXNyACxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC50dXBsZS5JbW11dGFibGVFbnRyeQAAAAAA
+                AAABAgAAeHIANGNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLnR1cGxlLkFic3RyYWN0SW1tdXRhYmxl
+                RW50cnkAAAAAAAAAAQIAAkwAA2tleXQAEkxqYXZhL2xhbmcvT2JqZWN0O0wABXZhbHVlcQB+AAJ4
+                cHBw\
+                """,
                 new ImmutableEntry<Object, Object>(null, null));
     }
 }

@@ -16,8 +16,8 @@
 
 package com.gs.collections.impl.block.procedure;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CollectIfProcedureTest
 {
@@ -30,7 +30,7 @@ public class CollectIfProcedureTest
         CollectIfProcedure<Integer, String> underTestFalse = new CollectIfProcedure<>(10, String::valueOf, ignored -> false);
         underTestTrue.value(THE_ANSWER);
         underTestFalse.value(THE_ANSWER);
-        Assert.assertTrue(underTestTrue.getCollection().contains("42"));
-        Assert.assertFalse(underTestFalse.getCollection().contains("42"));
+        Assertions.assertTrue(underTestTrue.getCollection().contains("42"));
+        Assertions.assertFalse(underTestFalse.getCollection().contains("42"));
     }
 }

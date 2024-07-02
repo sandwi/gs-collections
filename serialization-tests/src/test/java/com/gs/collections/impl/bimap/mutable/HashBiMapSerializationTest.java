@@ -17,7 +17,7 @@
 package com.gs.collections.impl.bimap.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class HashBiMapSerializationTest
 {
@@ -26,10 +26,12 @@ public class HashBiMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAC9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iaW1hcC5tdXRhYmxlLkhhc2hCaU1hcAAA\n"
-                        + "AAAAAAABDAAAeHB3CAAAAAE/QAAAc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2\n"
-                        + "YWx1ZXhyABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4cAAAAAFzcgATamF2YS5sYW5nLkNo\n"
-                        + "YXJhY3RlcjSLR9lrGiZ4AgABQwAFdmFsdWV4cABheA==",
+                """
+                rO0ABXNyAC9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iaW1hcC5tdXRhYmxlLkhhc2hCaU1hcAAA
+                AAAAAAABDAAAeHB3CAAAAAE/QAAAc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2
+                YWx1ZXhyABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4cAAAAAFzcgATamF2YS5sYW5nLkNo
+                YXJhY3RlcjSLR9lrGiZ4AgABQwAFdmFsdWV4cABheA==\
+                """,
                 HashBiMap.newWithKeysValues(1, 'a'));
     }
 
@@ -38,10 +40,12 @@ public class HashBiMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iaW1hcC5tdXRhYmxlLkFic3RyYWN0TXV0\n"
-                        + "YWJsZUJpTWFwJEludmVyc2UAAAAAAAAAAQwAAHhwdwgAAAABP0AAAHNyABNqYXZhLmxhbmcuQ2hh\n"
-                        + "cmFjdGVyNItH2WsaJngCAAFDAAV2YWx1ZXhwAGFzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GH\n"
-                        + "OAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXg=",
+                """
+                rO0ABXNyAEJjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iaW1hcC5tdXRhYmxlLkFic3RyYWN0TXV0
+                YWJsZUJpTWFwJEludmVyc2UAAAAAAAAAAQwAAHhwdwgAAAABP0AAAHNyABNqYXZhLmxhbmcuQ2hh
+                cmFjdGVyNItH2WsaJngCAAFDAAV2YWx1ZXhwAGFzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GH
+                OAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXg=\
+                """,
                 HashBiMap.newWithKeysValues(1, 'a').inverse());
     }
 }

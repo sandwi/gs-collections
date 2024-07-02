@@ -17,7 +17,7 @@
 package com.gs.collections.impl.tuple;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TuplesSerializationTest
 {
@@ -26,8 +26,10 @@ public class TuplesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyACZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC50dXBsZS5QYWlySW1wbAAAAAAAAAABAgAC\n"
-                        + "TAADb25ldAASTGphdmEvbGFuZy9PYmplY3Q7TAADdHdvcQB+AAF4cHBw",
+                """
+                rO0ABXNyACZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC50dXBsZS5QYWlySW1wbAAAAAAAAAABAgAC
+                TAADb25ldAASTGphdmEvbGFuZy9PYmplY3Q7TAADdHdvcQB+AAF4cHBw\
+                """,
                 Tuples.pair(null, null));
     }
 
@@ -36,9 +38,11 @@ public class TuplesSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyACZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC50dXBsZS5Ud2luSW1wbAAAAAAAAAABAgAA\n"
-                        + "eHIAJmNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLnR1cGxlLlBhaXJJbXBsAAAAAAAAAAECAAJMAANv\n"
-                        + "bmV0ABJMamF2YS9sYW5nL09iamVjdDtMAAN0d29xAH4AAnhwcHA=",
+                """
+                rO0ABXNyACZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC50dXBsZS5Ud2luSW1wbAAAAAAAAAABAgAA
+                eHIAJmNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLnR1cGxlLlBhaXJJbXBsAAAAAAAAAAECAAJMAANv
+                bmV0ABJMamF2YS9sYW5nL09iamVjdDtMAAN0d29xAH4AAnhwcHA=\
+                """,
                 Tuples.twin(null, null));
     }
 }

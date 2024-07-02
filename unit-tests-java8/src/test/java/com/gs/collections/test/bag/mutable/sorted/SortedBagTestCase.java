@@ -28,7 +28,7 @@ import com.gs.collections.test.domain.A;
 import com.gs.collections.test.domain.B;
 import com.gs.collections.test.domain.C;
 import com.gs.collections.test.list.TransformsToListTrait;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
 

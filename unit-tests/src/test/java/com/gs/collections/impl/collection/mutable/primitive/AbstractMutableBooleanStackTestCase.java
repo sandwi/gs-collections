@@ -25,8 +25,10 @@ import com.gs.collections.impl.stack.mutable.primitive.SynchronizedBooleanStack;
 import com.gs.collections.impl.stack.mutable.primitive.UnmodifiableBooleanStack;
 import com.gs.collections.impl.stack.primitive.AbstractBooleanStackTestCase;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Abstract JUnit test for {@link MutableBooleanStack}.
@@ -50,12 +52,13 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
     protected abstract MutableBooleanStack newWithIterable(BooleanIterable iterable);
 
     @Override
+    @Test
     public void peekAtIndex()
     {
         super.peekAtIndex();
         MutableBooleanStack stack = this.classUnderTest();
         stack.pop(2);
-        Assert.assertEquals((this.classUnderTest().size() & 1) != 0, stack.peekAt(0));
+        Assertions.assertEquals((this.classUnderTest().size() & 1) != 0, stack.peekAt(0));
     }
 
     @Override
@@ -67,7 +70,7 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
         int size = this.classUnderTest().size();
         for (int i = 0; i < size; i++)
         {
-            Assert.assertEquals((i & 1) != 0, stack.peek());
+            Assertions.assertEquals((i & 1) != 0, stack.peek());
             stack.pop();
         }
     }
@@ -76,53 +79,55 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
     public void peekWithCount()
     {
         MutableBooleanStack stack = this.classUnderTest();
-        Assert.assertEquals(BooleanArrayList.newListWith(false, true), stack.peek(2));
+        Assertions.assertEquals(BooleanArrayList.newListWith(false, true), stack.peek(2));
         stack.pop(2);
-        Assert.assertEquals(BooleanArrayList.newListWith(false), stack.peek(1));
+        Assertions.assertEquals(BooleanArrayList.newListWith(false), stack.peek(1));
     }
 
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void peek_empty_stack_throws_exception()
     {
-        this.newWith().peek();
+        assertThrows(EmptyStackException.class, () -> {
+            this.newWith().peek();
+        });
     }
 
     @Test
     public void testNewStackWithOrder()
     {
         MutableBooleanStack stack = this.newWith(true, false, true, true);
-        Assert.assertTrue(stack.pop());
-        Assert.assertTrue(stack.pop());
-        Assert.assertFalse(stack.pop());
-        Assert.assertTrue(stack.pop());
+        Assertions.assertTrue(stack.pop());
+        Assertions.assertTrue(stack.pop());
+        Assertions.assertFalse(stack.pop());
+        Assertions.assertTrue(stack.pop());
     }
 
     @Test
     public void testNewStackIterableOrder()
     {
         MutableBooleanStack stack = this.newWithIterable(BooleanArrayList.newListWith(true, false, true, true));
-        Assert.assertTrue(stack.pop());
-        Assert.assertTrue(stack.pop());
-        Assert.assertFalse(stack.pop());
-        Assert.assertTrue(stack.pop());
+        Assertions.assertTrue(stack.pop());
+        Assertions.assertTrue(stack.pop());
+        Assertions.assertFalse(stack.pop());
+        Assertions.assertTrue(stack.pop());
     }
 
     @Test
     public void testNewStackFromTopToBottomOrder()
     {
         MutableBooleanStack stack = this.newWithTopToBottom(false, true, true);
-        Assert.assertFalse(stack.pop());
-        Assert.assertTrue(stack.pop());
-        Assert.assertTrue(stack.pop());
+        Assertions.assertFalse(stack.pop());
+        Assertions.assertTrue(stack.pop());
+        Assertions.assertTrue(stack.pop());
     }
 
     @Test
     public void testNewStackFromTopToBottomIterableOrder()
     {
         MutableBooleanStack stack = this.newWithIterableTopToBottom(BooleanArrayList.newListWith(false, true, true));
-        Assert.assertFalse(stack.pop());
-        Assert.assertTrue(stack.pop());
-        Assert.assertTrue(stack.pop());
+        Assertions.assertFalse(stack.pop());
+        Assertions.assertTrue(stack.pop());
+        Assertions.assertTrue(stack.pop());
     }
 
     @Test
@@ -134,7 +139,7 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
         Verify.assertSize(size + 1, stack);
         stack.pop();
         Verify.assertSize(size, stack);
-        Assert.assertEquals(BooleanArrayList.newListWith(false, true), stack.peek(2));
+        Assertions.assertEquals(BooleanArrayList.newListWith(false, true), stack.peek(2));
     }
 
     @Test
@@ -144,7 +149,7 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
         int size = stack.size();
         for (int i = 0; i < size; i++)
         {
-            Assert.assertEquals((i & 1) != 0, stack.pop());
+            Assertions.assertEquals((i & 1) != 0, stack.pop());
             Verify.assertSize(size - i - 1, stack);
         }
     }
@@ -154,7 +159,7 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
     {
         MutableBooleanStack stack = this.classUnderTest();
         int size = this.classUnderTest().size();
-        Assert.assertEquals(BooleanArrayList.newListWith((size & 1) != 0, (size & 1) == 0), stack.pop(2));
+        Assertions.assertEquals(BooleanArrayList.newListWith((size & 1) != 0, (size & 1) == 0), stack.pop(2));
         Verify.assertSize(size - 2, stack);
     }
 
@@ -170,35 +175,41 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
         Verify.assertSize(0, stack1);
     }
 
-    @Test(expected = EmptyStackException.class)
+    @Test
     public void pop_empty_stack_throws_exception()
     {
-        this.newWith().pop();
+        assertThrows(EmptyStackException.class, () -> {
+            this.newWith().pop();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void pop_with_negative_count_throws_exception()
     {
-        this.newWith(true).pop(-1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newWith(true).pop(-1);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void pop_with_count_greater_than_stack_size_throws_exception()
     {
-        this.newWith(false).pop(2);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newWith(false).pop(2);
+        });
     }
 
     @Test
     public void asSynchronized()
     {
         Verify.assertInstanceOf(SynchronizedBooleanStack.class, this.classUnderTest().asSynchronized());
-        Assert.assertEquals(this.classUnderTest(), this.classUnderTest().asSynchronized());
+        Assertions.assertEquals(this.classUnderTest(), this.classUnderTest().asSynchronized());
     }
 
     @Test
     public void asUnmodifiable()
     {
         Verify.assertInstanceOf(UnmodifiableBooleanStack.class, this.classUnderTest().asUnmodifiable());
-        Assert.assertEquals(this.classUnderTest(), this.classUnderTest().asUnmodifiable());
+        Assertions.assertEquals(this.classUnderTest(), this.classUnderTest().asUnmodifiable());
     }
 }

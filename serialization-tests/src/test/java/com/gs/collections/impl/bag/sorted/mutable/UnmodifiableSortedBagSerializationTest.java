@@ -18,7 +18,7 @@ package com.gs.collections.impl.bag.sorted.mutable;
 
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @since 4.2
@@ -29,13 +29,15 @@ public class UnmodifiableSortedBagSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp\n"
-                        + "ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgAyY29tLmdz\n"
-                        + "LmNvbGxlY3Rpb25zLmltcGwuYmFnLnNvcnRlZC5tdXRhYmxlLlRyZWVCYWcAAAAAAAAAAQwAAHhw\n"
-                        + "c3IAQ2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkUmV2\n"
-                        + "ZXJzZUNvbXBhcmF0b3IAAAAAAAAAAQIAAUwACmNvbXBhcmF0b3J0ABZMamF2YS91dGlsL0NvbXBh\n"
-                        + "cmF0b3I7eHBzcgBIY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Db21wYXJh\n"
-                        + "dG9ycyROYXR1cmFsT3JkZXJDb21wYXJhdG9yAAAAAAAAAAECAAB4cHcEAAAAAHh4",
-                UnmodifiableSortedBag.of(TreeBag.newBag(Comparators.reverseNaturalOrder())));
+                UnmodifiableSortedBag.of(TreeBag.newBag(Comparators.reverseNaturalOrder())),
+                """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5jb2xsZWN0aW9uLm11dGFibGUuVW5tb2Rp
+                ZmlhYmxlQ29sbGVjdGlvblNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBzcgAyY29tLmdz
+                LmNvbGxlY3Rpb25zLmltcGwuYmFnLnNvcnRlZC5tdXRhYmxlLlRyZWVCYWcAAAAAAAAAAQwAAHhw
+                c3IAQ2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkUmV2
+                ZXJzZUNvbXBhcmF0b3IAAAAAAAAAAQIAAUwACmNvbXBhcmF0b3J0ABZMamF2YS91dGlsL0NvbXBh
+                cmF0b3I7eHBzcgBIY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Db21wYXJh
+                dG9ycyROYXR1cmFsT3JkZXJDb21wYXJhdG9yAAAAAAAAAAECAAB4cHcEAAAAAHh4\
+                """);
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableNonupletonListSerializationTest
 {
@@ -25,14 +25,16 @@ public class ImmutableNonupletonListSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVO\n"
-                        + "b251cGxldG9uTGlzdAAAAAAAAAABAgAJTAAIZWxlbWVudDF0ABJMamF2YS9sYW5nL09iamVjdDtM\n"
-                        + "AAhlbGVtZW50MnEAfgABTAAIZWxlbWVudDNxAH4AAUwACGVsZW1lbnQ0cQB+AAFMAAhlbGVtZW50\n"
-                        + "NXEAfgABTAAIZWxlbWVudDZxAH4AAUwACGVsZW1lbnQ3cQB+AAFMAAhlbGVtZW50OHEAfgABTAAI\n"
-                        + "ZWxlbWVudDlxAH4AAXhwc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhy\n"
-                        + "ABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4cAAAAAFzcQB+AAMAAAACc3EAfgADAAAAA3Nx\n"
-                        + "AH4AAwAAAARzcQB+AAMAAAAFc3EAfgADAAAABnNxAH4AAwAAAAdzcQB+AAMAAAAIc3EAfgADAAAA\n"
-                        + "CQ==",
-                new ImmutableNonupletonList<Integer>(1, 2, 3, 4, 5, 6, 7, 8, 9));
+                new ImmutableNonupletonList<Integer>(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                """
+                rO0ABXNyAD5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVO
+                b251cGxldG9uTGlzdAAAAAAAAAABAgAJTAAIZWxlbWVudDF0ABJMamF2YS9sYW5nL09iamVjdDtM
+                AAhlbGVtZW50MnEAfgABTAAIZWxlbWVudDNxAH4AAUwACGVsZW1lbnQ0cQB+AAFMAAhlbGVtZW50
+                NXEAfgABTAAIZWxlbWVudDZxAH4AAUwACGVsZW1lbnQ3cQB+AAFMAAhlbGVtZW50OHEAfgABTAAI
+                ZWxlbWVudDlxAH4AAXhwc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhy
+                ABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4cAAAAAFzcQB+AAMAAAACc3EAfgADAAAAA3Nx
+                AH4AAwAAAARzcQB+AAMAAAAFc3EAfgADAAAABnNxAH4AAwAAAAdzcQB+AAMAAAAIc3EAfgADAAAA
+                CQ==\
+                """);
     }
 }

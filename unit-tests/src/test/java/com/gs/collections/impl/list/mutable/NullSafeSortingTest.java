@@ -26,7 +26,7 @@ import java.util.RandomAccess;
 import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.utility.ArrayIterate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class NullSafeSortingTest
 {

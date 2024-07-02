@@ -20,7 +20,7 @@ import com.gs.collections.api.set.MutableSet;
 import com.gs.collections.test.collection.mutable.MutableCollectionUniqueTestCase;
 import com.gs.collections.test.set.SetTestCase;
 import com.gs.collections.test.set.UnsortedSetIterableTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public interface MutableSetTestCase extends SetTestCase, UnsortedSetIterableTestCase, MutableCollectionUniqueTestCase
 {

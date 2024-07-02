@@ -25,8 +25,8 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.set.sorted.mutable.TreeSortedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SortedSetsTest
 {
@@ -34,15 +34,15 @@ public class SortedSetsTest
     public void immutables()
     {
         ImmutableSortedSetFactory factory = SortedSets.immutable;
-        Assert.assertEquals(UnifiedSet.newSet(), factory.of());
+        Assertions.assertEquals(UnifiedSet.newSet(), factory.of());
         Verify.assertInstanceOf(ImmutableSortedSet.class, factory.of());
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2), factory.of(1, 2, 2));
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2), factory.of(1, 2, 2));
         Verify.assertInstanceOf(ImmutableSortedSet.class, factory.of(1, 2));
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4), factory.of(1, 2, 3, 4));
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4), factory.of(1, 2, 3, 4));
         Verify.assertInstanceOf(ImmutableSortedSet.class, factory.of(1, 2, 3, 4));
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4, 5, 6), factory.of(1, 2, 3, 4, 5, 6));
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4, 5, 6), factory.of(1, 2, 3, 4, 5, 6));
         Verify.assertInstanceOf(ImmutableSortedSet.class, factory.of(1, 2, 3, 4, 5, 6));
-        Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4, 5, 6, 7, 8), factory.of(1, 2, 3, 4, 5, 6, 7, 8));
+        Assertions.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4, 5, 6, 7, 8), factory.of(1, 2, 3, 4, 5, 6, 7, 8));
         Verify.assertInstanceOf(ImmutableSortedSet.class, factory.of(1, 2, 3, 4, 5, 6, 7, 8));
     }
 
@@ -50,21 +50,21 @@ public class SortedSetsTest
     public void mutables()
     {
         MutableSortedSetFactory factory = SortedSets.mutable;
-        Assert.assertEquals(TreeSortedSet.newSet(), factory.of());
+        Assertions.assertEquals(TreeSortedSet.newSet(), factory.of());
         Verify.assertInstanceOf(MutableSortedSet.class, factory.of());
-        Assert.assertEquals(TreeSortedSet.newSetWith(1, 2), factory.of(1, 2, 2));
+        Assertions.assertEquals(TreeSortedSet.newSetWith(1, 2), factory.of(1, 2, 2));
         Verify.assertInstanceOf(MutableSortedSet.class, factory.of(1, 2));
-        Assert.assertEquals(TreeSortedSet.newSetWith(1, 2, 3, 4), factory.of(1, 2, 3, 4));
+        Assertions.assertEquals(TreeSortedSet.newSetWith(1, 2, 3, 4), factory.of(1, 2, 3, 4));
         Verify.assertInstanceOf(MutableSortedSet.class, factory.of(1, 2, 3, 4));
-        Assert.assertEquals(TreeSortedSet.newSetWith(1, 2, 3, 4, 5, 6), factory.of(1, 2, 3, 4, 5, 6));
+        Assertions.assertEquals(TreeSortedSet.newSetWith(1, 2, 3, 4, 5, 6), factory.of(1, 2, 3, 4, 5, 6));
         Verify.assertInstanceOf(MutableSortedSet.class, factory.of(1, 2, 3, 4, 5, 6));
-        Assert.assertEquals(TreeSortedSet.newSetWith(1, 2, 3, 4, 5, 6, 7, 8), factory.of(1, 2, 3, 4, 5, 6, 7, 8));
+        Assertions.assertEquals(TreeSortedSet.newSetWith(1, 2, 3, 4, 5, 6, 7, 8), factory.of(1, 2, 3, 4, 5, 6, 7, 8));
         Verify.assertInstanceOf(MutableSortedSet.class, factory.of(1, 2, 3, 4, 5, 6, 7, 8));
-        Assert.assertEquals(TreeSortedSet.newSetWith(1, 2, 3, 4, 5, 6, 7, 8), factory.ofAll(FastList.newListWith(1, 2, 3, 4, 5, 6, 7, 8)));
+        Assertions.assertEquals(TreeSortedSet.newSetWith(1, 2, 3, 4, 5, 6, 7, 8), factory.ofAll(FastList.newListWith(1, 2, 3, 4, 5, 6, 7, 8)));
         Verify.assertInstanceOf(MutableSortedSet.class, factory.ofAll(FastList.newListWith(1, 2, 3, 4, 5, 6, 7, 8)));
-        Assert.assertEquals(TreeSortedSet.newSet(Comparators.naturalOrder()), factory.of(Comparators.naturalOrder()));
+        Assertions.assertEquals(TreeSortedSet.newSet(Comparators.naturalOrder()), factory.of(Comparators.naturalOrder()));
         Verify.assertInstanceOf(MutableSortedSet.class, factory.of(Comparators.naturalOrder()));
-        Assert.assertEquals(TreeSortedSet.newSetWith(8, 7, 6, 5, 4, 3, 2, 1), factory.ofAll(Comparators.reverseNaturalOrder(), FastList.newListWith(1, 2, 3, 4, 5, 6, 7, 8)));
+        Assertions.assertEquals(TreeSortedSet.newSetWith(8, 7, 6, 5, 4, 3, 2, 1), factory.ofAll(Comparators.reverseNaturalOrder(), FastList.newListWith(1, 2, 3, 4, 5, 6, 7, 8)));
         Verify.assertInstanceOf(MutableSortedSet.class, factory.ofAll(Comparators.reverseNaturalOrder(), FastList.newListWith(1, 2, 3, 4, 5, 6, 7, 8)));
     }
 

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.stack.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableArrayStackSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableArrayStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUuSW1tdXRhYmxl\n"
-                        + "QXJyYXlTdGFjayRJbW11dGFibGVTdGFja1NlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3\n"
-                        + "BAAAAAB4",
+                """
+                rO0ABXNyAFxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUuSW1tdXRhYmxl
+                QXJyYXlTdGFjayRJbW11dGFibGVTdGFja1NlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3
+                BAAAAAB4\
+                """,
                 ImmutableArrayStack.newStack());
     }
 
@@ -37,9 +39,11 @@ public class ImmutableArrayStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUuSW1tdXRhYmxl\n"
-                        + "QXJyYXlTdGFjayRJbW11dGFibGVTdGFja1NlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3\n"
-                        + "BAAAAAFweA==",
+                """
+                rO0ABXNyAFxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUuSW1tdXRhYmxl
+                QXJyYXlTdGFjayRJbW11dGFibGVTdGFja1NlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3
+                BAAAAAFweA==\
+                """,
                 ImmutableArrayStack.newStackWith((Object) null));
     }
 
@@ -48,9 +52,11 @@ public class ImmutableArrayStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUuSW1tdXRhYmxl\n"
-                        + "QXJyYXlTdGFjayRJbW11dGFibGVTdGFja1NlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3\n"
-                        + "BAAAAAVwcHBwcHg=",
+                """
+                rO0ABXNyAFxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUuSW1tdXRhYmxl
+                QXJyYXlTdGFjayRJbW11dGFibGVTdGFja1NlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3
+                BAAAAAVwcHBwcHg=\
+                """,
                 ImmutableArrayStack.newStackWith(null, null, null, null, null));
     }
 }

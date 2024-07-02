@@ -20,8 +20,8 @@ import com.gs.collections.api.stack.primitive.ImmutableBooleanStack;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.stack.mutable.primitive.BooleanArrayStack;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ImmutableBooleanSingletonStack}.
@@ -42,8 +42,8 @@ public class ImmutableBooleanSingletonStackTest extends AbstractImmutableBoolean
         ImmutableBooleanStack modified = stack.pop();
         Verify.assertEmpty(modified);
         Verify.assertSize(1, stack);
-        Assert.assertNotSame(modified, stack);
-        Assert.assertEquals(this.classUnderTest(), stack);
+        Assertions.assertNotSame(modified, stack);
+        Assertions.assertEquals(this.classUnderTest(), stack);
     }
 
     @Override
@@ -52,22 +52,22 @@ public class ImmutableBooleanSingletonStackTest extends AbstractImmutableBoolean
     {
         ImmutableBooleanStack stack = this.classUnderTest();
         ImmutableBooleanStack stack1 = stack.pop(0);
-        Assert.assertSame(stack1, stack);
-        Assert.assertEquals(this.classUnderTest(), stack);
+        Assertions.assertSame(stack1, stack);
+        Assertions.assertEquals(this.classUnderTest(), stack);
         ImmutableBooleanStack modified = stack.pop(1);
         Verify.assertEmpty(modified);
         Verify.assertSize(1, stack);
-        Assert.assertNotSame(modified, stack);
-        Assert.assertEquals(this.classUnderTest(), stack);
+        Assertions.assertNotSame(modified, stack);
+        Assertions.assertEquals(this.classUnderTest(), stack);
     }
 
     @Override
     @Test
     public void peek()
     {
-        Assert.assertTrue(this.classUnderTest().peek());
-        Assert.assertEquals(BooleanArrayList.newListWith(), this.classUnderTest().peek(0));
-        Assert.assertEquals(BooleanArrayList.newListWith(true), this.classUnderTest().peek(1));
+        Assertions.assertTrue(this.classUnderTest().peek());
+        Assertions.assertEquals(BooleanArrayList.newListWith(), this.classUnderTest().peek(0));
+        Assertions.assertEquals(BooleanArrayList.newListWith(true), this.classUnderTest().peek(1));
         Verify.assertThrows(IllegalArgumentException.class, () -> this.classUnderTest().peek(2));
     }
 
@@ -76,12 +76,12 @@ public class ImmutableBooleanSingletonStackTest extends AbstractImmutableBoolean
     public void testEquals()
     {
         ImmutableBooleanStack stack = this.classUnderTest();
-        Assert.assertEquals(stack, stack);
+        Assertions.assertEquals(stack, stack);
         Verify.assertPostSerializedEqualsAndHashCode(stack);
-        Assert.assertEquals(stack, BooleanArrayStack.newStackWith(true));
-        Assert.assertNotEquals(stack, this.newWith(true, false));
-        Assert.assertNotEquals(stack, BooleanArrayList.newListWith(true));
-        Assert.assertEquals(stack, this.newWith(true));
-        Assert.assertNotEquals(stack, this.newWith());
+        Assertions.assertEquals(stack, BooleanArrayStack.newStackWith(true));
+        Assertions.assertNotEquals(stack, this.newWith(true, false));
+        Assertions.assertNotEquals(stack, BooleanArrayList.newListWith(true));
+        Assertions.assertEquals(stack, this.newWith(true));
+        Assertions.assertNotEquals(stack, this.newWith());
     }
 }

@@ -46,9 +46,8 @@ public final class ImmutableEntryWithHashingStrategy<K, V> extends AbstractImmut
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Entry)
+        if (object instanceof Entry that)
         {
-            Entry<?, ?> that = (Entry<?, ?>) object;
             return this.hashingStrategy.equals(this.key, (K) that.getKey())
                     && Comparators.nullSafeEquals(this.value, that.getValue());
         }

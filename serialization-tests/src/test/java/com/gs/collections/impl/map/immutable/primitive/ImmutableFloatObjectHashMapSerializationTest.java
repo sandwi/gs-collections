@@ -18,7 +18,7 @@ package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.map.mutable.primitive.FloatObjectHashMap;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableFloatObjectHashMapSerializationTest
 {
@@ -27,9 +27,11 @@ public class ImmutableFloatObjectHashMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAHljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5B\n"
-                        + "YnN0cmFjdEltbXV0YWJsZUZsb2F0T2JqZWN0TWFwJEltbXV0YWJsZUZsb2F0T2JqZWN0TWFwU2Vy\n"
-                        + "aWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcIAAAAAj+AAAB0AAExdwRAAAAAdAABMng=",
+                """
+                rO0ABXNyAHljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5B
+                YnN0cmFjdEltbXV0YWJsZUZsb2F0T2JqZWN0TWFwJEltbXV0YWJsZUZsb2F0T2JqZWN0TWFwU2Vy
+                aWFsaXphdGlvblByb3h5AAAAAAAAAAEMAAB4cHcIAAAAAj+AAAB0AAExdwRAAAAAdAABMng=\
+                """,
                 new ImmutableFloatObjectHashMap<String>(FloatObjectHashMap.newWithKeysValues(1.0f, "1", 2.0f, "2")));
     }
 }

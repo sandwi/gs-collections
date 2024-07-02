@@ -20,8 +20,10 @@ import com.gs.collections.api.iterator.MutableBooleanIterator;
 import com.gs.collections.api.stack.primitive.MutableBooleanStack;
 import com.gs.collections.impl.stack.primitive.AbstractBooleanStackTestCase;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link UnmodifiableBooleanStack}.
@@ -52,38 +54,46 @@ public class UnmodifiableBooleanStackTest extends AbstractBooleanStackTestCase
         return new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(elements));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void push()
     {
-        MutableBooleanStack stack = new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(true, true, false, true, false));
-        stack.push(true);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            MutableBooleanStack stack = new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(true, true, false, true, false));
+            stack.push(true);
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void pop()
     {
-        MutableBooleanStack stack = new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(true, true, false, true, false));
-        stack.pop();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            MutableBooleanStack stack = new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(true, true, false, true, false));
+            stack.pop();
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void popWithCount()
     {
-        MutableBooleanStack stack = new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(true, true, false, true, false));
-        stack.pop(2);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            MutableBooleanStack stack = new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(true, true, false, true, false));
+            stack.pop(2);
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void clear()
     {
-        this.classUnderTest().clear();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.classUnderTest().clear();
+        });
     }
 
     @Test
     public void asUnmodifiable()
     {
         MutableBooleanStack stack1 = new UnmodifiableBooleanStack(BooleanArrayStack.newStackWith(true, false, true));
-        Assert.assertSame(stack1, stack1.asUnmodifiable());
+        Assertions.assertSame(stack1, stack1.asUnmodifiable());
     }
 
     @Test
@@ -97,7 +107,7 @@ public class UnmodifiableBooleanStackTest extends AbstractBooleanStackTestCase
     public void booleanIterator_with_remove()
     {
         MutableBooleanIterator booleanIterator = (MutableBooleanIterator) this.classUnderTest().booleanIterator();
-        Assert.assertTrue(booleanIterator.hasNext());
+        Assertions.assertTrue(booleanIterator.hasNext());
         booleanIterator.next();
         Verify.assertThrows(UnsupportedOperationException.class, booleanIterator::remove);
     }
@@ -106,7 +116,7 @@ public class UnmodifiableBooleanStackTest extends AbstractBooleanStackTestCase
     public void iterator_throws_on_invocation_of_remove_before_next()
     {
         MutableBooleanIterator booleanIterator = (MutableBooleanIterator) this.classUnderTest().booleanIterator();
-        Assert.assertTrue(booleanIterator.hasNext());
+        Assertions.assertTrue(booleanIterator.hasNext());
         Verify.assertThrows(UnsupportedOperationException.class, booleanIterator::remove);
     }
 }

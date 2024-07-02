@@ -38,8 +38,8 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.list.mutable.SynchronizedMutableList;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SingletonList}.
@@ -82,8 +82,8 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void contains()
     {
-        Assert.assertTrue(this.list.contains("1"));
-        Assert.assertFalse(this.list.contains("2"));
+        Assertions.assertTrue(this.list.contains("1"));
+        Assertions.assertFalse(this.list.contains("2"));
     }
 
     @Test
@@ -109,14 +109,14 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<String> newList = FastList.newList(this.list);
         newList.add("2");
-        Verify.assertItemAtIndex("1", 0, newList);
-        Verify.assertItemAtIndex("2", 1, newList);
+        Verify.assertItemAtIndex(0, newList, "1");
+        Verify.assertItemAtIndex(1, newList, "2");
     }
 
     @Test
     public void get()
     {
-        Verify.assertItemAtIndex("1", 0, this.list);
+        Verify.assertItemAtIndex(0, this.list, "1");
         Verify.assertThrows(IndexOutOfBoundsException.class, () -> this.list.get(1));
         Verify.assertThrows(IndexOutOfBoundsException.class, () -> this.list.get(-1));
     }
@@ -126,8 +126,8 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<Integer> tapResult = Lists.mutable.of();
         MutableList<Integer> collection = SingletonListTest.newWith(1);
-        Assert.assertSame(collection, collection.tap(tapResult::add));
-        Assert.assertEquals(collection.toList(), tapResult);
+        Assertions.assertSame(collection, collection.tap(tapResult::add));
+        Assertions.assertEquals(collection.toList(), tapResult);
     }
 
     @Test
@@ -136,7 +136,7 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<Integer> result = Lists.mutable.of();
         MutableList<Integer> collection = SingletonListTest.newWith(1);
         collection.forEach(CollectionAddProcedure.on(result));
-        Assert.assertEquals(FastList.newListWith(1), result);
+        Assertions.assertEquals(FastList.newListWith(1), result);
     }
 
     private static <T> MutableList<T> newWith(T item)
@@ -150,7 +150,7 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<Integer> result = Lists.mutable.of();
         MutableList<Integer> collection = SingletonListTest.newWith(1);
         collection.forEachWith((argument1, argument2) -> result.add(argument1 + argument2), 0);
-        Assert.assertEquals(FastList.newListWith(1), result);
+        Assertions.assertEquals(FastList.newListWith(1), result);
     }
 
     @Test
@@ -165,8 +165,8 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void set()
     {
-        Assert.assertEquals("1", this.list.set(0, "2"));
-        Assert.assertEquals(FastList.newListWith("2"), this.list);
+        Assertions.assertEquals("1", this.list.set(0, "2"));
+        Assertions.assertEquals(FastList.newListWith("2"), this.list);
         Verify.assertThrows(IndexOutOfBoundsException.class, () -> this.list.set(1, "2"));
     }
 
@@ -224,87 +224,87 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void detect()
     {
-        Assert.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).detect(Integer.valueOf(1)::equals));
-        Assert.assertNull(SingletonListTest.newWith(1).detect(Integer.valueOf(6)::equals));
+        Assertions.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).detect(Integer.valueOf(1)::equals));
+        Assertions.assertNull(SingletonListTest.newWith(1).detect(Integer.valueOf(6)::equals));
     }
 
     @Test
     public void detectWith()
     {
-        Assert.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).detectWith(Object::equals, 1));
-        Assert.assertNull(SingletonListTest.newWith(1).detectWith(Object::equals, 6));
+        Assertions.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).detectWith(Object::equals, 1));
+        Assertions.assertNull(SingletonListTest.newWith(1).detectWith(Object::equals, 6));
     }
 
     @Test
     public void detectIfNone()
     {
         Function0<Integer> function = new PassThruFunction0<>(6);
-        Assert.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).detectIfNone(Integer.valueOf(1)::equals, function));
-        Assert.assertEquals(Integer.valueOf(6), SingletonListTest.newWith(1).detectIfNone(Integer.valueOf(6)::equals, function));
+        Assertions.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).detectIfNone(Integer.valueOf(1)::equals, function));
+        Assertions.assertEquals(Integer.valueOf(6), SingletonListTest.newWith(1).detectIfNone(Integer.valueOf(6)::equals, function));
     }
 
     @Test
     public void detectWithIfNone()
     {
         Function0<Integer> function = new PassThruFunction0<>(6);
-        Assert.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).detectWithIfNone(Object::equals, 1, function));
-        Assert.assertEquals(Integer.valueOf(6), SingletonListTest.newWith(1).detectWithIfNone(Object::equals, 6, function));
+        Assertions.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).detectWithIfNone(Object::equals, 1, function));
+        Assertions.assertEquals(Integer.valueOf(6), SingletonListTest.newWith(1).detectWithIfNone(Object::equals, 6, function));
     }
 
     @Test
     public void allSatisfy()
     {
-        Assert.assertTrue(SingletonListTest.newWith(1).allSatisfy(Integer.class::isInstance));
-        Assert.assertFalse(SingletonListTest.newWith(1).allSatisfy(Integer.valueOf(2)::equals));
+        Assertions.assertTrue(SingletonListTest.newWith(1).allSatisfy(Integer.class::isInstance));
+        Assertions.assertFalse(SingletonListTest.newWith(1).allSatisfy(Integer.valueOf(2)::equals));
     }
 
     @Test
     public void allSatisfyWith()
     {
-        Assert.assertTrue(SingletonListTest.newWith(1).allSatisfyWith(Predicates2.instanceOf(), Integer.class));
-        Assert.assertFalse(SingletonListTest.newWith(1).allSatisfyWith(Object::equals, 2));
+        Assertions.assertTrue(SingletonListTest.newWith(1).allSatisfyWith(Predicates2.instanceOf(), Integer.class));
+        Assertions.assertFalse(SingletonListTest.newWith(1).allSatisfyWith(Object::equals, 2));
     }
 
     @Test
     public void anySatisfy()
     {
-        Assert.assertFalse(SingletonListTest.newWith(1).anySatisfy(String.class::isInstance));
-        Assert.assertTrue(SingletonListTest.newWith(1).anySatisfy(Integer.class::isInstance));
+        Assertions.assertFalse(SingletonListTest.newWith(1).anySatisfy(String.class::isInstance));
+        Assertions.assertTrue(SingletonListTest.newWith(1).anySatisfy(Integer.class::isInstance));
     }
 
     @Test
     public void anySatisfyWith()
     {
-        Assert.assertFalse(SingletonListTest.newWith(1).anySatisfyWith(Predicates2.instanceOf(), String.class));
-        Assert.assertTrue(SingletonListTest.newWith(1).anySatisfyWith(Predicates2.instanceOf(), Integer.class));
+        Assertions.assertFalse(SingletonListTest.newWith(1).anySatisfyWith(Predicates2.instanceOf(), String.class));
+        Assertions.assertTrue(SingletonListTest.newWith(1).anySatisfyWith(Predicates2.instanceOf(), Integer.class));
     }
 
     @Test
     public void noneSatisfy()
     {
-        Assert.assertTrue(SingletonListTest.newWith(1).noneSatisfy(String.class::isInstance));
-        Assert.assertFalse(SingletonListTest.newWith(1).noneSatisfy(Integer.valueOf(1)::equals));
+        Assertions.assertTrue(SingletonListTest.newWith(1).noneSatisfy(String.class::isInstance));
+        Assertions.assertFalse(SingletonListTest.newWith(1).noneSatisfy(Integer.valueOf(1)::equals));
     }
 
     @Test
     public void noneSatisfyWith()
     {
-        Assert.assertTrue(SingletonListTest.newWith(1).noneSatisfyWith(Predicates2.instanceOf(), String.class));
-        Assert.assertFalse(SingletonListTest.newWith(1).noneSatisfyWith(Object::equals, 1));
+        Assertions.assertTrue(SingletonListTest.newWith(1).noneSatisfyWith(Predicates2.instanceOf(), String.class));
+        Assertions.assertFalse(SingletonListTest.newWith(1).noneSatisfyWith(Object::equals, 1));
     }
 
     @Test
     public void count()
     {
-        Assert.assertEquals(1, SingletonListTest.newWith(1).count(Integer.class::isInstance));
-        Assert.assertEquals(0, SingletonListTest.newWith(1).count(String.class::isInstance));
+        Assertions.assertEquals(1, SingletonListTest.newWith(1).count(Integer.class::isInstance));
+        Assertions.assertEquals(0, SingletonListTest.newWith(1).count(String.class::isInstance));
     }
 
     @Test
     public void countWith()
     {
-        Assert.assertEquals(1, SingletonListTest.newWith(1).countWith(Predicates2.instanceOf(), Integer.class));
-        Assert.assertEquals(0, SingletonListTest.newWith(1).countWith(Predicates2.instanceOf(), String.class));
+        Assertions.assertEquals(1, SingletonListTest.newWith(1).countWith(Predicates2.instanceOf(), Integer.class));
+        Assertions.assertEquals(0, SingletonListTest.newWith(1).countWith(Predicates2.instanceOf(), String.class));
     }
 
     @Test
@@ -322,10 +322,10 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void collectWith()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(2),
                 SingletonListTest.newWith(1).collectWith(AddFunction.INTEGER, 1));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(2),
                 SingletonListTest.newWith(1).collectWith(AddFunction.INTEGER, 1, FastList.<Integer>newList()));
     }
@@ -333,20 +333,20 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void getFirst()
     {
-        Assert.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).getFirst());
+        Assertions.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).getFirst());
     }
 
     @Test
     public void getLast()
     {
-        Assert.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).getLast());
+        Assertions.assertEquals(Integer.valueOf(1), SingletonListTest.newWith(1).getLast());
     }
 
     @Test
     public void isEmpty()
     {
         Verify.assertNotEmpty(SingletonListTest.newWith(1));
-        Assert.assertTrue(SingletonListTest.newWith(1).notEmpty());
+        Assertions.assertTrue(SingletonListTest.newWith(1).notEmpty());
     }
 
     @Test
@@ -378,7 +378,7 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
         for (int i = objects.size(); i-- > 0; )
         {
             Integer integer = iterator.next();
-            Assert.assertEquals(1, integer.intValue() + i);
+            Assertions.assertEquals(1, integer.intValue() + i);
         }
     }
 
@@ -387,7 +387,7 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<Integer> objects = SingletonListTest.newWith(1);
         Integer result = objects.injectInto(1, AddFunction.INTEGER);
-        Assert.assertEquals(Integer.valueOf(2), result);
+        Assertions.assertEquals(Integer.valueOf(2), result);
     }
 
     @Test
@@ -395,7 +395,7 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<Integer> objects = SingletonListTest.newWith(1);
         Integer result = objects.injectIntoWith(1, (injectedValued, item, parameter) -> injectedValued + item + parameter, 0);
-        Assert.assertEquals(Integer.valueOf(2), result);
+        Assertions.assertEquals(Integer.valueOf(2), result);
     }
 
     @Test
@@ -447,10 +447,10 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<Integer> integers = SingletonListTest.newWith(1);
         MutableList<Integer> list = integers.toSortedList(Collections.<Integer>reverseOrder());
         Verify.assertStartsWith(list, 1);
-        Assert.assertNotSame(integers, list);
+        Assertions.assertNotSame(integers, list);
         MutableList<Integer> list2 = integers.toSortedList();
         Verify.assertStartsWith(list2, 1);
-        Assert.assertNotSame(integers, list2);
+        Assertions.assertNotSame(integers, list2);
     }
 
     @Test
@@ -458,8 +458,8 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<Integer> integers = SingletonListTest.newWith(1);
         MutableList<Integer> list = integers.toSortedListBy(Functions.getIntegerPassThru());
-        Assert.assertEquals(FastList.newListWith(1), list);
-        Assert.assertNotSame(integers, list);
+        Assertions.assertEquals(FastList.newListWith(1), list);
+        Assertions.assertNotSame(integers, list);
     }
 
     @Test
@@ -487,7 +487,7 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> upperList = SingletonListTest.newWith("ONE");
         for (String each : list)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
     }
 
@@ -499,10 +499,10 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> upperList = SingletonListTest.newWith("ONE");
         for (String each : subList)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
-        Assert.assertEquals("one", subList.getFirst());
-        Assert.assertEquals("one", subList.getLast());
+        Assertions.assertEquals("one", subList.getFirst());
+        Assertions.assertEquals("one", subList.getLast());
     }
 
     @Test
@@ -510,7 +510,7 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<MutableList<?>> list = Lists.fixedSize.<MutableList<?>>of(Lists.fixedSize.of());
         list.set(0, list);
-        Assert.assertEquals("[(this SingletonList)]", list.toString());
+        Assertions.assertEquals("[(this SingletonList)]", list.toString());
     }
 
     private MutableList<Integer> newList()
@@ -540,13 +540,13 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void min()
     {
-        Assert.assertEquals(Integer.valueOf(1), this.newList().min(Integer::compareTo));
+        Assertions.assertEquals(Integer.valueOf(1), this.newList().min(Integer::compareTo));
     }
 
     @Test
     public void max()
     {
-        Assert.assertEquals(Integer.valueOf(1), this.newList().max(Comparators.reverse(Integer::compareTo)));
+        Assertions.assertEquals(Integer.valueOf(1), this.newList().max(Comparators.reverse(Integer::compareTo)));
     }
 
     @Test
@@ -566,32 +566,32 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void min_without_comparator()
     {
-        Assert.assertEquals(Integer.valueOf(1), this.newList().min());
+        Assertions.assertEquals(Integer.valueOf(1), this.newList().min());
     }
 
     @Test
     public void max_without_comparator()
     {
-        Assert.assertEquals(Integer.valueOf(this.newList().size()), this.newList().max());
+        Assertions.assertEquals(Integer.valueOf(this.newList().size()), this.newList().max());
     }
 
     @Test
     public void minBy()
     {
-        Assert.assertEquals(Integer.valueOf(1), this.newList().minBy(String::valueOf));
+        Assertions.assertEquals(Integer.valueOf(1), this.newList().minBy(String::valueOf));
     }
 
     @Test
     public void maxBy()
     {
-        Assert.assertEquals(Integer.valueOf(1), this.newList().maxBy(String::valueOf));
+        Assertions.assertEquals(Integer.valueOf(1), this.newList().maxBy(String::valueOf));
     }
 
     @Test
     public void without()
     {
         MutableList<Integer> list = new SingletonList<>(2);
-        Assert.assertSame(list, list.without(9));
+        Assertions.assertSame(list, list.without(9));
         list = list.without(2);
         Verify.assertListsEqual(Lists.mutable.of(), list);
         Verify.assertInstanceOf(EmptyList.class, list);

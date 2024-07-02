@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableArrayListSerializationTest
 {
@@ -26,12 +26,14 @@ public class ImmutableArrayListSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVB\n"
-                        + "cnJheUxpc3QAAAAAAAAAAQIAAVsABWl0ZW1zdAATW0xqYXZhL2xhbmcvT2JqZWN0O3hwdXIAFFtM\n"
-                        + "amF2YS5sYW5nLkludGVnZXI7/petoAGD4hsCAAB4cAAAAAtzcgARamF2YS5sYW5nLkludGVnZXIS\n"
-                        + "4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXNx\n"
-                        + "AH4ABQAAAAJzcQB+AAUAAAADc3EAfgAFAAAABHNxAH4ABQAAAAVzcQB+AAUAAAAGc3EAfgAFAAAA\n"
-                        + "B3NxAH4ABQAAAAhzcQB+AAUAAAAJc3EAfgAFAAAACnNxAH4ABQAAAAs=",
+                """
+                rO0ABXNyADljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVB
+                cnJheUxpc3QAAAAAAAAAAQIAAVsABWl0ZW1zdAATW0xqYXZhL2xhbmcvT2JqZWN0O3hwdXIAFFtM
+                amF2YS5sYW5nLkludGVnZXI7/petoAGD4hsCAAB4cAAAAAtzcgARamF2YS5sYW5nLkludGVnZXIS
+                4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXNx
+                AH4ABQAAAAJzcQB+AAUAAAADc3EAfgAFAAAABHNxAH4ABQAAAAVzcQB+AAUAAAAGc3EAfgAFAAAA
+                B3NxAH4ABQAAAAhzcQB+AAUAAAAJc3EAfgAFAAAACnNxAH4ABQAAAAs=\
+                """,
                 ImmutableArrayList.newListWith(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
     }
 }

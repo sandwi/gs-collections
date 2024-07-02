@@ -18,8 +18,8 @@ package com.gs.collections.impl.block.factory;
 
 import com.gs.collections.api.block.function.Function;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class LongPredicatesTest
 {
@@ -28,78 +28,78 @@ public class LongPredicatesTest
     @Test
     public void isOdd()
     {
-        Assert.assertTrue(LongPredicates.isOdd().accept(1L));
-        Assert.assertFalse(LongPredicates.isOdd().accept(-2L));
+        Assertions.assertTrue(LongPredicates.isOdd().accept(1L));
+        Assertions.assertFalse(LongPredicates.isOdd().accept(-2L));
     }
 
     @Test
     public void isEven()
     {
-        Assert.assertTrue(LongPredicates.isEven().accept(-42L));
-        Assert.assertTrue(LongPredicates.isEven().accept(0L));
-        Assert.assertFalse(LongPredicates.isEven().accept(1L));
+        Assertions.assertTrue(LongPredicates.isEven().accept(-42L));
+        Assertions.assertTrue(LongPredicates.isEven().accept(0L));
+        Assertions.assertFalse(LongPredicates.isEven().accept(1L));
     }
 
     @Test
     public void attributeIsOdd()
     {
-        Assert.assertTrue(LongPredicates.attributeIsOdd(LONG_VALUE).accept(1L));
-        Assert.assertFalse(LongPredicates.attributeIsOdd(LONG_VALUE).accept(-2L));
+        Assertions.assertTrue(LongPredicates.attributeIsOdd(LONG_VALUE).accept(1L));
+        Assertions.assertFalse(LongPredicates.attributeIsOdd(LONG_VALUE).accept(-2L));
     }
 
     @Test
     public void attributeIsEven()
     {
-        Assert.assertTrue(LongPredicates.attributeIsEven(LONG_VALUE).accept(-42L));
-        Assert.assertTrue(LongPredicates.attributeIsEven(LONG_VALUE).accept(0L));
-        Assert.assertFalse(LongPredicates.attributeIsEven(LONG_VALUE).accept(1L));
+        Assertions.assertTrue(LongPredicates.attributeIsEven(LONG_VALUE).accept(-42L));
+        Assertions.assertTrue(LongPredicates.attributeIsEven(LONG_VALUE).accept(0L));
+        Assertions.assertFalse(LongPredicates.attributeIsEven(LONG_VALUE).accept(1L));
     }
 
     @Test
     public void isZero()
     {
-        Assert.assertTrue(LongPredicates.isZero().accept(0L));
-        Assert.assertFalse(LongPredicates.isZero().accept(1L));
-        Assert.assertFalse(LongPredicates.isZero().accept(-1L));
+        Assertions.assertTrue(LongPredicates.isZero().accept(0L));
+        Assertions.assertFalse(LongPredicates.isZero().accept(1L));
+        Assertions.assertFalse(LongPredicates.isZero().accept(-1L));
     }
 
     @Test
     public void isPositive()
     {
-        Assert.assertFalse(LongPredicates.isPositive().accept(0L));
-        Assert.assertTrue(LongPredicates.isPositive().accept(1L));
-        Assert.assertFalse(LongPredicates.isPositive().accept(-1L));
+        Assertions.assertFalse(LongPredicates.isPositive().accept(0L));
+        Assertions.assertTrue(LongPredicates.isPositive().accept(1L));
+        Assertions.assertFalse(LongPredicates.isPositive().accept(-1L));
     }
 
     @Test
     public void isNegative()
     {
-        Assert.assertFalse(LongPredicates.isNegative().accept(0L));
-        Assert.assertFalse(LongPredicates.isNegative().accept(1L));
-        Assert.assertTrue(LongPredicates.isNegative().accept(-1L));
+        Assertions.assertFalse(LongPredicates.isNegative().accept(0L));
+        Assertions.assertFalse(LongPredicates.isNegative().accept(1L));
+        Assertions.assertTrue(LongPredicates.isNegative().accept(-1L));
     }
 
     @Test
     public void attributeIsZero()
     {
-        Assert.assertTrue(LongPredicates.attributeIsZero(Integer::longValue).accept(0));
-        Assert.assertFalse(LongPredicates.attributeIsZero(Integer::longValue).accept(1));
+        Assertions.assertTrue(LongPredicates.attributeIsZero(Integer::longValue).accept(0));
+        Assertions.assertFalse(LongPredicates.attributeIsZero(Integer::longValue).accept(1));
     }
 
     @Test
     public void attributeIsPositive()
     {
-        Assert.assertTrue(LongPredicates.attributeIsPositive(Integer::longValue).accept(1));
-        Assert.assertFalse(LongPredicates.attributeIsPositive(Integer::longValue).accept(0));
-        Assert.assertFalse(LongPredicates.attributeIsPositive(Integer::longValue).accept(-1));
+        Assertions.assertTrue(LongPredicates.attributeIsPositive(Integer::longValue).accept(1));
+        Assertions.assertFalse(LongPredicates.attributeIsPositive(Integer::longValue).accept(0));
+        Assertions.assertFalse(LongPredicates.attributeIsPositive(Integer::longValue).accept(-1));
     }
 
     @Test
     public void attributeIsNegative()
     {
-        Assert.assertTrue(LongPredicates.attributeIsNegative(Integer::longValue).accept(-1));
-        Assert.assertFalse(LongPredicates.attributeIsNegative(Integer::longValue).accept(0));
-        Assert.assertFalse(LongPredicates.attributeIsNegative(Integer::longValue).accept(1));
+        Assertions.assertTrue(LongPredicates.attributeIsNegative(Integer::longValue).accept(-1));
+        Assertions.assertFalse(LongPredicates.attributeIsNegative(Integer::longValue).accept(0));
+        Assertions.assertFalse(LongPredicates.attributeIsNegative(Integer::longValue).accept(1));
     }
 
     @Test

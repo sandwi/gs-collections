@@ -37,7 +37,6 @@ import com.gs.collections.impl.test.Verify;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 /**
  * JUnit test for {@link ConcurrentHashMapUnsafe}.

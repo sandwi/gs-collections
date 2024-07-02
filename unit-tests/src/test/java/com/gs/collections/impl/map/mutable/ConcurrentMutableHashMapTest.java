@@ -27,8 +27,8 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.ImmutableEntry;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
 
@@ -78,32 +78,32 @@ public class ConcurrentMutableHashMapTest extends ConcurrentHashMapTestCase
     public void putIfAbsent()
     {
         ConcurrentMutableMap<Integer, Integer> map = this.newMapWithKeysValues(1, 1, 2, 2);
-        Assert.assertEquals(Integer.valueOf(1), map.putIfAbsent(1, 1));
-        Assert.assertNull(map.putIfAbsent(3, 3));
+        Assertions.assertEquals(Integer.valueOf(1), map.putIfAbsent(1, 1));
+        Assertions.assertNull(map.putIfAbsent(3, 3));
     }
 
     @Test
     public void replace()
     {
         ConcurrentMutableMap<Integer, Integer> map = this.newMapWithKeysValues(1, 1, 2, 2);
-        Assert.assertEquals(Integer.valueOf(1), map.replace(1, 1));
-        Assert.assertNull(map.replace(3, 3));
+        Assertions.assertEquals(Integer.valueOf(1), map.replace(1, 1));
+        Assertions.assertNull(map.replace(3, 3));
     }
 
     @Test
     public void replaceWithOldValue()
     {
         ConcurrentMutableMap<Integer, Integer> map = this.newMapWithKeysValues(1, 1, 2, 2);
-        Assert.assertTrue(map.replace(1, 1, 1));
-        Assert.assertFalse(map.replace(2, 3, 3));
+        Assertions.assertTrue(map.replace(1, 1, 1));
+        Assertions.assertFalse(map.replace(2, 3, 3));
     }
 
     @Test
     public void removeWithKeyValue()
     {
         ConcurrentMutableMap<Integer, Integer> map = this.newMapWithKeysValues(1, 1, 2, 2);
-        Assert.assertTrue(map.remove(1, 1));
-        Assert.assertFalse(map.remove(2, 3));
+        Assertions.assertTrue(map.remove(1, 1));
+        Assertions.assertFalse(map.remove(2, 3));
     }
 
     @Override
@@ -111,11 +111,11 @@ public class ConcurrentMutableHashMapTest extends ConcurrentHashMapTestCase
     public void removeFromEntrySet()
     {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3);
-        Assert.assertTrue(map.entrySet().remove(ImmutableEntry.of("Two", 2)));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
+        Assertions.assertTrue(map.entrySet().remove(ImmutableEntry.of("Two", 2)));
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
 
-        Assert.assertFalse(map.entrySet().remove(ImmutableEntry.of("Four", 4)));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
+        Assertions.assertFalse(map.entrySet().remove(ImmutableEntry.of("Four", 4)));
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
     }
 
     @Override
@@ -123,13 +123,13 @@ public class ConcurrentMutableHashMapTest extends ConcurrentHashMapTestCase
     public void removeAllFromEntrySet()
     {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3);
-        Assert.assertTrue(map.entrySet().removeAll(FastList.newListWith(
+        Assertions.assertTrue(map.entrySet().removeAll(FastList.newListWith(
                 ImmutableEntry.of("One", 1),
                 ImmutableEntry.of("Three", 3))));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("Two", 2), map);
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("Two", 2), map);
 
-        Assert.assertFalse(map.entrySet().removeAll(FastList.newListWith(ImmutableEntry.of("Four", 4))));
-        Assert.assertEquals(UnifiedMap.newWithKeysValues("Two", 2), map);
+        Assertions.assertFalse(map.entrySet().removeAll(FastList.newListWith(ImmutableEntry.of("Four", 4))));
+        Assertions.assertEquals(UnifiedMap.newWithKeysValues("Two", 2), map);
     }
 
     @Override
@@ -150,8 +150,8 @@ public class ConcurrentMutableHashMapTest extends ConcurrentHashMapTestCase
                 "C", 3,
                 "D", 4);
         PartitionIterable<Integer> partition = map.partition(IntegerPredicates.isEven());
-        Assert.assertEquals(iSet(2, 4), partition.getSelected().toSet());
-        Assert.assertEquals(iSet(1, 3), partition.getRejected().toSet());
+        Assertions.assertEquals(iSet(2, 4), partition.getSelected().toSet());
+        Assertions.assertEquals(iSet(1, 3), partition.getRejected().toSet());
     }
 
     @Override
@@ -164,11 +164,12 @@ public class ConcurrentMutableHashMapTest extends ConcurrentHashMapTestCase
                 "C", 3,
                 "D", 4);
         PartitionIterable<Integer> partition = map.partitionWith(Predicates2.in(), map.select(IntegerPredicates.isEven()));
-        Assert.assertEquals(iSet(2, 4), partition.getSelected().toSet());
-        Assert.assertEquals(iSet(1, 3), partition.getRejected().toSet());
+        Assertions.assertEquals(iSet(2, 4), partition.getSelected().toSet());
+        Assertions.assertEquals(iSet(1, 3), partition.getRejected().toSet());
     }
 
     @Override
+    @Test
     public void equalsAndHashCode()
     {
         // java.util.concurrent.ConcurrentHashMap doesn't support null keys OR values
@@ -177,8 +178,8 @@ public class ConcurrentMutableHashMapTest extends ConcurrentHashMapTestCase
         Verify.assertEqualsAndHashCode(Maps.mutable.of(1, "1", 2, "2", 3, "3"), map);
         Verify.assertEqualsAndHashCode(Maps.immutable.of(1, "1", 2, "2", 3, "3"), map);
 
-        Assert.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2"));
-        Assert.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4"));
-        Assert.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2", 4, "4"));
+        Assertions.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2"));
+        Assertions.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4"));
+        Assertions.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2", 4, "4"));
     }
 }

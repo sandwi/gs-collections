@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.mutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnmodifiableIntCharMapSerializationTest
 {
@@ -26,11 +26,13 @@ public class UnmodifiableIntCharMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t\n"
-                        + "b2RpZmlhYmxlSW50Q2hhck1hcAAAAAAAAAABAgABTAADbWFwdAA4TGNvbS9ncy9jb2xsZWN0aW9u\n"
-                        + "cy9hcGkvbWFwL3ByaW1pdGl2ZS9NdXRhYmxlSW50Q2hhck1hcDt4cHNyADxjb20uZ3MuY29sbGVj\n"
-                        + "dGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuSW50Q2hhckhhc2hNYXAAAAAAAAAAAQwA\n"
-                        + "AHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuVW5t
+                b2RpZmlhYmxlSW50Q2hhck1hcAAAAAAAAAABAgABTAADbWFwdAA4TGNvbS9ncy9jb2xsZWN0aW9u
+                cy9hcGkvbWFwL3ByaW1pdGl2ZS9NdXRhYmxlSW50Q2hhck1hcDt4cHNyADxjb20uZ3MuY29sbGVj
+                dGlvbnMuaW1wbC5tYXAubXV0YWJsZS5wcmltaXRpdmUuSW50Q2hhckhhc2hNYXAAAAAAAAAAAQwA
+                AHhwdwQAAAAAeA==\
+                """,
                 new UnmodifiableIntCharMap(new IntCharHashMap()));
     }
 }

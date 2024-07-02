@@ -18,7 +18,7 @@ package com.gs.collections.impl.multimap.bag.sorted.mutable;
 
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TreeBagMultimapSerializationTest
 {
@@ -27,8 +27,10 @@ public class TreeBagMultimapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuc29ydGVkLm11dGFi\n"
-                        + "bGUuVHJlZUJhZ011bHRpbWFwAAAAAAAAAAEMAAB4cHB3BAAAAAB4",
+                """
+                rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuc29ydGVkLm11dGFi
+                bGUuVHJlZUJhZ011bHRpbWFwAAAAAAAAAAEMAAB4cHB3BAAAAAB4\
+                """,
                 TreeBagMultimap.newMultimap());
     }
 
@@ -37,12 +39,14 @@ public class TreeBagMultimapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuc29ydGVkLm11dGFi\n"
-                        + "bGUuVHJlZUJhZ011bHRpbWFwAAAAAAAAAAEMAAB4cHNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1w\n"
-                        + "bC5ibG9jay5mYWN0b3J5LkNvbXBhcmF0b3JzJFJldmVyc2VDb21wYXJhdG9yAAAAAAAAAAECAAFM\n"
-                        + "AApjb21wYXJhdG9ydAAWTGphdmEvdXRpbC9Db21wYXJhdG9yO3hwc3IASGNvbS5ncy5jb2xsZWN0\n"
-                        + "aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkTmF0dXJhbE9yZGVyQ29tcGFyYXRv\n"
-                        + "cgAAAAAAAAABAgAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuc29ydGVkLm11dGFi
+                bGUuVHJlZUJhZ011bHRpbWFwAAAAAAAAAAEMAAB4cHNyAENjb20uZ3MuY29sbGVjdGlvbnMuaW1w
+                bC5ibG9jay5mYWN0b3J5LkNvbXBhcmF0b3JzJFJldmVyc2VDb21wYXJhdG9yAAAAAAAAAAECAAFM
+                AApjb21wYXJhdG9ydAAWTGphdmEvdXRpbC9Db21wYXJhdG9yO3hwc3IASGNvbS5ncy5jb2xsZWN0
+                aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkTmF0dXJhbE9yZGVyQ29tcGFyYXRv
+                cgAAAAAAAAABAgAAeHB3BAAAAAB4\
+                """,
                 TreeBagMultimap.newMultimap(Comparators.reverseNaturalOrder()));
     }
 }

@@ -21,8 +21,8 @@ import java.util.Map;
 
 import com.gs.collections.api.map.ImmutableMap;
 import com.gs.collections.api.map.MutableMap;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ImmutableMap}.
@@ -37,8 +37,8 @@ public abstract class ImmutableMapTestCase extends ImmutableMapIterableTestCase
     {
         ImmutableMap<Integer, String> immutable = this.classUnderTest();
         Map<Integer, String> map = immutable.castToMap();
-        Assert.assertSame(immutable, map);
-        Assert.assertEquals(immutable, new HashMap<>(map));
+        Assertions.assertSame(immutable, map);
+        Assertions.assertEquals(immutable, new HashMap<>(map));
     }
 
     @Test
@@ -46,8 +46,8 @@ public abstract class ImmutableMapTestCase extends ImmutableMapIterableTestCase
     {
         ImmutableMap<Integer, String> immutable = this.classUnderTest();
         MutableMap<Integer, String> map = immutable.toMap();
-        Assert.assertNotSame(immutable, map);
-        Assert.assertEquals(immutable, map);
+        Assertions.assertNotSame(immutable, map);
+        Assertions.assertEquals(immutable, map);
     }
 
     @Test
@@ -55,7 +55,7 @@ public abstract class ImmutableMapTestCase extends ImmutableMapIterableTestCase
     {
         ImmutableMap<Integer, String> immutable = this.classUnderTest();
         Map<Integer, String> map = new HashMap<>(immutable.castToMap());
-        Assert.assertEquals(immutable.size(), immutable.castToMap().entrySet().size());
-        Assert.assertEquals(map.entrySet(), immutable.castToMap().entrySet());
+        Assertions.assertEquals(immutable.size(), immutable.castToMap().entrySet().size());
+        Assertions.assertEquals(map.entrySet(), immutable.castToMap().entrySet());
     }
 }

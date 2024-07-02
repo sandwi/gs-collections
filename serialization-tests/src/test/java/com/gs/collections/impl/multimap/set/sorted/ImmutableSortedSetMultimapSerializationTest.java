@@ -30,9 +30,11 @@ public class ImmutableSortedSetMultimapSerializationTest extends ImmutableMultim
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAHdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuc29ydGVkLkltbXV0\n"
-                + "YWJsZVNvcnRlZFNldE11bHRpbWFwSW1wbCRJbW11dGFibGVTb3J0ZWRTZXRNdWx0aW1hcFNlcmlh\n"
-                + "bGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBwdwQAAAACdAABQXcEAAAAAnEAfgACdAABQnEAfgAD\n"
-                + "dwQAAAABcQB+AAJ4";
+        return """
+                rO0ABXNyAHdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuc29ydGVkLkltbXV0
+                YWJsZVNvcnRlZFNldE11bHRpbWFwSW1wbCRJbW11dGFibGVTb3J0ZWRTZXRNdWx0aW1hcFNlcmlh
+                bGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHBwdwQAAAACdAABQXcEAAAAAnEAfgACdAABQnEAfgAD
+                dwQAAAABcQB+AAJ4\
+                """;
     }
 }

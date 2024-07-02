@@ -30,9 +30,11 @@ public class ImmutableBagMultimapSerializationTest extends ImmutableMultimapSeri
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAGRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuSW1tdXRhYmxlQmFn\n"
-                + "TXVsdGltYXBJbXBsJEltbXV0YWJsZUJhZ011bHRpbWFwU2VyaWFsaXphdGlvblByb3h5AAAAAAAA\n"
-                + "AAEMAAB4cHcEAAAAAnQAAUF3BAAAAAJxAH4AAncEAAAAAXQAAUJ3BAAAAAJxAH4AA3cEAAAAAXEA\n"
-                + "fgACdwQAAAABeA==";
+        return """
+                rO0ABXNyAGRjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5iYWcuSW1tdXRhYmxlQmFn
+                TXVsdGltYXBJbXBsJEltbXV0YWJsZUJhZ011bHRpbWFwU2VyaWFsaXphdGlvblByb3h5AAAAAAAA
+                AAEMAAB4cHcEAAAAAnQAAUF3BAAAAAJxAH4AAncEAAAAAXQAAUJ3BAAAAAJxAH4AA3cEAAAAAXEA
+                fgACdwQAAAABeA==\
+                """;
     }
 }

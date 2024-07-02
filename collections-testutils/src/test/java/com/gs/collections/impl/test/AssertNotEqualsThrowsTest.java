@@ -16,8 +16,8 @@
 
 package com.gs.collections.impl.test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class AssertNotEqualsThrowsTest
 {
@@ -40,11 +40,11 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(OBJECT, OBJECT);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -53,12 +53,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("items", OBJECT, OBJECT);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(OBJECT, OBJECT, "items");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -68,20 +68,20 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(STRING, STRING);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
         try
         {
             Verify.assertNotEquals(null, null);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -90,12 +90,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("strings", STRING, STRING);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(STRING, STRING, "strings");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -105,21 +105,21 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(DOUBLE, DOUBLE, DOUBLE_DELTA);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
 
         try
         {
             Verify.assertNotEquals(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, DOUBLE_DELTA);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -128,12 +128,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("doubles", DOUBLE, DOUBLE, DOUBLE_DELTA);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(DOUBLE, DOUBLE, DOUBLE_DELTA, "doubles");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -143,21 +143,21 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(FLOAT, FLOAT, FLOAT_DELTA);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
 
         try
         {
             Verify.assertNotEquals(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, FLOAT_DELTA);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -166,12 +166,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("floats", FLOAT, FLOAT, FLOAT_DELTA);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(FLOAT, FLOAT, FLOAT_DELTA, "floats");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -181,11 +181,11 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(LONG, LONG);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -194,12 +194,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("longs", LONG, LONG);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(LONG, LONG, "longs");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -209,11 +209,11 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(BOOLEAN, BOOLEAN);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -222,12 +222,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("booleans", BOOLEAN, BOOLEAN);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(BOOLEAN, BOOLEAN, "booleans");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -237,11 +237,11 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(BYTE, BYTE);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -250,12 +250,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("bytes", BYTE, BYTE);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(BYTE, BYTE, "bytes");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -265,11 +265,11 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(CHAR, CHAR);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -278,12 +278,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("chars", CHAR, CHAR);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(CHAR, CHAR, "chars");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -293,11 +293,11 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(SHORT, SHORT);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -306,12 +306,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("shorts", SHORT, SHORT);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(SHORT, SHORT, "shorts");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -321,11 +321,11 @@ public class AssertNotEqualsThrowsTest
         try
         {
             Verify.assertNotEquals(INT, INT);
-            Assert.fail("AssertionError expected");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 
@@ -334,12 +334,12 @@ public class AssertNotEqualsThrowsTest
     {
         try
         {
-            Verify.assertNotEquals("ints", INT, INT);
-            Assert.fail("AssertionError expected");
+            Verify.assertNotEquals(INT, INT, "ints");
+            Assertions.fail("AssertionError expected");
         }
         catch (AssertionError e)
         {
-            Verify.assertContains(AssertNotEqualsThrowsTest.class.getName(), e.getStackTrace()[0].toString());
+            Verify.assertContains(e.getStackTrace()[0].toString(), AssertNotEqualsThrowsTest.class.getName());
         }
     }
 }

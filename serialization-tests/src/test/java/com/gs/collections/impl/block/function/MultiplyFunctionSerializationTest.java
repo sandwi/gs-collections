@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MultiplyFunctionSerializationTest
 {
@@ -26,8 +26,10 @@ public class MultiplyFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAE5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NdWx0aXBseUZ1\n"
-                        + "bmN0aW9uJE11bHRpcGx5RG91YmxlRnVuY3Rpb24AAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAE5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NdWx0aXBseUZ1
+                bmN0aW9uJE11bHRpcGx5RG91YmxlRnVuY3Rpb24AAAAAAAAAAQIAAHhw\
+                """,
                 MultiplyFunction.DOUBLE);
     }
 
@@ -36,8 +38,10 @@ public class MultiplyFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAE9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NdWx0aXBseUZ1\n"
-                        + "bmN0aW9uJE11bHRpcGx5SW50ZWdlckZ1bmN0aW9uAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAE9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NdWx0aXBseUZ1
+                bmN0aW9uJE11bHRpcGx5SW50ZWdlckZ1bmN0aW9uAAAAAAAAAAECAAB4cA==\
+                """,
                 MultiplyFunction.INTEGER);
     }
 
@@ -46,8 +50,10 @@ public class MultiplyFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAExjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NdWx0aXBseUZ1\n"
-                        + "bmN0aW9uJE11bHRpcGx5TG9uZ0Z1bmN0aW9uAAAAAAAAAAECAAB4cA==",
+                """
+                rO0ABXNyAExjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5NdWx0aXBseUZ1
+                bmN0aW9uJE11bHRpcGx5TG9uZ0Z1bmN0aW9uAAAAAAAAAAECAAB4cA==\
+                """,
                 MultiplyFunction.LONG);
     }
 }

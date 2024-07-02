@@ -18,8 +18,8 @@ package com.gs.collections.impl.block.factory;
 
 import com.gs.collections.api.block.function.Function;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class IntegerPredicatesTest
 {
@@ -28,79 +28,79 @@ public class IntegerPredicatesTest
     @Test
     public void isOdd()
     {
-        Assert.assertTrue(IntegerPredicates.isOdd().accept(1));
-        Assert.assertFalse(IntegerPredicates.isOdd().accept(-2));
+        Assertions.assertTrue(IntegerPredicates.isOdd().accept(1));
+        Assertions.assertFalse(IntegerPredicates.isOdd().accept(-2));
     }
 
     @Test
     public void isEven()
     {
-        Assert.assertTrue(IntegerPredicates.isEven().accept(-42));
-        Assert.assertTrue(IntegerPredicates.isEven().accept(0));
-        Assert.assertFalse(IntegerPredicates.isEven().accept(1));
+        Assertions.assertTrue(IntegerPredicates.isEven().accept(-42));
+        Assertions.assertTrue(IntegerPredicates.isEven().accept(0));
+        Assertions.assertFalse(IntegerPredicates.isEven().accept(1));
     }
 
     @Test
     public void attributeIsOdd()
     {
-        Assert.assertTrue(IntegerPredicates.attributeIsOdd(INT_VALUE).accept(1));
-        Assert.assertFalse(IntegerPredicates.attributeIsOdd(INT_VALUE).accept(-2));
+        Assertions.assertTrue(IntegerPredicates.attributeIsOdd(INT_VALUE).accept(1));
+        Assertions.assertFalse(IntegerPredicates.attributeIsOdd(INT_VALUE).accept(-2));
     }
 
     @Test
     public void attributeIsEven()
     {
-        Assert.assertTrue(IntegerPredicates.attributeIsEven(INT_VALUE).accept(-42));
-        Assert.assertTrue(IntegerPredicates.attributeIsEven(INT_VALUE).accept(0));
-        Assert.assertFalse(IntegerPredicates.attributeIsEven(INT_VALUE).accept(1));
+        Assertions.assertTrue(IntegerPredicates.attributeIsEven(INT_VALUE).accept(-42));
+        Assertions.assertTrue(IntegerPredicates.attributeIsEven(INT_VALUE).accept(0));
+        Assertions.assertFalse(IntegerPredicates.attributeIsEven(INT_VALUE).accept(1));
     }
 
     @Test
     public void attributeIsZero()
     {
-        Assert.assertFalse(IntegerPredicates.attributeIsZero(INT_VALUE).accept(-42));
-        Assert.assertTrue(IntegerPredicates.attributeIsZero(INT_VALUE).accept(0));
-        Assert.assertFalse(IntegerPredicates.attributeIsZero(INT_VALUE).accept(1));
+        Assertions.assertFalse(IntegerPredicates.attributeIsZero(INT_VALUE).accept(-42));
+        Assertions.assertTrue(IntegerPredicates.attributeIsZero(INT_VALUE).accept(0));
+        Assertions.assertFalse(IntegerPredicates.attributeIsZero(INT_VALUE).accept(1));
     }
 
     @Test
     public void attributeIsPositive()
     {
-        Assert.assertFalse(IntegerPredicates.attributeIsPositive(INT_VALUE).accept(-42));
-        Assert.assertFalse(IntegerPredicates.attributeIsPositive(INT_VALUE).accept(0));
-        Assert.assertTrue(IntegerPredicates.attributeIsPositive(INT_VALUE).accept(1));
+        Assertions.assertFalse(IntegerPredicates.attributeIsPositive(INT_VALUE).accept(-42));
+        Assertions.assertFalse(IntegerPredicates.attributeIsPositive(INT_VALUE).accept(0));
+        Assertions.assertTrue(IntegerPredicates.attributeIsPositive(INT_VALUE).accept(1));
     }
 
     @Test
     public void attributeIsNegative()
     {
-        Assert.assertTrue(IntegerPredicates.attributeIsNegative(INT_VALUE).accept(-42));
-        Assert.assertFalse(IntegerPredicates.attributeIsNegative(INT_VALUE).accept(0));
-        Assert.assertFalse(IntegerPredicates.attributeIsNegative(INT_VALUE).accept(1));
+        Assertions.assertTrue(IntegerPredicates.attributeIsNegative(INT_VALUE).accept(-42));
+        Assertions.assertFalse(IntegerPredicates.attributeIsNegative(INT_VALUE).accept(0));
+        Assertions.assertFalse(IntegerPredicates.attributeIsNegative(INT_VALUE).accept(1));
     }
 
     @Test
     public void isZero()
     {
-        Assert.assertTrue(IntegerPredicates.isZero().accept(0));
-        Assert.assertFalse(IntegerPredicates.isZero().accept(1));
-        Assert.assertFalse(IntegerPredicates.isZero().accept(-1));
+        Assertions.assertTrue(IntegerPredicates.isZero().accept(0));
+        Assertions.assertFalse(IntegerPredicates.isZero().accept(1));
+        Assertions.assertFalse(IntegerPredicates.isZero().accept(-1));
     }
 
     @Test
     public void isPositive()
     {
-        Assert.assertFalse(IntegerPredicates.isPositive().accept(0));
-        Assert.assertTrue(IntegerPredicates.isPositive().accept(1));
-        Assert.assertFalse(IntegerPredicates.isPositive().accept(-1));
+        Assertions.assertFalse(IntegerPredicates.isPositive().accept(0));
+        Assertions.assertTrue(IntegerPredicates.isPositive().accept(1));
+        Assertions.assertFalse(IntegerPredicates.isPositive().accept(-1));
     }
 
     @Test
     public void isNegative()
     {
-        Assert.assertFalse(IntegerPredicates.isNegative().accept(0));
-        Assert.assertFalse(IntegerPredicates.isNegative().accept(1));
-        Assert.assertTrue(IntegerPredicates.isNegative().accept(-1));
+        Assertions.assertFalse(IntegerPredicates.isNegative().accept(0));
+        Assertions.assertFalse(IntegerPredicates.isNegative().accept(1));
+        Assertions.assertTrue(IntegerPredicates.isNegative().accept(-1));
     }
 
     @Test

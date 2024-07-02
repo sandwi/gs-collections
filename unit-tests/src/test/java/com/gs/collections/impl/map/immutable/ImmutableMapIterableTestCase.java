@@ -37,8 +37,8 @@ import com.gs.collections.impl.map.mutable.UnifiedMap;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public abstract class ImmutableMapIterableTestCase
 {
@@ -72,10 +72,10 @@ public abstract class ImmutableMapIterableTestCase
         });
 
         MutableSet<Integer> expectedKeys = this.expectedKeys();
-        Assert.assertEquals(expectedKeys, actualKeys);
+        Assertions.assertEquals(expectedKeys, actualKeys);
 
         MutableSet<String> expectedValues = expectedKeys.collect(String::valueOf);
-        Assert.assertEquals(expectedValues, actualValues);
+        Assertions.assertEquals(expectedValues, actualValues);
     }
 
     @Test
@@ -83,7 +83,7 @@ public abstract class ImmutableMapIterableTestCase
     {
         MutableSet<String> actualValues = UnifiedSet.newSet();
         this.classUnderTest().forEachValue(CollectionAddProcedure.on(actualValues));
-        Assert.assertEquals(this.expectedValues(), actualValues);
+        Assertions.assertEquals(this.expectedValues(), actualValues);
     }
 
     @Test
@@ -91,8 +91,8 @@ public abstract class ImmutableMapIterableTestCase
     {
         MutableList<String> tapResult = Lists.mutable.of();
         ImmutableMapIterable<Integer, String> map = this.classUnderTest();
-        Assert.assertSame(map, map.tap(tapResult::add));
-        Assert.assertEquals(map.toList(), tapResult);
+        Assertions.assertSame(map, map.tap(tapResult::add));
+        Assertions.assertEquals(map.toList(), tapResult);
     }
 
     @Test
@@ -100,14 +100,14 @@ public abstract class ImmutableMapIterableTestCase
     {
         MutableSet<String> actualValues = UnifiedSet.newSet();
         this.classUnderTest().forEach(CollectionAddProcedure.on(actualValues));
-        Assert.assertEquals(this.expectedValues(), actualValues);
+        Assertions.assertEquals(this.expectedValues(), actualValues);
     }
 
     @Test
     public void flipUniqueValues()
     {
         ImmutableMapIterable<Integer, String> immutableMap = this.classUnderTest();
-        Assert.assertEquals(Interval.oneTo(this.size()).toMap(String::valueOf, Functions.getIntegerPassThru()),
+        Assertions.assertEquals(Interval.oneTo(this.size()).toMap(String::valueOf, Functions.getIntegerPassThru()),
                 immutableMap.flipUniqueValues());
     }
 
@@ -119,7 +119,7 @@ public abstract class ImmutableMapIterableTestCase
         {
             actualValues.add(eachValue);
         }
-        Assert.assertEquals(this.expectedValues(), actualValues);
+        Assertions.assertEquals(this.expectedValues(), actualValues);
     }
 
     @Test
@@ -136,7 +136,7 @@ public abstract class ImmutableMapIterableTestCase
     {
         MutableSet<Integer> actualKeys = UnifiedSet.newSet();
         this.classUnderTest().forEachKey(CollectionAddProcedure.on(actualKeys));
-        Assert.assertEquals(this.expectedKeys(), actualKeys);
+        Assertions.assertEquals(this.expectedKeys(), actualKeys);
     }
 
     @Test
@@ -147,14 +147,14 @@ public abstract class ImmutableMapIterableTestCase
 
         // Absent key behavior
         ImmutableMapIterable<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertNull(classUnderTest.get(absentKey));
-        Assert.assertFalse(classUnderTest.containsValue(absentValue));
+        Assertions.assertNull(classUnderTest.get(absentKey));
+        Assertions.assertFalse(classUnderTest.containsValue(absentValue));
 
         // Present key behavior
-        Assert.assertEquals("1", classUnderTest.get(1));
+        Assertions.assertEquals("1", classUnderTest.get(1));
 
         // Still unchanged
-        Assert.assertEquals(this.equalUnifiedMap(), classUnderTest);
+        Assertions.assertEquals(this.equalUnifiedMap(), classUnderTest);
     }
 
     @Test
@@ -165,13 +165,13 @@ public abstract class ImmutableMapIterableTestCase
 
         // Absent key behavior
         ImmutableMapIterable<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertEquals(absentValue, classUnderTest.getIfAbsent(absentKey, new PassThruFunction0<>(absentValue)));
+        Assertions.assertEquals(absentValue, classUnderTest.getIfAbsent(absentKey, new PassThruFunction0<>(absentValue)));
 
         // Present key behavior
-        Assert.assertEquals("1", classUnderTest.getIfAbsent(1, new PassThruFunction0<>(absentValue)));
+        Assertions.assertEquals("1", classUnderTest.getIfAbsent(1, new PassThruFunction0<>(absentValue)));
 
         // Still unchanged
-        Assert.assertEquals(this.equalUnifiedMap(), classUnderTest);
+        Assertions.assertEquals(this.equalUnifiedMap(), classUnderTest);
     }
 
     @Test
@@ -182,13 +182,13 @@ public abstract class ImmutableMapIterableTestCase
 
         // Absent key behavior
         ImmutableMapIterable<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertEquals(absentValue, classUnderTest.getIfAbsentValue(absentKey, absentValue));
+        Assertions.assertEquals(absentValue, classUnderTest.getIfAbsentValue(absentKey, absentValue));
 
         // Present key behavior
-        Assert.assertEquals("1", classUnderTest.getIfAbsentValue(1, absentValue));
+        Assertions.assertEquals("1", classUnderTest.getIfAbsentValue(1, absentValue));
 
         // Still unchanged
-        Assert.assertEquals(this.equalUnifiedMap(), classUnderTest);
+        Assertions.assertEquals(this.equalUnifiedMap(), classUnderTest);
     }
 
     @Test
@@ -199,13 +199,13 @@ public abstract class ImmutableMapIterableTestCase
 
         // Absent key behavior
         ImmutableMapIterable<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertEquals(absentValue, classUnderTest.getIfAbsentWith(absentKey, String::valueOf, absentValue));
+        Assertions.assertEquals(absentValue, classUnderTest.getIfAbsentWith(absentKey, String::valueOf, absentValue));
 
         // Present key behavior
-        Assert.assertEquals("1", classUnderTest.getIfAbsentWith(1, String::valueOf, absentValue));
+        Assertions.assertEquals("1", classUnderTest.getIfAbsentWith(1, String::valueOf, absentValue));
 
         // Still unchanged
-        Assert.assertEquals(this.equalUnifiedMap(), classUnderTest);
+        Assertions.assertEquals(this.equalUnifiedMap(), classUnderTest);
     }
 
     @Test
@@ -214,14 +214,14 @@ public abstract class ImmutableMapIterableTestCase
         Integer absentKey = this.size() + 1;
 
         ImmutableMapIterable<Integer, String> classUnderTest = this.classUnderTest();
-        Assert.assertNull(classUnderTest.ifPresentApply(absentKey, Functions.<String>getPassThru()));
-        Assert.assertEquals("1", classUnderTest.ifPresentApply(1, Functions.<String>getPassThru()));
+        Assertions.assertNull(classUnderTest.ifPresentApply(absentKey, Functions.<String>getPassThru()));
+        Assertions.assertEquals("1", classUnderTest.ifPresentApply(1, Functions.<String>getPassThru()));
     }
 
     @Test
     public void notEmpty()
     {
-        Assert.assertTrue(this.classUnderTest().notEmpty());
+        Assertions.assertTrue(this.classUnderTest().notEmpty());
     }
 
     @Test
@@ -237,8 +237,8 @@ public abstract class ImmutableMapIterableTestCase
             actualParameters.add(parameter);
         }, actualParameter);
 
-        Assert.assertEquals(this.expectedKeys().collect(String::valueOf), actualValues);
-        Assert.assertEquals(Collections.nCopies(this.size(), actualParameter), actualParameters);
+        Assertions.assertEquals(this.expectedKeys().collect(String::valueOf), actualValues);
+        Assertions.assertEquals(Collections.nCopies(this.size(), actualParameter), actualParameters);
     }
 
     @Test
@@ -252,8 +252,8 @@ public abstract class ImmutableMapIterableTestCase
             actualIndices.add(index);
         });
 
-        Assert.assertEquals(this.expectedKeys().collect(String::valueOf), actualValues);
-        Assert.assertEquals(this.expectedIndices(), actualIndices);
+        Assertions.assertEquals(this.expectedKeys().collect(String::valueOf), actualValues);
+        Assertions.assertEquals(this.expectedIndices(), actualIndices);
     }
 
     @Test
@@ -269,10 +269,10 @@ public abstract class ImmutableMapIterableTestCase
         }
 
         MutableSet<Integer> expectedKeys = this.expectedKeys();
-        Assert.assertEquals(expectedKeys, actualKeys);
+        Assertions.assertEquals(expectedKeys, actualKeys);
 
         MutableSet<String> expectedValues = expectedKeys.collect(String::valueOf);
-        Assert.assertEquals(expectedValues, actualValues);
+        Assertions.assertEquals(expectedValues, actualValues);
     }
 
     @Test
@@ -284,7 +284,7 @@ public abstract class ImmutableMapIterableTestCase
             actualValues.add(eachValue);
         }
         MutableSet<String> expectedValues = this.expectedValues();
-        Assert.assertEquals(expectedValues, actualValues);
+        Assertions.assertEquals(expectedValues, actualValues);
     }
 
     @Test
@@ -295,7 +295,7 @@ public abstract class ImmutableMapIterableTestCase
         {
             actualKeys.add(eachKey);
         }
-        Assert.assertEquals(this.expectedKeys(), actualKeys);
+        Assertions.assertEquals(this.expectedKeys(), actualKeys);
     }
 
     @Test
@@ -400,7 +400,7 @@ public abstract class ImmutableMapIterableTestCase
         ImmutableMapIterable<Integer, String> immutable = this.classUnderTest();
         ImmutableMapIterable<Integer, String> immutable2 = immutable.newWithoutAllKeys(immutable.keysView());
         ImmutableMapIterable<Integer, String> immutable3 = immutable.newWithoutAllKeys(Lists.immutable.<Integer>of());
-        Assert.assertEquals(immutable, immutable3);
-        Assert.assertEquals(Maps.immutable.of(), immutable2);
+        Assertions.assertEquals(immutable, immutable3);
+        Assertions.assertEquals(Maps.immutable.of(), immutable2);
     }
 }

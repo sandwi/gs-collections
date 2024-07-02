@@ -26,15 +26,15 @@ import com.gs.collections.impl.block.factory.Predicates2;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.test.Verify.assertThrows;
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public interface SortedNaturalOrderTestCase extends OrderedIterableTestCase
 {
@@ -302,7 +302,7 @@ public interface SortedNaturalOrderTestCase extends OrderedIterableTestCase
     default void OrderedIterable_zipWithIndex()
     {
         RichIterable<Integer> iterable = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Lists.immutable.with(
                         Tuples.pair(1, 0),
                         Tuples.pair(2, 1),
@@ -322,7 +322,7 @@ public interface SortedNaturalOrderTestCase extends OrderedIterableTestCase
     default void OrderedIterable_zipWithIndex_target()
     {
         RichIterable<Integer> iterable = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 Lists.immutable.with(
                         Tuples.pair(1, 0),
                         Tuples.pair(2, 1),

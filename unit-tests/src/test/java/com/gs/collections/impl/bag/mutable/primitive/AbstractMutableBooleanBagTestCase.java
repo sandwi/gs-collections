@@ -26,8 +26,10 @@ import com.gs.collections.impl.bag.mutable.HashBag;
 import com.gs.collections.impl.collection.mutable.primitive.AbstractMutableBooleanCollectionTestCase;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Abstract JUnit test for {@link MutableBooleanBag}.
@@ -55,10 +57,10 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
     @Test
     public void sizeDistinct()
     {
-        Assert.assertEquals(0L, this.newWith().sizeDistinct());
-        Assert.assertEquals(1L, this.newWith(true).sizeDistinct());
-        Assert.assertEquals(1L, this.newWith(true, true, true).sizeDistinct());
-        Assert.assertEquals(2L, this.newWith(true, false, true, false, true).sizeDistinct());
+        Assertions.assertEquals(0L, this.newWith().sizeDistinct());
+        Assertions.assertEquals(1L, this.newWith(true).sizeDistinct());
+        Assertions.assertEquals(1L, this.newWith(true, true, true).sizeDistinct());
+        Assertions.assertEquals(2L, this.newWith(true, false, true, false, true).sizeDistinct());
     }
 
     @Override
@@ -67,11 +69,11 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
     {
         super.addAllIterable();
         MutableBooleanBag bag = this.newWith();
-        Assert.assertTrue(bag.addAll(BooleanArrayList.newListWith(true, false, true, false, true)));
-        Assert.assertFalse(bag.addAll(new BooleanArrayList()));
-        Assert.assertEquals(BooleanHashBag.newBagWith(true, false, true, false, true), bag);
-        Assert.assertTrue(bag.addAll(BooleanHashBag.newBagWith(true, false, true, false, true)));
-        Assert.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, true, true, true, true, true, true), bag);
+        Assertions.assertTrue(bag.addAll(BooleanArrayList.newListWith(true, false, true, false, true)));
+        Assertions.assertFalse(bag.addAll(new BooleanArrayList()));
+        Assertions.assertEquals(BooleanHashBag.newBagWith(true, false, true, false, true), bag);
+        Assertions.assertTrue(bag.addAll(BooleanHashBag.newBagWith(true, false, true, false, true)));
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, true, true, true, true, true, true), bag);
     }
 
     @Test
@@ -79,55 +81,59 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
     {
         MutableBooleanBag bag = this.newWith();
         bag.addOccurrences(false, 3);
-        Assert.assertEquals(BooleanHashBag.newBagWith(false, false, false), bag);
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false, false, false), bag);
         bag.addOccurrences(false, 2);
-        Assert.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, false), bag);
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, false), bag);
         bag.addOccurrences(false, 0);
-        Assert.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, false), bag);
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, false), bag);
         bag.addOccurrences(true, 0);
-        Assert.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, false), bag);
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, false), bag);
         bag.addOccurrences(true, 1);
-        Assert.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, false, true), bag);
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false, false, false, false, false, true), bag);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void addOccurrences_throws()
     {
-        this.newWith().addOccurrences(true, -1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newWith().addOccurrences(true, -1);
+        });
     }
 
     @Test
     public void removeOccurrences()
     {
         MutableBooleanBag bag1 = this.newWith();
-        Assert.assertFalse(bag1.removeOccurrences(true, 5));
+        Assertions.assertFalse(bag1.removeOccurrences(true, 5));
         bag1.addOccurrences(true, 5);
-        Assert.assertTrue(bag1.removeOccurrences(true, 2));
-        Assert.assertEquals(BooleanHashBag.newBagWith(true, true, true), bag1);
-        Assert.assertFalse(bag1.removeOccurrences(true, 0));
-        Assert.assertEquals(BooleanHashBag.newBagWith(true, true, true), bag1);
-        Assert.assertTrue(bag1.removeOccurrences(true, 5));
-        Assert.assertEquals(new BooleanHashBag(), bag1);
-        Assert.assertFalse(bag1.removeOccurrences(true, 5));
-        Assert.assertEquals(new BooleanHashBag(), bag1);
+        Assertions.assertTrue(bag1.removeOccurrences(true, 2));
+        Assertions.assertEquals(BooleanHashBag.newBagWith(true, true, true), bag1);
+        Assertions.assertFalse(bag1.removeOccurrences(true, 0));
+        Assertions.assertEquals(BooleanHashBag.newBagWith(true, true, true), bag1);
+        Assertions.assertTrue(bag1.removeOccurrences(true, 5));
+        Assertions.assertEquals(new BooleanHashBag(), bag1);
+        Assertions.assertFalse(bag1.removeOccurrences(true, 5));
+        Assertions.assertEquals(new BooleanHashBag(), bag1);
 
         MutableBooleanBag bag2 = this.newWith();
-        Assert.assertFalse(bag2.removeOccurrences(false, 5));
+        Assertions.assertFalse(bag2.removeOccurrences(false, 5));
         bag2.addOccurrences(false, 5);
-        Assert.assertTrue(bag2.removeOccurrences(false, 2));
-        Assert.assertEquals(BooleanHashBag.newBagWith(false, false, false), bag2);
-        Assert.assertFalse(bag2.removeOccurrences(false, 0));
-        Assert.assertEquals(BooleanHashBag.newBagWith(false, false, false), bag2);
-        Assert.assertTrue(bag2.removeOccurrences(false, 5));
-        Assert.assertEquals(new BooleanHashBag(), bag2);
-        Assert.assertFalse(bag2.removeOccurrences(false, 5));
-        Assert.assertEquals(new BooleanHashBag(), bag2);
+        Assertions.assertTrue(bag2.removeOccurrences(false, 2));
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false, false, false), bag2);
+        Assertions.assertFalse(bag2.removeOccurrences(false, 0));
+        Assertions.assertEquals(BooleanHashBag.newBagWith(false, false, false), bag2);
+        Assertions.assertTrue(bag2.removeOccurrences(false, 5));
+        Assertions.assertEquals(new BooleanHashBag(), bag2);
+        Assertions.assertFalse(bag2.removeOccurrences(false, 5));
+        Assertions.assertEquals(new BooleanHashBag(), bag2);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void removeOccurrences_throws()
     {
-        this.newWith().removeOccurrences(true, -1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.newWith().removeOccurrences(true, -1);
+        });
     }
 
     @Test
@@ -136,7 +142,7 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
         StringBuilder stringBuilder = new StringBuilder();
         this.classUnderTest().forEachWithOccurrences((argument1, argument2) -> stringBuilder.append(argument1).append(argument2));
         String string = stringBuilder.toString();
-        Assert.assertTrue("true2false1".equals(string)
+        Assertions.assertTrue("true2false1".equals(string)
                 || "false1true2".equals(string));
     }
 
@@ -155,11 +161,11 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
         super.anySatisfy();
         long[] count = {0};
         MutableBooleanBag bag = this.newWith(false, true, false);
-        Assert.assertTrue(bag.anySatisfy(value -> {
+        Assertions.assertTrue(bag.anySatisfy(value -> {
             count[0]++;
             return value;
         }));
-        Assert.assertEquals(2L, count[0]);
+        Assertions.assertEquals(2L, count[0]);
     }
 
     @Override
@@ -169,11 +175,11 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
         super.allSatisfy();
         int[] count = {0};
         MutableBooleanBag bag = this.newWith(false, true, false);
-        Assert.assertFalse(bag.allSatisfy(value -> {
+        Assertions.assertFalse(bag.allSatisfy(value -> {
             count[0]++;
             return !value;
         }));
-        Assert.assertEquals(2L, count[0]);
+        Assertions.assertEquals(2L, count[0]);
     }
 
     @Override
@@ -182,7 +188,7 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
     {
         super.noneSatisfy();
         MutableBooleanBag bag = this.newWith(false, true, false);
-        Assert.assertFalse(bag.noneSatisfy(value -> value));
+        Assertions.assertFalse(bag.noneSatisfy(value -> value));
     }
 
     @Override
@@ -192,11 +198,11 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
         super.collect();
         MutableBooleanBag bag = this.newWith(true, false, false, true, true, true);
         BooleanToObjectFunction<String> stringValueOf = parameter -> parameter ? "true" : "false";
-        Assert.assertEquals(HashBag.newBagWith("true", "false", "false", "true", "true", "true"), bag.collect(stringValueOf));
+        Assertions.assertEquals(HashBag.newBagWith("true", "false", "false", "true", "true", "true"), bag.collect(stringValueOf));
         MutableBooleanBag bag1 = this.newWith(false, false);
-        Assert.assertEquals(HashBag.newBagWith("false", "false"), bag1.collect(stringValueOf));
+        Assertions.assertEquals(HashBag.newBagWith("false", "false"), bag1.collect(stringValueOf));
         MutableBooleanBag bag2 = this.newWith(true, true);
-        Assert.assertEquals(HashBag.newBagWith("true", "true"), bag2.collect(stringValueOf));
+        Assertions.assertEquals(HashBag.newBagWith("true", "true"), bag2.collect(stringValueOf));
     }
 
     @Override
@@ -208,8 +214,8 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
         MutableBooleanCollection collection2 = this.newWith(true, false, false, true);
         MutableBooleanCollection collection3 = this.newWith(true, false);
         MutableBooleanCollection collection4 = this.newWith(true, true, false);
-        Assert.assertEquals(collection1, collection2);
-        Assert.assertNotEquals(collection3, collection4);
+        Assertions.assertEquals(collection1, collection2);
+        Assertions.assertNotEquals(collection3, collection4);
     }
 
     @Override
@@ -222,7 +228,7 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
         MutableBooleanCollection collection3 = this.newWith(true, false);
         MutableBooleanCollection collection4 = this.newWith(true, true, false);
         Verify.assertEqualsAndHashCode(collection1, collection2);
-        Assert.assertNotEquals(collection3.hashCode(), collection4.hashCode());
+        Assertions.assertNotEquals(collection3.hashCode(), collection4.hashCode());
     }
 
     @Override
@@ -230,7 +236,7 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
     public void testToString()
     {
         super.testToString();
-        Assert.assertEquals("[true, true, true]", BooleanHashBag.newBagWith(true, true, true).toString());
+        Assertions.assertEquals("[true, true, true]", BooleanHashBag.newBagWith(true, true, true).toString());
     }
 
     @Override
@@ -238,7 +244,7 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
     public void makeString()
     {
         super.makeString();
-        Assert.assertEquals("true, true, true", BooleanHashBag.newBagWith(true, true, true).makeString());
+        Assertions.assertEquals("true, true, true", BooleanHashBag.newBagWith(true, true, true).makeString());
     }
 
     @Override
@@ -248,14 +254,14 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
         super.appendString();
         StringBuilder appendable1 = new StringBuilder();
         this.newWith(true, true, true).appendString(appendable1);
-        Assert.assertEquals("true, true, true", appendable1.toString());
+        Assertions.assertEquals("true, true, true", appendable1.toString());
 
         StringBuilder appendable2 = new StringBuilder();
         MutableBooleanBag bag1 = this.newWith(false, false, true);
         bag1.appendString(appendable2);
-        Assert.assertTrue(appendable2.toString(), "false, false, true".equals(appendable2.toString())
+        Assertions.assertTrue("false, false, true".equals(appendable2.toString())
                 || "true, false, false".equals(appendable2.toString())
-                || "false, true, false".equals(appendable2.toString()));
+                || "false, true, false".equals(appendable2.toString()), appendable2.toString());
     }
 
     @Override
@@ -264,7 +270,7 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
     {
         super.toList();
         MutableBooleanList list = this.newWith(false, false, true).toList();
-        Assert.assertTrue(list.equals(BooleanArrayList.newListWith(false, false, true))
+        Assertions.assertTrue(list.equals(BooleanArrayList.newListWith(false, false, true))
                 || list.equals(BooleanArrayList.newListWith(true, false, false))
                 || list.equals(BooleanArrayList.newListWith(false, true, false)));
     }
@@ -272,8 +278,8 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
     @Test
     public void toImmutable()
     {
-        Assert.assertEquals(this.classUnderTest(), this.classUnderTest().toImmutable());
-        Assert.assertNotSame(this.classUnderTest(), this.classUnderTest().toImmutable());
+        Assertions.assertEquals(this.classUnderTest(), this.classUnderTest().toImmutable());
+        Assertions.assertNotSame(this.classUnderTest(), this.classUnderTest().toImmutable());
         Verify.assertInstanceOf(ImmutableBooleanBag.class, this.classUnderTest().toImmutable());
     }
 }

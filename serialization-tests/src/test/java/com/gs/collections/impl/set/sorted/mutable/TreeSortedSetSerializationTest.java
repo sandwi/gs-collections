@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.sorted.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TreeSortedSetSerializationTest
 {
@@ -26,8 +26,10 @@ public class TreeSortedSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLm11dGFibGUuVHJlZVNv\n"
-                        + "cnRlZFNldAAAAAAAAAABDAAAeHBwdwQAAAAAeA==",
+                """
+                rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc29ydGVkLm11dGFibGUuVHJlZVNv
+                cnRlZFNldAAAAAAAAAABDAAAeHBwdwQAAAAAeA==\
+                """,
                 new TreeSortedSet<Object>());
     }
 }

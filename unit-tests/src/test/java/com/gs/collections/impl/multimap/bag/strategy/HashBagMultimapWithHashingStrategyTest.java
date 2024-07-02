@@ -32,8 +32,8 @@ import com.gs.collections.impl.multimap.bag.AbstractMutableBagMultimapTestCase;
 import com.gs.collections.impl.multimap.bag.HashBagMultimap;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test of {@link HashBagMultimap}.
@@ -118,8 +118,8 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
         MutableBagMultimap<String, Integer> multimap =
                 this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         ImmutableMultimap<String, Integer> actual = multimap.toImmutable();
-        Assert.assertNotNull(actual);
-        Assert.assertEquals(multimap, actual);
+        Assertions.assertNotNull(actual);
+        Assertions.assertEquals(multimap, actual);
         // ideally this should go back to HashBagMultimapWithHashingStrategy
         Verify.assertInstanceOf(HashBagMultimap.class, actual.toMutable());
     }
@@ -133,8 +133,8 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
         MutableBagMultimap<String, Integer> multimap =
                 this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         MutableMultimap<String, Integer> mutableCopy = multimap.toMutable();
-        Assert.assertNotSame(multimap, mutableCopy);
-        Assert.assertEquals(multimap, mutableCopy);
+        Assertions.assertNotSame(multimap, mutableCopy);
+        Assertions.assertEquals(multimap, mutableCopy);
         Verify.assertInstanceOf(HashBagMultimapWithHashingStrategy.class, mutableCopy);
     }
 
@@ -150,7 +150,7 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
         expected.put("One", this.createCollection(1));
         expected.put("Two", this.createCollection(2, 2));
         MutableMap<String, RichIterable<Integer>> actual = multimap.toMap();
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
         Verify.assertInstanceOf(UnifiedMapWithHashingStrategy.class, actual);
     }
 
@@ -166,7 +166,7 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
         expected.put("One", UnifiedSet.newSetWith(1));
         expected.put("Two", UnifiedSet.newSetWith(2, 2));
         MutableMap<String, MutableSet<Integer>> actual = multimap.toMap(UnifiedSet::new);
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
         Verify.assertInstanceOf(UnifiedMapWithHashingStrategy.class, actual);
     }
 
@@ -175,16 +175,16 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
     {
         HashBagMultimapWithHashingStrategy<Integer, Integer> multimapWithIdentity = HashBagMultimapWithHashingStrategy.newMultimap(HashingStrategies.identityStrategy());
 
-        multimapWithIdentity.put(new Integer(1), 1);
-        multimapWithIdentity.putAll(new Integer(1), Lists.fixedSize.of(2, 20, 1));
-        multimapWithIdentity.put(new Integer(1), 3);
+        multimapWithIdentity.put(Integer.valueOf(1), 1);
+        multimapWithIdentity.putAll(Integer.valueOf(1), Lists.fixedSize.of(2, 20, 1));
+        multimapWithIdentity.put(Integer.valueOf(1), 3);
 
-        Assert.assertEquals(3, multimapWithIdentity.sizeDistinct());
+        Assertions.assertEquals(3, multimapWithIdentity.sizeDistinct());
         Verify.assertSize(5, multimapWithIdentity);
 
         HashBagMultimapWithHashingStrategy<Integer, Integer> multimapWithDefault = HashBagMultimapWithHashingStrategy.newMultimap(HashingStrategies.defaultStrategy(), multimapWithIdentity);
 
-        Assert.assertEquals(1, multimapWithDefault.sizeDistinct());
+        Assertions.assertEquals(1, multimapWithDefault.sizeDistinct());
         Verify.assertSize(5, multimapWithDefault);
 
         Verify.assertIterablesEqual(multimapWithIdentity.valuesView().toBag(), multimapWithDefault.valuesView().toBag());
@@ -198,6 +198,6 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
     public void testKeyHashingStrategy()
     {
         HashBagMultimapWithHashingStrategy<Integer, Integer> multimap = HashBagMultimapWithHashingStrategy.newMultimap(HashingStrategies.identityStrategy());
-        Assert.assertEquals(HashingStrategies.identityStrategy(), multimap.getKeyHashingStrategy());
+        Assertions.assertEquals(HashingStrategies.identityStrategy(), multimap.getKeyHashingStrategy());
     }
 }

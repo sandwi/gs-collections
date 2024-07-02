@@ -35,8 +35,8 @@ import com.gs.collections.impl.parallel.BatchIterable;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class UnifiedMapTest extends UnifiedMapTestCase
 {
@@ -120,26 +120,26 @@ public class UnifiedMapTest extends UnifiedMapTestCase
             }
             capacity <<= 1;
 
-            Assert.assertEquals(capacity, table.length);
+            Assertions.assertEquals(capacity, table.length);
         }
         catch (SecurityException ignored)
         {
-            Assert.fail("Unable to modify the visibility of the table on UnifiedMap");
+            Assertions.fail("Unable to modify the visibility of the table on UnifiedMap");
         }
         catch (NoSuchFieldException ignored)
         {
-            Assert.fail("No field named table UnifiedMap");
+            Assertions.fail("No field named table UnifiedMap");
         }
         catch (IllegalAccessException ignored)
         {
-            Assert.fail("No access the field table in UnifiedMap");
+            Assertions.fail("No access the field table in UnifiedMap");
         }
     }
 
     @Test
     public void constructorOfPairs()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedMap.newWithKeysValues(1, "one", 2, "two", 3, "three"),
                 UnifiedMap.newMapWith(Tuples.pair(1, "one"), Tuples.pair(2, "two"), Tuples.pair(3, "three")));
     }
@@ -151,11 +151,11 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         Pair<Integer, String> pair2 = Tuples.pair(2, "Two");
         Pair<Integer, String> pair3 = Tuples.pair(3, "Three");
         Pair<Integer, String> pair4 = Tuples.pair(4, "Four");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedMap.newMapWith(pair1, pair2, pair3, pair4),
                 UnifiedMap.newMapWith(FastList.newListWith(pair1, pair2, pair3, pair4)));
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedMap.newMapWith(pair1, pair2, pair3, pair4),
                 UnifiedMap.newMapWith(UnifiedSet.<Pair<Integer, String>>newSetWith(pair1, pair2, pair3, pair4)));
     }
@@ -218,7 +218,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
             {
                 entries.batchForEach(new EntrySumProcedure(sum), sectionIndex, sectionCount);
             }
-            Assert.assertEquals(20, sum.getValue());
+            Assertions.assertEquals(20, sum.getValue());
         }
     }
 
@@ -236,8 +236,8 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         {
             collisions.batchForEach(new EntrySumProcedure(sum2), i, numBatches);
         }
-        Assert.assertEquals(1, numBatches);
-        Assert.assertEquals(78, sum2.getValue());
+        Assertions.assertEquals(1, numBatches);
+        Assertions.assertEquals(78, sum2.getValue());
 
         //Testing 3 batches with chains and uneven last batch
         Sum sum3 = new IntegerSum(0);
@@ -245,7 +245,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         {
             collisions.batchForEach(new EntrySumProcedure(sum3), i, 5);
         }
-        Assert.assertEquals(78, sum3.getValue());
+        Assertions.assertEquals(78, sum3.getValue());
     }
 
     @Test
@@ -263,7 +263,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
                 sum4.add(each.getValue() == null ? 1 : each.getValue());
             }, i, nulls.getBatchCount(7));
         }
-        Assert.assertEquals(52, sum4.getValue());
+        Assertions.assertEquals(52, sum4.getValue());
     }
 
     @Test
@@ -273,7 +273,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         Sum sum5 = new IntegerSum(0);
         BatchIterable<Map.Entry<Integer, Integer>> empty = (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMap.newMap().entrySet();
         empty.batchForEach(new EntrySumProcedure(sum5), 0, empty.getBatchCount(1));
-        Assert.assertEquals(0, sum5.getValue());
+        Assertions.assertEquals(0, sum5.getValue());
     }
 
     private void batchForEachTestCases(BatchIterable<Integer> batchIterable, int expectedValue)
@@ -286,7 +286,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
             {
                 batchIterable.batchForEach(new SumProcedure<>(sum), sectionIndex, sectionCount);
             }
-            Assert.assertEquals(expectedValue, sum.getValue());
+            Assertions.assertEquals(expectedValue, sum.getValue());
         }
     }
 
@@ -300,8 +300,8 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         {
             batchIterable.batchForEach(new SumProcedure<>(sum), i, numBatches);
         }
-        Assert.assertEquals(1, numBatches);
-        Assert.assertEquals(expectedValue, sum.getValue());
+        Assertions.assertEquals(1, numBatches);
+        Assertions.assertEquals(expectedValue, sum.getValue());
 
         //Testing 3 batches with chains and uneven last batch
         Sum sum2 = new IntegerSum(0);
@@ -309,7 +309,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         {
             batchIterable.batchForEach(new SumProcedure<>(sum2), i, 5);
         }
-        Assert.assertEquals(expectedValue, sum2.getValue());
+        Assertions.assertEquals(expectedValue, sum2.getValue());
     }
 
     private void batchForEachNullHandling(BatchIterable<Integer> batchIterable, int expectedValue)
@@ -321,7 +321,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         {
             batchIterable.batchForEach(each -> sum.add(each == null ? 1 : each), i, batchIterable.getBatchCount(7));
         }
-        Assert.assertEquals(expectedValue, sum.getValue());
+        Assertions.assertEquals(expectedValue, sum.getValue());
     }
 
     private void batchForEachEmptyBatchIterable(BatchIterable<Integer> batchIterable)
@@ -329,7 +329,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         //Test batchForEach on empty set, it should simply do nothing and not throw any exceptions
         Sum sum = new IntegerSum(0);
         batchIterable.batchForEach(new SumProcedure<>(sum), 0, batchIterable.getBatchCount(1));
-        Assert.assertEquals(0, sum.getValue());
+        Assertions.assertEquals(0, sum.getValue());
     }
 
     @Test
@@ -384,7 +384,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
                 (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3, 4, 4).entrySet();
         Sum sum = new IntegerSum(0);
         entries.forEach(new EntrySumProcedure(sum));
-        Assert.assertEquals(20, sum.getValue());
+        Assertions.assertEquals(20, sum.getValue());
     }
 
     @Test
@@ -396,7 +396,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
 
         Sum sum = new IntegerSum(0);
         collisions.forEach(new EntrySumProcedure(sum));
-        Assert.assertEquals(78, sum.getValue());
+        Assertions.assertEquals(78, sum.getValue());
     }
 
     @Test
@@ -413,7 +413,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
             sum.add(each.getValue() == null ? 0 : each.getValue());
         });
 
-        Assert.assertEquals(48, sum.getValue());
+        Assertions.assertEquals(48, sum.getValue());
     }
 
     @Test
@@ -424,14 +424,14 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         BatchIterable<Map.Entry<Integer, Integer>> empty =
                 (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMap.newMap().entrySet();
         empty.forEach(new EntrySumProcedure(sum));
-        Assert.assertEquals(0, sum.getValue());
+        Assertions.assertEquals(0, sum.getValue());
     }
 
     private void batchIterable_forEach(BatchIterable<Integer> batchIterable, int expectedValue)
     {
         IntegerSum sum = new IntegerSum(0);
         batchIterable.forEach(new SumProcedure<>(sum));
-        Assert.assertEquals(expectedValue, sum.getValue());
+        Assertions.assertEquals(expectedValue, sum.getValue());
     }
 
     private void batchIterable_forEachNullHandling(BatchIterable<Integer> batchIterable, int expectedValue)
@@ -439,7 +439,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         //Testing forEach handling null keys and null values
         Sum sum = new IntegerSum(0);
         batchIterable.forEach(each -> sum.add(each == null ? 0 : each));
-        Assert.assertEquals(expectedValue, sum.getValue());
+        Assertions.assertEquals(expectedValue, sum.getValue());
     }
 
     private void batchIterable_forEachEmptyBatchIterable(BatchIterable<Integer> batchIterable)
@@ -447,35 +447,35 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         //Test forEach on empty set, it should simply do nothing and not throw any exceptions
         Sum sum = new IntegerSum(0);
         batchIterable.batchForEach(new SumProcedure<>(sum), 0, batchIterable.getBatchCount(1));
-        Assert.assertEquals(0, sum.getValue());
+        Assertions.assertEquals(0, sum.getValue());
     }
 
     @Test
     public void getMapMemoryUsedInWords()
     {
         UnifiedMap<String, String> map = UnifiedMap.newMap();
-        Assert.assertEquals(34, map.getMapMemoryUsedInWords());
+        Assertions.assertEquals(34, map.getMapMemoryUsedInWords());
         map.put("1", "1");
-        Assert.assertEquals(34, map.getMapMemoryUsedInWords());
+        Assertions.assertEquals(34, map.getMapMemoryUsedInWords());
 
         UnifiedMap<Integer, Integer> map2 = this.mapWithCollisionsOfSize(2);
-        Assert.assertEquals(16, map2.getMapMemoryUsedInWords());
+        Assertions.assertEquals(16, map2.getMapMemoryUsedInWords());
     }
 
     @Test
     public void getCollidingBuckets()
     {
         UnifiedMap<Object, Object> map = UnifiedMap.newMap();
-        Assert.assertEquals(0, map.getCollidingBuckets());
+        Assertions.assertEquals(0, map.getCollidingBuckets());
 
         UnifiedMap<Integer, Integer> map2 = this.mapWithCollisionsOfSize(2);
-        Assert.assertEquals(1, map2.getCollidingBuckets());
+        Assertions.assertEquals(1, map2.getCollidingBuckets());
 
         map2.put(42, 42);
-        Assert.assertEquals(1, map2.getCollidingBuckets());
+        Assertions.assertEquals(1, map2.getCollidingBuckets());
 
         UnifiedMap<String, String> map3 = UnifiedMap.newWithKeysValues("Six", "6", "Bar", "-", "Three", "3", "Five", "5");
-        Assert.assertEquals(2, map3.getCollidingBuckets());
+        Assertions.assertEquals(2, map3.getCollidingBuckets());
     }
 
     @Override
@@ -488,19 +488,19 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         UnifiedMap<Integer, Integer> map = UnifiedMap.newMap(2, 0.75f);
         COLLISIONS.subList(0, 5).forEach(Procedures.cast(each -> map.getIfAbsentPut(each, new PassThruFunction0<>(each))));
 
-        Assert.assertEquals(this.mapWithCollisionsOfSize(5), map);
+        Assertions.assertEquals(this.mapWithCollisionsOfSize(5), map);
 
         //Test getting element present in chain
         UnifiedMap<Integer, Integer> map2 = UnifiedMap.newWithKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4);
-        Assert.assertEquals(Integer.valueOf(3), map2.getIfAbsentPut(COLLISION_3, () -> {
-            Assert.fail();
+        Assertions.assertEquals(Integer.valueOf(3), map2.getIfAbsentPut(COLLISION_3, () -> {
+            Assertions.fail();
             return null;
         }));
 
         //Test rehashing while creating a new chained key
         UnifiedMap<Integer, Integer> map3 = UnifiedMap.<Integer, Integer>newMap(2, 0.75f).withKeysValues(1, COLLISION_1, 2, COLLISION_2, 3, COLLISION_3);
-        Assert.assertEquals(COLLISION_4, map3.getIfAbsentPut(4, new PassThruFunction0<>(COLLISION_4)));
-        Assert.assertNull(map3.getIfAbsentPut(5, new PassThruFunction0<>(null)));
+        Assertions.assertEquals(COLLISION_4, map3.getIfAbsentPut(4, new PassThruFunction0<>(COLLISION_4)));
+        Assertions.assertNull(map3.getIfAbsentPut(5, new PassThruFunction0<>(null)));
     }
 
     @Override
@@ -518,7 +518,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase
             map.put(each, each);
         }));
 
-        Assert.assertEquals(this.mapWithCollisionsOfSize(5), map);
+        Assertions.assertEquals(this.mapWithCollisionsOfSize(5), map);
     }
 
     @Override
@@ -529,9 +529,9 @@ public class UnifiedMapTest extends UnifiedMapTestCase
 
         // this map is deliberately small to force a rehash to occur from the put method, in a map with a chained bucket
         UnifiedMap<Integer, Integer> map = UnifiedMap.newMap(2, 0.75f);
-        COLLISIONS.subList(0, 5).forEach(Procedures.cast(each -> Assert.assertNull(map.put(each, each))));
+        COLLISIONS.subList(0, 5).forEach(Procedures.cast(each -> Assertions.assertNull(map.put(each, each))));
 
-        Assert.assertEquals(this.mapWithCollisionsOfSize(5), map);
+        Assertions.assertEquals(this.mapWithCollisionsOfSize(5), map);
     }
 
     @Override
@@ -541,17 +541,17 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.collectValues();
 
         UnifiedMap<String, Integer> map = UnifiedMap.<String, Integer>newMap().withKeysValues("1", 1, "2", 2, "3", 3, "4", 4);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedMap.<String, String>newMap(5).withKeysValues("1", "11", "2", "22", "3", "33", "4", "44"),
                 map.collectValues((key, value) -> key + value));
 
         UnifiedMap<Integer, Integer> collisions = UnifiedMap.<Integer, Integer>newMap().withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedMap.<Integer, Integer>newMap().withKeysValues(COLLISION_1, COLLISION_1 + 1, COLLISION_2, COLLISION_2 + 2, COLLISION_3, COLLISION_3 + 3, 1, 5),
                 collisions.collectValues((key, value) -> key + value));
 
         UnifiedMap<Integer, Integer> nulls = UnifiedMap.<Integer, Integer>newMap().withKeysValues(null, 10, 1, null, 2, 11, 3, 12);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedMap.<Integer, Boolean>newMap().withKeysValues(null, true, 1, true, 2, false, 3, false),
                 nulls.collectValues((key, value) -> key == null || value == null));
 
@@ -566,8 +566,8 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.detect();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertNull(collisions.detect((key, value) -> COLLISION_4.equals(key) && "four".equals(value)));
-        Assert.assertEquals(
+        Assertions.assertNull(collisions.detect((key, value) -> COLLISION_4.equals(key) && "four".equals(value)));
+        Assertions.assertEquals(
                 Tuples.pair(COLLISION_1, "one"),
                 collisions.detect((key, value) -> COLLISION_1.equals(key) && "one".equals(value)));
     }
@@ -579,8 +579,8 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.detect_value();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertNull(collisions.detect("four"::equals));
-        Assert.assertEquals("one", collisions.detect("one"::equals));
+        Assertions.assertNull(collisions.detect("four"::equals));
+        Assertions.assertEquals("one", collisions.detect("one"::equals));
     }
 
     @Override
@@ -590,11 +590,11 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.detectWith();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertNull(
+        Assertions.assertNull(
                 collisions.detectWith(
                         (String value, String parameter) -> "value is four".equals(parameter + value),
                         "value is "));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "one",
                 collisions.detectWith(
                         (String value, String parameter) -> "value is one".equals(parameter + value),
@@ -608,12 +608,12 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.detectIfNone_value();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "if none string",
                 collisions.detectIfNone(
                         "four"::equals,
                         () -> "if none string"));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "one",
                 collisions.detectIfNone(
                         "one"::equals,
@@ -627,13 +627,13 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.detectWithIfNone();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "if none string",
                 collisions.detectWithIfNone(
                         (String value, String parameter) -> "value is four".equals(parameter + value),
                         "value is ",
                         () -> "if none string"));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "one",
                 collisions.detectWithIfNone(
                         (String value, String parameter) -> "value is one".equals(parameter + value),
@@ -648,8 +648,8 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.anySatisfy();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertFalse(collisions.anySatisfy("four"::equals));
-        Assert.assertTrue(collisions.anySatisfy("one"::equals));
+        Assertions.assertFalse(collisions.anySatisfy("four"::equals));
+        Assertions.assertTrue(collisions.anySatisfy("one"::equals));
     }
 
     @Override
@@ -659,11 +659,11 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.anySatisfyWith();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertTrue(
+        Assertions.assertTrue(
                 collisions.anySatisfyWith(
                         (value, parameter) -> "value is one".equals(parameter + value),
                         "value is "));
-        Assert.assertFalse(
+        Assertions.assertFalse(
                 collisions.anySatisfyWith(
                         (value, parameter) -> "value is four".equals(parameter + value),
                         "value is "));
@@ -676,8 +676,8 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.allSatisfy();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertTrue(collisions.allSatisfy(value -> !value.isEmpty()));
-        Assert.assertFalse(collisions.allSatisfy(value -> value.length() > 3));
+        Assertions.assertTrue(collisions.allSatisfy(value -> !value.isEmpty()));
+        Assertions.assertFalse(collisions.allSatisfy(value -> value.length() > 3));
     }
 
     @Override
@@ -687,8 +687,8 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.allSatisfyWith();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertTrue(collisions.allSatisfyWith(Predicates2.instanceOf(), String.class));
-        Assert.assertFalse(collisions.allSatisfyWith(String::equals, "one"));
+        Assertions.assertTrue(collisions.allSatisfyWith(Predicates2.instanceOf(), String.class));
+        Assertions.assertFalse(collisions.allSatisfyWith(String::equals, "one"));
     }
 
     @Override
@@ -698,8 +698,8 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.allSatisfy();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertTrue(collisions.noneSatisfy("four"::equals));
-        Assert.assertFalse(collisions.noneSatisfy("one"::equals));
+        Assertions.assertTrue(collisions.noneSatisfy("four"::equals));
+        Assertions.assertFalse(collisions.noneSatisfy("one"::equals));
     }
 
     @Override
@@ -709,8 +709,8 @@ public class UnifiedMapTest extends UnifiedMapTestCase
         super.allSatisfyWith();
 
         UnifiedMap<Integer, String> collisions = UnifiedMap.<Integer, String>newMap().withKeysValues(COLLISION_1, "one", COLLISION_2, "two", COLLISION_3, "three");
-        Assert.assertTrue(collisions.noneSatisfyWith(String::equals, "monkey"));
-        Assert.assertFalse(collisions.allSatisfyWith(String::equals, "one"));
+        Assertions.assertTrue(collisions.noneSatisfyWith(String::equals, "monkey"));
+        Assertions.assertFalse(collisions.allSatisfyWith(String::equals, "one"));
     }
 
     @Override

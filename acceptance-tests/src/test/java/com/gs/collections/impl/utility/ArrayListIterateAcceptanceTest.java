@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
 
 /**
  * JUnit test for {@link ArrayListIterate}.

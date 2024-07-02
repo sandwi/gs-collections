@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.function;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CaseFunctionSerializationTest
 {
@@ -26,11 +26,13 @@ public class CaseFunctionSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5DYXNlRnVuY3Rp\n"
-                        + "b24AAAAAAAAAAQIAAkwAD2RlZmF1bHRGdW5jdGlvbnQAMExjb20vZ3MvY29sbGVjdGlvbnMvYXBp\n"
-                        + "L2Jsb2NrL2Z1bmN0aW9uL0Z1bmN0aW9uO0wAEnByZWRpY2F0ZUZ1bmN0aW9uc3QAKUxjb20vZ3Mv\n"
-                        + "Y29sbGVjdGlvbnMvYXBpL2xpc3QvTXV0YWJsZUxpc3Q7eHBwc3IALWNvbS5ncy5jb2xsZWN0aW9u\n"
-                        + "cy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAAAAABDAAAeHB3BAAAAAB4",
+                """
+                rO0ABXNyADNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5mdW5jdGlvbi5DYXNlRnVuY3Rp
+                b24AAAAAAAAAAQIAAkwAD2RlZmF1bHRGdW5jdGlvbnQAMExjb20vZ3MvY29sbGVjdGlvbnMvYXBp
+                L2Jsb2NrL2Z1bmN0aW9uL0Z1bmN0aW9uO0wAEnByZWRpY2F0ZUZ1bmN0aW9uc3QAKUxjb20vZ3Mv
+                Y29sbGVjdGlvbnMvYXBpL2xpc3QvTXV0YWJsZUxpc3Q7eHBwc3IALWNvbS5ncy5jb2xsZWN0aW9u
+                cy5pbXBsLmxpc3QubXV0YWJsZS5GYXN0TGlzdAAAAAAAAAABDAAAeHB3BAAAAAB4\
+                """,
                 new CaseFunction<String, Object>());
     }
 }

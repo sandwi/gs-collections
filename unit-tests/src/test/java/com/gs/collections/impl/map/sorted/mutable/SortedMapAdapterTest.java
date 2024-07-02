@@ -22,8 +22,10 @@ import java.util.TreeMap;
 
 import com.gs.collections.api.map.sorted.MutableSortedMap;
 import com.gs.collections.impl.tuple.Tuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link SortedMapAdapter}.
@@ -90,10 +92,12 @@ public class SortedMapAdapterTest extends MutableSortedMapTestCase
         return SortedMapAdapter.adapt(new TreeMap<K, V>()).with(Tuples.pair(key1, value1), Tuples.pair(key2, value2), Tuples.pair(key3, value3), Tuples.pair(key4, value4));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void testNewNull()
     {
-        SortedMapAdapter.adapt(null);
+        assertThrows(NullPointerException.class, () -> {
+            SortedMapAdapter.adapt(null);
+        });
     }
 
     @Test
@@ -101,11 +105,11 @@ public class SortedMapAdapterTest extends MutableSortedMapTestCase
     {
         TreeSortedMap<Integer, String> sortedMap = TreeSortedMap.newMapWith(1, "1", 2, "2");
         MutableSortedMap<Integer, String> adapt = SortedMapAdapter.adapt(sortedMap);
-        Assert.assertSame(sortedMap, adapt);
+        Assertions.assertSame(sortedMap, adapt);
 
         SortedMap<Integer, String> treeMap = new TreeMap<>(sortedMap);
         MutableSortedMap<Integer, String> treeAdapt = SortedMapAdapter.adapt(treeMap);
-        Assert.assertNotSame(treeMap, treeAdapt);
-        Assert.assertEquals(treeMap, treeAdapt);
+        Assertions.assertNotSame(treeMap, treeAdapt);
+        Assertions.assertEquals(treeMap, treeAdapt);
     }
 }

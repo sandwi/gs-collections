@@ -19,8 +19,8 @@ package com.gs.collections.impl.stack.mutable.primitive;
 import com.gs.collections.api.BooleanIterable;
 import com.gs.collections.api.stack.primitive.MutableBooleanStack;
 import com.gs.collections.impl.collection.mutable.primitive.AbstractMutableBooleanStackTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SynchronizedBooleanStack}.
@@ -68,7 +68,7 @@ public class SynchronizedBooleanStackTest extends AbstractMutableBooleanStackTes
     public void asSynchronized()
     {
         MutableBooleanStack stack1 = new SynchronizedBooleanStack(BooleanArrayStack.newStackWith(true, false, true), new Object());
-        Assert.assertSame(stack1, stack1.asSynchronized());
-        Assert.assertEquals(stack1, stack1.asSynchronized());
+        Assertions.assertSame(stack1, stack1.asSynchronized());
+        Assertions.assertEquals(stack1, stack1.asSynchronized());
     }
 }

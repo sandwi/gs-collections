@@ -94,9 +94,9 @@ public final class ByteHashSet implements MutableByteSet, Externalizable
 
     public static ByteHashSet newSet(ByteIterable source)
     {
-        if (source instanceof ByteHashSet)
+        if (source instanceof ByteHashSet set)
         {
-            return new ByteHashSet((ByteHashSet) source);
+            return new ByteHashSet(set);
         }
 
         return ByteHashSet.newSetWith(source.toArray());
@@ -342,9 +342,8 @@ public final class ByteHashSet implements MutableByteSet, Externalizable
         }
         int oldSize = this.size();
 
-        if (source instanceof ByteHashSet)
+        if (source instanceof ByteHashSet hashSet)
         {
-            ByteHashSet hashSet = (ByteHashSet) source;
 
             this.size = 0;
             this.bitGroup3 |= hashSet.bitGroup3;
@@ -378,10 +377,9 @@ public final class ByteHashSet implements MutableByteSet, Externalizable
             return false;
         }
         int oldSize = this.size();
-        if (source instanceof ByteHashSet)
+        if (source instanceof ByteHashSet hashSet)
         {
             this.size = 0;
-            ByteHashSet hashSet = (ByteHashSet) source;
             this.bitGroup3 &= ~hashSet.bitGroup3;
             this.size += Long.bitCount(this.bitGroup3);
 
@@ -423,7 +421,7 @@ public final class ByteHashSet implements MutableByteSet, Externalizable
     public boolean retainAll(ByteIterable source)
     {
         int oldSize = this.size();
-        final ByteSet sourceSet = source instanceof ByteSet ? (ByteSet) source : source.toSet();
+        final ByteSet sourceSet = source instanceof ByteSet bs ? bs : source.toSet();
 
         ByteHashSet retained = this.select(new BytePredicate()
         {

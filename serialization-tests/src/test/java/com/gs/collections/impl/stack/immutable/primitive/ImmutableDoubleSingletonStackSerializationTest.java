@@ -17,7 +17,7 @@
 package com.gs.collections.impl.stack.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableDoubleSingletonStackSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableDoubleSingletonStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAE9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUucHJpbWl0aXZl\n"
-                        + "LkltbXV0YWJsZURvdWJsZVNpbmdsZXRvblN0YWNrAAAAAAAAAAECAAFEAAhlbGVtZW50MXhwP/AA\n"
-                        + "AAAAAAA=",
+                """
+                rO0ABXNyAE9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5pbW11dGFibGUucHJpbWl0aXZl
+                LkltbXV0YWJsZURvdWJsZVNpbmdsZXRvblN0YWNrAAAAAAAAAAECAAFEAAhlbGVtZW50MXhwP/AA
+                AAAAAAA=\
+                """,
                 new ImmutableDoubleSingletonStack(1.0));
     }
 }

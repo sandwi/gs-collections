@@ -16,8 +16,8 @@
 
 package com.gs.collections.impl.block.function.primitive;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Junit test for {@link CharFunction}.
@@ -30,16 +30,16 @@ public class CharFunctionTest
     @Test
     public void toUppercase()
     {
-        Assert.assertEquals('A', CharFunction.TO_UPPERCASE.valueOf('a'));
-        Assert.assertEquals('A', CharFunction.TO_UPPERCASE.valueOf('A'));
-        Assert.assertEquals('1', CharFunction.TO_UPPERCASE.valueOf('1'));
+        Assertions.assertEquals('A', CharFunction.TO_UPPERCASE.valueOf('a'));
+        Assertions.assertEquals('A', CharFunction.TO_UPPERCASE.valueOf('A'));
+        Assertions.assertEquals('1', CharFunction.TO_UPPERCASE.valueOf('1'));
     }
 
     @Test
     public void toLowercase()
     {
-        Assert.assertEquals('a', CharFunction.TO_LOWERCASE.valueOf('a'));
-        Assert.assertEquals('a', CharFunction.TO_LOWERCASE.valueOf('A'));
-        Assert.assertEquals('1', CharFunction.TO_LOWERCASE.valueOf('1'));
+        Assertions.assertEquals('a', CharFunction.TO_LOWERCASE.valueOf('a'));
+        Assertions.assertEquals('a', CharFunction.TO_LOWERCASE.valueOf('A'));
+        Assertions.assertEquals('1', CharFunction.TO_LOWERCASE.valueOf('1'));
     }
 }

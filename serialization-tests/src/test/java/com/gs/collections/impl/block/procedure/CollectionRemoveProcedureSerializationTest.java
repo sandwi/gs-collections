@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CollectionRemoveProcedureSerializationTest
 {
@@ -26,9 +26,11 @@ public class CollectionRemoveProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ29sbGVjdGlv\n"
-                        + "blJlbW92ZVByb2NlZHVyZQAAAAAAAAABAgABTAAKY29sbGVjdGlvbnQAFkxqYXZhL3V0aWwvQ29s\n"
-                        + "bGVjdGlvbjt4cHA=",
+                """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ29sbGVjdGlv
+                blJlbW92ZVByb2NlZHVyZQAAAAAAAAABAgABTAAKY29sbGVjdGlvbnQAFkxqYXZhL3V0aWwvQ29s
+                bGVjdGlvbjt4cHA=\
+                """,
                 CollectionRemoveProcedure.on(null));
     }
 }

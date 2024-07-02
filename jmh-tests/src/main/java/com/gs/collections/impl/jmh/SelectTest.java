@@ -29,7 +29,7 @@ import com.gs.collections.impl.jmh.runner.AbstractJMHTestRunner;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.parallel.ParallelIterate;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
@@ -52,49 +52,49 @@ public class SelectTest extends AbstractJMHTestRunner
     public void serial_lazy_jdk()
     {
         List<Integer> evens = this.integersJDK.stream().filter(each -> each % 2 == 0).collect(Collectors.toList());
-        Assert.assertEquals(SIZE / 2, evens.size());
+        Assertions.assertEquals(SIZE / 2, evens.size());
     }
 
     @Benchmark
     public void serial_lazy_streams_gsc()
     {
         List<Integer> evens = this.integersGSC.stream().filter(each -> each % 2 == 0).collect(Collectors.toList());
-        Assert.assertEquals(SIZE / 2, evens.size());
+        Assertions.assertEquals(SIZE / 2, evens.size());
     }
 
     @Benchmark
     public void parallel_lazy_jdk()
     {
         List<Integer> evens = this.integersJDK.parallelStream().filter(each -> each % 2 == 0).collect(Collectors.toList());
-        Assert.assertEquals(SIZE / 2, evens.size());
+        Assertions.assertEquals(SIZE / 2, evens.size());
     }
 
     @Benchmark
     public void parallel_lazy_streams_gsc()
     {
         List<Integer> evens = this.integersGSC.parallelStream().filter(each -> each % 2 == 0).collect(Collectors.toList());
-        Assert.assertEquals(SIZE / 2, evens.size());
+        Assertions.assertEquals(SIZE / 2, evens.size());
     }
 
     @Benchmark
     public void serial_eager_gsc()
     {
         MutableList<Integer> evens = this.integersGSC.select(each -> each % 2 == 0);
-        Assert.assertEquals(SIZE / 2, evens.size());
+        Assertions.assertEquals(SIZE / 2, evens.size());
     }
 
     @Benchmark
     public void parallel_eager_gsc()
     {
         Collection<Integer> evens = ParallelIterate.select(this.integersGSC, each -> each % 2 == 0);
-        Assert.assertEquals(SIZE / 2, evens.size());
+        Assertions.assertEquals(SIZE / 2, evens.size());
     }
 
     @Benchmark
     public void serial_lazy_gsc()
     {
         MutableList<Integer> evens = this.integersGSC.asLazy().select(each -> each % 2 == 0).toList();
-        Assert.assertEquals(SIZE / 2, evens.size());
+        Assertions.assertEquals(SIZE / 2, evens.size());
     }
 
     @Benchmark
@@ -102,6 +102,6 @@ public class SelectTest extends AbstractJMHTestRunner
     {
         ParallelListIterable<Integer> parallelListIterable = this.integersGSC.asParallel(this.service, BATCH_SIZE);
         MutableList<Integer> evens = parallelListIterable.select(each -> each % 2 == 0).toList();
-        Assert.assertEquals(SIZE / 2, evens.size());
+        Assertions.assertEquals(SIZE / 2, evens.size());
     }
 }

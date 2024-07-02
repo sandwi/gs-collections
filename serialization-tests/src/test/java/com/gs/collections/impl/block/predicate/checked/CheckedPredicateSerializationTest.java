@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.predicate.checked;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CheckedPredicateSerializationTest
 {
@@ -37,10 +37,12 @@ public class CheckedPredicateSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuY2hlY2tlZC5D\n"
-                        + "aGVja2VkUHJlZGljYXRlU2VyaWFsaXphdGlvblRlc3QkMQAAAAAAAAABAgAAeHIAQGNvbS5ncy5j\n"
-                        + "b2xsZWN0aW9ucy5pbXBsLmJsb2NrLnByZWRpY2F0ZS5jaGVja2VkLkNoZWNrZWRQcmVkaWNhdGUA\n"
-                        + "AAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAFNjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcmVkaWNhdGUuY2hlY2tlZC5D
+                aGVja2VkUHJlZGljYXRlU2VyaWFsaXphdGlvblRlc3QkMQAAAAAAAAABAgAAeHIAQGNvbS5ncy5j
+                b2xsZWN0aW9ucy5pbXBsLmJsb2NrLnByZWRpY2F0ZS5jaGVja2VkLkNoZWNrZWRQcmVkaWNhdGUA
+                AAAAAAAAAQIAAHhw\
+                """,
                 CHECKED_PREDICATE);
     }
 }

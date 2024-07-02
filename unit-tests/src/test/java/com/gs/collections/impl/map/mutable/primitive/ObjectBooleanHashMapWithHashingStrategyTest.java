@@ -26,8 +26,8 @@ import com.gs.collections.impl.factory.primitive.ObjectBooleanMaps;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
 import com.gs.collections.impl.test.domain.Person;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHashMapTestCase
 {
@@ -135,7 +135,7 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
 
         ObjectBooleanHashMapWithHashingStrategy<Person> map = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(
                 LAST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false);
-        Assert.assertEquals(ObjectBooleanHashMap.newWithKeysValues(JOHNDOE, false), map.select((argument1, argument2) -> "Doe".equals(argument1.getLastName())));
+        Assertions.assertEquals(ObjectBooleanHashMap.newWithKeysValues(JOHNDOE, false), map.select((argument1, argument2) -> "Doe".equals(argument1.getLastName())));
     }
 
     @Override
@@ -146,7 +146,7 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
 
         ObjectBooleanHashMapWithHashingStrategy<Person> map = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(
                 LAST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false);
-        Assert.assertEquals(ObjectBooleanHashMap.newWithKeysValues(JOHNDOE, false), map.reject((argument1, argument2) -> "Smith".equals(argument1.getLastName())));
+        Assertions.assertEquals(ObjectBooleanHashMap.newWithKeysValues(JOHNDOE, false), map.reject((argument1, argument2) -> "Smith".equals(argument1.getLastName())));
     }
 
     @Override
@@ -158,7 +158,7 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
         ObjectBooleanHashMapWithHashingStrategy<Person> map = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(
                 LAST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false);
         BooleanToObjectFunction f = argument1 -> argument1;
-        Assert.assertEquals(FastList.newListWith(false, false), map.collect(f));
+        Assertions.assertEquals(FastList.newListWith(false, false), map.collect(f));
     }
 
     @Test
@@ -166,12 +166,12 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
     {
         ObjectBooleanHashMapWithHashingStrategy<Person> map = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(
                 LAST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false);
-        Assert.assertTrue(map.containsKey(JOHNDOE));
-        Assert.assertTrue(map.containsKey(JOHNSMITH));
-        Assert.assertTrue(map.containsKey(JANEDOE));
-        Assert.assertTrue(map.containsKey(JANESMITH));
-        Assert.assertTrue(map.containsValue(false));
-        Assert.assertFalse(map.containsValue(true));
+        Assertions.assertTrue(map.containsKey(JOHNDOE));
+        Assertions.assertTrue(map.containsKey(JOHNSMITH));
+        Assertions.assertTrue(map.containsKey(JANEDOE));
+        Assertions.assertTrue(map.containsKey(JANESMITH));
+        Assertions.assertTrue(map.containsValue(false));
+        Assertions.assertFalse(map.containsValue(true));
     }
 
     @Test
@@ -181,7 +181,7 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
                 LAST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false);
 
         map.remove(JANEDOE);
-        Assert.assertEquals(ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNSMITH, false), map);
+        Assertions.assertEquals(ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNSMITH, false), map);
         map.remove(JOHNSMITH);
 
         Verify.assertEmpty(map);
@@ -190,14 +190,14 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
         ObjectBooleanHashMapWithHashingStrategy<String> map2 = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(
                 STRING_HASHING_STRATEGY, collidingKeys.get(0), true, collidingKeys.get(1), false, collidingKeys.get(2), true, collidingKeys.get(3), false);
         map2.remove(collidingKeys.get(3));
-        Assert.assertEquals(ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, collidingKeys.get(0), true, collidingKeys.get(1), false, collidingKeys.get(2), true), map2);
+        Assertions.assertEquals(ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, collidingKeys.get(0), true, collidingKeys.get(1), false, collidingKeys.get(2), true), map2);
         map2.remove(collidingKeys.get(0));
-        Assert.assertEquals(ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, collidingKeys.get(1), false, collidingKeys.get(2), true), map2);
+        Assertions.assertEquals(ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, collidingKeys.get(1), false, collidingKeys.get(2), true), map2);
         Verify.assertSize(2, map2);
 
         ObjectBooleanHashMapWithHashingStrategy<Integer> map3 = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, true, null, false, 3, true);
         map3.remove(null);
-        Assert.assertEquals(ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, true, 3, true), map3);
+        Assertions.assertEquals(ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, true, 3, true), map3);
     }
 
     @Test
@@ -207,13 +207,13 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
         ObjectBooleanHashMapWithHashingStrategy<Person> map2 = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(FIRST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, true, JOHNSMITH, true, JANESMITH, true);
         ObjectBooleanHashMapWithHashingStrategy<Person> mapWithConstantHashcodeStrategy = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(CONSTANT_HASHCODE_STRATEGY, JOHNDOE, true, JANEDOE, true, JOHNSMITH, true, JANESMITH, true);
 
-        Assert.assertEquals(map1, map2);
-        Assert.assertEquals(map2, map1);
-        Assert.assertEquals(mapWithConstantHashcodeStrategy, map2);
-        Assert.assertEquals(map2, mapWithConstantHashcodeStrategy);
-        Assert.assertNotEquals(map1.hashCode(), map2.hashCode());
-        Assert.assertNotEquals(map1.hashCode(), mapWithConstantHashcodeStrategy.hashCode());
-        Assert.assertNotEquals(map2.hashCode(), mapWithConstantHashcodeStrategy.hashCode());
+        Assertions.assertEquals(map1, map2);
+        Assertions.assertEquals(map2, map1);
+        Assertions.assertEquals(mapWithConstantHashcodeStrategy, map2);
+        Assertions.assertEquals(map2, mapWithConstantHashcodeStrategy);
+        Assertions.assertNotEquals(map1.hashCode(), map2.hashCode());
+        Assertions.assertNotEquals(map1.hashCode(), mapWithConstantHashcodeStrategy.hashCode());
+        Assertions.assertNotEquals(map2.hashCode(), mapWithConstantHashcodeStrategy.hashCode());
 
         ObjectBooleanHashMapWithHashingStrategy<Person> map3 = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false);
 
@@ -221,11 +221,11 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
         ObjectBooleanMap<Person> hashMap = ObjectBooleanMaps.mutable.withAll(map3);
 
         Verify.assertEqualsAndHashCode(map3, map4);
-        Assert.assertTrue(map3.equals(hashMap) && hashMap.equals(map3) && map3.hashCode() != hashMap.hashCode());
+        Assertions.assertTrue(map3.equals(hashMap) && hashMap.equals(map3) && map3.hashCode() != hashMap.hashCode());
 
         ObjectBooleanHashMap<Person> objectMap = ObjectBooleanHashMap.newWithKeysValues(JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false);
         ObjectBooleanHashMapWithHashingStrategy<Person> map5 = ObjectBooleanHashMapWithHashingStrategy.newMap(LAST_NAME_HASHING_STRATEGY, objectMap);
-        Assert.assertNotEquals(map5, objectMap);
+        Assertions.assertNotEquals(map5, objectMap);
     }
 
     @Test
@@ -235,14 +235,14 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
         map.put(null, true);
 
         //Testing getting values from no chains
-        Assert.assertEquals(true, map.get("1"));
-        Assert.assertEquals(false, map.get("2"));
-        Assert.assertEquals(true, map.get(null));
+        Assertions.assertEquals(true, map.get("1"));
+        Assertions.assertEquals(false, map.get("2"));
+        Assertions.assertEquals(true, map.get(null));
 
         ObjectBooleanHashMapWithHashingStrategy<Person> map2 = ObjectBooleanHashMapWithHashingStrategy.newMap(LAST_NAME_HASHING_STRATEGY);
         map2.put(JOHNSMITH, true);
-        Assert.assertEquals(true, map2.get(JOHNSMITH));
+        Assertions.assertEquals(true, map2.get(JOHNSMITH));
         map2.put(JANESMITH, false);
-        Assert.assertEquals(false, map2.get(JOHNSMITH));
+        Assertions.assertEquals(false, map2.get(JOHNSMITH));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure.checked.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CheckedObjectDoubleProcedureSerializationTest
 {
@@ -36,10 +36,12 @@ public class CheckedObjectDoubleProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAGljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuY2hlY2tlZC5w\n"
-                        + "cmltaXRpdmUuQ2hlY2tlZE9iamVjdERvdWJsZVByb2NlZHVyZVNlcmlhbGl6YXRpb25UZXN0JDEA\n"
-                        + "AAAAAAAAAQIAAHhyAFZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuY2hl\n"
-                        + "Y2tlZC5wcmltaXRpdmUuQ2hlY2tlZE9iamVjdERvdWJsZVByb2NlZHVyZQAAAAAAAAABAgAAeHA=\n",
+                """
+                rO0ABXNyAGljb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuY2hlY2tlZC5w
+                cmltaXRpdmUuQ2hlY2tlZE9iamVjdERvdWJsZVByb2NlZHVyZVNlcmlhbGl6YXRpb25UZXN0JDEA
+                AAAAAAAAAQIAAHhyAFZjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuY2hl
+                Y2tlZC5wcmltaXRpdmUuQ2hlY2tlZE9iamVjdERvdWJsZVByb2NlZHVyZQAAAAAAAAABAgAAeHA=
+                """,
                 CHECKED_OBJECT_DOUBLE_PROCEDURE);
     }
 }

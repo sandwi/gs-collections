@@ -21,8 +21,8 @@ import com.gs.collections.impl.block.factory.primitive.BooleanPredicates;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.list.mutable.primitive.BooleanArrayList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class BooleanIterableIterateTest
 {
@@ -35,7 +35,7 @@ public class BooleanIterableIterateTest
         sum[0] = "";
         sum[1] = "";
         BooleanIterableIterate.forEach(this.iterable, each -> sum[0] += each + " ");
-        Assert.assertEquals("true false true ", sum[0]);
+        Assertions.assertEquals("true false true ", sum[0]);
     }
 
     @Test
@@ -61,12 +61,12 @@ public class BooleanIterableIterateTest
     @Test
     public void isEmpty()
     {
-        Assert.assertFalse(BooleanIterableIterate.isEmpty(this.iterable));
+        Assertions.assertFalse(BooleanIterableIterate.isEmpty(this.iterable));
     }
 
     @Test
     public void notEmpty()
     {
-        Assert.assertTrue(BooleanIterableIterate.notEmpty(this.iterable));
+        Assertions.assertTrue(BooleanIterableIterate.notEmpty(this.iterable));
     }
 }

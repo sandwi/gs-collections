@@ -23,8 +23,8 @@ import com.gs.collections.api.multimap.sortedset.MutableSortedSetMultimap;
 import com.gs.collections.api.tuple.Pair;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.set.sorted.mutable.TreeSortedSet;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test of {@link SynchronizedPutTreeSortedSetMultimap}.
@@ -127,6 +127,6 @@ public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSor
         MutableMultimap<String, Integer> multimap =
                 this.newMultimapWithKeysValues("One", 1, "One", 2);
         String toString = multimap.toString();
-        Assert.assertTrue("{One=[1, 2]}".equals(toString) || "{One=[2, 1]}".equals(toString));
+        Assertions.assertTrue("{One=[1, 2]}".equals(toString) || "{One=[2, 1]}".equals(toString));
     }
 }

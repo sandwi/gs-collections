@@ -17,7 +17,7 @@
 package com.gs.collections.impl.bag.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableByteHashBagSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableByteHashBagSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAGdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVCeXRlSGFzaEJhZyRJbW11dGFibGVCeXRlQmFnU2VyaWFsaXphdGlvblByb3h5AAAA\n"
-                        + "AAAAAAEMAAB4cHcOAAAAAgEAAAABAgAAAAF4",
+                """
+                rO0ABXNyAGdjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVCeXRlSGFzaEJhZyRJbW11dGFibGVCeXRlQmFnU2VyaWFsaXphdGlvblByb3h5AAAA
+                AAAAAAEMAAB4cHcOAAAAAgEAAAABAgAAAAF4\
+                """,
                 ImmutableByteHashBag.newBagWith((byte) 1, (byte) 2));
     }
 }

@@ -38,10 +38,10 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.parallel.ParallelIterate;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Level;
@@ -71,14 +71,14 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
-    @Before
+    @BeforeEach
     @Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     }
 
-    @Before
+    @BeforeEach
     @Setup(Level.Trial)
     public void setUp_megamorphic()
     {
@@ -91,23 +91,23 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
         com.gs.collections.api.block.function.Function<Integer, String> function1 = each ->
         {
-            Assert.assertNotNull(each);
+            Assertions.assertNotNull(each);
             return String.valueOf(each);
         };
 
         com.gs.collections.api.block.function.Function<String, Integer> function2 = each -> {
-            Assert.assertNotNull(each);
+            Assertions.assertNotNull(each);
             return Integer.valueOf(each);
         };
 
         com.gs.collections.api.block.function.Function<Integer, String> function3 = each ->
         {
-            Assert.assertSame(each, each);
+            Assertions.assertSame(each, each);
             return String.valueOf(each);
         };
 
         com.gs.collections.api.block.function.Function<String, Integer> function4 = each -> {
-            Assert.assertSame(each, each);
+            Assertions.assertSame(each, each);
             return Integer.valueOf(each);
         };
 
@@ -120,23 +120,23 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
             Function<Integer, String> mapper1 = each ->
             {
-                Assert.assertNotNull(each);
+                Assertions.assertNotNull(each);
                 return String.valueOf(each);
             };
 
             Function<String, Integer> mapper2 = each -> {
-                Assert.assertNotNull(each);
+                Assertions.assertNotNull(each);
                 return Integer.valueOf(each);
             };
 
             Function<Integer, String> mapper3 = each ->
             {
-                Assert.assertSame(each, each);
+                Assertions.assertSame(each, each);
                 return String.valueOf(each);
             };
 
             Function<String, Integer> mapper4 = each -> {
-                Assert.assertSame(each, each);
+                Assertions.assertSame(each, each);
                 return Integer.valueOf(each);
             };
 
@@ -269,7 +269,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
         FunctionalInterfaceScalaTest.megamorphic(this.megamorphicWarmupLevel);
     }
 
-    @After
+    @AfterEach
     @TearDown
     public void tearDown() throws InterruptedException
     {

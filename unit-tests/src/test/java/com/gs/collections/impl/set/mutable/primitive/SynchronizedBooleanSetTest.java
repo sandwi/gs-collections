@@ -17,8 +17,8 @@
 package com.gs.collections.impl.set.mutable.primitive;
 
 import com.gs.collections.api.set.primitive.MutableBooleanSet;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SynchronizedBooleanSet}.
@@ -44,9 +44,9 @@ public class SynchronizedBooleanSetTest extends AbstractBooleanSetTestCase
         super.asSynchronized();
         SynchronizedBooleanSet set = this.classUnderTest();
         MutableBooleanSet setWithLockObject = new SynchronizedBooleanSet(BooleanHashSet.newSetWith(true, false, true), new Object()).asSynchronized();
-        Assert.assertEquals(set, setWithLockObject);
-        Assert.assertSame(setWithLockObject, setWithLockObject.asSynchronized());
-        Assert.assertSame(set, set.asSynchronized());
-        Assert.assertEquals(set, set.asSynchronized());
+        Assertions.assertEquals(set, setWithLockObject);
+        Assertions.assertSame(setWithLockObject, setWithLockObject.asSynchronized());
+        Assertions.assertSame(set, set.asSynchronized());
+        Assertions.assertEquals(set, set.asSynchronized());
     }
 }

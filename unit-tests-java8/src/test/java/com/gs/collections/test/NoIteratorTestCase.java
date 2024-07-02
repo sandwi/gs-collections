@@ -16,7 +16,7 @@
 
 package com.gs.collections.test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public interface NoIteratorTestCase extends RichIterableTestCase
 {

@@ -17,7 +17,9 @@
 package com.gs.collections.test.set.sorted;
 
 import com.gs.collections.test.UnmodifiableCollectionTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface UnmodifiableSortedSetTestCase extends UnmodifiableCollectionTestCase, SortedSetTestCase
 {
@@ -29,9 +31,11 @@ public interface UnmodifiableSortedSetTestCase extends UnmodifiableCollectionTes
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void Collection_add()
     {
-        UnmodifiableCollectionTestCase.super.Collection_add();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            UnmodifiableCollectionTestCase.super.Collection_add();
+        });
     }
 }

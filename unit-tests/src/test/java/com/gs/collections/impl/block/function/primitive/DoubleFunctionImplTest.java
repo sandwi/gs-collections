@@ -16,8 +16,8 @@
 
 package com.gs.collections.impl.block.function.primitive;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public final class DoubleFunctionImplTest
 {
@@ -26,8 +26,8 @@ public final class DoubleFunctionImplTest
     @Test
     public void testValueOf()
     {
-        Assert.assertSame(new TestDoubleFunctionImpl(0.0d).valueOf(JUNK), new TestDoubleFunctionImpl(0.0d).valueOf(JUNK));
-        Assert.assertEquals(Double.valueOf(1.0d), new TestDoubleFunctionImpl(1.0d).valueOf(JUNK));
+        Assertions.assertSame(new TestDoubleFunctionImpl(0.0d).valueOf(JUNK), new TestDoubleFunctionImpl(0.0d).valueOf(JUNK));
+        Assertions.assertEquals(Double.valueOf(1.0d), new TestDoubleFunctionImpl(1.0d).valueOf(JUNK));
     }
 
     private static final class TestDoubleFunctionImpl extends DoubleFunctionImpl<Object>

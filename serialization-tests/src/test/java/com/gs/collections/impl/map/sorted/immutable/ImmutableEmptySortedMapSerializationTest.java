@@ -17,13 +17,15 @@
 package com.gs.collections.impl.map.sorted.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableEmptySortedMapSerializationTest
 {
     static final String EXPECTED_BASE_64_FORM =
-            "rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc29ydGVkLmltbXV0YWJsZS5JbW11\n"
-                    + "dGFibGVTb3J0ZWRNYXBTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAAAHg=";
+            """
+            rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuc29ydGVkLmltbXV0YWJsZS5JbW11
+            dGFibGVTb3J0ZWRNYXBTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwcHcEAAAAAHg=\
+            """;
 
     @Test
     public void serializedForm()

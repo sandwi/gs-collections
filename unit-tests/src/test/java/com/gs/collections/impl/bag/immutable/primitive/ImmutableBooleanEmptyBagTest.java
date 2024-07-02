@@ -19,8 +19,8 @@ package com.gs.collections.impl.bag.immutable.primitive;
 import com.gs.collections.api.bag.primitive.ImmutableBooleanBag;
 import com.gs.collections.impl.factory.primitive.BooleanBags;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ImmutableBooleanEmptyBag}.
@@ -37,7 +37,7 @@ public class ImmutableBooleanEmptyBagTest extends AbstractImmutableBooleanBagTes
     @Test
     public void notEmpty()
     {
-        Assert.assertFalse(this.classUnderTest().notEmpty());
+        Assertions.assertFalse(this.classUnderTest().notEmpty());
     }
 
     @Override
@@ -61,13 +61,13 @@ public class ImmutableBooleanEmptyBagTest extends AbstractImmutableBooleanBagTes
         StringBuilder stringBuilder = new StringBuilder();
         this.classUnderTest().forEachWithOccurrences((argument1, argument2) -> stringBuilder.append(argument1).append(argument2));
         String string = stringBuilder.toString();
-        Assert.assertEquals("", string);
+        Assertions.assertEquals("", string);
     }
 
     @Test
     public void occurrencesOf()
     {
-        Assert.assertEquals(0, this.classUnderTest().occurrencesOf(true));
-        Assert.assertEquals(0, this.classUnderTest().occurrencesOf(false));
+        Assertions.assertEquals(0, this.classUnderTest().occurrencesOf(true));
+        Assertions.assertEquals(0, this.classUnderTest().occurrencesOf(false));
     }
 }

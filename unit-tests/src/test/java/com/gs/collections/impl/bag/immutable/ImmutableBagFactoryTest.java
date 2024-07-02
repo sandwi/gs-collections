@@ -20,8 +20,8 @@ import com.gs.collections.api.bag.Bag;
 import com.gs.collections.api.bag.ImmutableBag;
 import com.gs.collections.impl.factory.Bags;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableBagFactoryTest
 {
@@ -32,8 +32,8 @@ public class ImmutableBagFactoryTest
         Verify.assertIterableSize(0, immutableBag);
         Verify.assertIterableSize(4, Bags.immutable.of(1, 2, 2, 3));
         ImmutableBag<Object> actual = Bags.immutable.ofAll(immutableBag);
-        Assert.assertSame(immutableBag, actual);
-        Assert.assertEquals(immutableBag, actual);
+        Assertions.assertSame(immutableBag, actual);
+        Assertions.assertEquals(immutableBag, actual);
     }
 
     @Test

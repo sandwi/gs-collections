@@ -21,7 +21,9 @@ import com.gs.collections.api.list.ParallelListIterable;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.ListAdapter;
 import com.gs.collections.impl.list.mutable.RandomAccessListAdapter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RandomAccessListAdapterParallelListIterableTest extends ParallelListIterableTestCase
 {
@@ -43,15 +45,19 @@ public class RandomAccessListAdapterParallelListIterableTest extends ParallelLis
         return RandomAccessListAdapter.adapt(Lists.mutable.of(littleElements));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void asParallel_small_batch()
     {
-        ListAdapter.adapt(Lists.mutable.of(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)).asParallel(this.executorService, 0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            ListAdapter.adapt(Lists.mutable.of(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)).asParallel(this.executorService, 0);
+        });
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void asParallel_null_executorService()
     {
-        ListAdapter.adapt(Lists.mutable.of(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)).asParallel(null, 2);
+        assertThrows(NullPointerException.class, () -> {
+            ListAdapter.adapt(Lists.mutable.of(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)).asParallel(null, 2);
+        });
     }
 }

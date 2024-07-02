@@ -18,16 +18,16 @@ package com.gs.collections.impl.lazy;
 
 import com.gs.collections.impl.block.factory.Procedures;
 import com.gs.collections.impl.factory.Lists;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ZipWithIndexIterableTest
 {
     private ZipWithIndexIterable<Integer> iterableUnderTest;
     private final StringBuilder buffer = new StringBuilder();
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.iterableUnderTest = new ZipWithIndexIterable<>(Lists.immutable.of(1, 2, 3, 4));
@@ -35,7 +35,7 @@ public class ZipWithIndexIterableTest
 
     private void assertBufferContains(String expected)
     {
-        Assert.assertEquals(expected, this.buffer.toString());
+        Assertions.assertEquals(expected, this.buffer.toString());
     }
 
     @Test

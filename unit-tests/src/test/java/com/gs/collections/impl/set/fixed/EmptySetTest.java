@@ -30,15 +30,17 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.factory.Sets;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
 {
     private EmptySet<Object> emptySet;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.emptySet = new EmptySet<>();
@@ -59,10 +61,10 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     @Test
     public void testEmpty()
     {
-        Assert.assertTrue(this.emptySet.isEmpty());
-        Assert.assertFalse(this.emptySet.notEmpty());
-        Assert.assertTrue(Sets.fixedSize.of().isEmpty());
-        Assert.assertFalse(Sets.fixedSize.of().notEmpty());
+        Assertions.assertTrue(this.emptySet.isEmpty());
+        Assertions.assertFalse(this.emptySet.notEmpty());
+        Assertions.assertTrue(Sets.fixedSize.of().isEmpty());
+        Assertions.assertFalse(Sets.fixedSize.of().notEmpty());
     }
 
     @Test
@@ -74,15 +76,15 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     @Test
     public void testContains()
     {
-        Assert.assertFalse(this.emptySet.contains("Something"));
-        Assert.assertFalse(this.emptySet.contains(null));
+        Assertions.assertFalse(this.emptySet.contains("Something"));
+        Assertions.assertFalse(this.emptySet.contains(null));
     }
 
     @Test
     public void testGetFirstLast()
     {
-        Assert.assertNull(this.emptySet.getFirst());
-        Assert.assertNull(this.emptySet.getLast());
+        Assertions.assertNull(this.emptySet.getFirst());
+        Assertions.assertNull(this.emptySet.getLast());
     }
 
     @Test
@@ -96,32 +98,32 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     @Test
     public void testClone()
     {
-        Assert.assertSame(Sets.fixedSize.of().clone(), Sets.fixedSize.of());
+        Assertions.assertSame(Sets.fixedSize.of().clone(), Sets.fixedSize.of());
     }
 
     @Test
     public void testForEach()
     {
-        this.emptySet.forEach(Procedures.cast(each -> Assert.fail()));
+        this.emptySet.forEach(Procedures.cast(each -> Assertions.fail()));
     }
 
     @Test
     public void testForEachWithIndex()
     {
-        this.emptySet.forEachWithIndex((each, index) -> Assert.fail());
+        this.emptySet.forEachWithIndex((each, index) -> Assertions.fail());
     }
 
     @Test
     public void testForEachWith()
     {
-        this.emptySet.forEachWith((argument1, argument2) -> Assert.fail(), "param");
+        this.emptySet.forEachWith((argument1, argument2) -> Assertions.fail(), "param");
     }
 
     @Test
     public void testIterator()
     {
         Iterator<Object> it = this.emptySet.iterator();
-        Assert.assertFalse(it.hasNext());
+        Assertions.assertFalse(it.hasNext());
 
         Verify.assertThrows(NoSuchElementException.class, (Runnable) it::next);
 
@@ -134,22 +136,26 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     {
         MutableSetMultimap<Class<?>, String> multimap = this.classUnderTest().groupBy(Object::getClass);
         Verify.assertSize(this.classUnderTest().size(), multimap);
-        Assert.assertTrue(multimap.keysView().isEmpty());
-        Assert.assertEquals(this.classUnderTest(), multimap.get(String.class));
+        Assertions.assertTrue(multimap.keysView().isEmpty());
+        Assertions.assertEquals(this.classUnderTest(), multimap.get(String.class));
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     @Override
     public void min()
     {
-        this.classUnderTest().min(String::compareTo);
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().min(String::compareTo);
+        });
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     @Override
     public void max()
     {
-        this.classUnderTest().max(String::compareTo);
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().max(String::compareTo);
+        });
     }
 
     @Test
@@ -166,18 +172,22 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
         // Not applicable for empty collections
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     @Override
     public void min_without_comparator()
     {
-        this.classUnderTest().min();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().min();
+        });
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     @Override
     public void max_without_comparator()
     {
-        this.classUnderTest().max();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().max();
+        });
     }
 
     @Test
@@ -195,17 +205,21 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void minBy()
     {
-        this.classUnderTest().minBy(String::valueOf);
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().minBy(String::valueOf);
+        });
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void maxBy()
     {
-        this.classUnderTest().maxBy(String::valueOf);
+        assertThrows(NoSuchElementException.class, () -> {
+            this.classUnderTest().maxBy(String::valueOf);
+        });
     }
 
     @Override
@@ -217,14 +231,14 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
         List<Object> nullsPlusOne = Collections.nCopies(set.size() + 1, null);
 
         MutableSet<Pair<String, Object>> pairs = set.zip(nulls);
-        Assert.assertEquals(set, pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne));
-        Assert.assertEquals(nulls, pairs.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
+        Assertions.assertEquals(set, pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne));
+        Assertions.assertEquals(nulls, pairs.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
 
         MutableSet<Pair<String, Object>> pairsPlusOne = set.zip(nullsPlusOne);
-        Assert.assertEquals(set, pairsPlusOne.collect((Function<Pair<String, ?>, String>) Pair::getOne));
-        Assert.assertEquals(nulls, pairsPlusOne.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
+        Assertions.assertEquals(set, pairsPlusOne.collect((Function<Pair<String, ?>, String>) Pair::getOne));
+        Assertions.assertEquals(nulls, pairsPlusOne.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 set.zip(nulls),
                 set.zip(nulls, UnifiedSet.<Pair<String, Object>>newSet()));
     }
@@ -236,14 +250,14 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
         MutableSet<String> set = this.classUnderTest();
         MutableSet<Pair<String, Integer>> pairs = set.zipWithIndex();
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 set,
                 pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.newSet(),
                 pairs.collect((Function<Pair<?, Integer>, Integer>) Pair::getTwo));
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 set.zipWithIndex(),
                 set.zipWithIndex(UnifiedSet.<Pair<String, Integer>>newSet()));
     }
@@ -252,14 +266,14 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     @Test
     public void chunk_large_size()
     {
-        Assert.assertEquals(Lists.mutable.of(), this.classUnderTest().chunk(10));
+        Assertions.assertEquals(Lists.mutable.of(), this.classUnderTest().chunk(10));
     }
 
     @Override
     @Test
     public void union()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.newSetWith("a", "b", "c"),
                 this.classUnderTest().union(UnifiedSet.newSetWith("a", "b", "c")));
     }
@@ -268,7 +282,7 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     @Test
     public void unionInto()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.newSetWith("a", "b", "c"),
                 this.classUnderTest().unionInto(UnifiedSet.newSetWith("a", "b", "c"), UnifiedSet.<String>newSet()));
     }
@@ -277,7 +291,7 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     @Test
     public void intersect()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.<String>newSet(),
                 this.classUnderTest().intersect(UnifiedSet.newSetWith("1", "2", "3")));
     }
@@ -286,7 +300,7 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     @Test
     public void intersectInto()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.<String>newSet(),
                 this.classUnderTest().intersectInto(UnifiedSet.newSetWith("1", "2", "3"), UnifiedSet.<String>newSet()));
     }
@@ -297,8 +311,8 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> difference = set.difference(UnifiedSet.newSetWith("2", "3", "4", "not present"));
-        Assert.assertEquals(UnifiedSet.<String>newSet(), difference);
-        Assert.assertEquals(set, set.difference(UnifiedSet.newSetWith("not present")));
+        Assertions.assertEquals(UnifiedSet.<String>newSet(), difference);
+        Assertions.assertEquals(set, set.difference(UnifiedSet.newSetWith("not present")));
     }
 
     @Override
@@ -307,15 +321,15 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> difference = set.differenceInto(UnifiedSet.newSetWith("2", "3", "4", "not present"), UnifiedSet.<String>newSet());
-        Assert.assertEquals(UnifiedSet.<String>newSet(), difference);
-        Assert.assertEquals(set, set.differenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.<String>newSet()));
+        Assertions.assertEquals(UnifiedSet.<String>newSet(), difference);
+        Assertions.assertEquals(set, set.differenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.<String>newSet()));
     }
 
     @Override
     @Test
     public void symmetricDifference()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.newSetWith("not present"),
                 this.classUnderTest().symmetricDifference(UnifiedSet.newSetWith("not present")));
     }
@@ -324,7 +338,7 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
     @Test
     public void symmetricDifferenceInto()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 UnifiedSet.newSetWith("not present"),
                 this.classUnderTest().symmetricDifferenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.<String>newSet()));
     }

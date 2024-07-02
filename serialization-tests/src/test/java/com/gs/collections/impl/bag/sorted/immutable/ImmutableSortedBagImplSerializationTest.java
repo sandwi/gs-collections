@@ -19,7 +19,7 @@ package com.gs.collections.impl.bag.sorted.immutable;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.factory.SortedBags;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableSortedBagImplSerializationTest
 {
@@ -28,10 +28,12 @@ public class ImmutableSortedBagImplSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuc29ydGVkLmltbXV0YWJsZS5JbW11\n"
-                        + "dGFibGVTb3J0ZWRCYWdTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAADcHNyABFq\n"
-                        + "YXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoas\n"
-                        + "lR0LlOCLAgAAeHAAAAABdwQAAAABc3EAfgACAAAAAncEAAAAAXNxAH4AAgAAAAN3BAAAAAF4",
+                """
+                rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuc29ydGVkLmltbXV0YWJsZS5JbW11
+                dGFibGVTb3J0ZWRCYWdTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAADcHNyABFq
+                YXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoas
+                lR0LlOCLAgAAeHAAAAABdwQAAAABc3EAfgACAAAAAncEAAAAAXNxAH4AAgAAAAN3BAAAAAF4\
+                """,
                 SortedBags.immutable.with(1, 2, 3));
     }
 
@@ -40,14 +42,16 @@ public class ImmutableSortedBagImplSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuc29ydGVkLmltbXV0YWJsZS5JbW11\n"
-                        + "dGFibGVTb3J0ZWRCYWdTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAADc3IAQ2Nv\n"
-                        + "bS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkUmV2ZXJzZUNv\n"
-                        + "bXBhcmF0b3IAAAAAAAAAAQIAAUwACmNvbXBhcmF0b3J0ABZMamF2YS91dGlsL0NvbXBhcmF0b3I7\n"
-                        + "eHBzcgBIY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Db21wYXJhdG9ycyRO\n"
-                        + "YXR1cmFsT3JkZXJDb21wYXJhdG9yAAAAAAAAAAECAAB4cHNyABFqYXZhLmxhbmcuSW50ZWdlchLi\n"
-                        + "oKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAADdwQA\n"
-                        + "AAABc3EAfgAHAAAAAncEAAAAAXNxAH4ABwAAAAF3BAAAAAF4",
+                """
+                rO0ABXNyAFFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcuc29ydGVkLmltbXV0YWJsZS5JbW11
+                dGFibGVTb3J0ZWRCYWdTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwAAHhwdwQAAAADc3IAQ2Nv
+                bS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuQ29tcGFyYXRvcnMkUmV2ZXJzZUNv
+                bXBhcmF0b3IAAAAAAAAAAQIAAUwACmNvbXBhcmF0b3J0ABZMamF2YS91dGlsL0NvbXBhcmF0b3I7
+                eHBzcgBIY29tLmdzLmNvbGxlY3Rpb25zLmltcGwuYmxvY2suZmFjdG9yeS5Db21wYXJhdG9ycyRO
+                YXR1cmFsT3JkZXJDb21wYXJhdG9yAAAAAAAAAAECAAB4cHNyABFqYXZhLmxhbmcuSW50ZWdlchLi
+                oKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAADdwQA
+                AAABc3EAfgAHAAAAAncEAAAAAXNxAH4ABwAAAAF3BAAAAAF4\
+                """,
                 SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 2, 3));
     }
 }

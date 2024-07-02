@@ -17,7 +17,7 @@
 package com.gs.collections.impl.bag.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class HashBagSerializationTest
 {
@@ -26,8 +26,10 @@ public class HashBagSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyACtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcubXV0YWJsZS5IYXNoQmFnAAAAAAAA\n"
-                        + "AAEMAAB4cHcEAAAAAHg=",
+                """
+                rO0ABXNyACtjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5iYWcubXV0YWJsZS5IYXNoQmFnAAAAAAAA
+                AAEMAAB4cHcEAAAAAHg=\
+                """,
                 HashBag.newBag());
     }
 }

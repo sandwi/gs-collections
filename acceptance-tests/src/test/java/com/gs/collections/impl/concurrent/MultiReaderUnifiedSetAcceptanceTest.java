@@ -33,7 +33,6 @@ import com.gs.collections.impl.set.mutable.MultiReaderUnifiedSet;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
 import org.junit.Assert;
-import org.junit.Test;
 
 public class MultiReaderUnifiedSetAcceptanceTest
 {

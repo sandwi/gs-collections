@@ -31,8 +31,8 @@ import com.gs.collections.impl.factory.Sets;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SetAdapter}.
@@ -53,7 +53,7 @@ public class SetAdapterTest extends AbstractMutableSetTestCase
         collection.add(collection);
         String simpleName = collection.getClass().getSimpleName();
         String string = collection.toString();
-        Assert.assertTrue(
+        Assertions.assertTrue(
                 ("[1, (this " + simpleName + ")]").equals(string)
                         || ("[(this " + simpleName + "), 1]").equals(string));
     }
@@ -127,10 +127,10 @@ public class SetAdapterTest extends AbstractMutableSetTestCase
         set4.add(2);
         set4.add(3);
         set4.add(4);
-        Assert.assertNotEquals(set1, null);
+        Assertions.assertNotEquals(set1, null);
         Verify.assertEqualsAndHashCode(set1, set1);
         Verify.assertEqualsAndHashCode(set1, set2);
-        Assert.assertNotEquals(set2, set3);
+        Assertions.assertNotEquals(set2, set3);
         Verify.assertEqualsAndHashCode(set3, set4);
     }
 
@@ -148,7 +148,7 @@ public class SetAdapterTest extends AbstractMutableSetTestCase
         MutableCollection<Integer> deserializedCollection = SerializeTestHelper.serializeDeserialize(collection);
         Verify.assertSize(5, deserializedCollection);
         Verify.assertContainsAll(deserializedCollection, 1, 2, 3, 4, 5);
-        Assert.assertEquals(collection, deserializedCollection);
+        Assertions.assertEquals(collection, deserializedCollection);
     }
 
     @Override
@@ -165,16 +165,16 @@ public class SetAdapterTest extends AbstractMutableSetTestCase
     @Test
     public void getFirst()
     {
-        Assert.assertNotNull(this.newWith(1, 2, 3).getFirst());
-        Assert.assertNull(this.newWith().getFirst());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getFirst());
+        Assertions.assertNull(this.newWith().getFirst());
     }
 
     @Override
     @Test
     public void getLast()
     {
-        Assert.assertNotNull(this.newWith(1, 2, 3).getLast());
-        Assert.assertNull(this.newWith().getLast());
+        Assertions.assertNotNull(this.newWith(1, 2, 3).getLast());
+        Assertions.assertNull(this.newWith().getLast());
     }
 
     @Override

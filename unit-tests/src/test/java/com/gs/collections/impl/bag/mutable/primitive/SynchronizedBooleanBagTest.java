@@ -17,8 +17,8 @@
 package com.gs.collections.impl.bag.mutable.primitive;
 
 import com.gs.collections.api.bag.primitive.MutableBooleanBag;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link SynchronizedBooleanBag}.
@@ -43,10 +43,10 @@ public class SynchronizedBooleanBagTest extends AbstractMutableBooleanBagTestCas
     {
         super.asSynchronized();
         SynchronizedBooleanBag bagWithLockObject = new SynchronizedBooleanBag(BooleanHashBag.newBagWith(true, false, true), new Object());
-        Assert.assertSame(bagWithLockObject, bagWithLockObject.asSynchronized());
-        Assert.assertEquals(bagWithLockObject, bagWithLockObject.asSynchronized());
+        Assertions.assertSame(bagWithLockObject, bagWithLockObject.asSynchronized());
+        Assertions.assertEquals(bagWithLockObject, bagWithLockObject.asSynchronized());
         MutableBooleanBag bag = this.classUnderTest();
-        Assert.assertSame(bag, bag.asSynchronized());
-        Assert.assertEquals(bag, bag.asSynchronized());
+        Assertions.assertSame(bag, bag.asSynchronized());
+        Assertions.assertEquals(bag, bag.asSynchronized());
     }
 }

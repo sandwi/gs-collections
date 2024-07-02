@@ -24,8 +24,8 @@ import com.gs.collections.test.MutableUnorderedIterableTestCase;
 import com.gs.collections.test.map.UnsortedMapIterableTestCase;
 
 import static com.gs.collections.test.IterableTestCase.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isOneOf;
-import static org.junit.Assert.assertThat;
 
 public interface MutableMapTestCase extends UnsortedMapIterableTestCase, MutableUnorderedIterableTestCase
 {

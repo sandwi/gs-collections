@@ -30,8 +30,10 @@ public class MultiReaderFastListMultimapSerializationTest extends MutableMultima
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5saXN0Lk11bHRpUmVhZGVy\n"
-                + "RmFzdExpc3RNdWx0aW1hcAAAAAAAAAABDAAAeHB3BAAAAAJ0AAFBdwQAAAADcQB+AAJ0AAFCcQB+\n"
-                + "AANxAH4AA3cEAAAAAXEAfgACeA==";
+        return """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5saXN0Lk11bHRpUmVhZGVy
+                RmFzdExpc3RNdWx0aW1hcAAAAAAAAAABDAAAeHB3BAAAAAJ0AAFBdwQAAAADcQB+AAJ0AAFCcQB+
+                AANxAH4AA3cEAAAAAXEAfgACeA==\
+                """;
     }
 }

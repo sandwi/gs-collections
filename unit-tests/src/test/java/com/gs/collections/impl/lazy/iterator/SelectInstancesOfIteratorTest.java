@@ -23,8 +23,8 @@ import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SelectInstancesOfIteratorTest
 {
@@ -43,7 +43,7 @@ public class SelectInstancesOfIteratorTest
         {
             result.add(iterator.next());
         }
-        Assert.assertEquals(FastList.newListWith(1, 3, 5), result);
+        Assertions.assertEquals(FastList.newListWith(1, 3, 5), result);
     }
 
     @Test

@@ -1196,8 +1196,10 @@ public abstract class AbstractMultiReaderMutableCollection<T> implements Mutable
     public Iterator<T> iterator()
     {
         throw new UnsupportedOperationException(
-                "Iterator is not supported directly on MultiReader collections.  "
-                        + "If you would like to use an iterator, you must either use withReadLockAndDelegate() or withWriteLockAndDelegate().");
+                """
+                Iterator is not supported directly on MultiReader collections.  \
+                If you would like to use an iterator, you must either use withReadLockAndDelegate() or withWriteLockAndDelegate().\
+                """);
     }
 
     public boolean remove(Object item)

@@ -21,8 +21,10 @@ import java.util.LinkedList;
 
 import com.gs.collections.api.list.MutableList;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link ListAdapter}.
@@ -35,10 +37,12 @@ public class ListAdapterTest extends AbstractListTestCase
         return new ListAdapter<>(new LinkedList<>(FastList.newListWith(littleElements)));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void null_throws()
     {
-        new ListAdapter<>(null);
+        assertThrows(NullPointerException.class, () -> {
+            new ListAdapter<>(null);
+        });
     }
 
     @Override
@@ -69,7 +73,7 @@ public class ListAdapterTest extends AbstractListTestCase
         sublist.remove("X");
         Verify.assertContainsAll(sublist, "B", "C");
         Verify.assertContainsAll(list, "A", "B", "C", "D");
-        Assert.assertEquals("C", sublist.set(1, "R"));
+        Assertions.assertEquals("C", sublist.set(1, "R"));
         Verify.assertContainsAll(sublist, "B", "R");
         Verify.assertContainsAll(list, "A", "B", "R", "D");
         sublist.addAll(Arrays.asList("W", "G"));

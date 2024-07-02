@@ -28,8 +28,10 @@ import com.gs.collections.impl.block.factory.primitive.BytePredicates;
 import com.gs.collections.impl.collection.immutable.primitive.AbstractImmutableByteCollectionTestCase;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Abstract JUnit test for {@link ImmutableByteSet}.
@@ -67,14 +69,14 @@ public abstract class AbstractImmutableByteHashSetTestCase extends AbstractImmut
     public void isEmpty()
     {
         super.isEmpty();
-        Assert.assertFalse(this.newWith((byte) 0, (byte) 1, (byte) 31).isEmpty());
+        Assertions.assertFalse(this.newWith((byte) 0, (byte) 1, (byte) 31).isEmpty());
     }
 
     @Override
     @Test
     public void notEmpty()
     {
-        Assert.assertTrue(this.newWith((byte) 0, (byte) 1, (byte) 31).notEmpty());
+        Assertions.assertTrue(this.newWith((byte) 0, (byte) 1, (byte) 31).notEmpty());
     }
 
     @Override
@@ -85,29 +87,31 @@ public abstract class AbstractImmutableByteHashSetTestCase extends AbstractImmut
         MutableSet<Byte> actual = UnifiedSet.newSet();
         ImmutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31);
         ByteIterator iterator = set.byteIterator();
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertFalse(iterator.hasNext());
-        Assert.assertEquals(expected, actual);
+        Assertions.assertFalse(iterator.hasNext());
+        Assertions.assertEquals(expected, actual);
         Verify.assertThrows(NoSuchElementException.class, (Runnable) iterator::next);
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void byteIterator_throws()
     {
-        ImmutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31);
-        ByteIterator iterator = set.byteIterator();
-        while (iterator.hasNext())
-        {
-            iterator.next();
-        }
+        assertThrows(NoSuchElementException.class, () -> {
+            ImmutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31);
+            ByteIterator iterator = set.byteIterator();
+            while (iterator.hasNext())
+            {
+                iterator.next();
+            }
 
-        iterator.next();
+            iterator.next();
+        });
     }
 
     @Override
@@ -119,7 +123,7 @@ public abstract class AbstractImmutableByteHashSetTestCase extends AbstractImmut
         ImmutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31);
         set.forEach(each -> sum[0] += each);
 
-        Assert.assertEquals(32L, sum[0]);
+        Assertions.assertEquals(32L, sum[0]);
     }
 
     @Override
@@ -128,9 +132,9 @@ public abstract class AbstractImmutableByteHashSetTestCase extends AbstractImmut
     {
         super.count();
         ImmutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 127, (byte) -1, (byte) -31, (byte) -64, (byte) -65, (byte) -128);
-        Assert.assertEquals(3, set.count(BytePredicates.greaterThan((byte) 0)));
-        Assert.assertEquals(8, set.count(BytePredicates.lessThan((byte) 32)));
-        Assert.assertEquals(1, set.count(BytePredicates.greaterThan((byte) 32)));
+        Assertions.assertEquals(3, set.count(BytePredicates.greaterThan((byte) 0)));
+        Assertions.assertEquals(8, set.count(BytePredicates.lessThan((byte) 32)));
+        Assertions.assertEquals(1, set.count(BytePredicates.greaterThan((byte) 32)));
     }
 
     @Override
@@ -159,9 +163,9 @@ public abstract class AbstractImmutableByteHashSetTestCase extends AbstractImmut
     {
         super.detectIfNone();
         ImmutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31);
-        Assert.assertEquals((byte) 0, set.detectIfNone(BytePredicates.lessThan((byte) 1), (byte) 9));
-        Assert.assertEquals((byte) 31, set.detectIfNone(BytePredicates.greaterThan((byte) 1), (byte) 9));
-        Assert.assertEquals((byte) 9, set.detectIfNone(BytePredicates.greaterThan((byte) 31), (byte) 9));
+        Assertions.assertEquals((byte) 0, set.detectIfNone(BytePredicates.lessThan((byte) 1), (byte) 9));
+        Assertions.assertEquals((byte) 31, set.detectIfNone(BytePredicates.greaterThan((byte) 1), (byte) 9));
+        Assertions.assertEquals((byte) 9, set.detectIfNone(BytePredicates.greaterThan((byte) 31), (byte) 9));
     }
 
     @Override
@@ -170,7 +174,7 @@ public abstract class AbstractImmutableByteHashSetTestCase extends AbstractImmut
     {
         super.collect();
         ImmutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31);
-        Assert.assertEquals(UnifiedSet.newSetWith((byte) -1, (byte) 0, (byte) 30), set.collect(byteParameter -> (byte) (byteParameter - 1)));
+        Assertions.assertEquals(UnifiedSet.newSetWith((byte) -1, (byte) 0, (byte) 30), set.collect(byteParameter -> (byte) (byteParameter - 1)));
     }
 
     @Override
@@ -179,7 +183,7 @@ public abstract class AbstractImmutableByteHashSetTestCase extends AbstractImmut
     {
         super.toSortedArray();
         ImmutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31);
-        Assert.assertArrayEquals(new byte[]{(byte) 0, (byte) 1, (byte) 31}, set.toSortedArray());
+        Assertions.assertArrayEquals(new byte[]{(byte) 0, (byte) 1, (byte) 31}, set.toSortedArray());
     }
 
     @Override
@@ -205,16 +209,16 @@ public abstract class AbstractImmutableByteHashSetTestCase extends AbstractImmut
         super.testEquals();
         ImmutableByteSet set1 = this.newWith((byte) 1, (byte) 31, (byte) 32);
         ImmutableByteSet set2 = this.newWith((byte) 32, (byte) 31, (byte) 1);
-        Assert.assertEquals(set1.hashCode(), set2.hashCode());
+        Assertions.assertEquals(set1.hashCode(), set2.hashCode());
     }
 
     @Override
     @Test
     public void toBag()
     {
-        Assert.assertEquals(ByteHashBag.newBagWith((byte) 1, (byte) 2, (byte) 3), this.classUnderTest().toBag());
-        Assert.assertEquals(ByteHashBag.newBagWith((byte) 0, (byte) 1, (byte) 31), this.newWith((byte) 0, (byte) 1, (byte) 31).toBag());
-        Assert.assertEquals(ByteHashBag.newBagWith((byte) 0, (byte) 1, (byte) 31, (byte) 32), this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 32).toBag());
+        Assertions.assertEquals(ByteHashBag.newBagWith((byte) 1, (byte) 2, (byte) 3), this.classUnderTest().toBag());
+        Assertions.assertEquals(ByteHashBag.newBagWith((byte) 0, (byte) 1, (byte) 31), this.newWith((byte) 0, (byte) 1, (byte) 31).toBag());
+        Assertions.assertEquals(ByteHashBag.newBagWith((byte) 0, (byte) 1, (byte) 31, (byte) 32), this.newWith((byte) 0, (byte) 1, (byte) 31, (byte) 32).toBag());
     }
 
     @Override
@@ -223,15 +227,15 @@ public abstract class AbstractImmutableByteHashSetTestCase extends AbstractImmut
     {
         super.asLazy();
         ImmutableByteSet set = this.newWith((byte) 0, (byte) 1, (byte) 31);
-        Assert.assertEquals(set.toSet(), set.asLazy().toSet());
+        Assertions.assertEquals(set.toSet(), set.asLazy().toSet());
         Verify.assertInstanceOf(LazyByteIterable.class, set.asLazy());
     }
 
     @Test
     public void toImmutable()
     {
-        Assert.assertEquals(0, this.newWith().toImmutable().size());
-        Assert.assertEquals(1, this.newWith((byte) 1).toImmutable().size());
-        Assert.assertEquals(3, this.newWith((byte) 1, (byte) 2, (byte) 3).toImmutable().size());
+        Assertions.assertEquals(0, this.newWith().toImmutable().size());
+        Assertions.assertEquals(1, this.newWith((byte) 1).toImmutable().size());
+        Assertions.assertEquals(3, this.newWith((byte) 1, (byte) 2, (byte) 3).toImmutable().size());
     }
 }

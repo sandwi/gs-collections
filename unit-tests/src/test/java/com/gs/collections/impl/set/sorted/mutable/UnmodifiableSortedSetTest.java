@@ -25,9 +25,11 @@ import com.gs.collections.impl.block.factory.Functions;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit test for {@link UnmodifiableSortedSet}.
@@ -40,7 +42,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     private MutableSortedSet<String> mutableSet;
     private MutableSortedSet<String> unmodifiableSet;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.mutableSet = TreeSortedSet.newSetWith(METALLICA, "Bon Jovi", "Europe", "Scorpions");
@@ -78,7 +80,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     {
         Verify.assertInstanceOf(UnmodifiableSortedSet.class, this.newWith().asUnmodifiable());
         MutableSortedSet<Object> set = this.newWith();
-        Assert.assertSame(set, set.asUnmodifiable());
+        Assertions.assertSame(set, set.asUnmodifiable());
     }
 
     @Test
@@ -94,7 +96,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     {
         MutableSortedSet<String> set = this.unmodifiableSet.newEmpty();
         set.add(LED_ZEPPELIN);
-        Verify.assertContains(LED_ZEPPELIN, set);
+        Verify.assertContains(set, LED_ZEPPELIN);
     }
 
     @Override
@@ -103,7 +105,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     {
         MutableSortedSet<String> set = this.newWith();
         MutableSortedSet<String> clone = set.clone();
-        Assert.assertSame(clone, set);
+        Assertions.assertSame(clone, set);
     }
 
     @Override
@@ -111,7 +113,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     public void min()
     {
         super.min();
-        Assert.assertEquals("1", this.newWith("1", "3", "2").min(String::compareTo));
+        Assertions.assertEquals("1", this.newWith("1", "3", "2").min(String::compareTo));
     }
 
     @Override
@@ -119,35 +121,43 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     public void max()
     {
         super.max();
-        Assert.assertEquals("3", this.newWith("1", "3", "2").max(String::compareTo));
+        Assertions.assertEquals("3", this.newWith("1", "3", "2").max(String::compareTo));
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void min_empty_throws_without_comparator()
     {
-        this.newWith().min();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().min();
+        });
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void max_empty_throws_without_comparator()
     {
-        this.newWith().max();
+        assertThrows(NoSuchElementException.class, () -> {
+            this.newWith().max();
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void min_null_throws_without_comparator()
     {
-        super.min_null_throws_without_comparator();
-        this.newWith("1", null, "2").min();
+        assertThrows(NullPointerException.class, () -> {
+            super.min_null_throws_without_comparator();
+            this.newWith("1", null, "2").min();
+        });
     }
 
     @Override
-    @Test(expected = NullPointerException.class)
+    @Test
     public void max_null_throws_without_comparator()
     {
-        super.max_null_throws_without_comparator();
-        this.newWith("1", null, "2").max();
+        assertThrows(NullPointerException.class, () -> {
+            super.max_null_throws_without_comparator();
+            this.newWith("1", null, "2").max();
+        });
     }
 
     @Override
@@ -155,7 +165,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     public void min_without_comparator()
     {
         super.min_without_comparator();
-        Assert.assertEquals("1", this.newWith("1", "3", "2").min());
+        Assertions.assertEquals("1", this.newWith("1", "3", "2").min());
     }
 
     @Override
@@ -163,7 +173,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     public void max_without_comparator()
     {
         super.max_without_comparator();
-        Assert.assertEquals("3", this.newWith("1", "3", "2").max());
+        Assertions.assertEquals("3", this.newWith("1", "3", "2").max());
     }
 
     @Override
@@ -171,7 +181,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     public void minBy()
     {
         super.minBy();
-        Assert.assertEquals("1", this.newWith("1", "3", "2").minBy(Functions.getStringToInteger()));
+        Assertions.assertEquals("1", this.newWith("1", "3", "2").minBy(Functions.getStringToInteger()));
     }
 
     @Override
@@ -179,77 +189,97 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     public void maxBy()
     {
         super.maxBy();
-        Assert.assertEquals("3", this.newWith("1", "3", "2").maxBy(Functions.getStringToInteger()));
+        Assertions.assertEquals("3", this.newWith("1", "3", "2").maxBy(Functions.getStringToInteger()));
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeObject()
     {
-        super.removeObject();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeObject();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeIfWith()
     {
-        super.removeIfWith();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeIfWith();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void clear()
     {
-        super.clear();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.clear();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addAll()
     {
-        super.addAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.addAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void addAllIterable()
     {
-        super.addAllIterable();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.addAllIterable();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeIf()
     {
-        super.removeIf();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeIf();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeAll()
     {
-        super.removeAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void removeAllIterable()
     {
-        super.removeAllIterable();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.removeAllIterable();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void retainAll()
     {
-        super.retainAll();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.retainAll();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void retainAllIterable()
     {
-        super.retainAllIterable();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            super.retainAllIterable();
+        });
     }
 
     @Override
@@ -259,7 +289,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
         super.testToString();
         MutableCollection<Object> collection = this.newWith(1, 2);
         String toString = collection.toString();
-        Assert.assertTrue("[1, 2]".equals(toString) || "[2, 1]".equals(toString));
+        Assertions.assertTrue("[1, 2]".equals(toString) || "[2, 1]".equals(toString));
     }
 
     @Override
@@ -268,7 +298,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     {
         super.makeString();
         MutableCollection<Object> collection = this.newWith(1, 2, 3);
-        Assert.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
+        Assertions.assertEquals(collection.toString(), '[' + collection.makeString() + ']');
     }
 
     @Override
@@ -279,46 +309,56 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
         MutableCollection<Object> collection = this.newWith(1, 2, 3);
         Appendable builder = new StringBuilder();
         collection.appendString(builder);
-        Assert.assertEquals(collection.toString(), '[' + builder.toString() + ']');
+        Assertions.assertEquals(collection.toString(), '[' + builder.toString() + ']');
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void getFirst()
     {
-        super.getFirst();
-        Assert.assertNotNull(this.newWith(1, 2, 3).getFirst());
-        Assert.assertNull(this.newWith().getFirst());
+        assertThrows(NoSuchElementException.class, () -> {
+            super.getFirst();
+            Assertions.assertNotNull(this.newWith(1, 2, 3).getFirst());
+            Assertions.assertNull(this.newWith().getFirst());
+        });
     }
 
     @Override
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void getLast()
     {
-        super.getLast();
-        Assert.assertNotNull(this.newWith(1, 2, 3).getLast());
-        Assert.assertNull(this.newWith().getLast());
+        assertThrows(NoSuchElementException.class, () -> {
+            super.getLast();
+            Assertions.assertNotNull(this.newWith(1, 2, 3).getLast());
+            Assertions.assertNull(this.newWith().getLast());
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void subSet()
     {
-        this.newWith(1, 2, 3).subSet(1, 3).clear();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3).subSet(1, 3).clear();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void headSet()
     {
-        this.newWith(1, 2, 3, 4).headSet(3).add(4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3, 4).headSet(3).add(4);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void tailSet()
     {
-        this.newWith(1, 2, 3, 4).tailSet(3).remove(1);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3, 4).tailSet(3).remove(1);
+        });
     }
 
     @Test
@@ -328,30 +368,38 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void with()
     {
-        this.newWith().with(1);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith().with(1);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withAll()
     {
-        this.newWith().withAll(FastList.newListWith(1, 2));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith().withAll(FastList.newListWith(1, 2));
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void without()
     {
-        this.newWith().without(2);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith().without(2);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void withoutAll()
     {
-        this.newWith().withoutAll(FastList.newListWith(1, 2));
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith().withoutAll(FastList.newListWith(1, 2));
+        });
     }
 }

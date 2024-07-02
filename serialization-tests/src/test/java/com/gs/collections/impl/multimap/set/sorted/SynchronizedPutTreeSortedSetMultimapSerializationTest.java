@@ -31,9 +31,11 @@ public class SynchronizedPutTreeSortedSetMultimapSerializationTest
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAFBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuc29ydGVkLlN5bmNo\n"
-                + "cm9uaXplZFB1dFRyZWVTb3J0ZWRTZXRNdWx0aW1hcAAAAAAAAAACDAAAeHBwdwQAAAACdAABQXcE\n"
-                + "AAAAAnEAfgACdAABQnEAfgADdwQAAAABcQB+AAJ4";
+        return """
+                rO0ABXNyAFBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuc29ydGVkLlN5bmNo
+                cm9uaXplZFB1dFRyZWVTb3J0ZWRTZXRNdWx0aW1hcAAAAAAAAAACDAAAeHBwdwQAAAACdAABQXcE
+                AAAAAnEAfgACdAABQnEAfgADdwQAAAABcQB+AAJ4\
+                """;
     }
 
     @Override

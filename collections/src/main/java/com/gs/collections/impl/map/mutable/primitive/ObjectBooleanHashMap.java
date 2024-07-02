@@ -1062,9 +1062,8 @@ public class ObjectBooleanHashMap<K> implements MutableObjectBooleanMap<K>, Exte
         @Override
         public boolean equals(Object obj)
         {
-            if (obj instanceof Set)
+            if (obj instanceof Set other)
             {
-                Set<?> other = (Set<?>) obj;
                 if (other.size() == this.size())
                 {
                     return this.containsAll(other);
@@ -1314,7 +1313,7 @@ public class ObjectBooleanHashMap<K> implements MutableObjectBooleanMap<K>, Exte
         public boolean retainAll(BooleanIterable source)
         {
             int oldSize = ObjectBooleanHashMap.this.size();
-            final BooleanSet sourceSet = source instanceof BooleanSet ? (BooleanSet) source : source.toSet();
+            final BooleanSet sourceSet = source instanceof BooleanSet bs ? bs : source.toSet();
             ObjectBooleanHashMap<K> retained = ObjectBooleanHashMap.this.select(new ObjectBooleanPredicate<K>()
             {
                 public boolean accept(K object, boolean value)

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ChainedProcedureSerializationTest
 {
@@ -26,10 +26,12 @@ public class ChainedProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ2hhaW5lZFBy\n"
-                        + "b2NlZHVyZQAAAAAAAAABAgABTAAKcHJvY2VkdXJlc3QAEExqYXZhL3V0aWwvTGlzdDt4cHNyAC1j\n"
-                        + "b20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuRmFzdExpc3QAAAAAAAAAAQwAAHhw\n"
-                        + "dwQAAAAAeA==",
+                """
+                rO0ABXNyADhjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuQ2hhaW5lZFBy
+                b2NlZHVyZQAAAAAAAAABAgABTAAKcHJvY2VkdXJlc3QAEExqYXZhL3V0aWwvTGlzdDt4cHNyAC1j
+                b20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0Lm11dGFibGUuRmFzdExpc3QAAAAAAAAAAQwAAHhw
+                dwQAAAAAeA==\
+                """,
                 new ChainedProcedure<Object>());
     }
 }

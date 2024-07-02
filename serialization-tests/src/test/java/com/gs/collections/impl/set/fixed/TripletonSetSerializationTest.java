@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.fixed;
 
 import com.gs.collections.impl.factory.Sets;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TripletonSetSerializationTest
 {
@@ -27,8 +27,10 @@ public class TripletonSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuZml4ZWQuU2luZ2xldG9uU2V0AAAA\n"
-                        + "AAAAAAEMAAB4cHB4",
+                """
+                rO0ABXNyAC5jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuZml4ZWQuU2luZ2xldG9uU2V0AAAA
+                AAAAAAEMAAB4cHB4\
+                """,
                 Sets.fixedSize.of(null, null, null));
     }
 }

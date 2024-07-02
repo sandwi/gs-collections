@@ -17,7 +17,7 @@
 package com.gs.collections.impl.list.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableSextupletonListSerializationTest
 {
@@ -25,12 +25,14 @@ public class ImmutableSextupletonListSerializationTest
     public void serializedForm()
     {
         Verify.assertSerializedForm(
-                "rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVT\n"
-                        + "ZXh0dXBsZXRvbkxpc3QAAAAAAAAAAQIABkwACGVsZW1lbnQxdAASTGphdmEvbGFuZy9PYmplY3Q7\n"
-                        + "TAAIZWxlbWVudDJxAH4AAUwACGVsZW1lbnQzcQB+AAFMAAhlbGVtZW50NHEAfgABTAAIZWxlbWVu\n"
-                        + "dDVxAH4AAUwACGVsZW1lbnQ2cQB+AAF4cHNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgAB\n"
-                        + "SQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAABc3EAfgADAAAAAnNx\n"
-                        + "AH4AAwAAAANzcQB+AAMAAAAEc3EAfgADAAAABXNxAH4AAwAAAAY=",
-                new ImmutableSextupletonList<Integer>(1, 2, 3, 4, 5, 6));
+                new ImmutableSextupletonList<Integer>(1, 2, 3, 4, 5, 6),
+                """
+                rO0ABXNyAD9jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5saXN0LmltbXV0YWJsZS5JbW11dGFibGVT
+                ZXh0dXBsZXRvbkxpc3QAAAAAAAAAAQIABkwACGVsZW1lbnQxdAASTGphdmEvbGFuZy9PYmplY3Q7
+                TAAIZWxlbWVudDJxAH4AAUwACGVsZW1lbnQzcQB+AAFMAAhlbGVtZW50NHEAfgABTAAIZWxlbWVu
+                dDVxAH4AAUwACGVsZW1lbnQ2cQB+AAF4cHNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgAB
+                SQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAABc3EAfgADAAAAAnNx
+                AH4AAwAAAANzcQB+AAMAAAAEc3EAfgADAAAABXNxAH4AAwAAAAY=\
+                """);
     }
 }

@@ -18,7 +18,7 @@ package com.gs.collections.impl.set.strategy.immutable;
 
 import com.gs.collections.impl.block.factory.HashingStrategies;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableUnifiedSetWithHashingStrategySerializationTest
 {
@@ -27,13 +27,15 @@ public class ImmutableUnifiedSetWithHashingStrategySerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAGBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc3RyYXRlZ3kuaW1tdXRhYmxlLklt\n"
-                        + "bXV0YWJsZVNldFdpdGhIYXNoaW5nU3RyYXRlZ3lTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwA\n"
-                        + "AHhwc3IAR2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuSGFzaGluZ1N0cmF0\n"
-                        + "ZWdpZXMkRGVmYXVsdFN0cmF0ZWd5AAAAAAAAAAECAAB4cHcEAAAAC3NyABFqYXZhLmxhbmcuSW50\n"
-                        + "ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAA\n"
-                        + "AAABc3EAfgAEAAAAAnNxAH4ABAAAAANzcQB+AAQAAAAEc3EAfgAEAAAABXNxAH4ABAAAAAZzcQB+\n"
-                        + "AAQAAAAHc3EAfgAEAAAACHNxAH4ABAAAAAlzcQB+AAQAAAAKc3EAfgAEAAAAC3g=",
+                """
+                rO0ABXNyAGBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuc3RyYXRlZ3kuaW1tdXRhYmxlLklt
+                bXV0YWJsZVNldFdpdGhIYXNoaW5nU3RyYXRlZ3lTZXJpYWxpemF0aW9uUHJveHkAAAAAAAAAAQwA
+                AHhwc3IAR2NvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLmZhY3RvcnkuSGFzaGluZ1N0cmF0
+                ZWdpZXMkRGVmYXVsdFN0cmF0ZWd5AAAAAAAAAAECAAB4cHcEAAAAC3NyABFqYXZhLmxhbmcuSW50
+                ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAA
+                AAABc3EAfgAEAAAAAnNxAH4ABAAAAANzcQB+AAQAAAAEc3EAfgAEAAAABXNxAH4ABAAAAAZzcQB+
+                AAQAAAAHc3EAfgAEAAAACHNxAH4ABAAAAAlzcQB+AAQAAAAKc3EAfgAEAAAAC3g=\
+                """,
                 ImmutableUnifiedSetWithHashingStrategy.newSetWith(HashingStrategies.<Integer>defaultStrategy(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
     }
 }

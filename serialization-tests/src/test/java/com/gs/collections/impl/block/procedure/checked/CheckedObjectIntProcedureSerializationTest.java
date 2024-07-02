@@ -17,7 +17,7 @@
 package com.gs.collections.impl.block.procedure.checked;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CheckedObjectIntProcedureSerializationTest
 {
@@ -36,10 +36,12 @@ public class CheckedObjectIntProcedureSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAFxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuY2hlY2tlZC5D\n"
-                        + "aGVja2VkT2JqZWN0SW50UHJvY2VkdXJlU2VyaWFsaXphdGlvblRlc3QkMQAAAAAAAAABAgAAeHIA\n"
-                        + "SWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLnByb2NlZHVyZS5jaGVja2VkLkNoZWNrZWRP\n"
-                        + "YmplY3RJbnRQcm9jZWR1cmUAAAAAAAAAAQIAAHhw",
+                """
+                rO0ABXNyAFxjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5ibG9jay5wcm9jZWR1cmUuY2hlY2tlZC5D
+                aGVja2VkT2JqZWN0SW50UHJvY2VkdXJlU2VyaWFsaXphdGlvblRlc3QkMQAAAAAAAAABAgAAeHIA
+                SWNvbS5ncy5jb2xsZWN0aW9ucy5pbXBsLmJsb2NrLnByb2NlZHVyZS5jaGVja2VkLkNoZWNrZWRP
+                YmplY3RJbnRQcm9jZWR1cmUAAAAAAAAAAQIAAHhw\
+                """,
                 CHECKED_OBJECT_INT_PROCEDURE);
     }
 }

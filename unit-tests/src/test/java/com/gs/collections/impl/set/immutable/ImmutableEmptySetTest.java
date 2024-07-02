@@ -23,8 +23,8 @@ import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableEmptySetTest extends AbstractImmutableEmptySetTestCase
 {
@@ -38,8 +38,8 @@ public class ImmutableEmptySetTest extends AbstractImmutableEmptySetTestCase
     @Test
     public void newWithout()
     {
-        Assert.assertSame(Sets.immutable.of(), Sets.immutable.of().newWithout(1));
-        Assert.assertSame(Sets.immutable.of(), Sets.immutable.of().newWithoutAll(Interval.oneTo(3)));
+        Assertions.assertSame(Sets.immutable.of(), Sets.immutable.of().newWithout(1));
+        Assertions.assertSame(Sets.immutable.of(), Sets.immutable.of().newWithoutAll(Interval.oneTo(3)));
     }
 
     @Override
@@ -50,6 +50,6 @@ public class ImmutableEmptySetTest extends AbstractImmutableEmptySetTestCase
         MutableSet<Integer> mutable = UnifiedSet.newSet(immutable);
         Verify.assertEqualsAndHashCode(mutable, immutable);
         Verify.assertPostSerializedIdentity(immutable);
-        Assert.assertNotEquals(FastList.newList(mutable), immutable);
+        Assertions.assertNotEquals(FastList.newList(mutable), immutable);
     }
 }

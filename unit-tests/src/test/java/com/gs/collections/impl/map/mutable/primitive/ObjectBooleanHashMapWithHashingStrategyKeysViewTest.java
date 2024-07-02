@@ -27,7 +27,8 @@ import com.gs.collections.impl.block.factory.HashingStrategies;
 import com.gs.collections.impl.lazy.AbstractLazyIterableTestCase;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link ObjectBooleanHashMapWithHashingStrategy#keysView()}.
@@ -59,22 +60,23 @@ public class ObjectBooleanHashMapWithHashingStrategyKeysViewTest extends Abstrac
     }
 
     @Override
+    @Test
     public void iterator()
     {
         MutableSet<String> expected = UnifiedSet.newSetWith("zero", "thirtyOne", "thirtyTwo");
         MutableSet<String> actual = UnifiedSet.newSet();
 
         Iterator<String> iterator = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, "zero", true, "thirtyOne", false, "thirtyTwo", true).keysView().iterator();
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
         Verify.assertThrows(UnsupportedOperationException.class, iterator::remove);
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         actual.add(iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertFalse(iterator.hasNext());
 
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
         Verify.assertThrows(NoSuchElementException.class, (Runnable) iterator::next);
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.stack.mutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ArrayStackSerializationTest
 {
@@ -26,8 +26,10 @@ public class ArrayStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLkFycmF5U3RhY2sA\n"
-                        + "AAAAAAAAAQwAAHhwdwQAAAAAeA==",
+                """
+                rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLkFycmF5U3RhY2sA
+                AAAAAAAAAQwAAHhwdwQAAAAAeA==\
+                """,
                 ArrayStack.newStack());
     }
 
@@ -36,8 +38,10 @@ public class ArrayStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLkFycmF5U3RhY2sA\n"
-                        + "AAAAAAAAAQwAAHhwdwQAAAABcHg=",
+                """
+                rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLkFycmF5U3RhY2sA
+                AAAAAAAAAQwAAHhwdwQAAAABcHg=\
+                """,
                 ArrayStack.newStackWith((Object) null));
     }
 
@@ -46,8 +50,10 @@ public class ArrayStackSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLkFycmF5U3RhY2sA\n"
-                        + "AAAAAAAAAQwAAHhwdwQAAAAFcHBwcHB4",
+                """
+                rO0ABXNyADBjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zdGFjay5tdXRhYmxlLkFycmF5U3RhY2sA
+                AAAAAAAAAQwAAHhwdwQAAAAFcHBwcHB4\
+                """,
                 ArrayStack.newStackWith(null, null, null, null, null));
     }
 }

@@ -17,7 +17,7 @@
 package com.gs.collections.impl.set.immutable;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableUnifiedSetSerializationTest
 {
@@ -26,11 +26,13 @@ public class ImmutableUnifiedSetSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLkltbXV0YWJsZVNl\n"
-                        + "dFNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAAtzcgARamF2YS5sYW5nLkludGVn\n"
-                        + "ZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAA\n"
-                        + "AXNxAH4AAgAAAAJzcQB+AAIAAAADc3EAfgACAAAABHNxAH4AAgAAAAVzcQB+AAIAAAAGc3EAfgAC\n"
-                        + "AAAAB3NxAH4AAgAAAAhzcQB+AAIAAAAJc3EAfgACAAAACnNxAH4AAgAAAAt4",
+                """
+                rO0ABXNyAERjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5zZXQuaW1tdXRhYmxlLkltbXV0YWJsZVNl
+                dFNlcmlhbGl6YXRpb25Qcm94eQAAAAAAAAABDAAAeHB3BAAAAAtzcgARamF2YS5sYW5nLkludGVn
+                ZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAA
+                AXNxAH4AAgAAAAJzcQB+AAIAAAADc3EAfgACAAAABHNxAH4AAgAAAAVzcQB+AAIAAAAGc3EAfgAC
+                AAAAB3NxAH4AAgAAAAhzcQB+AAIAAAAJc3EAfgACAAAACnNxAH4AAgAAAAt4\
+                """,
                 ImmutableUnifiedSet.newSetWith(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
     }
 }

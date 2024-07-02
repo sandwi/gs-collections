@@ -26,8 +26,8 @@ import com.gs.collections.impl.factory.Lists;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.test.SerializeTestHelper;
 import com.gs.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test for {@link DoubletonList}.
@@ -57,9 +57,9 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void testContains()
     {
-        Assert.assertTrue(this.list.contains("1"));
-        Assert.assertTrue(this.list.contains("2"));
-        Assert.assertFalse(this.list.contains("3"));
+        Assertions.assertTrue(this.list.contains("1"));
+        Assertions.assertTrue(this.list.contains("2"));
+        Assertions.assertFalse(this.list.contains("3"));
     }
 
     @Test
@@ -98,9 +98,9 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
     @Test
     public void testSet()
     {
-        Assert.assertEquals("1", this.list.set(0, "2"));
-        Assert.assertEquals("2", this.list.set(1, "1"));
-        Assert.assertEquals(FastList.newListWith("2", "1"), this.list);
+        Assertions.assertEquals("1", this.list.set(0, "2"));
+        Assertions.assertEquals("2", this.list.set(1, "1"));
+        Assertions.assertEquals(FastList.newListWith("2", "1"), this.list);
         Verify.assertThrows(IndexOutOfBoundsException.class, () -> this.list.set(2, "0"));
     }
 
@@ -113,7 +113,7 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
         Verify.assertInstanceOf(DoubletonList.class, copy);
         Verify.assertSize(2, copy);
         Verify.assertContainsAll(copy, "1", "2");
-        Verify.assertNotContains("3", copy);
+        Verify.assertNotContains(copy, "3");
     }
 
     @Test
@@ -131,7 +131,7 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = this.classUnderTest();
         source.forEach(CollectionAddProcedure.on(result));
-        Assert.assertEquals(FastList.newListWith("1", "2"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2"), result);
     }
 
     @Test
@@ -144,8 +144,8 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
             result.add(each);
             indexSum[0] += index;
         });
-        Assert.assertEquals(FastList.newListWith("1", "2"), result);
-        Assert.assertEquals(1, indexSum[0]);
+        Assertions.assertEquals(FastList.newListWith("1", "2"), result);
+        Assertions.assertEquals(1, indexSum[0]);
     }
 
     @Test
@@ -153,14 +153,14 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
     {
         MutableList<String> result = Lists.mutable.of();
         this.list.forEachWith(Procedures2.fromProcedure(result::add), null);
-        Assert.assertEquals(FastList.newListWith("1", "2"), result);
+        Assertions.assertEquals(FastList.newListWith("1", "2"), result);
     }
 
     @Test
     public void testGetFirstGetLast()
     {
-        Assert.assertEquals("1", this.list.getFirst());
-        Assert.assertEquals("2", this.list.getLast());
+        Assertions.assertEquals("1", this.list.getFirst());
+        Assertions.assertEquals("2", this.list.getLast());
     }
 
     @Test
@@ -170,7 +170,7 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO");
         for (String each : list)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
     }
 
@@ -182,23 +182,23 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO");
         for (String each : subList)
         {
-            Verify.assertContains(each.toUpperCase(), upperList);
+            Verify.assertContains(upperList, each.toUpperCase());
         }
-        Assert.assertEquals("one", subList.getFirst());
-        Assert.assertEquals("two", subList.getLast());
+        Assertions.assertEquals("one", subList.getFirst());
+        Assertions.assertEquals("two", subList.getLast());
         MutableList<String> subList2 = list.subList(1, 2);
-        Assert.assertEquals("two", subList2.getFirst());
-        Assert.assertEquals("two", subList2.getLast());
+        Assertions.assertEquals("two", subList2.getFirst());
+        Assertions.assertEquals("two", subList2.getLast());
         MutableList<String> subList3 = list.subList(0, 1);
-        Assert.assertEquals("one", subList3.getFirst());
-        Assert.assertEquals("one", subList3.getLast());
+        Assertions.assertEquals("one", subList3.getFirst());
+        Assertions.assertEquals("one", subList3.getLast());
     }
 
     @Test
     public void without()
     {
         MutableList<Integer> list = new DoubletonList<>(2, 2);
-        Assert.assertSame(list, list.without(9));
+        Assertions.assertSame(list, list.without(9));
         list = list.without(2);
         Verify.assertListsEqual(FastList.newListWith(2), list);
         Verify.assertInstanceOf(SingletonList.class, list);

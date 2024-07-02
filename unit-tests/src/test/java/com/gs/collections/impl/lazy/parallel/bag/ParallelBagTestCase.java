@@ -20,8 +20,8 @@ import com.gs.collections.api.bag.MutableBag;
 import com.gs.collections.api.bag.ParallelBag;
 import com.gs.collections.impl.bag.mutable.HashBag;
 import com.gs.collections.impl.lazy.parallel.ParallelIterableTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public abstract class ParallelBagTestCase extends ParallelIterableTestCase
 {
@@ -60,7 +60,7 @@ public abstract class ParallelBagTestCase extends ParallelIterableTestCase
     {
         MutableBag<Integer> actual = HashBag.<Integer>newBag().asSynchronized();
         this.classUnderTest().forEachWithOccurrences(actual::addOccurrences);
-        Assert.assertEquals(this.getExpected().toBag(), actual);
+        Assertions.assertEquals(this.getExpected().toBag(), actual);
     }
 
     @Override

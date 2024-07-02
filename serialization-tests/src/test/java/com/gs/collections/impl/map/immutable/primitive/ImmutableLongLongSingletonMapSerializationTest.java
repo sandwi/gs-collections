@@ -17,7 +17,7 @@
 package com.gs.collections.impl.map.immutable.primitive;
 
 import com.gs.collections.impl.test.Verify;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableLongLongSingletonMapSerializationTest
 {
@@ -26,9 +26,11 @@ public class ImmutableLongLongSingletonMapSerializationTest
     {
         Verify.assertSerializedForm(
                 1L,
-                "rO0ABXNyAE1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J\n"
-                        + "bW11dGFibGVMb25nTG9uZ1NpbmdsZXRvbk1hcAAAAAAAAAABAgACSgAEa2V5MUoABnZhbHVlMXhw\n"
-                        + "AAAAAAAAAAEAAAAAAAAAAQ==",
+                """
+                rO0ABXNyAE1jb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tYXAuaW1tdXRhYmxlLnByaW1pdGl2ZS5J
+                bW11dGFibGVMb25nTG9uZ1NpbmdsZXRvbk1hcAAAAAAAAAABAgACSgAEa2V5MUoABnZhbHVlMXhw
+                AAAAAAAAAAEAAAAAAAAAAQ==\
+                """,
                 new ImmutableLongLongSingletonMap(1L, 1L));
     }
 }

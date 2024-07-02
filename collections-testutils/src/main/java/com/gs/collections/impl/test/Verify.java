@@ -64,6 +64,9 @@ import com.gs.collections.impl.utility.ArrayIterate;
 import com.gs.collections.impl.utility.Iterate;
 import org.apache.commons.codec.binary.Base64;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * An extension of the {@link Assert} class, which adds useful additional "assert" methods.
@@ -199,7 +202,7 @@ public final class Verify extends Assert
     /**
      * Assert that two items are not the same. If one item is null, the the other must be non-null.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(String, Object, Object)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(Object, Object, String)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(String itemsName, Object item1, Object item2)
@@ -208,7 +211,7 @@ public final class Verify extends Assert
         {
             if (Comparators.nullSafeEquals(item1, item2) || Comparators.nullSafeEquals(item2, item1))
             {
-                Assert.fail(itemsName + " should not be equal, item1:<" + item1 + ">, item2:<" + item2 + '>');
+                fail(itemsName + " should not be equal, item1:<" + item1 + ">, item2:<" + item2 + '>');
             }
         }
         catch (AssertionError e)
@@ -220,14 +223,14 @@ public final class Verify extends Assert
     /**
      * Assert that two items are not the same. If one item is null, the the other must be non-null.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(Object, Object)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(Object, Object)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(Object item1, Object item2)
     {
         try
         {
-            Verify.assertNotEquals("items", item1, item2);
+            Verify.assertNotEquals(item1, item2, "items");
         }
         catch (AssertionError e)
         {
@@ -238,7 +241,7 @@ public final class Verify extends Assert
     /**
      * Asserts that two Strings are not equal.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(String, Object, Object)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(Object, Object, String)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(String itemName, String notExpected, String actual)
@@ -247,7 +250,7 @@ public final class Verify extends Assert
         {
             if (Comparators.nullSafeEquals(notExpected, actual))
             {
-                Assert.fail(itemName + " should not equal:<" + notExpected + '>');
+                fail(itemName + " should not equal:<" + notExpected + '>');
             }
         }
         catch (AssertionError e)
@@ -259,14 +262,14 @@ public final class Verify extends Assert
     /**
      * Asserts that two Strings are not equal.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(Object, Object)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(Object, Object)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(String notExpected, String actual)
     {
         try
         {
-            Verify.assertNotEquals("string", notExpected, actual);
+            Verify.assertNotEquals(actual, "string", notExpected);
         }
         catch (AssertionError e)
         {
@@ -278,7 +281,7 @@ public final class Verify extends Assert
      * Asserts that two doubles are not equal concerning a delta. If the expected value is infinity then the delta value
      * is ignored.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(String, double, double, double)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(double, double, double, String)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(String itemName, double notExpected, double actual, double delta)
@@ -290,7 +293,7 @@ public final class Verify extends Assert
             //noinspection FloatingPointEquality
             if (Double.isInfinite(notExpected) && notExpected == actual || Math.abs(notExpected - actual) <= delta)
             {
-                Assert.fail(itemName + " should not be equal:<" + notExpected + '>');
+                fail(itemName + " should not be equal:<" + notExpected + '>');
             }
         }
         catch (AssertionError e)
@@ -303,14 +306,14 @@ public final class Verify extends Assert
      * Asserts that two doubles are not equal concerning a delta. If the expected value is infinity then the delta value
      * is ignored.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(double, double, double)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(double, double, double)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(double notExpected, double actual, double delta)
     {
         try
         {
-            Verify.assertNotEquals("double", notExpected, actual, delta);
+            Verify.assertNotEquals(notExpected, actual, delta, "double");
         }
         catch (AssertionError e)
         {
@@ -331,7 +334,7 @@ public final class Verify extends Assert
             //noinspection FloatingPointEquality
             if (Float.isInfinite(notExpected) && notExpected == actual || Math.abs(notExpected - actual) <= delta)
             {
-                Assert.fail(itemName + " should not be equal:<" + notExpected + '>');
+                fail(itemName + " should not be equal:<" + notExpected + '>');
             }
         }
         catch (AssertionError e)
@@ -348,7 +351,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEquals("float", expected, actual, delta);
+            Verify.assertNotEquals(expected, actual, delta, "float");
         }
         catch (AssertionError e)
         {
@@ -359,7 +362,7 @@ public final class Verify extends Assert
     /**
      * Asserts that two longs are not equal.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(String, long, long)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(long, long, String)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(String itemName, long notExpected, long actual)
@@ -368,7 +371,7 @@ public final class Verify extends Assert
         {
             if (notExpected == actual)
             {
-                Assert.fail(itemName + " should not be equal:<" + notExpected + '>');
+                fail(itemName + " should not be equal:<" + notExpected + '>');
             }
         }
         catch (AssertionError e)
@@ -380,14 +383,14 @@ public final class Verify extends Assert
     /**
      * Asserts that two longs are not equal.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(long, long)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(long, long)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(long notExpected, long actual)
     {
         try
         {
-            Verify.assertNotEquals("long", notExpected, actual);
+            Verify.assertNotEquals(notExpected, actual, "long");
         }
         catch (AssertionError e)
         {
@@ -404,7 +407,7 @@ public final class Verify extends Assert
         {
             if (notExpected == actual)
             {
-                Assert.fail(itemName + " should not be equal:<" + notExpected + '>');
+                fail(itemName + " should not be equal:<" + notExpected + '>');
             }
         }
         catch (AssertionError e)
@@ -420,7 +423,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEquals("boolean", notExpected, actual);
+            Verify.assertNotEquals(notExpected, actual, "boolean");
         }
         catch (AssertionError e)
         {
@@ -437,7 +440,7 @@ public final class Verify extends Assert
         {
             if (notExpected == actual)
             {
-                Assert.fail(itemName + " should not be equal:<" + notExpected + '>');
+                fail(itemName + " should not be equal:<" + notExpected + '>');
             }
         }
         catch (AssertionError e)
@@ -453,7 +456,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEquals("byte", notExpected, actual);
+            Verify.assertNotEquals(notExpected, actual, "byte");
         }
         catch (AssertionError e)
         {
@@ -470,7 +473,7 @@ public final class Verify extends Assert
         {
             if (notExpected == actual)
             {
-                Assert.fail(itemName + " should not be equal:<" + notExpected + '>');
+                fail(itemName + " should not be equal:<" + notExpected + '>');
             }
         }
         catch (AssertionError e)
@@ -486,7 +489,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEquals("char", notExpected, actual);
+            Verify.assertNotEquals(notExpected, actual, "char");
         }
         catch (AssertionError e)
         {
@@ -503,7 +506,7 @@ public final class Verify extends Assert
         {
             if (notExpected == actual)
             {
-                Assert.fail(itemName + " should not be equal:<" + notExpected + '>');
+                fail(itemName + " should not be equal:<" + notExpected + '>');
             }
         }
         catch (AssertionError e)
@@ -519,7 +522,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEquals("short", notExpected, actual);
+            Verify.assertNotEquals(notExpected, actual, "short");
         }
         catch (AssertionError e)
         {
@@ -530,7 +533,7 @@ public final class Verify extends Assert
     /**
      * Asserts that two ints are not equal.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(String, long, long)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(long, long, String)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(String itemName, int notExpected, int actual)
@@ -539,7 +542,7 @@ public final class Verify extends Assert
         {
             if (notExpected == actual)
             {
-                Assert.fail(itemName + " should not be equal:<" + notExpected + '>');
+                fail(itemName + " should not be equal:<" + notExpected + '>');
             }
         }
         catch (AssertionError e)
@@ -551,14 +554,14 @@ public final class Verify extends Assert
     /**
      * Asserts that two ints are not equal.
      *
-     * @deprecated in 3.0. Use {@link Assert#assertNotEquals(long, long)} in JUnit 4.11 instead.
+     * @deprecated in 3.0. Use {@link Assertions#assertNotEquals(long, long)} in JUnit 4.11 instead.
      */
     @Deprecated
     public static void assertNotEquals(int notExpected, int actual)
     {
         try
         {
-            Verify.assertNotEquals("int", notExpected, actual);
+            Verify.assertNotEquals(notExpected, actual, "int");
         }
         catch (AssertionError e)
         {
@@ -573,7 +576,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertEmpty("iterable", actualIterable);
+            Verify.assertEmpty(actualIterable, "iterable");
         }
         catch (AssertionError e)
         {
@@ -588,19 +591,19 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(iterableName, actualIterable);
+            Verify.assertObjectNotNull(actualIterable, iterableName);
 
             if (Iterate.notEmpty(actualIterable))
             {
-                Assert.fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualIterable) + '>');
+                fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualIterable) + '>');
             }
             if (!Iterate.isEmpty(actualIterable))
             {
-                Assert.fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualIterable) + '>');
+                fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualIterable) + '>');
             }
             if (Iterate.sizeOf(actualIterable) != 0)
             {
-                Assert.fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualIterable) + '>');
+                fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualIterable) + '>');
             }
         }
         catch (AssertionError e)
@@ -616,7 +619,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertEmpty("mutableMapIterable", actualMutableMapIterable);
+            Verify.assertEmpty(actualMutableMapIterable, "mutableMapIterable");
         }
         catch (AssertionError e)
         {
@@ -631,39 +634,39 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(mutableMapIterableName, actualMutableMapIterable);
+            Verify.assertObjectNotNull(actualMutableMapIterable, mutableMapIterableName);
 
             if (Iterate.notEmpty(actualMutableMapIterable))
             {
-                Assert.fail(mutableMapIterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualMutableMapIterable) + '>');
+                fail(mutableMapIterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualMutableMapIterable) + '>');
             }
             if (!Iterate.isEmpty(actualMutableMapIterable))
             {
-                Assert.fail(mutableMapIterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualMutableMapIterable) + '>');
+                fail(mutableMapIterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualMutableMapIterable) + '>');
             }
             if (!actualMutableMapIterable.isEmpty())
             {
-                Assert.fail(mutableMapIterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualMutableMapIterable) + '>');
+                fail(mutableMapIterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualMutableMapIterable) + '>');
             }
             if (actualMutableMapIterable.notEmpty())
             {
-                Assert.fail(mutableMapIterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualMutableMapIterable) + '>');
+                fail(mutableMapIterableName + " should be empty; actual size:<" + Iterate.sizeOf(actualMutableMapIterable) + '>');
             }
             if (actualMutableMapIterable.size() != 0)
             {
-                Assert.fail(mutableMapIterableName + " should be empty; actual size:<" + actualMutableMapIterable.size() + '>');
+                fail(mutableMapIterableName + " should be empty; actual size:<" + actualMutableMapIterable.size() + '>');
             }
             if (actualMutableMapIterable.keySet().size() != 0)
             {
-                Assert.fail(mutableMapIterableName + " should be empty; actual size:<" + actualMutableMapIterable.keySet().size() + '>');
+                fail(mutableMapIterableName + " should be empty; actual size:<" + actualMutableMapIterable.keySet().size() + '>');
             }
             if (actualMutableMapIterable.values().size() != 0)
             {
-                Assert.fail(mutableMapIterableName + " should be empty; actual size:<" + actualMutableMapIterable.values().size() + '>');
+                fail(mutableMapIterableName + " should be empty; actual size:<" + actualMutableMapIterable.values().size() + '>');
             }
             if (actualMutableMapIterable.entrySet().size() != 0)
             {
-                Assert.fail(mutableMapIterableName + " should be empty; actual size:<" + actualMutableMapIterable.entrySet().size() + '>');
+                fail(mutableMapIterableName + " should be empty; actual size:<" + actualMutableMapIterable.entrySet().size() + '>');
             }
         }
         catch (AssertionError e)
@@ -679,7 +682,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertEmpty("primitiveIterable", primitiveIterable);
+            Verify.assertEmpty(primitiveIterable, "primitiveIterable");
         }
         catch (AssertionError e)
         {
@@ -694,19 +697,19 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(iterableName, primitiveIterable);
+            Verify.assertObjectNotNull(primitiveIterable, iterableName);
 
             if (primitiveIterable.notEmpty())
             {
-                Assert.fail(iterableName + " should be empty; actual size:<" + primitiveIterable.size() + '>');
+                fail(iterableName + " should be empty; actual size:<" + primitiveIterable.size() + '>');
             }
             if (!primitiveIterable.isEmpty())
             {
-                Assert.fail(iterableName + " should be empty; actual size:<" + primitiveIterable.size() + '>');
+                fail(iterableName + " should be empty; actual size:<" + primitiveIterable.size() + '>');
             }
             if (primitiveIterable.size() != 0)
             {
-                Assert.fail(iterableName + " should be empty; actual size:<" + primitiveIterable.size() + '>');
+                fail(iterableName + " should be empty; actual size:<" + primitiveIterable.size() + '>');
             }
         }
         catch (AssertionError e)
@@ -722,7 +725,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertIterableEmpty("iterable", iterable);
+            Verify.assertIterableEmpty(iterable, "iterable");
         }
         catch (AssertionError e)
         {
@@ -737,19 +740,19 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(iterableName, iterable);
+            Verify.assertObjectNotNull(iterable, iterableName);
 
             if (Iterate.notEmpty(iterable))
             {
-                Assert.fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(iterable) + '>');
+                fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(iterable) + '>');
             }
             if (!Iterate.isEmpty(iterable))
             {
-                Assert.fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(iterable) + '>');
+                fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(iterable) + '>');
             }
             if (Iterate.sizeOf(iterable) != 0)
             {
-                Assert.fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(iterable) + '>');
+                fail(iterableName + " should be empty; actual size:<" + Iterate.sizeOf(iterable) + '>');
             }
         }
         catch (AssertionError e)
@@ -765,7 +768,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertInstanceOf(actualObject.getClass().getName(), expectedClassType, actualObject);
+            Verify.assertInstanceOf(expectedClassType, actualObject, actualObject.getClass().getName());
         }
         catch (AssertionError e)
         {
@@ -782,7 +785,7 @@ public final class Verify extends Assert
         {
             if (!expectedClassType.isInstance(actualObject))
             {
-                Assert.fail(objectName + " is not an instance of " + expectedClassType.getName());
+                fail(objectName + " is not an instance of " + expectedClassType.getName());
             }
         }
         catch (AssertionError e)
@@ -798,7 +801,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertEmpty("map", actualMap);
+            Verify.assertEmpty(actualMap, "map");
         }
         catch (AssertionError e)
         {
@@ -813,7 +816,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertEmpty("multimap", actualMultimap);
+            Verify.assertEmpty(actualMultimap, "multimap");
         }
         catch (AssertionError e)
         {
@@ -828,43 +831,43 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(multimapName, actualMultimap);
+            Verify.assertObjectNotNull(actualMultimap, multimapName);
 
             if (actualMultimap.notEmpty())
             {
-                Assert.fail(multimapName + " should be empty; actual size:<" + actualMultimap.size() + '>');
+                fail(multimapName + " should be empty; actual size:<" + actualMultimap.size() + '>');
             }
             if (!actualMultimap.isEmpty())
             {
-                Assert.fail(multimapName + " should be empty; actual size:<" + actualMultimap.size() + '>');
+                fail(multimapName + " should be empty; actual size:<" + actualMultimap.size() + '>');
             }
             if (actualMultimap.size() != 0)
             {
-                Assert.fail(multimapName + " should be empty; actual size:<" + actualMultimap.size() + '>');
+                fail(multimapName + " should be empty; actual size:<" + actualMultimap.size() + '>');
             }
             if (actualMultimap.sizeDistinct() != 0)
             {
-                Assert.fail(multimapName + " should be empty; actual size:<" + actualMultimap.size() + '>');
+                fail(multimapName + " should be empty; actual size:<" + actualMultimap.size() + '>');
             }
             if (actualMultimap.keyBag().size() != 0)
             {
-                Assert.fail(multimapName + " should be empty; actual size:<" + actualMultimap.keyBag().size() + '>');
+                fail(multimapName + " should be empty; actual size:<" + actualMultimap.keyBag().size() + '>');
             }
             if (actualMultimap.keysView().size() != 0)
             {
-                Assert.fail(multimapName + " should be empty; actual size:<" + actualMultimap.keysView().size() + '>');
+                fail(multimapName + " should be empty; actual size:<" + actualMultimap.keysView().size() + '>');
             }
             if (actualMultimap.valuesView().size() != 0)
             {
-                Assert.fail(multimapName + " should be empty; actual size:<" + actualMultimap.valuesView().size() + '>');
+                fail(multimapName + " should be empty; actual size:<" + actualMultimap.valuesView().size() + '>');
             }
             if (actualMultimap.keyValuePairsView().size() != 0)
             {
-                Assert.fail(multimapName + " should be empty; actual size:<" + actualMultimap.keyValuePairsView().size() + '>');
+                fail(multimapName + " should be empty; actual size:<" + actualMultimap.keyValuePairsView().size() + '>');
             }
             if (actualMultimap.keyMultiValuePairsView().size() != 0)
             {
-                Assert.fail(multimapName + " should be empty; actual size:<" + actualMultimap.keyMultiValuePairsView().size() + '>');
+                fail(multimapName + " should be empty; actual size:<" + actualMultimap.keyMultiValuePairsView().size() + '>');
             }
         }
         catch (AssertionError e)
@@ -880,27 +883,27 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(mapName, actualMap);
+            Verify.assertObjectNotNull(actualMap, mapName);
 
             if (!actualMap.isEmpty())
             {
-                Assert.fail(mapName + " should be empty; actual size:<" + actualMap.size() + '>');
+                fail(mapName + " should be empty; actual size:<" + actualMap.size() + '>');
             }
             if (actualMap.size() != 0)
             {
-                Assert.fail(mapName + " should be empty; actual size:<" + actualMap.size() + '>');
+                fail(mapName + " should be empty; actual size:<" + actualMap.size() + '>');
             }
             if (actualMap.keySet().size() != 0)
             {
-                Assert.fail(mapName + " should be empty; actual size:<" + actualMap.keySet().size() + '>');
+                fail(mapName + " should be empty; actual size:<" + actualMap.keySet().size() + '>');
             }
             if (actualMap.values().size() != 0)
             {
-                Assert.fail(mapName + " should be empty; actual size:<" + actualMap.values().size() + '>');
+                fail(mapName + " should be empty; actual size:<" + actualMap.values().size() + '>');
             }
             if (actualMap.entrySet().size() != 0)
             {
-                Assert.fail(mapName + " should be empty; actual size:<" + actualMap.entrySet().size() + '>');
+                fail(mapName + " should be empty; actual size:<" + actualMap.entrySet().size() + '>');
             }
         }
         catch (AssertionError e)
@@ -916,7 +919,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("iterable", actualIterable);
+            Verify.assertNotEmpty(actualIterable, "iterable");
         }
         catch (AssertionError e)
         {
@@ -931,10 +934,10 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(iterableName, actualIterable);
-            Assert.assertFalse(iterableName + " should be non-empty, but was empty", Iterate.isEmpty(actualIterable));
-            Assert.assertTrue(iterableName + " should be non-empty, but was empty", Iterate.notEmpty(actualIterable));
-            Assert.assertNotEquals(iterableName + " should be non-empty, but was empty", 0, Iterate.sizeOf(actualIterable));
+            Verify.assertObjectNotNull(actualIterable, iterableName);
+            assertFalse(Iterate.isEmpty(actualIterable), iterableName + " should be non-empty, but was empty");
+            assertTrue(Iterate.notEmpty(actualIterable), iterableName + " should be non-empty, but was empty");
+            assertNotEquals(0, Iterate.sizeOf(actualIterable), iterableName + " should be non-empty, but was empty");
         }
         catch (AssertionError e)
         {
@@ -949,7 +952,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("mutableMapIterable", actualMutableMapIterable);
+            Verify.assertNotEmpty(actualMutableMapIterable, "mutableMapIterable");
         }
         catch (AssertionError e)
         {
@@ -964,14 +967,14 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(mutableMapIterableName, actualMutableMapIterable);
-            Assert.assertFalse(mutableMapIterableName + " should be non-empty, but was empty", Iterate.isEmpty(actualMutableMapIterable));
-            Assert.assertTrue(mutableMapIterableName + " should be non-empty, but was empty", Iterate.notEmpty(actualMutableMapIterable));
-            Assert.assertTrue(mutableMapIterableName + " should be non-empty, but was empty", actualMutableMapIterable.notEmpty());
-            Assert.assertNotEquals(mutableMapIterableName + " should be non-empty, but was empty", 0, actualMutableMapIterable.size());
-            Assert.assertNotEquals(mutableMapIterableName + " should be non-empty, but was empty", 0, actualMutableMapIterable.keySet().size());
-            Assert.assertNotEquals(mutableMapIterableName + " should be non-empty, but was empty", 0, actualMutableMapIterable.values().size());
-            Assert.assertNotEquals(mutableMapIterableName + " should be non-empty, but was empty", 0, actualMutableMapIterable.entrySet().size());
+            Verify.assertObjectNotNull(actualMutableMapIterable, mutableMapIterableName);
+            assertFalse(Iterate.isEmpty(actualMutableMapIterable), mutableMapIterableName + " should be non-empty, but was empty");
+            assertTrue(Iterate.notEmpty(actualMutableMapIterable), mutableMapIterableName + " should be non-empty, but was empty");
+            assertTrue(actualMutableMapIterable.notEmpty(), mutableMapIterableName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMutableMapIterable.size(), mutableMapIterableName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMutableMapIterable.keySet().size(), mutableMapIterableName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMutableMapIterable.values().size(), mutableMapIterableName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMutableMapIterable.entrySet().size(), mutableMapIterableName + " should be non-empty, but was empty");
         }
         catch (AssertionError e)
         {
@@ -986,7 +989,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("primitiveIterable", primitiveIterable);
+            Verify.assertNotEmpty(primitiveIterable, "primitiveIterable");
         }
         catch (AssertionError e)
         {
@@ -1001,10 +1004,10 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(iterableName, primitiveIterable);
-            Assert.assertFalse(iterableName + " should be non-empty, but was empty", primitiveIterable.isEmpty());
-            Assert.assertTrue(iterableName + " should be non-empty, but was empty", primitiveIterable.notEmpty());
-            Assert.assertNotEquals(iterableName + " should be non-empty, but was empty", 0, primitiveIterable.size());
+            Verify.assertObjectNotNull(primitiveIterable, iterableName);
+            assertFalse(primitiveIterable.isEmpty(), iterableName + " should be non-empty, but was empty");
+            assertTrue(primitiveIterable.notEmpty(), iterableName + " should be non-empty, but was empty");
+            assertNotEquals(0, primitiveIterable.size(), iterableName + " should be non-empty, but was empty");
         }
         catch (AssertionError e)
         {
@@ -1019,7 +1022,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertIterableNotEmpty("iterable", iterable);
+            Verify.assertIterableNotEmpty(iterable, "iterable");
         }
         catch (AssertionError e)
         {
@@ -1034,10 +1037,10 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(iterableName, iterable);
-            Assert.assertFalse(iterableName + " should be non-empty, but was empty", Iterate.isEmpty(iterable));
-            Assert.assertTrue(iterableName + " should be non-empty, but was empty", Iterate.notEmpty(iterable));
-            Assert.assertNotEquals(iterableName + " should be non-empty, but was empty", 0, Iterate.sizeOf(iterable));
+            Verify.assertObjectNotNull(iterable, iterableName);
+            assertFalse(Iterate.isEmpty(iterable), iterableName + " should be non-empty, but was empty");
+            assertTrue(Iterate.notEmpty(iterable), iterableName + " should be non-empty, but was empty");
+            assertNotEquals(0, Iterate.sizeOf(iterable), iterableName + " should be non-empty, but was empty");
         }
         catch (AssertionError e)
         {
@@ -1052,7 +1055,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("map", actualMap);
+            Verify.assertNotEmpty(actualMap, "map");
         }
         catch (AssertionError e)
         {
@@ -1067,12 +1070,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(mapName, actualMap);
-            Assert.assertFalse(mapName + " should be non-empty, but was empty", actualMap.isEmpty());
-            Assert.assertNotEquals(mapName + " should be non-empty, but was empty", 0, actualMap.size());
-            Assert.assertNotEquals(mapName + " should be non-empty, but was empty", 0, actualMap.keySet().size());
-            Assert.assertNotEquals(mapName + " should be non-empty, but was empty", 0, actualMap.values().size());
-            Assert.assertNotEquals(mapName + " should be non-empty, but was empty", 0, actualMap.entrySet().size());
+            Verify.assertObjectNotNull(actualMap, mapName);
+            assertFalse(actualMap.isEmpty(), mapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMap.size(), mapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMap.keySet().size(), mapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMap.values().size(), mapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMap.entrySet().size(), mapName + " should be non-empty, but was empty");
         }
         catch (AssertionError e)
         {
@@ -1087,7 +1090,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("multimap", actualMultimap);
+            Verify.assertNotEmpty(actualMultimap, "multimap");
         }
         catch (AssertionError e)
         {
@@ -1102,16 +1105,16 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(multimapName, actualMultimap);
-            Assert.assertTrue(multimapName + " should be non-empty, but was empty", actualMultimap.notEmpty());
-            Assert.assertFalse(multimapName + " should be non-empty, but was empty", actualMultimap.isEmpty());
-            Assert.assertNotEquals(multimapName + " should be non-empty, but was empty", 0, actualMultimap.size());
-            Assert.assertNotEquals(multimapName + " should be non-empty, but was empty", 0, actualMultimap.sizeDistinct());
-            Assert.assertNotEquals(multimapName + " should be non-empty, but was empty", 0, actualMultimap.keyBag().size());
-            Assert.assertNotEquals(multimapName + " should be non-empty, but was empty", 0, actualMultimap.keysView().size());
-            Assert.assertNotEquals(multimapName + " should be non-empty, but was empty", 0, actualMultimap.valuesView().size());
-            Assert.assertNotEquals(multimapName + " should be non-empty, but was empty", 0, actualMultimap.keyValuePairsView().size());
-            Assert.assertNotEquals(multimapName + " should be non-empty, but was empty", 0, actualMultimap.keyMultiValuePairsView().size());
+            Verify.assertObjectNotNull(actualMultimap, multimapName);
+            assertTrue(actualMultimap.notEmpty(), multimapName + " should be non-empty, but was empty");
+            assertFalse(actualMultimap.isEmpty(), multimapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMultimap.size(), multimapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMultimap.sizeDistinct(), multimapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMultimap.keyBag().size(), multimapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMultimap.keysView().size(), multimapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMultimap.valuesView().size(), multimapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMultimap.keyValuePairsView().size(), multimapName + " should be non-empty, but was empty");
+            assertNotEquals(0, actualMultimap.keyMultiValuePairsView().size(), multimapName + " should be non-empty, but was empty");
         }
         catch (AssertionError e)
         {
@@ -1123,8 +1126,8 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(itemsName, items);
-            Verify.assertNotEquals(itemsName, 0, items.length);
+            Verify.assertObjectNotNull(items, itemsName);
+            Verify.assertNotEquals(0, items.length, itemsName);
         }
         catch (AssertionError e)
         {
@@ -1136,7 +1139,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("items", items);
+            Verify.assertNotEmpty(items, "items");
         }
         catch (AssertionError e)
         {
@@ -1151,7 +1154,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSize("array", expectedSize, actualArray);
+            Verify.assertSize(expectedSize, actualArray, "array");
         }
         catch (AssertionError e)
         {
@@ -1166,12 +1169,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull(arrayName + " should not be null", actualArray);
+            assertNotNull(actualArray, arrayName + " should not be null");
 
             int actualSize = actualArray.length;
             if (actualSize != expectedSize)
             {
-                Assert.fail("Incorrect size for "
+                fail("Incorrect size for "
                         + arrayName
                         + "; expected:<"
                         + expectedSize
@@ -1193,7 +1196,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSize("iterable", expectedSize, actualIterable);
+            Verify.assertSize(expectedSize, actualIterable, "iterable");
         }
         catch (AssertionError e)
         {
@@ -1211,12 +1214,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(iterableName, actualIterable);
+            Verify.assertObjectNotNull(actualIterable, iterableName);
 
             int actualSize = Iterate.sizeOf(actualIterable);
             if (actualSize != expectedSize)
             {
-                Assert.fail("Incorrect size for "
+                fail("Incorrect size for "
                         + iterableName
                         + "; expected:<"
                         + expectedSize
@@ -1238,7 +1241,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSize("primitiveIterable", expectedSize, primitiveIterable);
+            Verify.assertSize(expectedSize, primitiveIterable, "primitiveIterable");
         }
         catch (AssertionError e)
         {
@@ -1256,12 +1259,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(primitiveIterableName, actualPrimitiveIterable);
+            Verify.assertObjectNotNull(actualPrimitiveIterable, primitiveIterableName);
 
             int actualSize = actualPrimitiveIterable.size();
             if (actualSize != expectedSize)
             {
-                Assert.fail("Incorrect size for "
+                fail("Incorrect size for "
                         + primitiveIterableName
                         + "; expected:<"
                         + expectedSize
@@ -1283,7 +1286,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertIterableSize("iterable", expectedSize, actualIterable);
+            Verify.assertIterableSize(expectedSize, actualIterable, "iterable");
         }
         catch (AssertionError e)
         {
@@ -1301,12 +1304,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(iterableName, actualIterable);
+            Verify.assertObjectNotNull(actualIterable, iterableName);
 
             int actualSize = Iterate.sizeOf(actualIterable);
             if (actualSize != expectedSize)
             {
-                Assert.fail("Incorrect size for "
+                fail("Incorrect size for "
                         + iterableName
                         + "; expected:<"
                         + expectedSize
@@ -1328,7 +1331,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSize(mapName, expectedSize, actualMap.keySet());
+            Verify.assertSize(expectedSize, actualMap.keySet(), mapName);
         }
         catch (AssertionError e)
         {
@@ -1343,7 +1346,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSize("map", expectedSize, actualMap);
+            Verify.assertSize(expectedSize, actualMap, "map");
         }
         catch (AssertionError e)
         {
@@ -1358,7 +1361,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSize("multimap", expectedSize, actualMultimap);
+            Verify.assertSize(expectedSize, actualMultimap, "multimap");
         }
         catch (AssertionError e)
         {
@@ -1376,7 +1379,7 @@ public final class Verify extends Assert
             int actualSize = actualMultimap.size();
             if (actualSize != expectedSize)
             {
-                Assert.fail("Incorrect size for "
+                fail("Incorrect size for "
                         + multimapName
                         + "; expected:<"
                         + expectedSize
@@ -1398,7 +1401,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSize("map", expectedSize, mutableMapIterable);
+            Verify.assertSize(expectedSize, mutableMapIterable, "map");
         }
         catch (AssertionError e)
         {
@@ -1416,22 +1419,22 @@ public final class Verify extends Assert
             int actualSize = mutableMapIterable.size();
             if (actualSize != expectedSize)
             {
-                Assert.fail("Incorrect size for " + mapName + "; expected:<" + expectedSize + "> but was:<" + actualSize + '>');
+                fail("Incorrect size for " + mapName + "; expected:<" + expectedSize + "> but was:<" + actualSize + '>');
             }
             int keySetSize = mutableMapIterable.keySet().size();
             if (keySetSize != expectedSize)
             {
-                Assert.fail("Incorrect size for " + mapName + ".keySet(); expected:<" + expectedSize + "> but was:<" + actualSize + '>');
+                fail("Incorrect size for " + mapName + ".keySet(); expected:<" + expectedSize + "> but was:<" + actualSize + '>');
             }
             int valuesSize = mutableMapIterable.values().size();
             if (valuesSize != expectedSize)
             {
-                Assert.fail("Incorrect size for " + mapName + ".values(); expected:<" + expectedSize + "> but was:<" + actualSize + '>');
+                fail("Incorrect size for " + mapName + ".values(); expected:<" + expectedSize + "> but was:<" + actualSize + '>');
             }
             int entrySetSize = mutableMapIterable.entrySet().size();
             if (entrySetSize != expectedSize)
             {
-                Assert.fail("Incorrect size for " + mapName + ".entrySet(); expected:<" + expectedSize + "> but was:<" + actualSize + '>');
+                fail("Incorrect size for " + mapName + ".entrySet(); expected:<" + expectedSize + "> but was:<" + actualSize + '>');
             }
         }
         catch (AssertionError e)
@@ -1447,7 +1450,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSize("immutable set", expectedSize, actualImmutableSet);
+            Verify.assertSize(expectedSize, actualImmutableSet, "immutable set");
         }
         catch (AssertionError e)
         {
@@ -1465,7 +1468,7 @@ public final class Verify extends Assert
             int actualSize = actualImmutableSet.size();
             if (actualSize != expectedSize)
             {
-                Assert.fail("Incorrect size for "
+                fail("Incorrect size for "
                         + immutableSetName
                         + "; expected:<"
                         + expectedSize
@@ -1487,7 +1490,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContains("string", stringToFind, stringToSearch);
+            Verify.assertContains(stringToSearch, "string", stringToFind);
         }
         catch (AssertionError e)
         {
@@ -1502,7 +1505,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotContains("string", unexpectedString, stringToSearch);
+            Verify.assertNotContains(stringToSearch, "string", unexpectedString);
         }
         catch (AssertionError e)
         {
@@ -1517,12 +1520,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull("stringToFind should not be null", stringToFind);
-            Assert.assertNotNull("stringToSearch should not be null", stringToSearch);
+            assertNotNull(stringToFind, "stringToFind should not be null");
+            assertNotNull(stringToSearch, "stringToSearch should not be null");
 
             if (!stringToSearch.contains(stringToFind))
             {
-                Assert.fail(stringName
+                fail(stringName
                         + " did not contain stringToFind:<"
                         + stringToFind
                         + "> in stringToSearch:<"
@@ -1543,12 +1546,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull("unexpectedString should not be null", unexpectedString);
-            Assert.assertNotNull("stringToSearch should not be null", stringToSearch);
+            assertNotNull(unexpectedString, "unexpectedString should not be null");
+            assertNotNull(stringToSearch, "stringToSearch should not be null");
 
             if (stringToSearch.contains(unexpectedString))
             {
-                Assert.fail(stringName
+                fail(stringName
                         + " contains unexpectedString:<"
                         + unexpectedString
                         + "> in stringToSearch:<"
@@ -1567,14 +1570,14 @@ public final class Verify extends Assert
             Iterable<T> iterable,
             Predicate<? super T> predicate)
     {
-        Assert.assertEquals(expectedCount, Iterate.count(iterable, predicate));
+        assertEquals(expectedCount, Iterate.count(iterable, predicate));
     }
 
     public static <T> void assertAllSatisfy(Iterable<T> iterable, Predicate<? super T> predicate)
     {
         try
         {
-            Verify.assertAllSatisfy("The following items failed to satisfy the condition", iterable, predicate);
+            Verify.assertAllSatisfy(iterable, predicate, "The following items failed to satisfy the condition");
         }
         catch (AssertionError e)
         {
@@ -1601,7 +1604,7 @@ public final class Verify extends Assert
             MutableList<T> unnacceptable = Iterate.reject(iterable, predicate, Lists.mutable.<T>of());
             if (unnacceptable.notEmpty())
             {
-                Assert.fail(message + " <" + unnacceptable + '>');
+                fail(message + " <" + unnacceptable + '>');
             }
         }
         catch (AssertionError e)
@@ -1614,7 +1617,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertAnySatisfy("No items satisfied the condition", iterable, predicate);
+            Verify.assertAnySatisfy(iterable, predicate, "No items satisfied the condition");
         }
         catch (AssertionError e)
         {
@@ -1638,7 +1641,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertTrue(message, Predicates.anySatisfy(predicate).accept(iterable));
+            assertTrue(Predicates.anySatisfy(predicate).accept(iterable), message);
         }
         catch (AssertionError e)
         {
@@ -1650,7 +1653,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNoneSatisfy("The following items satisfied the condition", iterable, predicate);
+            Verify.assertNoneSatisfy(iterable, predicate, "The following items satisfied the condition");
         }
         catch (AssertionError e)
         {
@@ -1677,7 +1680,7 @@ public final class Verify extends Assert
             MutableList<T> unnacceptable = Iterate.select(iterable, predicate, Lists.mutable.<T>empty());
             if (unnacceptable.notEmpty())
             {
-                Assert.fail(message + " <" + unnacceptable + '>');
+                fail(message + " <" + unnacceptable + '>');
             }
         }
         catch (AssertionError e)
@@ -1693,7 +1696,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsAllKeyValues("map", actualMap, keyValues);
+            Verify.assertContainsAllKeyValues(actualMap, keyValues, "map");
         }
         catch (AssertionError e)
         {
@@ -1711,16 +1714,16 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             if (expectedKeyValues.length % 2 != 0)
             {
-                Assert.fail("Odd number of keys and values (every key must have a value)");
+                fail("Odd number of keys and values (every key must have a value)");
             }
 
-            Verify.assertObjectNotNull(mapName, actualMap);
-            Verify.assertMapContainsKeys(mapName, actualMap, expectedKeyValues);
-            Verify.assertMapContainsValues(mapName, actualMap, expectedKeyValues);
+            Verify.assertObjectNotNull(actualMap, mapName);
+            Verify.assertMapContainsKeys(actualMap, expectedKeyValues, mapName);
+            Verify.assertMapContainsValues(actualMap, expectedKeyValues, mapName);
         }
         catch (AssertionError e)
         {
@@ -1735,7 +1738,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsAllKeyValues("map", mapIterable, keyValues);
+            Verify.assertContainsAllKeyValues(mapIterable, keyValues, "map");
         }
         catch (AssertionError e)
         {
@@ -1753,16 +1756,16 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             if (expectedKeyValues.length % 2 != 0)
             {
-                Assert.fail("Odd number of keys and values (every key must have a value)");
+                fail("Odd number of keys and values (every key must have a value)");
             }
 
-            Verify.assertObjectNotNull(mapIterableName, mapIterable);
-            Verify.assertMapContainsKeys(mapIterableName, mapIterable, expectedKeyValues);
-            Verify.assertMapContainsValues(mapIterableName, mapIterable, expectedKeyValues);
+            Verify.assertObjectNotNull(mapIterable, mapIterableName);
+            Verify.assertMapContainsKeys(mapIterable, expectedKeyValues, mapIterableName);
+            Verify.assertMapContainsValues(mapIterable, expectedKeyValues, mapIterableName);
         }
         catch (AssertionError e)
         {
@@ -1777,7 +1780,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsAllKeyValues("map", mutableMapIterable, keyValues);
+            Verify.assertContainsAllKeyValues(mutableMapIterable, keyValues, "map");
         }
         catch (AssertionError e)
         {
@@ -1795,16 +1798,16 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             if (expectedKeyValues.length % 2 != 0)
             {
-                Assert.fail("Odd number of keys and values (every key must have a value)");
+                fail("Odd number of keys and values (every key must have a value)");
             }
 
-            Verify.assertObjectNotNull(mutableMapIterableName, mutableMapIterable);
-            Verify.assertMapContainsKeys(mutableMapIterableName, mutableMapIterable, expectedKeyValues);
-            Verify.assertMapContainsValues(mutableMapIterableName, mutableMapIterable, expectedKeyValues);
+            Verify.assertObjectNotNull(mutableMapIterable, mutableMapIterableName);
+            Verify.assertMapContainsKeys(mutableMapIterable, expectedKeyValues, mutableMapIterableName);
+            Verify.assertMapContainsValues(mutableMapIterable, expectedKeyValues, mutableMapIterableName);
         }
         catch (AssertionError e)
         {
@@ -1819,7 +1822,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsAllKeyValues("map", immutableMapIterable, keyValues);
+            Verify.assertContainsAllKeyValues(immutableMapIterable, keyValues, "map");
         }
         catch (AssertionError e)
         {
@@ -1837,16 +1840,16 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             if (expectedKeyValues.length % 2 != 0)
             {
-                Assert.fail("Odd number of keys and values (every key must have a value)");
+                fail("Odd number of keys and values (every key must have a value)");
             }
 
-            Verify.assertObjectNotNull(immutableMapIterableName, immutableMapIterable);
-            Verify.assertMapContainsKeys(immutableMapIterableName, immutableMapIterable, expectedKeyValues);
-            Verify.assertMapContainsValues(immutableMapIterableName, immutableMapIterable, expectedKeyValues);
+            Verify.assertObjectNotNull(immutableMapIterable, immutableMapIterableName);
+            Verify.assertMapContainsKeys(immutableMapIterable, expectedKeyValues, immutableMapIterableName);
+            Verify.assertMapContainsValues(immutableMapIterable, expectedKeyValues, immutableMapIterableName);
         }
         catch (AssertionError e)
         {
@@ -1858,7 +1861,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.denyContainsAny("collection", actualCollection, items);
+            Verify.denyContainsAny(actualCollection, items, "collection");
         }
         catch (AssertionError e)
         {
@@ -1870,7 +1873,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.denyContainsAny("collection", actualCollection, items);
+            Verify.denyContainsAny(actualCollection, items, "collection");
         }
         catch (AssertionError e)
         {
@@ -1885,7 +1888,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContains("collection", expectedItem, actualCollection);
+            Verify.assertContains(expectedItem, actualCollection, "collection");
         }
         catch (AssertionError e)
         {
@@ -1903,11 +1906,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(collectionName, actualCollection);
+            Verify.assertObjectNotNull(actualCollection, collectionName);
 
             if (!actualCollection.contains(expectedItem))
             {
-                Assert.fail(collectionName + " did not contain expectedItem:<" + expectedItem + '>');
+                fail(collectionName + " did not contain expectedItem:<" + expectedItem + '>');
             }
         }
         catch (AssertionError e)
@@ -1923,7 +1926,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContains("ImmutableCollection", expectedItem, actualImmutableCollection);
+            Verify.assertContains(expectedItem, actualImmutableCollection, "ImmutableCollection");
         }
         catch (AssertionError e)
         {
@@ -1941,11 +1944,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(immutableCollectionName, actualImmutableCollection);
+            Verify.assertObjectNotNull(actualImmutableCollection, immutableCollectionName);
 
             if (!actualImmutableCollection.contains(expectedItem))
             {
-                Assert.fail(immutableCollectionName + " did not contain expectedItem:<" + expectedItem + '>');
+                fail(immutableCollectionName + " did not contain expectedItem:<" + expectedItem + '>');
             }
         }
         catch (AssertionError e)
@@ -1960,7 +1963,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsAll("iterable", iterable, items);
+            Verify.assertContainsAll(iterable, items, "iterable");
         }
         catch (AssertionError e)
         {
@@ -1975,9 +1978,9 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(collectionName, iterable);
+            Verify.assertObjectNotNull(iterable, collectionName);
 
-            Verify.assertNotEmpty("Expected items in assertion", items);
+            Verify.assertNotEmpty(items, "Expected items in assertion");
 
             Predicate<Object> containsPredicate = new Predicate<Object>()
             {
@@ -1990,7 +1993,7 @@ public final class Verify extends Assert
             if (!ArrayIterate.allSatisfy(items, containsPredicate))
             {
                 ImmutableList<Object> result = Lists.immutable.of(items).newWithoutAll(iterable);
-                Assert.fail(collectionName + " did not contain these items" + ":<" + result + '>');
+                fail(collectionName + " did not contain these items" + ":<" + result + '>');
             }
         }
         catch (AssertionError e)
@@ -2003,7 +2006,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertListsEqual("list", expectedList, actualList);
+            Verify.assertListsEqual(expectedList, actualList, "list");
         }
         catch (AssertionError e)
         {
@@ -2019,16 +2022,16 @@ public final class Verify extends Assert
             {
                 return;
             }
-            Assert.assertNotNull(expectedList);
-            Assert.assertNotNull(actualList);
-            Assert.assertEquals(listName + " size", expectedList.size(), actualList.size());
+            assertNotNull(expectedList);
+            assertNotNull(actualList);
+            assertEquals(expectedList.size(), actualList.size(), listName + " size");
             for (int index = 0; index < actualList.size(); index++)
             {
                 Object eachExpected = expectedList.get(index);
                 Object eachActual = actualList.get(index);
                 if (!Comparators.nullSafeEquals(eachExpected, eachActual))
                 {
-                    junit.framework.Assert.failNotEquals(listName + " first differed at element [" + index + "];", eachExpected, eachActual);
+                    failNotEquals(eachExpected, eachActual, listName + " first differed at element [" + index + "];");
                 }
             }
         }
@@ -2042,7 +2045,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSetsEqual("set", expectedSet, actualSet);
+            Verify.assertSetsEqual(expectedSet, actualSet, "set");
         }
         catch (AssertionError e)
         {
@@ -2056,12 +2059,12 @@ public final class Verify extends Assert
         {
             if (expectedSet == null)
             {
-                Assert.assertNull(setName + " should be null", actualSet);
+                assertNull(actualSet, setName + " should be null");
                 return;
             }
 
-            Verify.assertObjectNotNull(setName, actualSet);
-            Verify.assertSize(setName, expectedSet.size(), actualSet);
+            Verify.assertObjectNotNull(actualSet, setName);
+            Verify.assertSize(expectedSet.size(), actualSet, setName);
 
             if (!actualSet.equals(expectedSet))
             {
@@ -2073,14 +2076,14 @@ public final class Verify extends Assert
 
                 if (numberDifferences > MAX_DIFFERENCES)
                 {
-                    Assert.fail(message);
+                    fail(message);
                 }
 
                 MutableSet<?> inActualOnlySet = UnifiedSet.newSet(actualSet);
                 inActualOnlySet.removeAll(expectedSet);
 
                 //noinspection UseOfObsoleteAssert
-                junit.framework.Assert.failNotEquals(message, inExpectedOnlySet, inActualOnlySet);
+                failNotEquals(inExpectedOnlySet, inActualOnlySet, message);
             }
         }
         catch (AssertionError e)
@@ -2093,7 +2096,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSortedSetsEqual("sortedSets", expectedSet, actualSet);
+            Verify.assertSortedSetsEqual(expectedSet, actualSet, "sortedSets");
         }
         catch (AssertionError e)
         {
@@ -2105,8 +2108,8 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertEquals(setName, expectedSet, actualSet);
-            Verify.assertIterablesEqual(setName, expectedSet, actualSet);
+            assertEquals(expectedSet, actualSet, setName);
+            Verify.assertIterablesEqual(expectedSet, actualSet, setName);
         }
         catch (AssertionError e)
         {
@@ -2118,7 +2121,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSortedBagsEqual("sortedBags", expectedBag, actualBag);
+            Verify.assertSortedBagsEqual(expectedBag, actualBag, "sortedBags");
         }
         catch (AssertionError e)
         {
@@ -2130,8 +2133,8 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertEquals(bagName, expectedBag, actualBag);
-            Verify.assertIterablesEqual(bagName, expectedBag, actualBag);
+            assertEquals(expectedBag, actualBag, bagName);
+            Verify.assertIterablesEqual(expectedBag, actualBag, bagName);
         }
         catch (AssertionError e)
         {
@@ -2143,7 +2146,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertSortedMapsEqual("sortedMaps", expectedMap, actualMap);
+            Verify.assertSortedMapsEqual(expectedMap, actualMap, "sortedMaps");
         }
         catch (AssertionError e)
         {
@@ -2155,8 +2158,8 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertEquals(mapName, expectedMap, actualMap);
-            Verify.assertIterablesEqual(mapName, expectedMap, actualMap);
+            assertEquals(expectedMap, actualMap, mapName);
+            Verify.assertIterablesEqual(expectedMap, actualMap, mapName);
         }
         catch (AssertionError e)
         {
@@ -2168,7 +2171,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertIterablesEqual("iterables", expectedIterable, actualIterable);
+            Verify.assertIterablesEqual(expectedIterable, actualIterable, "iterables");
         }
         catch (AssertionError e)
         {
@@ -2182,19 +2185,19 @@ public final class Verify extends Assert
         {
             if (expectedIterable == null)
             {
-                Assert.assertNull(iterableName + " should be null", actualIterable);
+                assertNull(actualIterable, iterableName + " should be null");
                 return;
             }
 
-            Verify.assertObjectNotNull(iterableName, actualIterable);
+            Verify.assertObjectNotNull(actualIterable, iterableName);
 
-            if (expectedIterable instanceof InternalIterable<?> && actualIterable instanceof InternalIterable<?>)
+            if (expectedIterable instanceof InternalIterable<?> iterable && actualIterable instanceof InternalIterable<?> iterable)
             {
                 MutableList<Object> expectedList = FastList.newList();
                 MutableList<Object> actualList = FastList.newList();
-                ((InternalIterable<?>) expectedIterable).forEach(CollectionAddProcedure.on(expectedList));
-                ((InternalIterable<?>) actualIterable).forEach(CollectionAddProcedure.on(actualList));
-                Verify.assertListsEqual(iterableName, expectedList, actualList);
+                iterable.forEach(CollectionAddProcedure.on(expectedList));
+                iterable.forEach(CollectionAddProcedure.on(actualList));
+                Verify.assertListsEqual(expectedList, actualList, iterableName);
             }
             else
             {
@@ -2210,13 +2213,13 @@ public final class Verify extends Assert
                     if (!Comparators.nullSafeEquals(eachExpected, eachActual))
                     {
                         //noinspection UseOfObsoleteAssert
-                        junit.framework.Assert.failNotEquals(iterableName + " first differed at element [" + index + "];", eachExpected, eachActual);
+                        failNotEquals(eachExpected, eachActual, iterableName + " first differed at element [" + index + "];");
                     }
                     index++;
                 }
 
-                Assert.assertFalse("Actual " + iterableName + " had " + index + " elements but expected " + iterableName + " had more.", expectedIterator.hasNext());
-                Assert.assertFalse("Expected " + iterableName + " had " + index + " elements but actual " + iterableName + " had more.", actualIterator.hasNext());
+                assertFalse(expectedIterator.hasNext(), "Actual " + iterableName + " had " + index + " elements but expected " + iterableName + " had more.");
+                assertFalse(actualIterator.hasNext(), "Expected " + iterableName + " had " + index + " elements but actual " + iterableName + " had more.");
             }
         }
         catch (AssertionError e)
@@ -2229,7 +2232,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertMapsEqual("map", expectedMap, actualMap);
+            Verify.assertMapsEqual(expectedMap, actualMap, "map");
         }
         catch (AssertionError e)
         {
@@ -2243,11 +2246,11 @@ public final class Verify extends Assert
         {
             if (expectedMap == null)
             {
-                Assert.assertNull(mapName + " should be null", actualMap);
+                assertNull(actualMap, mapName + " should be null");
                 return;
             }
 
-            Assert.assertNotNull(mapName + " should not be null", actualMap);
+            assertNotNull(actualMap, mapName + " should not be null");
 
             Set<? extends Map.Entry<?, ?>> expectedEntries = expectedMap.entrySet();
             for (Map.Entry<?, ?> expectedEntry : expectedEntries)
@@ -2257,11 +2260,11 @@ public final class Verify extends Assert
                 Object actualValue = actualMap.get(expectedKey);
                 if (!Comparators.nullSafeEquals(actualValue, expectedValue))
                 {
-                    Assert.fail("Values differ at key " + expectedKey + " expected " + expectedValue + " but was " + actualValue);
+                    fail("Values differ at key " + expectedKey + " expected " + expectedValue + " but was " + actualValue);
                 }
             }
-            Verify.assertSetsEqual(mapName + " keys", expectedMap.keySet(), actualMap.keySet());
-            Verify.assertSetsEqual(mapName + " entries", expectedMap.entrySet(), actualMap.entrySet());
+            Verify.assertSetsEqual(expectedMap.keySet(), actualMap.keySet(), mapName + " keys");
+            Verify.assertSetsEqual(expectedMap.entrySet(), actualMap.entrySet(), mapName + " entries");
         }
         catch (AssertionError e)
         {
@@ -2273,7 +2276,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertBagsEqual("bag", expectedBag, actualBag);
+            Verify.assertBagsEqual(expectedBag, actualBag, "bag");
         }
         catch (AssertionError e)
         {
@@ -2287,21 +2290,21 @@ public final class Verify extends Assert
         {
             if (expectedBag == null)
             {
-                Assert.assertNull(bagName + " should be null", actualBag);
+                assertNull(actualBag, bagName + " should be null");
                 return;
             }
 
-            Assert.assertNotNull(bagName + " should not be null", actualBag);
+            assertNotNull(actualBag, bagName + " should not be null");
 
-            Assert.assertEquals(bagName + " size", expectedBag.size(), actualBag.size());
-            Assert.assertEquals(bagName + " sizeDistinct", expectedBag.sizeDistinct(), actualBag.sizeDistinct());
+            assertEquals(expectedBag.size(), actualBag.size(), bagName + " size");
+            assertEquals(expectedBag.sizeDistinct(), actualBag.sizeDistinct(), bagName + " sizeDistinct");
 
             expectedBag.forEachWithOccurrences(new ObjectIntProcedure<Object>()
             {
                 public void value(Object expectedKey, int expectedValue)
                 {
                     int actualValue = actualBag.occurrencesOf(expectedKey);
-                    Assert.assertEquals("Occurrences of " + expectedKey, expectedValue, actualValue);
+                    assertEquals(expectedValue, actualValue, "Occurrences of " + expectedKey);
                 }
             });
         }
@@ -2318,7 +2321,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             MutableList<Object> expectedKeys = Lists.mutable.of();
             for (int i = 0; i < expectedKeyValues.length; i += 2)
@@ -2326,7 +2329,7 @@ public final class Verify extends Assert
                 expectedKeys.add(expectedKeyValues[i]);
             }
 
-            Verify.assertContainsAll(mapName + ".keySet()", actualMap.keySet(), expectedKeys.toArray());
+            Verify.assertContainsAll(actualMap.keySet(), expectedKeys.toArray(), mapName + ".keySet()");
         }
         catch (AssertionError e)
         {
@@ -2341,7 +2344,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             MutableMap<Object, String> missingEntries = UnifiedMap.newMap();
             int i = 0;
@@ -2369,7 +2372,7 @@ public final class Verify extends Assert
                             .append("> ");
                 }
                 buf.append(']');
-                Assert.fail(buf.toString());
+                fail(buf.toString());
             }
         }
         catch (AssertionError e)
@@ -2385,7 +2388,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             MutableList<Object> expectedKeys = Lists.mutable.of();
             for (int i = 0; i < expectedKeyValues.length; i += 2)
@@ -2393,7 +2396,7 @@ public final class Verify extends Assert
                 expectedKeys.add(expectedKeyValues[i]);
             }
 
-            Verify.assertContainsAll(mapIterableName + ".keysView()", mapIterable.keysView(), expectedKeys.toArray());
+            Verify.assertContainsAll(mapIterable.keysView(), expectedKeys.toArray(), mapIterableName + ".keysView()");
         }
         catch (AssertionError e)
         {
@@ -2408,7 +2411,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             MutableList<Object> expectedValues = Lists.mutable.of();
             for (int i = 1; i < expectedKeyValues.length; i += 2)
@@ -2416,7 +2419,7 @@ public final class Verify extends Assert
                 expectedValues.add(expectedKeyValues[i]);
             }
 
-            Verify.assertContainsAll(mapIterableName + ".valuesView()", mapIterable.valuesView(), expectedValues.toArray());
+            Verify.assertContainsAll(mapIterable.valuesView(), expectedValues.toArray(), mapIterableName + ".valuesView()");
         }
         catch (AssertionError e)
         {
@@ -2431,7 +2434,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             MutableList<Object> expectedKeys = Lists.mutable.of();
             for (int i = 0; i < expectedKeyValues.length; i += 2)
@@ -2439,7 +2442,7 @@ public final class Verify extends Assert
                 expectedKeys.add(expectedKeyValues[i]);
             }
 
-            Verify.assertContainsAll(mutableMapIterableName + ".keysView()", mutableMapIterable.keysView(), expectedKeys.toArray());
+            Verify.assertContainsAll(mutableMapIterable.keysView(), expectedKeys.toArray(), mutableMapIterableName + ".keysView()");
         }
         catch (AssertionError e)
         {
@@ -2454,7 +2457,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             MutableList<Object> expectedValues = Lists.mutable.of();
             for (int i = 1; i < expectedKeyValues.length; i += 2)
@@ -2462,7 +2465,7 @@ public final class Verify extends Assert
                 expectedValues.add(expectedKeyValues[i]);
             }
 
-            Verify.assertContainsAll(mutableMapIterableName + ".valuesView()", mutableMapIterable.valuesView(), expectedValues.toArray());
+            Verify.assertContainsAll(mutableMapIterable.valuesView(), expectedValues.toArray(), mutableMapIterableName + ".valuesView()");
         }
         catch (AssertionError e)
         {
@@ -2477,7 +2480,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             MutableList<Object> expectedKeys = Lists.mutable.of();
             for (int i = 0; i < expectedKeyValues.length; i += 2)
@@ -2485,7 +2488,7 @@ public final class Verify extends Assert
                 expectedKeys.add(expectedKeyValues[i]);
             }
 
-            Verify.assertContainsAll(immutableMapIterableName + ".keysView()", immutableMapIterable.keysView(), expectedKeys.toArray());
+            Verify.assertContainsAll(immutableMapIterable.keysView(), expectedKeys.toArray(), immutableMapIterableName + ".keysView()");
         }
         catch (AssertionError e)
         {
@@ -2500,7 +2503,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             MutableList<Object> expectedValues = Lists.mutable.of();
             for (int i = 1; i < expectedKeyValues.length; i += 2)
@@ -2508,7 +2511,7 @@ public final class Verify extends Assert
                 expectedValues.add(expectedKeyValues[i]);
             }
 
-            Verify.assertContainsAll(immutableMapIterableName + ".valuesView()", immutableMapIterable.valuesView(), expectedValues.toArray());
+            Verify.assertContainsAll(immutableMapIterable.valuesView(), expectedValues.toArray(), immutableMapIterableName + ".valuesView()");
         }
         catch (AssertionError e)
         {
@@ -2526,7 +2529,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsEntry("multimap", expectedKey, expectedValue, actualMultimap);
+            Verify.assertContainsEntry(expectedKey, expectedValue, actualMultimap, "multimap");
         }
         catch (AssertionError e)
         {
@@ -2545,11 +2548,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull(multimapName, actualMultimap);
+            assertNotNull(actualMultimap, multimapName);
 
             if (!actualMultimap.containsKeyAndValue(expectedKey, expectedValue))
             {
-                Assert.fail(multimapName + " did not contain entry: <" + expectedKey + ", " + expectedValue + '>');
+                fail(multimapName + " did not contain entry: <" + expectedKey + ", " + expectedValue + '>');
             }
         }
         catch (AssertionError e)
@@ -2565,7 +2568,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsAllEntries("multimap", actualMultimap, keyValues);
+            Verify.assertContainsAllEntries(actualMultimap, keyValues, "multimap");
         }
         catch (AssertionError e)
         {
@@ -2583,14 +2586,14 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected keys/values in assertion", expectedKeyValues);
+            Verify.assertNotEmpty(expectedKeyValues, "Expected keys/values in assertion");
 
             if (expectedKeyValues.length % 2 != 0)
             {
-                Assert.fail("Odd number of keys and values (every key must have a value)");
+                fail("Odd number of keys and values (every key must have a value)");
             }
 
-            Verify.assertObjectNotNull(multimapName, actualMultimap);
+            Verify.assertObjectNotNull(actualMultimap, multimapName);
 
             MutableList<Map.Entry<?, ?>> missingEntries = Lists.mutable.of();
             for (int i = 0; i < expectedKeyValues.length; i += 2)
@@ -2606,7 +2609,7 @@ public final class Verify extends Assert
 
             if (!missingEntries.isEmpty())
             {
-                Assert.fail(multimapName + " is missing entries: " + missingEntries);
+                fail(multimapName + " is missing entries: " + missingEntries);
             }
         }
         catch (AssertionError e)
@@ -2622,14 +2625,14 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected items in assertion", items);
+            Verify.assertNotEmpty(items, "Expected items in assertion");
 
-            Verify.assertObjectNotNull(collectionName, actualCollection);
+            Verify.assertObjectNotNull(actualCollection, collectionName);
 
             MutableSet<Object> intersection = Sets.intersect(UnifiedSet.newSet(actualCollection), UnifiedSet.newSetWith(items));
             if (intersection.notEmpty())
             {
-                Assert.fail(collectionName
+                fail(collectionName
                         + " has an intersection with these items and should not :<" + intersection + '>');
             }
         }
@@ -2646,7 +2649,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKey("map", expectedKey, actualMap);
+            Verify.assertContainsKey(expectedKey, actualMap, "map");
         }
         catch (AssertionError e)
         {
@@ -2661,11 +2664,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull(mapName, actualMap);
+            assertNotNull(actualMap, mapName);
 
             if (!actualMap.containsKey(expectedKey))
             {
-                Assert.fail(mapName + " did not contain expectedKey:<" + expectedKey + '>');
+                fail(mapName + " did not contain expectedKey:<" + expectedKey + '>');
             }
         }
         catch (AssertionError e)
@@ -2681,7 +2684,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKey("map", expectedKey, mapIterable);
+            Verify.assertContainsKey(expectedKey, mapIterable, "map");
         }
         catch (AssertionError e)
         {
@@ -2699,11 +2702,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull(mapIterableName, mapIterable);
+            assertNotNull(mapIterable, mapIterableName);
 
             if (!mapIterable.containsKey(expectedKey))
             {
-                Assert.fail(mapIterableName + " did not contain expectedKey:<" + expectedKey + '>');
+                fail(mapIterableName + " did not contain expectedKey:<" + expectedKey + '>');
             }
         }
         catch (AssertionError e)
@@ -2719,7 +2722,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKey("map", expectedKey, mutableMapIterable);
+            Verify.assertContainsKey(expectedKey, mutableMapIterable, "map");
         }
         catch (AssertionError e)
         {
@@ -2737,11 +2740,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull(mutableMapIterableName, mutableMapIterable);
+            assertNotNull(mutableMapIterable, mutableMapIterableName);
 
             if (!mutableMapIterable.containsKey(expectedKey))
             {
-                Assert.fail(mutableMapIterableName + " did not contain expectedKey:<" + expectedKey + '>');
+                fail(mutableMapIterableName + " did not contain expectedKey:<" + expectedKey + '>');
             }
         }
         catch (AssertionError e)
@@ -2757,7 +2760,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKey("map", expectedKey, immutableMapIterable);
+            Verify.assertContainsKey(expectedKey, immutableMapIterable, "map");
         }
         catch (AssertionError e)
         {
@@ -2775,11 +2778,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull(immutableMapIterableName, immutableMapIterable);
+            assertNotNull(immutableMapIterable, immutableMapIterableName);
 
             if (!immutableMapIterable.containsKey(expectedKey))
             {
-                Assert.fail(immutableMapIterableName + " did not contain expectedKey:<" + expectedKey + '>');
+                fail(immutableMapIterableName + " did not contain expectedKey:<" + expectedKey + '>');
             }
         }
         catch (AssertionError e)
@@ -2795,7 +2798,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.denyContainsKey("map", unexpectedKey, actualMap);
+            Verify.denyContainsKey(unexpectedKey, actualMap, "map");
         }
         catch (AssertionError e)
         {
@@ -2810,11 +2813,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull(mapName, actualMap);
+            assertNotNull(actualMap, mapName);
 
             if (actualMap.containsKey(unexpectedKey))
             {
-                Assert.fail(mapName + " contained unexpectedKey:<" + unexpectedKey + '>');
+                fail(mapName + " contained unexpectedKey:<" + unexpectedKey + '>');
             }
         }
         catch (AssertionError e)
@@ -2833,7 +2836,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKeyValue("map", expectedKey, expectedValue, actualMap);
+            Verify.assertContainsKeyValue(expectedKey, expectedValue, actualMap, "map");
         }
         catch (AssertionError e)
         {
@@ -2852,12 +2855,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKey(mapName, expectedKey, actualMap);
+            Verify.assertContainsKey(expectedKey, actualMap, mapName);
 
             Object actualValue = actualMap.get(expectedKey);
             if (!Comparators.nullSafeEquals(actualValue, expectedValue))
             {
-                Assert.fail(
+                fail(
                         mapName
                                 + " entry with expectedKey:<"
                                 + expectedKey
@@ -2886,7 +2889,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKeyValue("map", expectedKey, expectedValue, mapIterable);
+            Verify.assertContainsKeyValue(expectedKey, expectedValue, mapIterable, "map");
         }
         catch (AssertionError e)
         {
@@ -2905,12 +2908,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKey(mapIterableName, expectedKey, mapIterable);
+            Verify.assertContainsKey(expectedKey, mapIterable, mapIterableName);
 
             Object actualValue = mapIterable.get(expectedKey);
             if (!Comparators.nullSafeEquals(actualValue, expectedValue))
             {
-                Assert.fail(
+                fail(
                         mapIterableName
                                 + " entry with expectedKey:<"
                                 + expectedKey
@@ -2939,7 +2942,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKeyValue("map", expectedKey, expectedValue, mapIterable);
+            Verify.assertContainsKeyValue(expectedKey, expectedValue, mapIterable, "map");
         }
         catch (AssertionError e)
         {
@@ -2958,12 +2961,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKey(mapIterableName, expectedKey, mutableMapIterable);
+            Verify.assertContainsKey(expectedKey, mutableMapIterable, mapIterableName);
 
             Object actualValue = mutableMapIterable.get(expectedKey);
             if (!Comparators.nullSafeEquals(actualValue, expectedValue))
             {
-                Assert.fail(
+                fail(
                         mapIterableName
                                 + " entry with expectedKey:<"
                                 + expectedKey
@@ -2992,7 +2995,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKeyValue("map", expectedKey, expectedValue, mapIterable);
+            Verify.assertContainsKeyValue(expectedKey, expectedValue, mapIterable, "map");
         }
         catch (AssertionError e)
         {
@@ -3011,12 +3014,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertContainsKey(mapIterableName, expectedKey, immutableMapIterable);
+            Verify.assertContainsKey(expectedKey, immutableMapIterable, mapIterableName);
 
             Object actualValue = immutableMapIterable.get(expectedKey);
             if (!Comparators.nullSafeEquals(actualValue, expectedValue))
             {
-                Assert.fail(
+                fail(
                         mapIterableName
                                 + " entry with expectedKey:<"
                                 + expectedKey
@@ -3042,7 +3045,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotContains("collection", unexpectedItem, actualCollection);
+            Verify.assertNotContains(unexpectedItem, actualCollection, "collection");
         }
         catch (AssertionError e)
         {
@@ -3060,11 +3063,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(collectionName, actualCollection);
+            Verify.assertObjectNotNull(actualCollection, collectionName);
 
             if (actualCollection.contains(unexpectedItem))
             {
-                Assert.fail(collectionName + " should not contain unexpectedItem:<" + unexpectedItem + '>');
+                fail(collectionName + " should not contain unexpectedItem:<" + unexpectedItem + '>');
             }
         }
         catch (AssertionError e)
@@ -3080,7 +3083,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotContains("iterable", unexpectedItem, iterable);
+            Verify.assertNotContains(unexpectedItem, iterable, "iterable");
         }
         catch (AssertionError e)
         {
@@ -3098,11 +3101,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(collectionName, iterable);
+            Verify.assertObjectNotNull(iterable, collectionName);
 
             if (Iterate.contains(iterable, unexpectedItem))
             {
-                Assert.fail(collectionName + " should not contain unexpectedItem:<" + unexpectedItem + '>');
+                fail(collectionName + " should not contain unexpectedItem:<" + unexpectedItem + '>');
             }
         }
         catch (AssertionError e)
@@ -3118,7 +3121,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotContainsKey("map", unexpectedKey, actualMap);
+            Verify.assertNotContainsKey(unexpectedKey, actualMap, "map");
         }
         catch (AssertionError e)
         {
@@ -3133,11 +3136,11 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(mapName, actualMap);
+            Verify.assertObjectNotNull(actualMap, mapName);
 
             if (actualMap.containsKey(unexpectedKey))
             {
-                Assert.fail(mapName + " should not contain unexpectedItem:<" + unexpectedKey + '>');
+                fail(mapName + " should not contain unexpectedItem:<" + unexpectedKey + '>');
             }
         }
         catch (AssertionError e)
@@ -3154,7 +3157,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertBefore("list", formerItem, latterItem, actualList);
+            Verify.assertBefore(formerItem, latterItem, actualList, "list");
         }
         catch (AssertionError e)
         {
@@ -3175,17 +3178,17 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(listName, actualList);
+            Verify.assertObjectNotNull(actualList, listName);
             Verify.assertNotEquals(
-                    "Bad test, formerItem and latterItem are equal, listName:<" + listName + '>',
                     formerItem,
-                    latterItem);
-            Verify.assertContainsAll(listName, actualList, formerItem, latterItem);
+                    latterItem,
+                    "Bad test, formerItem and latterItem are equal, listName:<" + listName + '>');
+            Verify.assertContainsAll(actualList, formerItem, latterItem, listName);
             int formerPosition = actualList.indexOf(formerItem);
             int latterPosition = actualList.indexOf(latterItem);
             if (latterPosition < formerPosition)
             {
-                Assert.fail("Items in "
+                fail("Items in "
                         + listName
                         + " are in incorrect order; "
                         + "expected formerItem:<"
@@ -3206,7 +3209,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull(objectName + " should not be null", actualObject);
+            assertNotNull(actualObject, objectName + " should not be null");
         }
         catch (AssertionError e)
         {
@@ -3221,7 +3224,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertItemAtIndex("list", expectedItem, index, list);
+            Verify.assertItemAtIndex(expectedItem, index, list, "list");
         }
         catch (AssertionError e)
         {
@@ -3236,7 +3239,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertItemAtIndex("array", expectedItem, index, array);
+            Verify.assertItemAtIndex(expectedItem, index, array, "array");
         }
         catch (AssertionError e)
         {
@@ -3248,12 +3251,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected items in assertion", items);
+            Verify.assertNotEmpty(items, "Expected items in assertion");
 
             for (int i = 0; i < items.length; i++)
             {
                 T item = items[i];
-                Verify.assertItemAtIndex("array", item, i, array);
+                Verify.assertItemAtIndex(item, i, array, "array");
             }
         }
         catch (AssertionError e)
@@ -3266,7 +3269,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertStartsWith("list", list, items);
+            Verify.assertStartsWith(list, items, "list");
         }
         catch (AssertionError e)
         {
@@ -3278,12 +3281,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected items in assertion", items);
+            Verify.assertNotEmpty(items, "Expected items in assertion");
 
             for (int i = 0; i < items.length; i++)
             {
                 T item = items[i];
-                Verify.assertItemAtIndex(listName, item, i, list);
+                Verify.assertItemAtIndex(item, i, list, listName);
             }
         }
         catch (AssertionError e)
@@ -3296,12 +3299,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected items in assertion", items);
+            Verify.assertNotEmpty(items, "Expected items in assertion");
 
             for (int i = 0; i < items.length; i++)
             {
                 T item = items[i];
-                Verify.assertItemAtIndex("list", item, list.size() - items.length + i, list);
+                Verify.assertItemAtIndex(item, list.size() - items.length + i, list, "list");
             }
         }
         catch (AssertionError e)
@@ -3314,12 +3317,12 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertNotEmpty("Expected items in assertion", items);
+            Verify.assertNotEmpty(items, "Expected items in assertion");
 
             for (int i = 0; i < items.length; i++)
             {
                 T item = items[i];
-                Verify.assertItemAtIndex("array", item, array.length - items.length + i, array);
+                Verify.assertItemAtIndex(item, array.length - items.length + i, array, "array");
             }
         }
         catch (AssertionError e)
@@ -3339,15 +3342,15 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertObjectNotNull(listName, list);
+            Verify.assertObjectNotNull(list, listName);
 
             Object actualItem = list.get(index);
             if (!Comparators.nullSafeEquals(expectedItem, actualItem))
             {
-                Assert.assertEquals(
-                        listName + " has incorrect element at index:<" + index + '>',
+                assertEquals(
                         expectedItem,
-                        actualItem);
+                        actualItem,
+                        listName + " has incorrect element at index:<" + index + '>');
             }
         }
         catch (AssertionError e)
@@ -3367,14 +3370,14 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertNotNull(array);
+            assertNotNull(array);
             Object actualItem = array[index];
             if (!Comparators.nullSafeEquals(expectedItem, actualItem))
             {
-                Assert.assertEquals(
-                        arrayName + " has incorrect element at index:<" + index + '>',
+                assertEquals(
                         expectedItem,
-                        actualItem);
+                        actualItem,
+                        arrayName + " has incorrect element at index:<" + index + '>');
             }
         }
         catch (AssertionError e)
@@ -3388,8 +3391,8 @@ public final class Verify extends Assert
         try
         {
             Object deserialized = SerializeTestHelper.serializeDeserialize(object);
-            Verify.assertEqualsAndHashCode("objects", object, deserialized);
-            Assert.assertNotSame("not same object", object, deserialized);
+            Verify.assertEqualsAndHashCode(object, deserialized, "objects");
+            assertNotSame(object, deserialized, "not same object");
         }
         catch (AssertionError e)
         {
@@ -3402,8 +3405,8 @@ public final class Verify extends Assert
         try
         {
             Object deserialized = SerializeTestHelper.serializeDeserialize(object);
-            Verify.assertEqualsAndHashCode("objects", object, deserialized);
-            Assert.assertSame("same object", object, deserialized);
+            Verify.assertEqualsAndHashCode(object, deserialized, "objects");
+            assertSame(object, deserialized, "same object");
         }
         catch (AssertionError e)
         {
@@ -3416,10 +3419,10 @@ public final class Verify extends Assert
         try
         {
             Verify.assertInstanceOf(Serializable.class, actualObject);
-            Assert.assertEquals(
-                    "Serialization was broken.",
+            assertEquals(
                     expectedBase64Form,
-                    Verify.encodeObject(actualObject));
+                    Verify.encodeObject(actualObject),
+                    "Serialization was broken.");
         }
         catch (AssertionError e)
         {
@@ -3436,17 +3439,17 @@ public final class Verify extends Assert
         {
             Verify.assertInstanceOf(Serializable.class, actualObject);
 
-            Assert.assertEquals(
-                    "Serialization was broken.",
+            assertEquals(
                     expectedBase64Form,
-                    Verify.encodeObject(actualObject));
+                    Verify.encodeObject(actualObject),
+                    "Serialization was broken.");
 
             Object decodeToObject = Verify.decodeObject(expectedBase64Form);
 
-            Assert.assertEquals(
-                    "serialVersionUID's differ",
+            assertEquals(
                     expectedSerialVersionUID,
-                    ObjectStreamClass.lookup(decodeToObject.getClass()).getSerialVersionUID());
+                    ObjectStreamClass.lookup(decodeToObject.getClass()).getSerialVersionUID(),
+                    "serialVersionUID's differ");
         }
         catch (AssertionError e)
         {
@@ -3461,7 +3464,7 @@ public final class Verify extends Assert
             Verify.assertInstanceOf(Serializable.class, actualObject);
 
             Object decodeToObject = Verify.decodeObject(expectedBase64Form);
-            Assert.assertEquals("Serialization was broken.", decodeToObject, actualObject);
+            assertEquals(decodeToObject, actualObject, "Serialization was broken.");
         }
         catch (AssertionError e)
         {
@@ -3528,7 +3531,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertEqualsAndHashCode("objects", objectA, objectB);
+            Verify.assertEqualsAndHashCode(objectA, objectB, "objects");
         }
         catch (AssertionError e)
         {
@@ -3543,7 +3546,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertTrue(value + " is not negative", value < 0);
+            assertTrue(value < 0, value + " is not negative");
         }
         catch (AssertionError e)
         {
@@ -3558,7 +3561,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertTrue(value + " is not positive", value > 0);
+            assertTrue(value > 0, value + " is not positive");
         }
         catch (AssertionError e)
         {
@@ -3573,7 +3576,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Assert.assertEquals(0, value);
+            assertEquals(0, value);
         }
         catch (AssertionError e)
         {
@@ -3591,21 +3594,21 @@ public final class Verify extends Assert
         {
             if (objectA == null || objectB == null)
             {
-                Assert.fail("Neither item should be null: <" + objectA + "> <" + objectB + '>');
+                fail("Neither item should be null: <" + objectA + "> <" + objectB + '>');
             }
 
-            Assert.assertFalse("Neither item should equal null", objectA.equals(null));
-            Assert.assertFalse("Neither item should equal null", objectB.equals(null));
+            assertFalse(objectA.equals(null), "Neither item should equal null");
+            assertFalse(objectB.equals(null), "Neither item should equal null");
             Verify.assertNotEquals("Neither item should equal new Object()", objectA.equals(new Object()));
             Verify.assertNotEquals("Neither item should equal new Object()", objectB.equals(new Object()));
-            Assert.assertEquals("Expected " + itemNames + " to be equal.", objectA, objectA);
-            Assert.assertEquals("Expected " + itemNames + " to be equal.", objectB, objectB);
-            Assert.assertEquals("Expected " + itemNames + " to be equal.", objectA, objectB);
-            Assert.assertEquals("Expected " + itemNames + " to be equal.", objectB, objectA);
-            Assert.assertEquals(
-                    "Expected " + itemNames + " to have the same hashCode().",
+            assertEquals(objectA, objectA, "Expected " + itemNames + " to be equal.");
+            assertEquals(objectB, objectB, "Expected " + itemNames + " to be equal.");
+            assertEquals(objectA, objectB, "Expected " + itemNames + " to be equal.");
+            assertEquals(objectB, objectA, "Expected " + itemNames + " to be equal.");
+            assertEquals(
                     objectA.hashCode(),
-                    objectB.hashCode());
+                    objectB.hashCode(),
+                    "Expected " + itemNames + " to have the same hashCode().");
         }
         catch (AssertionError e)
         {
@@ -3617,7 +3620,7 @@ public final class Verify extends Assert
     {
         try
         {
-            Verify.assertShallowClone("object", object);
+            Verify.assertShallowClone(object, "object");
         }
         catch (AssertionError e)
         {
@@ -3633,8 +3636,8 @@ public final class Verify extends Assert
             method.setAccessible(true);
             Object clone = method.invoke(object);
             String prefix = itemName + " and its clone";
-            Assert.assertNotSame(prefix, object, clone);
-            Verify.assertEqualsAndHashCode(prefix, object, clone);
+            assertNotSame(object, clone, prefix);
+            Verify.assertEqualsAndHashCode(object, clone, prefix);
         }
         catch (IllegalArgumentException e)
         {
@@ -3669,7 +3672,7 @@ public final class Verify extends Assert
             try
             {
                 aClass.newInstance();
-                Assert.fail("Expected class '" + aClass + "' to be non-instantiable");
+                fail("Expected class '" + aClass + "' to be non-instantiable");
             }
             catch (InstantiationException e)
             {
@@ -3679,7 +3682,7 @@ public final class Verify extends Assert
             {
                 if (Verify.canInstantiateThroughReflection(aClass))
                 {
-                    Assert.fail("Expected constructor of non-instantiable class '" + aClass + "' to throw an exception, but didn't");
+                    fail("Expected constructor of non-instantiable class '" + aClass + "' to throw an exception, but didn't");
                 }
             }
         }
@@ -3730,14 +3733,14 @@ public final class Verify extends Assert
         {
             try
             {
-                Assert.assertSame(
+                assertSame(
+                        expectedErrorClass,
+                        ex.getClass(),
                         "Caught error of type <"
                                 + ex.getClass().getName()
                                 + ">, expected one of type <"
                                 + expectedErrorClass.getName()
-                                + '>',
-                        expectedErrorClass,
-                        ex.getClass());
+                                + '>');
                 return;
             }
             catch (AssertionError e)
@@ -3748,7 +3751,7 @@ public final class Verify extends Assert
 
         try
         {
-            Assert.fail("Block did not throw an error of type " + expectedErrorClass.getName());
+            fail("Block did not throw an error of type " + expectedErrorClass.getName());
         }
         catch (AssertionError e)
         {
@@ -3789,7 +3792,9 @@ public final class Verify extends Assert
         {
             try
             {
-                Assert.assertSame(
+                assertSame(
+                        expectedExceptionClass,
+                        ex.getClass(),
                         "Caught exception of type <"
                                 + ex.getClass().getName()
                                 + ">, expected one of type <"
@@ -3797,9 +3802,7 @@ public final class Verify extends Assert
                                 + '>'
                                 + '\n'
                                 + "Exception Message: " + ex.getMessage()
-                                + '\n',
-                        expectedExceptionClass,
-                        ex.getClass());
+                                + '\n');
                 return;
             }
             catch (AssertionError e)
@@ -3810,7 +3813,7 @@ public final class Verify extends Assert
 
         try
         {
-            Assert.fail("Block did not throw an exception of type " + expectedExceptionClass.getName());
+            fail("Block did not throw an exception of type " + expectedExceptionClass.getName());
         }
         catch (AssertionError e)
         {
@@ -3852,7 +3855,9 @@ public final class Verify extends Assert
         {
             try
             {
-                Assert.assertSame(
+                assertSame(
+                        expectedExceptionClass,
+                        ex.getClass(),
                         "Caught exception of type <"
                                 + ex.getClass().getName()
                                 + ">, expected one of type <"
@@ -3860,9 +3865,7 @@ public final class Verify extends Assert
                                 + '>'
                                 + '\n'
                                 + "Exception Message: " + ex.getMessage()
-                                + '\n',
-                        expectedExceptionClass,
-                        ex.getClass());
+                                + '\n');
                 return;
             }
             catch (AssertionError e)
@@ -3873,7 +3876,7 @@ public final class Verify extends Assert
 
         try
         {
-            Assert.fail("Block did not throw an exception of type " + expectedExceptionClass.getName());
+            fail("Block did not throw an exception of type " + expectedExceptionClass.getName());
         }
         catch (AssertionError e)
         {
@@ -3923,28 +3926,28 @@ public final class Verify extends Assert
         {
             try
             {
-                Assert.assertSame(
+                assertSame(
+                        expectedExceptionClass,
+                        ex.getClass(),
                         "Caught exception of type <"
                                 + ex.getClass().getName()
                                 + ">, expected one of type <"
                                 + expectedExceptionClass.getName()
-                                + '>',
-                        expectedExceptionClass,
-                        ex.getClass());
+                                + '>');
                 Throwable actualCauseClass = ex.getCause();
-                Assert.assertNotNull(
+                assertNotNull(
+                        actualCauseClass,
                         "Caught exception with null cause, expected cause of type <"
                                 + expectedCauseClass.getName()
-                                + '>',
-                        actualCauseClass);
-                Assert.assertSame(
+                                + '>');
+                assertSame(
+                        expectedCauseClass,
+                        actualCauseClass.getClass(),
                         "Caught exception with cause of type<"
                                 + actualCauseClass.getClass().getName()
                                 + ">, expected cause of type <"
                                 + expectedCauseClass.getName()
-                                + '>',
-                        expectedCauseClass,
-                        actualCauseClass.getClass());
+                                + '>');
                 return;
             }
             catch (AssertionError e)
@@ -3955,7 +3958,7 @@ public final class Verify extends Assert
 
         try
         {
-            Assert.fail("Block did not throw an exception of type " + expectedExceptionClass.getName());
+            fail("Block did not throw an exception of type " + expectedExceptionClass.getName());
         }
         catch (AssertionError e)
         {
@@ -4004,28 +4007,28 @@ public final class Verify extends Assert
         {
             try
             {
-                Assert.assertSame(
+                assertSame(
+                        expectedExceptionClass,
+                        ex.getClass(),
                         "Caught exception of type <"
                                 + ex.getClass().getName()
                                 + ">, expected one of type <"
                                 + expectedExceptionClass.getName()
-                                + '>',
-                        expectedExceptionClass,
-                        ex.getClass());
+                                + '>');
                 Throwable actualCauseClass = ex.getCause();
-                Assert.assertNotNull(
+                assertNotNull(
+                        actualCauseClass,
                         "Caught exception with null cause, expected cause of type <"
                                 + expectedCauseClass.getName()
-                                + '>',
-                        actualCauseClass);
-                Assert.assertSame(
+                                + '>');
+                assertSame(
+                        expectedCauseClass,
+                        actualCauseClass.getClass(),
                         "Caught exception with cause of type<"
                                 + actualCauseClass.getClass().getName()
                                 + ">, expected cause of type <"
                                 + expectedCauseClass.getName()
-                                + '>',
-                        expectedCauseClass,
-                        actualCauseClass.getClass());
+                                + '>');
                 return;
             }
             catch (AssertionError e)
@@ -4036,7 +4039,7 @@ public final class Verify extends Assert
 
         try
         {
-            Assert.fail("Block did not throw an exception of type " + expectedExceptionClass.getName());
+            fail("Block did not throw an exception of type " + expectedExceptionClass.getName());
         }
         catch (AssertionError e)
         {

@@ -19,7 +19,9 @@ package com.gs.collections.impl.list.mutable;
 import java.util.ListIterator;
 
 import com.gs.collections.api.list.MutableList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MultiReaderFastListAsUnmodifiableTest extends UnmodifiableMutableListTestCase
 {
@@ -30,18 +32,22 @@ public class MultiReaderFastListAsUnmodifiableTest extends UnmodifiableMutableLi
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void listIterator()
     {
-        ListIterator<Integer> it = this.getCollection().listIterator();
-        it.next();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            ListIterator<Integer> it = this.getCollection().listIterator();
+            it.next();
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void subListListIterator()
     {
-        ListIterator<Integer> it = this.getCollection().subList(0, 1).listIterator();
-        it.next();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            ListIterator<Integer> it = this.getCollection().subList(0, 1).listIterator();
+            it.next();
+        });
     }
 }

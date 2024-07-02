@@ -25,9 +25,11 @@ public class TreeSortedSetMultimapSerializationTest
     @Override
     protected String getSerializedForm()
     {
-        return "rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuc29ydGVkLlRyZWVT\n"
-                + "b3J0ZWRTZXRNdWx0aW1hcAAAAAAAAAABDAAAeHBwdwQAAAACdAABQXcEAAAAAnEAfgACdAABQnEA\n"
-                + "fgADdwQAAAABcQB+AAJ4";
+        return """
+                rO0ABXNyAEFjb20uZ3MuY29sbGVjdGlvbnMuaW1wbC5tdWx0aW1hcC5zZXQuc29ydGVkLlRyZWVT
+                b3J0ZWRTZXRNdWx0aW1hcAAAAAAAAAABDAAAeHBwdwQAAAACdAABQXcEAAAAAnEAfgACdAABQnEA
+                fgADdwQAAAABcQB+AAJ4\
+                """;
     }
 
     @Override

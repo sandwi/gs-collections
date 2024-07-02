@@ -19,7 +19,9 @@ package com.gs.collections.impl.lazy.parallel.set.sorted;
 import com.gs.collections.api.set.sorted.ParallelSortedSetIterable;
 import com.gs.collections.impl.block.factory.Comparators;
 import com.gs.collections.impl.set.sorted.mutable.TreeSortedSet;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParallelSortedSetIterableTest extends NonParallelSortedSetIterableTestCase
 {
@@ -35,15 +37,19 @@ public class ParallelSortedSetIterableTest extends NonParallelSortedSetIterableT
         return TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), littleElements).asParallel(this.executorService, this.batchSize);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void asParallel_small_batch()
     {
-        TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(this.executorService, 0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(this.executorService, 0);
+        });
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void asParallel_null_executorService()
     {
-        TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(null, 2);
+        assertThrows(NullPointerException.class, () -> {
+            TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(null, 2);
+        });
     }
 }

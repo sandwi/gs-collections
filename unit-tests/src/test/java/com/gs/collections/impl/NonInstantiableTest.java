@@ -48,7 +48,7 @@ import com.gs.collections.impl.utility.internal.SortedSetIterables;
 import com.gs.collections.impl.utility.internal.primitive.BooleanIterableIterate;
 import com.gs.collections.impl.utility.internal.primitive.BooleanIteratorIterate;
 import com.gs.collections.impl.utility.primitive.LazyBooleanIterate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class NonInstantiableTest
 {

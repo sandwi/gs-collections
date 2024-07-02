@@ -20,10 +20,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import com.gs.collections.impl.factory.Lists;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CollectIteratorTest
 {
@@ -31,38 +32,42 @@ public class CollectIteratorTest
     public void iterator()
     {
         Iterator<String> iterator = new CollectIterator<>(iList(Boolean.TRUE), String::valueOf);
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertEquals("true", iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertEquals("true", iterator.next());
+        Assertions.assertFalse(iterator.hasNext());
     }
 
     @Test
     public void iteratorWithFunctionName()
     {
         Iterator<String> iterator = new CollectIterator<>(iList(Boolean.TRUE), String::valueOf);
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertEquals("true", iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertEquals("true", iterator.next());
+        Assertions.assertFalse(iterator.hasNext());
     }
 
     @Test
     public void iteratorWithFunctionNameAndIterator()
     {
         Iterator<String> iterator = new CollectIterator<>(iList(Boolean.TRUE).iterator(), String::valueOf);
-        Assert.assertTrue(iterator.hasNext());
-        Assert.assertEquals("true", iterator.next());
-        Assert.assertFalse(iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertEquals("true", iterator.next());
+        Assertions.assertFalse(iterator.hasNext());
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void noSuchElementException()
     {
-        new CollectIterator<>(Lists.mutable.<Boolean>of(), String::valueOf).next();
+        assertThrows(NoSuchElementException.class, () -> {
+            new CollectIterator<>(Lists.mutable.<Boolean>of(), String::valueOf).next();
+        });
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void remove()
     {
-        new CollectIterator<>(Lists.mutable.<Boolean>of(), String::valueOf).remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            new CollectIterator<>(Lists.mutable.<Boolean>of(), String::valueOf).remove();
+        });
     }
 }

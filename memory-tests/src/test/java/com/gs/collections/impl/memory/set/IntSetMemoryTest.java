@@ -26,7 +26,6 @@ import com.gs.collections.impl.memory.TestDataFactory;
 import com.gs.collections.impl.set.mutable.UnifiedSet;
 import com.gs.collections.impl.set.mutable.primitive.IntHashSet;
 import gnu.trove.set.hash.TIntHashSet;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

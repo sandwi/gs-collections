@@ -21,8 +21,8 @@ import com.gs.collections.impl.block.factory.IntegerPredicates;
 import com.gs.collections.impl.block.factory.Predicates;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class IfFunctionTest
 {
@@ -42,7 +42,7 @@ public class IfFunctionTest
                 (Integer ignored) -> 0);
         MutableList<Integer> result = map.valuesView().collect(function).toList();
 
-        Assert.assertEquals(FastList.newListWith(0, 1, 0, 1, 0), result);
+        Assertions.assertEquals(FastList.newListWith(0, 1, 0, 1, 0), result);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class IfFunctionTest
                 Predicates.greaterThan(5),
                 (Integer ignored) -> true);
 
-        Assert.assertTrue(function.valueOf(10));
+        Assertions.assertTrue(function.valueOf(10));
     }
 
     @Test
@@ -63,6 +63,6 @@ public class IfFunctionTest
                 (Integer ignored) -> true,
                 (Integer ignored) -> false);
 
-        Assert.assertFalse(function.valueOf(1));
+        Assertions.assertFalse(function.valueOf(1));
     }
 }

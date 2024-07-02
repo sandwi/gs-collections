@@ -23,8 +23,8 @@ import com.gs.collections.impl.block.factory.IntegerPredicates;
 import com.gs.collections.impl.block.factory.Predicates2;
 import com.gs.collections.impl.map.MapIterableTestCase;
 import com.gs.collections.impl.map.mutable.UnifiedMap;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.gs.collections.impl.factory.Iterables.*;
 
@@ -70,8 +70,8 @@ public class ImmutableUnifiedMap2Test extends MapIterableTestCase
                 "C", 3,
                 "D", 4);
         PartitionIterable<Integer> partition = map.partition(IntegerPredicates.isEven());
-        Assert.assertEquals(iSet(2, 4), partition.getSelected().toSet());
-        Assert.assertEquals(iSet(1, 3), partition.getRejected().toSet());
+        Assertions.assertEquals(iSet(2, 4), partition.getSelected().toSet());
+        Assertions.assertEquals(iSet(1, 3), partition.getRejected().toSet());
     }
 
     @Override
@@ -84,7 +84,7 @@ public class ImmutableUnifiedMap2Test extends MapIterableTestCase
                 "C", 3,
                 "D", 4);
         PartitionIterable<Integer> partition = map.partitionWith(Predicates2.in(), map.select(IntegerPredicates.isEven()));
-        Assert.assertEquals(iSet(2, 4), partition.getSelected().toSet());
-        Assert.assertEquals(iSet(1, 3), partition.getRejected().toSet());
+        Assertions.assertEquals(iSet(2, 4), partition.getSelected().toSet());
+        Assertions.assertEquals(iSet(1, 3), partition.getRejected().toSet());
     }
 }

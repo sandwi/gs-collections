@@ -16,22 +16,28 @@
 
 package com.gs.collections.test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface UnmodifiableCollectionTestCase extends CollectionTestCase, UnmodifiableIterableTestCase
 {
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void Collection_add()
     {
-        this.newWith(1, 2, 3).add(4);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3).add(4);
+        });
     }
 
     @Override
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     default void Collection_clear()
     {
-        this.newWith(1, 2, 3).clear();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            this.newWith(1, 2, 3).clear();
+        });
     }
 
     @Override

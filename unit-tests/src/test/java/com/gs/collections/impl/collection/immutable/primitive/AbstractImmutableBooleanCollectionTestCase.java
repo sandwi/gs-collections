@@ -19,8 +19,8 @@ package com.gs.collections.impl.collection.immutable.primitive;
 import com.gs.collections.api.collection.primitive.ImmutableBooleanCollection;
 import com.gs.collections.api.collection.primitive.MutableBooleanCollection;
 import com.gs.collections.impl.collection.mutable.primitive.AbstractBooleanIterableTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Abstract JUnit test for {@link ImmutableBooleanCollection}s.
@@ -51,8 +51,8 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
                 falseCount++;
             }
         }
-        Assert.assertEquals(expectedTrueCount, trueCount);
-        Assert.assertEquals(expectedFalseCount, falseCount);
+        Assertions.assertEquals(expectedTrueCount, trueCount);
+        Assertions.assertEquals(expectedFalseCount, falseCount);
     }
 
     @Test

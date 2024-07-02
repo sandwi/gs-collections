@@ -23,8 +23,8 @@ import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.math.IntegerSum;
 import com.gs.collections.impl.math.Sum;
 import com.gs.collections.impl.math.SumProcedure;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,14 +44,14 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
         LazyIterable<Integer> select = new LazyIterableAdapter<>(Interval.oneTo(5));
         Sum sum = new IntegerSum(0);
         select.forEach(new SumProcedure<>(sum));
-        Assert.assertEquals(15, sum.getValue().intValue());
+        Assertions.assertEquals(15, sum.getValue().intValue());
     }
 
     @Test
     public void into()
     {
         int sum = new LazyIterableAdapter<>(Interval.oneTo(5)).into(FastList.<Integer>newList()).injectInto(0, AddFunction.INTEGER_TO_INT);
-        Assert.assertEquals(15, sum);
+        Assertions.assertEquals(15, sum);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
 
             LOGGER.info("value={} index={}", object, index);
         });
-        Assert.assertEquals(25, sum.getValue().intValue());
+        Assertions.assertEquals(25, sum.getValue().intValue());
     }
 
     @Override
@@ -78,7 +78,7 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
         {
             sum.add(each);
         }
-        Assert.assertEquals(15, sum.getValue().intValue());
+        Assertions.assertEquals(15, sum.getValue().intValue());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
         LazyIterable<Integer> select = new LazyIterableAdapter<>(Interval.oneTo(5));
         Sum sum = new IntegerSum(0);
         select.forEachWith((each, aSum) -> aSum.add(each), sum);
-        Assert.assertEquals(15, sum.getValue().intValue());
+        Assertions.assertEquals(15, sum.getValue().intValue());
     }
 
     @Override
@@ -96,7 +96,7 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
     {
         super.distinct();
         LazyIterable<Integer> iterable = new LazyIterableAdapter<>(FastList.newListWith(3, 2, 2, 4, 1, 3, 1, 5));
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(3, 2, 4, 1, 5),
                 iterable.distinct().toList());
     }

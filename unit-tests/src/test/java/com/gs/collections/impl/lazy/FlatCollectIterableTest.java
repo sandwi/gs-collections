@@ -23,8 +23,8 @@ import com.gs.collections.impl.block.factory.Procedures;
 import com.gs.collections.impl.list.Interval;
 import com.gs.collections.impl.list.mutable.FastList;
 import com.gs.collections.impl.utility.LazyIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class FlatCollectIterableTest extends AbstractLazyIterableTestCase
 {
@@ -41,7 +41,7 @@ public class FlatCollectIterableTest extends AbstractLazyIterableTestCase
         Appendable builder = new StringBuilder();
         Procedure<Integer> appendProcedure = Procedures.append(builder);
         select.forEach(appendProcedure);
-        Assert.assertEquals("112123123412345", builder.toString());
+        Assertions.assertEquals("112123123412345", builder.toString());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class FlatCollectIterableTest extends AbstractLazyIterableTestCase
             builder.append(object);
             builder.append(index);
         });
-        Assert.assertEquals("10112213243516273849110211312413514", builder.toString());
+        Assertions.assertEquals("10112213243516273849110211312413514", builder.toString());
     }
 
     @Override
@@ -66,7 +66,7 @@ public class FlatCollectIterableTest extends AbstractLazyIterableTestCase
         {
             builder.append(each);
         }
-        Assert.assertEquals("112123123412345", builder.toString());
+        Assertions.assertEquals("112123123412345", builder.toString());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class FlatCollectIterableTest extends AbstractLazyIterableTestCase
         InternalIterable<Integer> select = new FlatCollectIterable<>(Interval.oneTo(5), Interval::oneTo);
         StringBuilder builder = new StringBuilder("");
         select.forEachWith((each, aBuilder) -> aBuilder.append(each), builder);
-        Assert.assertEquals("112123123412345", builder.toString());
+        Assertions.assertEquals("112123123412345", builder.toString());
     }
 
     @Override
@@ -84,7 +84,7 @@ public class FlatCollectIterableTest extends AbstractLazyIterableTestCase
     {
         super.distinct();
         FlatCollectIterable<Integer, Integer> iterable = new FlatCollectIterable<>(FastList.newListWith(3, 2, 2, 4, 1, 3, 1, 5), Interval::oneTo);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 FastList.newListWith(1, 2, 3, 4, 5),
                 iterable.distinct().toList());
     }
